@@ -14,6 +14,14 @@ config/name="teas-otk"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://c85aoy1balt41"
 
+[autoload]
+
+GlobalState="*uid://rev83aw863ms"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-vim/plugin.cfg")
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
