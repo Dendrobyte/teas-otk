@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://kmcdpx3tde62"]
+
+[ext_resource type="Script" uid="uid://cgxq82dhb7gja" path="res://brewing_base.gd" id="1_4bfix"]
+[ext_resource type="PackedScene" uid="uid://dqud3sgjo74y8" path="res://assets/asset_plane_base.tscn" id="1_42te4"]
+
+[sub_resource type="Environment" id="Environment_vodtt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vodtt"]
+albedo_color = Color(0.44705883, 0.36078432, 0.5803922, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_b0jfn"]
+material = SubResource("StandardMaterial3D_vodtt")
+
+[node name="BrewingBase" type="Node3D" unique_id=2002152738]
+script = ExtResource("1_4bfix")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=663389705]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 6.3515496, 6.6317544)
+environment = SubResource("Environment_vodtt")
+current = true
+
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=404712858]
+transform = Transform3D(54.63465, 0, 0, 0, 1, 0, 0, 0, 42.75453, 0, 0, 0)
+mesh = SubResource("PlaneMesh_b0jfn")
+
+[node name="AssetPlaneBase" parent="." unique_id=1648767978 instance=ExtResource("1_42te4")]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, -1.4765789e-09, 0.033780098)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=479800490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 65, 0)
