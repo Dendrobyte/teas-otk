@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdap8ycsmnlk3"
-path.s3tc="res://.godot/imported/asset_plane_default_image.png-ad6067c271c04b23995643713ccb3e9a.s3tc.ctex"
+uid="uid://dq733v8hwaa68"
+path.s3tc="res://.godot/imported/asset_plane_tree_image.png-d121200c46e166466234e79e7e976d1a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/asset_plane_default_image.png"
-dest_files=["res://.godot/imported/asset_plane_default_image.png-ad6067c271c04b23995643713ccb3e9a.s3tc.ctex"]
+source_file="res://assets/asset_plane_tree_image.png"
+dest_files=["res://.godot/imported/asset_plane_tree_image.png-d121200c46e166466234e79e7e976d1a.s3tc.ctex"]
 
 [params]
 
