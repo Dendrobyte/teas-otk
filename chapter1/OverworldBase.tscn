@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://i1kavmi05q6k"]
 
-[ext_resource type="Script" uid="uid://btqp10lt30b0u" path="res://overworld_base.gd" id="1_aqkp0"]
-[ext_resource type="PackedScene" uid="uid://dqud3sgjo74y8" path="res://assets/asset_plane_base.tscn" id="1_vodtt"]
+[ext_resource type="Script" uid="uid://btqp10lt30b0u" path="res://overworld_base.gd" id="1_2jjpf"]
+[ext_resource type="PackedScene" uid="uid://dqud3sgjo74y8" path="res://assets/asset_plane_base.tscn" id="2_0a14x"]
 
 [sub_resource type="Environment" id="Environment_vodtt"]
 background_mode = 2
@@ -13,7 +13,7 @@ albedo_color = Color(0.21960784, 1, 0.26666668, 1)
 material = SubResource("StandardMaterial3D_vodtt")
 
 [node name="OverworldBase" type="Node3D" unique_id=2002152738]
-script = ExtResource("1_aqkp0")
+script = ExtResource("1_2jjpf")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=663389705]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 6.3515496, 6.6317544)
@@ -24,7 +24,7 @@ current = true
 transform = Transform3D(54.63465, 0, 0, 0, 1, 0, 0, 0, 42.75453, 0.009077072, 9.536743e-07, -0.0029764175)
 mesh = SubResource("PlaneMesh_b0jfn")
 
-[node name="AssetPlaneBase" parent="." unique_id=1648767978 instance=ExtResource("1_vodtt")]
+[node name="AssetPlaneBase" parent="." unique_id=1648767978 instance=ExtResource("2_0a14x")]
 transform = Transform3D(1, 0, 0, 0, 0.7071067, -0.7071067, 0, 0.7071067, 0.7071067, 0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=479800490]
