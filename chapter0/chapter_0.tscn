@@ -38,11 +38,12 @@ albedo_texture = ExtResource("4_1e61i")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owvj2"]
 albedo_texture = ExtResource("5_2sno3")
 
+[sub_resource type="Environment" id="Environment_qx1ri"]
+
 [node name="Intro" type="Node3D" unique_id=376087982]
 script = ExtResource("1_cve6m")
 
 [node name="Scene1" type="Node3D" parent="." unique_id=445630700]
-visible = false
 
 [node name="Ground" type="MeshInstance3D" parent="Scene1" unique_id=1415729144]
 transform = Transform3D(11.710128, 0, 0, 0, 1, 0, 0, 0, 6.880904, 0, 0, -2.0984561)
@@ -133,6 +134,7 @@ material_override = SubResource("StandardMaterial3D_ygn6d")
 mesh = SubResource("PlaneMesh_cve6m")
 
 [node name="Scene3" type="Node3D" parent="." unique_id=925232957]
+visible = false
 
 [node name="Ground" type="MeshInstance3D" parent="Scene3" unique_id=648433800]
 transform = Transform3D(11.710128, 0, 0, 0, 1, 0, 0, 0, 6.880904, 0, 0, -2.0984561)
@@ -191,6 +193,7 @@ mesh = SubResource("PlaneMesh_cve6m")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=690860789]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7594275, 4.0777717)
+environment = SubResource("Environment_qx1ri")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=809867120]
 transform = Transform3D(1, 0, 0, 0, 0.6757574, 0.737124, 0, -0.737124, 0.6757574, 0, 3.4539533, 3.98185)
