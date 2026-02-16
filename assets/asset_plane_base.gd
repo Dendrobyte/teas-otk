@@ -6,7 +6,8 @@ func _ready():
 	# Plane dimensions should match the image (our source of truth)
 	var img_size = plane_texture_img.get_size()
 	var aspect = img_size.x / img_size.y
-	$PlaneMesh.mesh.size = Vector2(aspect, 1.0)
+	$PlaneMesh.mesh.size = Vector2(aspect*2, 2.0)
+	print(img_size.x, img_size.y)
 	
 	# Ensure our pivot point is set up as intended, programmatically to verify
 	# TODO: If we're in the brewing phase, set the rotation to full 90
@@ -22,4 +23,3 @@ func _ready():
 		mat.albedo_texture = plane_texture_img
 		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	$PlaneMesh.set_surface_override_material(0, mat)
-	print("My rotation is, ", rotation_degrees.x)
