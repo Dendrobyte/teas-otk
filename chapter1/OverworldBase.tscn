@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://btqp10lt30b0u" path="res://overworld_base.gd" id="1_2jjpf"]
 [ext_resource type="PackedScene" uid="uid://dqud3sgjo74y8" path="res://assets/asset_plane_base.tscn" id="2_0a14x"]
 [ext_resource type="Script" uid="uid://pqjcyxq2vas3" path="res://chapter1/char_movement.gd" id="2_6yx43"]
+[ext_resource type="Texture2D" uid="uid://dq733v8hwaa68" path="res://assets/asset_plane_tree_image.png" id="3_vijwm"]
+[ext_resource type="Texture2D" uid="uid://bdap8ycsmnlk3" path="res://assets/asset_plane_default_image.png" id="4_48tn0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vodtt"]
 albedo_color = Color(0.21960784, 0.5254902, 0.26666668, 1)
@@ -16,10 +18,6 @@ size = Vector3(2.0336914, 0.25708008, 2.5019531)
 [node name="OverworldBase" type="Node3D" unique_id=2002152738]
 script = ExtResource("1_2jjpf")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=663389705]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 6.3515496, 6.6317544)
-current = true
-
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=404712858]
 transform = Transform3D(54.63465, 0, 0, 0, 1, 0, 0, 0, 42.75453, 0.009077072, 9.536743e-07, -0.0029764175)
 mesh = SubResource("PlaneMesh_b0jfn")
@@ -27,12 +25,25 @@ mesh = SubResource("PlaneMesh_b0jfn")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=479800490]
 transform = Transform3D(0.9999993, -0.0008765172, 0.0009770761, -0.0009751071, 0.0022453493, 0.9999971, -0.00087872834, -0.99999714, 0.0022444848, -0.005060926, 10.202808, 0.012964813)
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1379564249]
+[node name="Character" type="CharacterBody3D" parent="." unique_id=1379564249]
 script = ExtResource("2_6yx43")
 
-[node name="AssetPlaneBase" parent="CharacterBody3D" unique_id=1648767978 instance=ExtResource("2_0a14x")]
+[node name="AssetPlaneBase" parent="Character" unique_id=1830317028 instance=ExtResource("2_0a14x")]
 transform = Transform3D(1, 0, 0, 0, 0.7071067, -0.7071067, 0, 0.7071067, 0.7071067, 0, 0, 0)
+plane_texture_img = ExtResource("4_48tn0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1724490323]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Character" unique_id=1724490323]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, -0.011230469, 0.5228205, -0.5392207)
 shape = SubResource("BoxShape3D_7pokv")
+
+[node name="Camera" type="Camera3D" parent="Character" unique_id=663389705]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 8.477509, 6.6317544)
+current = true
+
+[node name="Tree" parent="." unique_id=1648767978 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, -3.8966775, 0, 0)
+plane_texture_img = ExtResource("3_vijwm")
+
+[node name="Tree2" parent="." unique_id=846145894 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 3.8470972, 0, -6.636391)
+plane_texture_img = ExtResource("3_vijwm")
