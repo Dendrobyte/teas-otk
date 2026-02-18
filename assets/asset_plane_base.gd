@@ -12,14 +12,12 @@ func _ready():
 	$PlaneMesh.mesh.size = Vector2i(ratio[0]*scale_factor, ratio[1]*scale_factor)
 	scale.x = ratio[0]
 	scale.z = ratio[1]
-	print(img_size)
-	print(ratio)
 	
 	# Ensure our pivot point is set up as intended, programmatically to verify
 	# TODO: If we're in the brewing phase, set the rotation to full 90
-	var half_height = $PlaneMesh.mesh.size.y
-	$PlaneMesh.position.y = half_height
-	rotation_degrees.x = 90 - GlobalState.ROTATION_ANGLE.get(GlobalState.CURRENT_GAMEMODE, 0)
+	# var half_height = $PlaneMesh.mesh.size.y
+	# TODO: Use this to PROPERLY set the origin point
+	# rotation_degrees.x = 90 - GlobalState.ROTATION_ANGLE.get(GlobalState.CURRENT_GAMEMODE, 0)
 	
 	# Load the texture
 	# TODO: Redo this setup :)
@@ -28,7 +26,7 @@ func _ready():
 		mat = StandardMaterial3D.new()
 		mat.albedo_texture = plane_texture_img
 		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	# $PlaneMesh.set_surface_override_material(0, mat)
+	$PlaneMesh.set_surface_override_material(0, mat)
 
 func _gcd(w, h):
 	if h == 0:

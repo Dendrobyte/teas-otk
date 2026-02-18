@@ -38,14 +38,16 @@ current = true
 
 [node name="Tree" parent="." unique_id=1648767978 instance=ExtResource("2_0a14x")]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, -3.8966775, 0, 0)
+visible = false
 plane_texture_img = ExtResource("3_vijwm")
 
 [node name="Tree2" parent="." unique_id=846145894 instance=ExtResource("2_0a14x")]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 3.8470972, 0, -6.636391)
+visible = false
 plane_texture_img = ExtResource("3_vijwm")
 
 [node name="TeaPlantBase" parent="." unique_id=1332769204 instance=ExtResource("2_0a14x")]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 5.170722, 0, -2.5059059)
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 1.825, 0, 0)
 plane_texture_img = ExtResource("6_p5ppj")
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=404712858]
