@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://c14027u7sby6d" path="res://chapter0/intro.gd" id="1_cve6m"]
 [ext_resource type="Script" uid="uid://closh6rxsktcb" path="res://chapter0/dialogues.gd" id="2_akeur"]
 [ext_resource type="Texture2D" uid="uid://dq733v8hwaa68" path="res://assets/asset_plane_tree_image.png" id="2_wcuxo"]
-[ext_resource type="Texture2D" uid="uid://bdap8ycsmnlk3" path="res://assets/asset_plane_default_image.png" id="3_cjsdf"]
 [ext_resource type="Texture2D" uid="uid://mx2vchl4y2j5" path="res://assets/asset_plane_mountain_image.png" id="4_1e61i"]
+[ext_resource type="Texture2D" uid="uid://t67h43i4vd1b" path="res://assets/base_person_128x256.png" id="4_akeur"]
 [ext_resource type="Texture2D" uid="uid://buw2saqgq1ucd" path="res://assets/asset_plane_log_image.png" id="5_2sno3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_akeur"]
@@ -15,20 +15,23 @@ font_size = 32
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1e61i"]
 albedo_color = Color(0.58431375, 0.32156864, 0.24705882, 1)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_48tn0"]
+load_path = "res://.godot/imported/asset_plane_tree_image.png-d121200c46e166466234e79e7e976d1a.s3tc.ctex"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2sno3"]
-albedo_texture = ExtResource("2_wcuxo")
+albedo_texture = SubResource("CompressedTexture2D_48tn0")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67wo6"]
+albedo_texture = SubResource("CompressedTexture2D_48tn0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qx1ri"]
 albedo_texture = ExtResource("2_wcuxo")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ao4fc"]
-albedo_texture = ExtResource("2_wcuxo")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f6mol"]
+albedo_texture = ExtResource("4_akeur")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2ril"]
-albedo_texture = ExtResource("3_cjsdf")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygn6d"]
-albedo_texture = ExtResource("3_cjsdf")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ad4xx"]
+albedo_texture = ExtResource("4_akeur")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mrwxi"]
 albedo_texture = ExtResource("4_1e61i")
@@ -39,8 +42,16 @@ albedo_texture = ExtResource("4_1e61i")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bwmwy"]
 albedo_texture = ExtResource("4_1e61i")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wki62"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c2ril"]
+albedo_texture = SubResource("CompressedTexture2D_wki62")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owvj2"]
 albedo_texture = ExtResource("5_2sno3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ygn6d"]
+albedo_texture = SubResource("CompressedTexture2D_wki62")
 
 [sub_resource type="Environment" id="Environment_qx1ri"]
 
@@ -90,17 +101,17 @@ mesh = SubResource("PlaneMesh_cve6m")
 
 [node name="BG3" type="MeshInstance3D" parent="Scene0" unique_id=77858088]
 transform = Transform3D(8.031021, -0.7277728, 4.535421e-07, 0, -4.371139e-08, -14.256969, 8.522313, 0.6858183, -4.2739646e-07, 15.673, 8.127, -10.995)
-material_override = SubResource("StandardMaterial3D_ao4fc")
+material_override = SubResource("StandardMaterial3D_qx1ri")
 mesh = SubResource("PlaneMesh_cve6m")
 
 [node name="Char1" type="MeshInstance3D" parent="Scene0" unique_id=506348380]
 transform = Transform3D(0.5623834, 0, 0, 0, -4.3711385e-08, -0.93663555, 0, 0.99999994, -4.094164e-08, -1.1425617, 0.95268893, 0)
-material_override = SubResource("StandardMaterial3D_c2ril")
+material_override = SubResource("StandardMaterial3D_f6mol")
 mesh = SubResource("PlaneMesh_cve6m")
 
 [node name="Char2" type="MeshInstance3D" parent="Scene0" unique_id=1852614876]
 transform = Transform3D(0.5623834, 0, 0, 0, -4.3711385e-08, -0.93663555, 0, 0.99999994, -4.094164e-08, 1.1996605, 0.7693387, 0.6907675)
-material_override = SubResource("StandardMaterial3D_ygn6d")
+material_override = SubResource("StandardMaterial3D_ad4xx")
 mesh = SubResource("PlaneMesh_cve6m")
 
 [node name="Scene1" type="Node3D" parent="." unique_id=408018074]

@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://btqp10lt30b0u" path="res://overworld_base.gd" id="1_2jjpf"]
 [ext_resource type="PackedScene" uid="uid://dqud3sgjo74y8" path="res://assets/asset_plane_base.tscn" id="2_0a14x"]
 [ext_resource type="Script" uid="uid://pqjcyxq2vas3" path="res://chapter1/char_movement.gd" id="2_6yx43"]
-[ext_resource type="Texture2D" uid="uid://dq733v8hwaa68" path="res://assets/asset_plane_tree_image.png" id="3_vijwm"]
 [ext_resource type="Texture2D" uid="uid://t67h43i4vd1b" path="res://assets/base_person_128x256.png" id="4_p5ppj"]
+[ext_resource type="Texture2D" uid="uid://2tyb4f5pycuc" path="res://assets/base_bush_128x128.png" id="5_p5ppj"]
+[ext_resource type="Script" uid="uid://btwkuqh33iglq" path="res://chapter1/scatter_placement.gd" id="5_y7lbr"]
 [ext_resource type="Texture2D" uid="uid://c4oypf7c134xg" path="res://assets/base_tea_plant_128x128.png" id="6_p5ppj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7pokv"]
@@ -33,18 +34,16 @@ transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70
 shape = SubResource("BoxShape3D_7pokv")
 
 [node name="Camera" type="Camera3D" parent="Character" unique_id=663389705]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 8.477509, 6.6317544)
+transform = Transform3D(0.3857773, -0.65237105, 0.65237105, 0, 0.7071068, 0.7071068, -0.9225919, -0.27278575, 0.27278575, 5.616289, 8.477509, 6.6317544)
 current = true
 
-[node name="Tree" parent="." unique_id=1648767978 instance=ExtResource("2_0a14x")]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, -3.8966775, 0, 0)
-visible = false
-plane_texture_img = ExtResource("3_vijwm")
+[node name="BushParent" type="Node3D" parent="." unique_id=643443880]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, -9.97428, 0, -1.5975621)
+script = ExtResource("5_y7lbr")
 
-[node name="Tree2" parent="." unique_id=846145894 instance=ExtResource("2_0a14x")]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 3.8470972, 0, -6.636391)
-visible = false
-plane_texture_img = ExtResource("3_vijwm")
+[node name="Bush" parent="BushParent" unique_id=1648767978 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+plane_texture_img = ExtResource("5_p5ppj")
 
 [node name="TeaPlantBase" parent="." unique_id=1332769204 instance=ExtResource("2_0a14x")]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 1.825, 0, 0)
