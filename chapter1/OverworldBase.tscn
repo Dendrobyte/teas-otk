@@ -7,15 +7,19 @@
 [ext_resource type="Texture2D" uid="uid://2tyb4f5pycuc" path="res://assets/base_bush_128x128.png" id="5_p5ppj"]
 [ext_resource type="Script" uid="uid://btwkuqh33iglq" path="res://chapter1/scatter_placement.gd" id="5_y7lbr"]
 [ext_resource type="Texture2D" uid="uid://c4oypf7c134xg" path="res://assets/base_tea_plant_128x128.png" id="6_p5ppj"]
+[ext_resource type="Texture2D" uid="uid://drhret326m3jm" path="res://assets/chamomile_cluster_256x256.png" id="7_q04gs"]
+[ext_resource type="Texture2D" uid="uid://c08im8e4vsoho" path="res://assets/tree_1_384x384.png" id="8_eb07m"]
+[ext_resource type="Texture2D" uid="uid://byevew7i3q486" path="res://assets/base_tile_128x128.png" id="10_46g0g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7pokv"]
 size = Vector3(2.0336914, 0.25708008, 2.5019531)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vodtt"]
-albedo_color = Color(0.21960784, 0.5254902, 0.26666668, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_46g0g"]
+albedo_texture = ExtResource("10_46g0g")
+uv1_scale = Vector3(32, 32, 32)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_b0jfn"]
-material = SubResource("StandardMaterial3D_vodtt")
+lightmap_size_hint = Vector2i(12, 12)
 
 [node name="OverworldBase" type="Node3D" unique_id=2002152738]
 script = ExtResource("1_2jjpf")
@@ -34,21 +38,115 @@ transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70
 shape = SubResource("BoxShape3D_7pokv")
 
 [node name="Camera" type="Camera3D" parent="Character" unique_id=663389705]
-transform = Transform3D(0.3857773, -0.65237105, 0.65237105, 0, 0.7071068, 0.7071068, -0.9225919, -0.27278575, 0.27278575, 5.616289, 8.477509, 6.6317544)
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 8.478, 6.632)
 current = true
 
-[node name="BushParent" type="Node3D" parent="." unique_id=643443880]
+[node name="Bushes" type="Node3D" parent="." unique_id=643443880]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, -9.97428, 0, -1.5975621)
 script = ExtResource("5_y7lbr")
 
-[node name="Bush" parent="BushParent" unique_id=1648767978 instance=ExtResource("2_0a14x")]
+[node name="Bush" parent="Bushes" unique_id=1648767978 instance=ExtResource("2_0a14x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 plane_texture_img = ExtResource("5_p5ppj")
+
+[node name="Bush2" parent="Bushes" unique_id=2114750395 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.068348, -8.097596, -8.097596)
+plane_texture_img = ExtResource("5_p5ppj")
+
+[node name="Bush3" parent="Bushes" unique_id=1826141474 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.181771, -8.097596, -8.097596)
+plane_texture_img = ExtResource("5_p5ppj")
+
+[node name="Bush4" parent="Bushes" unique_id=1059489745 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5856018, 4.2477155, 4.2477155)
+plane_texture_img = ExtResource("5_p5ppj")
+
+[node name="Bush5" parent="Bushes" unique_id=163788956 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.454926, 24.60457, 24.60457)
+plane_texture_img = ExtResource("5_p5ppj")
+
+[node name="Chamomiles" type="Node3D" parent="." unique_id=1564973035]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 15.600717, 0, -1.5975621)
+script = ExtResource("5_y7lbr")
+scatter_count_min = 2
+scatter_count_max = 3
+
+[node name="ChamomileBush" parent="Chamomiles" unique_id=199674753 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+plane_texture_img = ExtResource("7_q04gs")
+scale_factor = 3
+
+[node name="ChamomileBush2" parent="Chamomiles" unique_id=597029861 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 5.324953, 5.324953)
+plane_texture_img = ExtResource("7_q04gs")
+scale_factor = 3
+
+[node name="ChamomileBush3" parent="Chamomiles" unique_id=601445991 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 18.000053, -8.561827, -8.561827)
+plane_texture_img = ExtResource("7_q04gs")
+scale_factor = 3
+
+[node name="ChamomileBush4" parent="Chamomiles" unique_id=1524320560 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -51.278263, 23.0164, 23.0164)
+plane_texture_img = ExtResource("7_q04gs")
+scale_factor = 3
+
+[node name="Trees" type="Node3D" parent="." unique_id=488812126]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, -23.693298, 0, -1.5975621)
+script = ExtResource("5_y7lbr")
+scatter_count_min = 4
+scatter_count_max = 6
+
+[node name="Tree" parent="Trees" unique_id=186656522 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+plane_texture_img = ExtResource("8_eb07m")
+scale_factor = 7
+
+[node name="Tree2" parent="Trees" unique_id=205299250 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 10.342934, -13.047256, -13.047256)
+plane_texture_img = ExtResource("8_eb07m")
+scale_factor = 7
+
+[node name="Tree3" parent="Trees" unique_id=706186858 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -12.470047, -13.047257, -13.047257)
+plane_texture_img = ExtResource("8_eb07m")
+scale_factor = 7
+
+[node name="Tree4" parent="Trees" unique_id=2059370541 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 39.75385, -13.047258, -13.047258)
+plane_texture_img = ExtResource("8_eb07m")
+scale_factor = 7
+
+[node name="Tree5" parent="Trees" unique_id=1386013479 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 39.75385, 15.552791, 15.552791)
+plane_texture_img = ExtResource("8_eb07m")
+scale_factor = 7
+
+[node name="Tree6" parent="Trees" unique_id=208362666 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -6.8035126, 15.552791, 15.552791)
+plane_texture_img = ExtResource("8_eb07m")
+scale_factor = 7
+
+[node name="Tree7" parent="Trees" unique_id=1953700587 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -22.699966, 15.552791, 15.552791)
+plane_texture_img = ExtResource("8_eb07m")
+scale_factor = 7
+
+[node name="Tree8" parent="Trees" unique_id=1879126123 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -22.699966, 6.279887, 6.279887)
+plane_texture_img = ExtResource("8_eb07m")
+scale_factor = 7
+
+[node name="Tree9" parent="Trees" unique_id=652668529 instance=ExtResource("2_0a14x")]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 5.779892, 14.386501, 14.386501)
+plane_texture_img = ExtResource("8_eb07m")
+scale_factor = 7
 
 [node name="TeaPlantBase" parent="." unique_id=1332769204 instance=ExtResource("2_0a14x")]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 1.825, 0, 0)
 plane_texture_img = ExtResource("6_p5ppj")
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=404712858]
-transform = Transform3D(54.63465, 0, 0, 0, 1, 0, 0, 0, 42.75453, 0.009077072, 9.536743e-07, -0.0029764175)
+transform = Transform3D(54.63465, 0, 0, 0, 1, 0, 0, 0, 42.75453, -0.0009946823, 0.091383934, -0.068897724)
+material_override = SubResource("StandardMaterial3D_46g0g")
 mesh = SubResource("PlaneMesh_b0jfn")

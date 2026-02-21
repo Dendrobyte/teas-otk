@@ -7,8 +7,19 @@ func _ready():
 	# Plane dimensions should match the image (our source of truth)
 	# Note that w*h ends up as x*z
 	var img_size = plane_texture_img.get_size() # This is in pixels, not quite godot units
+
+	# If we say tile size base is 128x128, everything will be a multiple of that
+	# and we'll use that to adjust our base ratio
+	# TODO: We need to make it so that we can have non-normal images
+	# 		Thus, some way to use the aspect ratio yet ensure we don't over scale
+	#		(e.g. 1:2 staying as 1:2 while 2:4 stays as 2:4)
+	#		So instead of ratio we should just use scale size
+	var x_scale = img_size.x / GlobalState.BASE_TILE_SIZE
+	var y_scale = img_size.y / GlobalState.BASE_TILE_SIZE
+
+	# Then we calc the size the mesh should be
 	var gcd = _gcd(floori(img_size.x), floori(img_size.y))
-	var ratio = [(img_size.x / gcd), (img_size.y / gcd)]
+	var ratio = [x_scale, y_scale]
 	$PlaneMesh.mesh.size = Vector2i(ratio[0]*scale_factor, ratio[1]*scale_factor)
 	scale.x = ratio[0]
 	scale.z = ratio[1]

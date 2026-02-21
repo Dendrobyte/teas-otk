@@ -1,16 +1,21 @@
 extends Node3D
 
+# Randomize scatter count around these two numbers
+@export var scatter_count_min: int = 8
+@export var scatter_count_max: int = 16
+
 # TODO: Can refactor to use something in the editor as the parent, or just a more generic naming scheme
 func _ready():
-	var original = $Bush
-	var copy_count = randi() % 17 + 6
-	for n in range(copy_count):
-		var copy = original.duplicate()
-		var original_pos_ints = Vector3i(original.global_position)
-		# Tweak these
-		var new_x = randf() % (original_pos_ints.x-1) + 1
-		var new_z = randf() % (original_pos_ints.z-1) + 1
-		# The rotation when we add from the asset-plane-base script affects the weird placement I think
-		copy.global_position = Vector3(new_x, original_pos_ints.y, new_z)
-		add_child(copy)
-	print("Spawned ", copy_count, " copies")
+	# We will scatter every child in this node. Try to group organizationally in the editor
+	for original in self.get_children():
+		var copy_count = randi_range(scatter_count_min, scatter_count_max) 
+		for n in range(copy_count):
+			var copy = original.duplicate()
+			var original_pos = Vector3i(original.global_position)
+			# Tweak these
+			var new_x = randf_range(original_pos.x-3.0, original_pos.x+3.0)
+			var new_z = randf_range(original_pos.z-3.0, original_pos.z+3.0)
+			# The rotation when we add from the asset-plane-base script affects the weird placement I think
+			add_child(copy)
+			copy.global_position.x = new_x
+			copy.global_position.z = new_z
