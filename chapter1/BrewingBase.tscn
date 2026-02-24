@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://kmcdpx3tde62"]
 
 [ext_resource type="Script" uid="uid://cgxq82dhb7gja" path="res://brewing_base.gd" id="1_ni0av"]
+[ext_resource type="PackedScene" uid="uid://dqud3sgjo74y8" path="res://assets/asset_plane_base.tscn" id="2_0ef7w"]
+[ext_resource type="Script" uid="uid://t7m4u5is2712" path="res://chapter1/brewing_player_controller.gd" id="2_tya4k"]
+[ext_resource type="Texture2D" uid="uid://t67h43i4vd1b" path="res://assets/base_person_128x256.png" id="3_o1n6l"]
 
 [sub_resource type="Environment" id="Environment_vodtt"]
 
@@ -22,26 +25,52 @@ material = SubResource("StandardMaterial3D_04vyi")
 
 [sub_resource type="BoxMesh" id="BoxMesh_o1n6l"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ef7w"]
+albedo_color = Color(0.17837101, 0.5228418, 0.6539977, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tya4k"]
+material = SubResource("StandardMaterial3D_0ef7w")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tya4k"]
+albedo_color = Color(0.9313707, 0.77096987, 0.79249656, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2n2jf"]
+material = SubResource("StandardMaterial3D_tya4k")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1n6l"]
+albedo_color = Color(0.6557576, 0.15030047, 0.12612024, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_aynr4"]
+material = SubResource("StandardMaterial3D_o1n6l")
+
 [node name="BrewingBase" type="Node3D" unique_id=2002152738]
+transform = Transform3D(1.2706147, 0, 0, 0, 1.2706147, 0, 0, 0, 1.2706147, 0, 0, 0)
 script = ExtResource("1_ni0av")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=663389705]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6909004, 4)
+[node name="Character" type="Node3D" parent="." unique_id=1850063740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.339371, 3.363797, 8.925308)
+script = ExtResource("2_tya4k")
+yaw_limit = 40.0
+pitch_min = -20.0
+pitch_max = 30.0
+
+[node name="Camera3D" type="Camera3D" parent="Character" unique_id=663389705]
+transform = Transform3D(0.7870206, 0, 0, 0, 0.7870206, 0, 0, 0, 0.7870206, 0, 0, 0)
 environment = SubResource("Environment_vodtt")
 current = true
-fov = 40.0
+fov = 48.3
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=404712858]
-transform = Transform3D(54.63465, 0, 0, 0, 1, 0, 0, 0, 42.75453, 0, 0, 0)
+transform = Transform3D(120.96186, 0, 0, 0, 2.2140136, 0, 0, 0, 94.65912, 0.086766146, 0.2595186, 0.06925421)
 mesh = SubResource("PlaneMesh_b0jfn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=479800490]
-transform = Transform3D(1, 0, 0, 0, 0.6770943, 0.7358962, 0, -0.7358962, 0.6770943, 0, 17.024895, 15.988993)
+transform = Transform3D(1, 0, 0, 0, 0.6770943, 0.7358963, 0, -0.7358963, 0.6770943, 0.086766146, 37.952866, 10.504125)
 light_color = Color(0.6666667, 0.84705883, 0.6039216, 1)
 light_energy = 2.815
 
 [node name="TableSet" type="Node3D" parent="." unique_id=1406520396]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5575466, 0, -2.6005971)
+transform = Transform3D(2.2140136, 0, 0, 0, 2.2140136, 0, 0, 0, 2.2140136, -7.7896914, 0.2595186, -5.688503)
 
 [node name="Table" type="MeshInstance3D" parent="TableSet" unique_id=1212409496]
 transform = Transform3D(1.8886156, 0, 0, 0, 0.13711351, 0, 0, 0, 1.1665672, 0, 0.7182708, 0)
@@ -72,7 +101,7 @@ transform = Transform3D(4.179649e-09, -8.742277e-08, 0.4080552, 1.4438097e-08, -
 mesh = SubResource("BoxMesh_0ef7w")
 
 [node name="TableSet2" type="Node3D" parent="." unique_id=1844730976]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.558, 0, -2.6005807)
+transform = Transform3D(2.2140136, 0, 0, 0, 2.2140136, 0, 0, 0, 2.2140136, 7.9642262, 0.2595186, -5.6884665)
 
 [node name="Table" type="MeshInstance3D" parent="TableSet2" unique_id=1814413452]
 transform = Transform3D(1.8886156, 0, 0, 0, 0.13711351, 0, 0, 0, 1.1665672, 0, 0.7182708, 0)
@@ -103,7 +132,7 @@ transform = Transform3D(4.179649e-09, -8.742277e-08, 0.4080552, 1.4438097e-08, -
 mesh = SubResource("BoxMesh_0ef7w")
 
 [node name="TableSet3" type="Node3D" parent="." unique_id=453693164]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5575466, 0, -7.6506205)
+transform = Transform3D(2.2140136, 0, 0, 0, 2.2140136, 0, 0, 0, 2.2140136, -7.7896914, 0.2595186, -16.869324)
 
 [node name="Table" type="MeshInstance3D" parent="TableSet3" unique_id=2080926391]
 transform = Transform3D(1.8886156, 0, 0, 0, 0.13711351, 0, 0, 0, 1.1665672, 0, 0.7182708, 0)
@@ -134,7 +163,7 @@ transform = Transform3D(4.179649e-09, -8.742277e-08, 0.4080552, 1.4438097e-08, -
 mesh = SubResource("BoxMesh_0ef7w")
 
 [node name="TableSet4" type="Node3D" parent="." unique_id=715003230]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.558, 0, -7.650604)
+transform = Transform3D(2.2140136, 0, 0, 0, 2.2140136, 0, 0, 0, 2.2140136, 7.9642262, 0.2595186, -16.869287)
 
 [node name="Table" type="MeshInstance3D" parent="TableSet4" unique_id=1581596806]
 transform = Transform3D(1.8886156, 0, 0, 0, 0.13711351, 0, 0, 0, 1.1665672, 0, 0.7182708, 0)
@@ -165,6 +194,7 @@ transform = Transform3D(4.179649e-09, -8.742277e-08, 0.4080552, 1.4438097e-08, -
 mesh = SubResource("BoxMesh_0ef7w")
 
 [node name="Walls" type="Node3D" parent="." unique_id=69486144]
+transform = Transform3D(2.2140136, 0, 0, 0, 2.2140136, 0, 0, 0, 2.2140136, 0.086766146, 0.2595186, 0.06925421)
 
 [node name="Back" type="MeshInstance3D" parent="Walls" unique_id=189530815]
 transform = Transform3D(7.394896, 0, 0, 0, -4.3711392e-08, -3.5911503, 0, 1.0000001, -1.5697417e-07, 0, 3.445, -11.652)
@@ -179,7 +209,53 @@ transform = Transform3D(-3.2324118e-07, 1.0000001, -1.5697417e-07, 0, -4.3711392
 mesh = SubResource("PlaneMesh_04vyi")
 
 [node name="Brewing Stand" type="Node3D" parent="." unique_id=1027184098]
+transform = Transform3D(2.2140136, 0, 0, 0, 2.2140136, 0, 0, 0, 2.2140136, 0.086766146, 0.2595186, 0.06925421)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Brewing Stand" unique_id=1221802007]
+[node name="StandBase" type="MeshInstance3D" parent="Brewing Stand" unique_id=1221802007]
 transform = Transform3D(6.3998184, 0, 0, 0, 1, 0, 0, 0, 0.43588066, 0, 0.42487597, 1.5555964)
 mesh = SubResource("BoxMesh_o1n6l")
+
+[node name="StandBase2" type="MeshInstance3D" parent="Brewing Stand" unique_id=849995994]
+transform = Transform3D(1.0428451, 0, 0, 0, 0.17963272, 0, 0, 0, 0.6613726, -1.5851535, 0.7699063, 2.110672)
+mesh = SubResource("BoxMesh_o1n6l")
+
+[node name="StandBase3" type="MeshInstance3D" parent="Brewing Stand" unique_id=908238711]
+transform = Transform3D(1.0428451, 0, 0, 0, 0.17963272, 0, 0, 0, 0.6613726, 0.41334474, 0.7699063, 2.110672)
+mesh = SubResource("BoxMesh_o1n6l")
+
+[node name="Pot" type="MeshInstance3D" parent="Brewing Stand" unique_id=2096397335]
+transform = Transform3D(0.22526748, 0, 0, 0, 0.41407934, 0, 0, 0, 0.24356703, -1.8852526, 1.0635928, 1.9562407)
+mesh = SubResource("BoxMesh_tya4k")
+
+[node name="Cup" type="MeshInstance3D" parent="Brewing Stand" unique_id=1637268016]
+transform = Transform3D(0.22526748, 0, 0, 0, 0.10595896, 0, 0, 0, 0.24356703, 0.110610604, 0.9605373, 1.9562407)
+mesh = SubResource("CylinderMesh_2n2jf")
+
+[node name="Cup2" type="MeshInstance3D" parent="Brewing Stand" unique_id=889972165]
+transform = Transform3D(0.22526748, 0, 0, 0, 0.10595896, 0, 0, 0, 0.24356703, 0.4362656, 0.9605373, 1.9562407)
+mesh = SubResource("CylinderMesh_2n2jf")
+
+[node name="Cup3" type="MeshInstance3D" parent="Brewing Stand" unique_id=883888548]
+transform = Transform3D(0.22526748, 0, 0, 0, 0.10595896, 0, 0, 0, 0.24356703, 0.7563704, 0.9605373, 1.9562407)
+mesh = SubResource("CylinderMesh_2n2jf")
+
+[node name="Cup4" type="MeshInstance3D" parent="Brewing Stand" unique_id=249698216]
+transform = Transform3D(0.22526748, 0, 0, 0, 0.10595896, 0, 0, 0, 0.24356703, 0.110610604, 0.9605373, 2.2267814)
+mesh = SubResource("CylinderMesh_2n2jf")
+
+[node name="Cup5" type="MeshInstance3D" parent="Brewing Stand" unique_id=1090938246]
+transform = Transform3D(0.22526748, 0, 0, 0, 0.10595896, 0, 0, 0, 0.24356703, 0.4362656, 0.9605373, 2.2267814)
+mesh = SubResource("CylinderMesh_2n2jf")
+
+[node name="Cup6" type="MeshInstance3D" parent="Brewing Stand" unique_id=2004631760]
+transform = Transform3D(0.22526748, 0, 0, 0, 0.10595896, 0, 0, 0, 0.24356703, 0.7563704, 0.9605373, 2.2267814)
+mesh = SubResource("CylinderMesh_2n2jf")
+
+[node name="Burner" type="MeshInstance3D" parent="Brewing Stand" unique_id=2000199815]
+transform = Transform3D(0.40556988, 0, 0, 0, 0.027345454, 0, 0, 0, 0.37324813, -1.4087763, 0.8805845, 2.0804462)
+mesh = SubResource("CylinderMesh_aynr4")
+
+[node name="AssetPlaneBase" parent="." unique_id=1648767978 instance=ExtResource("2_0ef7w")]
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, -1.2172863, 0.46112913, 0.80552316)
+plane_texture_img = ExtResource("3_o1n6l")
+scale_factor = 1
