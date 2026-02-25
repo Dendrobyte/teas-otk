@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cgxq82dhb7gja" path="res://brewing_base.gd" id="1_ni0av"]
 [ext_resource type="PackedScene" uid="uid://dqud3sgjo74y8" path="res://assets/asset_plane_base.tscn" id="2_0ef7w"]
+[ext_resource type="Script" uid="uid://bw4ywnt705a6l" path="res://chapter1/brewing_ui.gd" id="2_aynr4"]
 [ext_resource type="Script" uid="uid://t7m4u5is2712" path="res://chapter1/brewing_player_controller.gd" id="2_tya4k"]
 [ext_resource type="Texture2D" uid="uid://t67h43i4vd1b" path="res://assets/base_person_128x256.png" id="3_o1n6l"]
 
@@ -46,6 +47,13 @@ material = SubResource("StandardMaterial3D_o1n6l")
 [node name="BrewingBase" type="Node3D" unique_id=2002152738]
 transform = Transform3D(1.2706147, 0, 0, 0, 1.2706147, 0, 0, 0, 1.2706147, 0, 0, 0)
 script = ExtResource("1_ni0av")
+
+[node name="Control" type="Control" parent="." unique_id=1180801294]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("2_aynr4")
 
 [node name="Character" type="Node3D" parent="." unique_id=1850063740]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.339371, 3.363797, 8.925308)
