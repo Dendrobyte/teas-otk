@@ -32,6 +32,8 @@ albedo_color = Color(0.17837101, 0.5228418, 0.6539977, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_tya4k"]
 material = SubResource("StandardMaterial3D_0ef7w")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_aynr4"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tya4k"]
 albedo_color = Color(0.9313707, 0.77096987, 0.79249656, 1)
 
@@ -48,13 +50,6 @@ material = SubResource("StandardMaterial3D_o1n6l")
 transform = Transform3D(1.2706147, 0, 0, 0, 1.2706147, 0, 0, 0, 1.2706147, 0, 0, 0)
 script = ExtResource("1_ni0av")
 
-[node name="Control" type="Control" parent="." unique_id=1180801294]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-script = ExtResource("2_aynr4")
-
 [node name="Character" type="Node3D" parent="." unique_id=1850063740]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.339371, 3.363797, 8.925308)
 script = ExtResource("2_tya4k")
@@ -67,6 +62,13 @@ transform = Transform3D(0.7870206, 0, 0, 0, 0.7870206, 0, 0, 0, 0.7870206, 0, 0,
 environment = SubResource("Environment_vodtt")
 current = true
 fov = 48.3
+
+[node name="Control" type="Control" parent="Character" unique_id=1180801294]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("2_aynr4")
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=404712858]
 transform = Transform3D(120.96186, 0, 0, 0, 2.2140136, 0, 0, 0, 94.65912, 0.086766146, 0.2595186, 0.06925421)
@@ -231,9 +233,14 @@ mesh = SubResource("BoxMesh_o1n6l")
 transform = Transform3D(1.0428451, 0, 0, 0, 0.17963272, 0, 0, 0, 0.6613726, 0.41334474, 0.7699063, 2.110672)
 mesh = SubResource("BoxMesh_o1n6l")
 
-[node name="Pot" type="MeshInstance3D" parent="Brewing Stand" unique_id=2096397335]
-transform = Transform3D(0.22526748, 0, 0, 0, 0.41407934, 0, 0, 0, 0.24356703, -1.8852526, 1.0635928, 1.9562407)
+[node name="Pot" type="StaticBody3D" parent="Brewing Stand" unique_id=1761437764]
+transform = Transform3D(0.22526747, 0, 0, 0, 0.41407934, 0, 0, 0, 0.24356705, -1.8852527, 1.0635928, 1.9562407)
+
+[node name="PotMesh" type="MeshInstance3D" parent="Brewing Stand/Pot" unique_id=2096397335]
 mesh = SubResource("BoxMesh_tya4k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Brewing Stand/Pot" unique_id=1472304998]
+shape = SubResource("BoxShape3D_aynr4")
 
 [node name="Cup" type="MeshInstance3D" parent="Brewing Stand" unique_id=1637268016]
 transform = Transform3D(0.22526748, 0, 0, 0, 0.10595896, 0, 0, 0, 0.24356703, 0.110610604, 0.9605373, 1.9562407)
