@@ -13,6 +13,22 @@ var debug_cyl = null
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+## Temporary order clicking
+# Figuring out a proper system for this is TBD, I just want to get a full loop and then come in and redo everything
+var next_item_idx = 0
+var item_seq = ["Pot", "Burner", "Cup"]
+
+func proceed_to_next(clicked_item_name):
+	if next_item_idx == len(item_seq):
+		print("You are done!")
+	else:
+		if clicked_item_name.contains(item_seq[next_item_idx]):
+			print("Step completed!")
+			next_item_idx += 1
+		else:
+			print("Wrong step")
+## End of that stuff
+
 # NOTE: Potential use case for _unhandled_input?
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -27,9 +43,10 @@ func _input(event):
 		## { "position": (-4.876412, 3.20117, 5.886989), "normal": (1.0, 0.0, 0.0), "face_index": -1, "collider_id": 30400316950, "collider": Pot:<StaticBody3D#30400316950>, "shape": 0, "rid": RID(631360192512) }
 		var collided_obj = check_raycast_collision()
 		if !collided_obj.is_empty():
-			# TODO: Call this object's generic object script and do whatever action is meant to be done? Or can that all be done via signal emission?
+			# TODO: Ideally the objects themselves only have visual updates, e.g. pot.start_boiling, and everything else handled otherwise
+			# 		or through property access, e.g. cup.tea_type
 			# TODO: Emit a signal if we update the inventory with this selection or something
-			print("Hit the ", collided_obj.collider)
+			proceed_to_next(collided_obj.collider.name)
 
 func check_raycast_collision():
 	var cam = $Camera3D
