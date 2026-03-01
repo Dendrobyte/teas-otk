@@ -13,8 +13,8 @@ func _ready():
 			var copy = original.duplicate()
 			var original_pos = Vector3i(original.global_position)
 			# Tweak these
-			var new_x = randf_range(original_pos.x-3.0, original_pos.x+3.0)
-			var new_z = randf_range(original_pos.z-3.0, original_pos.z+3.0)
+			var new_x = randi_range(original_pos.x-3.0, original_pos.x+3.0)
+			var new_z = randi_range(original_pos.z-3.0, original_pos.z+3.0)
 			# The rotation when we add from the asset-plane-base script affects the weird placement I think
 			add_child(copy)
 			copy.global_position.x = new_x

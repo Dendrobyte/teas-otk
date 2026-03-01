@@ -25,7 +25,7 @@ lightmap_size_hint = Vector2i(12, 12)
 script = ExtResource("1_2jjpf")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=479800490]
-transform = Transform3D(0.9999993, -0.0008765172, 0.0009770761, -0.0009751071, 0.0022453493, 0.9999971, -0.00087872834, -0.99999714, 0.0022444848, -0.005060926, 10.202808, 0.012964813)
+transform = Transform3D(0.9999991, -0.00087653694, 0.0009770769, -0.00042503336, 0.48803693, 0.8728229, -0.0012419112, -0.8728225, 0.48803616, -0.005060926, 10.202808, 16.834465)
 
 [node name="Character" type="CharacterBody3D" parent="." unique_id=1379564249]
 script = ExtResource("2_6yx43")
@@ -38,7 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70
 shape = SubResource("BoxShape3D_7pokv")
 
 [node name="Camera" type="Camera3D" parent="Character" unique_id=663389705]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 8.478, 6.632)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2349854, 10.813459)
 current = true
 
 [node name="Bushes" type="Node3D" parent="." unique_id=643443880]

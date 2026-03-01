@@ -4,6 +4,11 @@ extends CharacterBody3D
 
 var target_velocity = Vector3.ZERO
 
+func _ready():
+	var camera = $Camera
+	var x_rotation = deg_to_rad(-1*GlobalState.ROTATION_ANGLE[GlobalState.GameMode.OVERWORLD])
+	camera.global_rotate(Vector3(1.0, 0.0, 0.0), x_rotation)
+
 func _physics_process(_delta):
 	var direction = Vector3.ZERO
 

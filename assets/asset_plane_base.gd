@@ -20,6 +20,7 @@ func _ready():
 	# Then we calc the size the mesh should be
 	var gcd = _gcd(floori(img_size.x), floori(img_size.y))
 	var ratio = [x_scale, y_scale]
+	print("Ratio: ", ratio)
 	$PlaneMesh.mesh.size = Vector2i(ratio[0]*scale_factor, ratio[1]*scale_factor)
 	scale.x = ratio[0]
 	scale.z = ratio[1]
@@ -29,6 +30,7 @@ func _ready():
 	# var half_height = $PlaneMesh.mesh.size.y
 	# TODO: Use this to PROPERLY set the origin point
 	# rotation_degrees.x = 90 - GlobalState.ROTATION_ANGLE.get(GlobalState.CURRENT_GAMEMODE, 0)
+	global_rotation = Vector3(deg_to_rad(90 - GlobalState.ROTATION_ANGLE.get(GlobalState.CURRENT_GAMEMODE, 0)), 0.0, 0.0)
 	
 	# Load the texture
 	# TODO: Redo this setup :)
