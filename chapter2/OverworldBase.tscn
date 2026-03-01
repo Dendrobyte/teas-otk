@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://btqp10lt30b0u" path="res://overworld_base.gd" id="1_2jjpf"]
 [ext_resource type="PackedScene" uid="uid://dqud3sgjo74y8" path="res://assets/asset_plane_base.tscn" id="2_0a14x"]
-[ext_resource type="Script" uid="uid://pqjcyxq2vas3" path="res://chapter1/char_movement.gd" id="2_6yx43"]
+[ext_resource type="Script" uid="uid://pqjcyxq2vas3" path="res://chapter2/char_movement.gd" id="2_6yx43"]
 [ext_resource type="Texture2D" uid="uid://t67h43i4vd1b" path="res://assets/base_person_128x256.png" id="4_p5ppj"]
 [ext_resource type="Texture2D" uid="uid://2tyb4f5pycuc" path="res://assets/base_bush_128x128.png" id="5_p5ppj"]
-[ext_resource type="Script" uid="uid://btwkuqh33iglq" path="res://chapter1/scatter_placement.gd" id="5_y7lbr"]
+[ext_resource type="Script" uid="uid://btwkuqh33iglq" path="res://chapter2/scatter_placement.gd" id="5_y7lbr"]
 [ext_resource type="Texture2D" uid="uid://c4oypf7c134xg" path="res://assets/base_tea_plant_128x128.png" id="6_p5ppj"]
 [ext_resource type="Texture2D" uid="uid://drhret326m3jm" path="res://assets/chamomile_cluster_256x256.png" id="7_q04gs"]
 [ext_resource type="Texture2D" uid="uid://c08im8e4vsoho" path="res://assets/tree_1_384x384.png" id="8_eb07m"]
