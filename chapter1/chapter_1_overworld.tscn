@@ -4,29 +4,21 @@
 [ext_resource type="Script" uid="uid://pqjcyxq2vas3" path="res://chapter2/char_movement.gd" id="2_unq8b"]
 [ext_resource type="PackedScene" uid="uid://dqud3sgjo74y8" path="res://assets/asset_plane_base.tscn" id="3_d6ub8"]
 [ext_resource type="Texture2D" uid="uid://t67h43i4vd1b" path="res://assets/base_person_128x256.png" id="4_t0jha"]
+[ext_resource type="PackedScene" uid="uid://driiwb4q8aol6" path="res://assets/models/ch1_overworld_env.glb" id="6_2q104"]
+[ext_resource type="PackedScene" uid="uid://b6de6ek8dgmue" path="res://npc_base.tscn" id="7_7s0cm"]
 [ext_resource type="Texture2D" uid="uid://c4oypf7c134xg" path="res://assets/base_tea_plant_128x128.png" id="9_ulgpr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7pokv"]
 size = Vector3(2.0336914, 0.25708008, 2.5019531)
 
-[sub_resource type="BoxMesh" id="BoxMesh_d03x2"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_d03x2"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d03x2"]
-albedo_color = Color(0.2901961, 0.39215687, 0.69803923, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_b0jfn"]
-lightmap_size_hint = Vector2i(12, 12)
-
 [node name="OverworldBase" type="Node3D" unique_id=2002152738]
 script = ExtResource("1_yxqur")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=479800490]
-transform = Transform3D(0.9999991, -0.00087653694, 0.0009770769, -0.00042503336, 0.48803693, 0.8728229, -0.0012419112, -0.8728225, 0.48803616, -0.005060926, 10.202808, 16.834465)
+transform = Transform3D(0.83626544, -0.47841692, 0.26791298, -0.0004250334, 0.48803696, 0.8728229, -0.54832464, -0.7300255, 0.4079251, 36.518227, 88.14396, 73.44497)
 
 [node name="Character" type="CharacterBody3D" parent="." unique_id=1379564249]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.703929, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.01232, 0.4905343)
 script = ExtResource("2_unq8b")
 
 [node name="AssetPlaneBase" parent="Character" unique_id=1830317028 instance=ExtResource("3_d6ub8")]
@@ -47,27 +39,7 @@ plane_texture_img = ExtResource("9_ulgpr")
 
 [node name="Environment" type="Node3D" parent="." unique_id=1948100022]
 
-[node name="Land" type="StaticBody3D" parent="Environment" unique_id=380812653]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.813312, 13.849036, 0)
+[node name="ch1_overworld_env" parent="." unique_id=1950368290 instance=ExtResource("6_2q104")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Land" unique_id=179732617]
-transform = Transform3D(25.326, 0, 0, 0, 19.712, 0, 0, 0, 59.13, 9.137063, -7.6620936, 0)
-mesh = SubResource("BoxMesh_d03x2")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Land" unique_id=289752743]
-shape = SubResource("BoxShape3D_d03x2")
-
-[node name="Bridge" type="StaticBody3D" parent="Environment" unique_id=726437919]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.402196, 14.250556, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Bridge" unique_id=2133290818]
-transform = Transform3D(47.195293, 0, 0, 0, 3.682392, 0, 0, 0, 23.383455, -9.310718, -1.5881462, 0.08457755)
-mesh = SubResource("BoxMesh_d03x2")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Bridge" unique_id=1607198926]
-shape = SubResource("BoxShape3D_d03x2")
-
-[node name="Ground" type="MeshInstance3D" parent="." unique_id=404712858]
-transform = Transform3D(54.63465, 0, 0, 0, 1, 0, 0, 0, 42.75453, -0.80687237, -0.30975437, -0.32609224)
-material_override = SubResource("StandardMaterial3D_d03x2")
-mesh = SubResource("PlaneMesh_b0jfn")
+[node name="NPC1" parent="." unique_id=1544334235 instance=ExtResource("7_7s0cm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.120466, 17.033836, -1.156765)

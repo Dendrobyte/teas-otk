@@ -4,6 +4,8 @@ extends Node3D
 @export var scale_factor: int = 2
 
 func _ready():
+	# TODO: If plane texture image is nil, check for the parent's plane texture image (e.g. in an NPC)
+	# This may also become a default situation, such as when something is a collectable plant or not, etc.
 	# Plane dimensions should match the image (our source of truth)
 	# Note that w*h ends up as x*z
 	var img_size = plane_texture_img.get_size() # This is in pixels, not quite godot units
@@ -16,6 +18,8 @@ func _ready():
 	#		So instead of ratio we should just use scale size
 	var x_scale = img_size.x / GlobalState.BASE_TILE_SIZE
 	var y_scale = img_size.y / GlobalState.BASE_TILE_SIZE
+
+	# TODO: We'll need to adjust the child collider to match this as well
 
 	# Then we calc the size the mesh should be
 	var gcd = _gcd(floori(img_size.x), floori(img_size.y))
