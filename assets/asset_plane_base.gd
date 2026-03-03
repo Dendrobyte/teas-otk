@@ -25,22 +25,40 @@ func init_texture():
 
 	# If we say tile size base is 128x128, everything will be a multiple of that
 	# and we'll use that to adjust our base ratio
-	# TODO: We need to make it so that we can have non-normal images
-	# 		Thus, some way to use the aspect ratio yet ensure we don't over scale
-	#		(e.g. 1:2 staying as 1:2 while 2:4 stays as 2:4)
-	#		So instead of ratio we should just use scale size
+
+	######## START OF SCALING CODE
+
+	# I'm losing my mind a little, but I think it's because I don't effectively understand the problem
+	# We want to use Godot units to show the size of assets
+	# We only know the ratio of an asset based on the image given
+	# So 128 pixels = 1 unit in Godot
+	# An asset plane starts at 1x1
+	# The idea was to take the ratio and ensure the plane matched that ratio
+	# And then scale it up along each dimension using the pixel length
+	# 1. Get image ratio (128x128 is 1:1, 256x256 is 1:1, 128x256 is 1:2, etc)
+	# 2. Scale the x axis based on image width (128 / 128 == 1 -> x stays as 1)
+	# 3. Scale the y axis based on image height (256 / 128 == 2 -> y is 2)
+	# 4. Then we should be able to set the plane texture easily...
+
+	# We seem to succeed in getting that ratio very easily, but then we multiply by scale factor and 2:4 seems not to scale the x across????
+
 	var x_scale = img_size.x / GlobalState.BASE_TILE_SIZE
 	var y_scale = img_size.y / GlobalState.BASE_TILE_SIZE
+	print("X: ", x_scale, "Y: ", y_scale)
 
-	# TODO: We'll need to adjust the child collider to match this as well
 
 	# Then we calc the size the mesh should be
 	var gcd = _gcd(floori(img_size.x), floori(img_size.y))
 	var ratio = [x_scale, y_scale]
 	var plane_mesh = $StaticBody/PlaneMesh
-	plane_mesh.mesh.size = Vector2i(ratio[0]*scale_factor, ratio[1]*scale_factor)
+	plane_mesh.mesh.size = Vector2i(ratio[0]*scale_factor, ratio[1])
 	scale.x = ratio[0]
 	scale.z = ratio[1]
+
+	####### END OF SCALING CODE
+
+	# TODO: We'll need to adjust the child collider to match this as well
+	# Right now it errors lol
 	
 	# Ensure our pivot point is set up as intended, programmatically to verify
 	# TODO: If we're in the brewing phase, set the rotation to full 90

@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed = 5
+@export var speed = 10
 
 var target_velocity = Vector3.ZERO
 
@@ -12,6 +12,7 @@ func _ready():
 func _physics_process(_delta):
 	var direction = Vector3.ZERO
 
+	# TODO: Support both movements to go diagonally
 	if Input.is_action_pressed("move_up"):
 		direction.z -= 1
 	if Input.is_action_pressed("move_down"):
