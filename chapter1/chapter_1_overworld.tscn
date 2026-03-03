@@ -3,13 +3,15 @@
 [ext_resource type="Script" uid="uid://btqp10lt30b0u" path="res://overworld_base.gd" id="1_yxqur"]
 [ext_resource type="Script" uid="uid://pqjcyxq2vas3" path="res://chapter2/char_movement.gd" id="2_unq8b"]
 [ext_resource type="PackedScene" uid="uid://dqud3sgjo74y8" path="res://assets/asset_plane_base.tscn" id="3_d6ub8"]
-[ext_resource type="Texture2D" uid="uid://t67h43i4vd1b" path="res://assets/base_person_128x256.png" id="4_t0jha"]
+[ext_resource type="Texture2D" uid="uid://cnafqi5q10xrq" path="res://chapter1/character_128x256.png" id="4_7s0cm"]
 [ext_resource type="PackedScene" uid="uid://driiwb4q8aol6" path="res://assets/models/ch1_overworld_env.glb" id="6_2q104"]
 [ext_resource type="PackedScene" uid="uid://b6de6ek8dgmue" path="res://npc_base.tscn" id="7_7s0cm"]
-[ext_resource type="Texture2D" uid="uid://c4oypf7c134xg" path="res://assets/base_tea_plant_128x128.png" id="9_ulgpr"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7pokv"]
-size = Vector3(2.0336914, 0.25708008, 2.5019531)
+[ext_resource type="Texture2D" uid="uid://d3w2pxctulr1w" path="res://chapter1/npc1.png" id="8_p5ixt"]
+[ext_resource type="Texture2D" uid="uid://gxj1g80lbwmk" path="res://chapter1/npc2.png" id="9_r61fc"]
+[ext_resource type="Texture2D" uid="uid://dvffwvgdg23d3" path="res://chapter1/npc3.png" id="10_p0328"]
+[ext_resource type="Texture2D" uid="uid://coktyswq0hufq" path="res://chapter1/npc4.png" id="11_swfx4"]
+[ext_resource type="Texture2D" uid="uid://83l2tqqy2j53" path="res://chapter1/npc5.png" id="12_jqiwu"]
+[ext_resource type="Texture2D" uid="uid://dxkhaohqyuljn" path="res://chapter1/npc6.png" id="13_7k04j"]
 
 [node name="OverworldBase" type="Node3D" unique_id=2002152738]
 script = ExtResource("1_yxqur")
@@ -21,21 +23,13 @@ transform = Transform3D(0.83626544, -0.47841692, 0.26791298, -0.0004250334, 0.48
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.01232, 0.4905343)
 script = ExtResource("2_unq8b")
 
-[node name="AssetPlaneBase" parent="Character" unique_id=1830317028 instance=ExtResource("3_d6ub8")]
-transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0)
-plane_texture_img = ExtResource("4_t0jha")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Character" unique_id=1724490323]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, -0.011230469, 0.5228205, -0.5392207)
-shape = SubResource("BoxShape3D_7pokv")
+[node name="CharacterAssetPlane" parent="Character" unique_id=1830317028 instance=ExtResource("3_d6ub8")]
+transform = Transform3D(1, 0, 0, 0, 0.7071067, -0.7071067, 0, 0.7071067, 0.7071067, 0, 0, 1.450078)
+plane_texture_img = ExtResource("4_7s0cm")
 
 [node name="Camera" type="Camera3D" parent="Character" unique_id=663389705]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2349854, 13.502614)
 current = true
-
-[node name="TeaPlantBase" parent="." unique_id=1648767978 instance=ExtResource("3_d6ub8")]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 14.657777, 16.246998, 11.080194)
-plane_texture_img = ExtResource("9_ulgpr")
 
 [node name="Environment" type="Node3D" parent="." unique_id=1948100022]
 
@@ -43,3 +37,24 @@ plane_texture_img = ExtResource("9_ulgpr")
 
 [node name="NPC1" parent="." unique_id=1544334235 instance=ExtResource("7_7s0cm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.120466, 17.033836, -1.156765)
+plane_texture_img = ExtResource("8_p5ixt")
+
+[node name="NPC2" parent="." unique_id=910392614 instance=ExtResource("7_7s0cm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.979345, 17.033836, -1.156765)
+plane_texture_img = ExtResource("9_r61fc")
+
+[node name="NPC3" parent="." unique_id=2024175768 instance=ExtResource("7_7s0cm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.200794, 17.033836, -1.156765)
+plane_texture_img = ExtResource("10_p0328")
+
+[node name="NPC4" parent="." unique_id=1362286201 instance=ExtResource("7_7s0cm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.823296, 17.033836, -1.156765)
+plane_texture_img = ExtResource("11_swfx4")
+
+[node name="NPC5" parent="." unique_id=1594885669 instance=ExtResource("7_7s0cm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.36486, 17.033836, -1.156765)
+plane_texture_img = ExtResource("12_jqiwu")
+
+[node name="NPC6" parent="." unique_id=1719089510 instance=ExtResource("7_7s0cm")]
+transform = Transform3D(-0.049581975, 0, 0.99877006, 0, 1, 0, -0.99877006, 0, -0.049581975, -87.54796, 17.033836, -1.156765)
+plane_texture_img = ExtResource("13_7k04j")

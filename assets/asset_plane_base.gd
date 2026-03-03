@@ -8,6 +8,19 @@ func _ready():
 	# This may also become a default situation, such as when something is a collectable plant or not, etc.
 	# Plane dimensions should match the image (our source of truth)
 	# Note that w*h ends up as x*z
+	if plane_texture_img != null:
+		init_texture()
+
+	# The child readies up before the parent, so we need to get the parent's image
+	# TODO: Find a way to get the parent to ready first, and thus we can pass down the texture to here (e.g. npc_base.gd)
+
+func _gcd(w, h):
+	if h == 0:
+		return w
+	return _gcd(h, w % h)
+
+# Make this a callable function from the parent if the parent has a texture to pass down
+func init_texture():
 	var img_size = plane_texture_img.get_size() # This is in pixels, not quite godot units
 
 	# If we say tile size base is 128x128, everything will be a multiple of that
@@ -24,8 +37,8 @@ func _ready():
 	# Then we calc the size the mesh should be
 	var gcd = _gcd(floori(img_size.x), floori(img_size.y))
 	var ratio = [x_scale, y_scale]
-	print("Ratio: ", ratio)
-	$PlaneMesh.mesh.size = Vector2i(ratio[0]*scale_factor, ratio[1]*scale_factor)
+	var plane_mesh = $StaticBody/PlaneMesh
+	plane_mesh.mesh.size = Vector2i(ratio[0]*scale_factor, ratio[1]*scale_factor)
 	scale.x = ratio[0]
 	scale.z = ratio[1]
 	
@@ -38,14 +51,9 @@ func _ready():
 	
 	# Load the texture
 	# TODO: Redo this setup :)
-	var mat = $PlaneMesh.get_surface_override_material(0)
+	var mat = plane_mesh.get_surface_override_material(0)
 	if not mat:
 		mat = StandardMaterial3D.new()
 		mat.albedo_texture = plane_texture_img
 		mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	$PlaneMesh.set_surface_override_material(0, mat)
-
-func _gcd(w, h):
-	if h == 0:
-		return w
-	return _gcd(h, w % h)
+	plane_mesh.set_surface_override_material(0, mat)
