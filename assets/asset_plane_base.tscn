@@ -4,19 +4,10 @@
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ly7xb"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_j3sxu"]
-size = Vector3(1.9139404, 1.2711182, 1.5086975)
-
 [node name="AssetPlaneBase" type="Node3D" unique_id=1648767978]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, 0)
 script = ExtResource("1_no1ny")
 
-[node name="StaticBody" type="StaticBody3D" parent="." unique_id=850754373]
-
-[node name="PlaneMesh" type="MeshInstance3D" parent="StaticBody" unique_id=489184849]
+[node name="PlaneMesh" type="MeshInstance3D" parent="." unique_id=489184849]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 mesh = SubResource("PlaneMesh_ly7xb")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody" unique_id=333012619]
-transform = Transform3D(1, 0, 0, 0, 0.69524854, -0.7187701, 0, 0.7187701, 0.69524854, 0.011657715, 0.1804114, -0.9248759)
-shape = SubResource("BoxShape3D_j3sxu")

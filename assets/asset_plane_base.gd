@@ -50,7 +50,7 @@ func init_texture():
 	# Then we calc the size the mesh should be
 	var gcd = _gcd(floori(img_size.x), floori(img_size.y))
 	var ratio = [x_scale, y_scale]
-	var plane_mesh = $StaticBody/PlaneMesh
+	var plane_mesh = $PlaneMesh
 	plane_mesh.mesh.size = Vector2i(ratio[0]*scale_factor, ratio[1])
 	scale.x = ratio[0]
 	scale.z = ratio[1]
