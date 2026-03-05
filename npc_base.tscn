@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b74k6q5f4jake" path="res://npc_base.gd" id="1_tmksl"]
 [ext_resource type="PackedScene" uid="uid://dqud3sgjo74y8" path="res://assets/asset_plane_base.tscn" id="2_6txx1"]
-[ext_resource type="Script" uid="uid://dq0r62x5rd63s" path="res://npc_area_3d.gd" id="2_s6gr2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6txx1"]
 size = Vector3(1.9139404, 1.1969604, 2.0246468)
@@ -12,7 +11,6 @@ script = ExtResource("1_tmksl")
 
 [node name="NPCArea3D" type="Area3D" parent="." unique_id=2117690017]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, 0)
-script = ExtResource("2_s6gr2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NPCArea3D" unique_id=409840514]
 transform = Transform3D(1, 0, 0, 0, 1.0000006, 0, 0, 0, 1.0000006, 0.011657715, 0.14780506, -1.0126781)

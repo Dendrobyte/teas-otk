@@ -44,7 +44,6 @@ func init_texture():
 
 	var x_scale = img_size.x / GlobalState.BASE_TILE_SIZE
 	var y_scale = img_size.y / GlobalState.BASE_TILE_SIZE
-	print("X: ", x_scale, "Y: ", y_scale)
 
 
 	# Then we calc the size the mesh should be
