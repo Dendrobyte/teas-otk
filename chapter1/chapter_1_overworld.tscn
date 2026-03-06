@@ -31,7 +31,7 @@ script = ExtResource("2_p0328")
 transform = Transform3D(0.83626544, -0.47841692, 0.26791298, -0.0004250334, 0.48803696, 0.8728229, -0.54832464, -0.7300255, 0.4079251, 36.518227, 88.14396, 73.44497)
 
 [node name="Character" type="CharacterBody3D" parent="." unique_id=1379564249]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.01232, 0.4905343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 17.01232, 0.4905343)
 script = ExtResource("2_unq8b")
 
 [node name="CharacterAssetPlane" parent="Character" unique_id=1830317028 instance=ExtResource("3_d6ub8")]
