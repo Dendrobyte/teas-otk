@@ -72,6 +72,10 @@ plane_texture_img = ExtResource("11_swfx4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.244392, 0, 0)
 plane_texture_img = ExtResource("12_jqiwu")
 
-[node name="NPC6" parent="NPCs" unique_id=1719089510 instance=ExtResource("7_7s0cm")]
+[node name="CitadelGuard" parent="NPCs" unique_id=1719089510 instance=ExtResource("7_7s0cm")]
 transform = Transform3D(-0.049581975, 0, 0.99877006, 0, 1, 0, -0.99877006, 0, -0.049581975, -62.42749, 0, 0)
 plane_texture_img = ExtResource("13_7k04j")
+
+[node name="OldMan" parent="NPCs" unique_id=985203462 instance=ExtResource("7_7s0cm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.031752, 0, 5.007538)
+plane_texture_img = ExtResource("8_p5ixt")

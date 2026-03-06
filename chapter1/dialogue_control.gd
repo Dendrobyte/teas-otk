@@ -7,6 +7,13 @@ var interact_button: Sprite3D = Sprite3D.new()
 var can_interact = false # I feel like this interaction button thing can become a separate script, if only to modularize it with item gathering
 var curr_dialogue = null
 
+## NPC STUFF! / what i want to move out of here
+# This is also meant to be moved out like the events at the bottom
+var curr_npc = null # merge with above, see note about blob
+var old_man: NPCBase = null
+
+## End of NPC stuff
+
 # General parent dialogue control
 # As this grows bigger, move things into child scripts. Otherwise, we can just keep it in here for now
 func _ready():
@@ -22,8 +29,12 @@ func _ready():
 	interact_button.hide()
 
 func _input(event):
+	# TODO: Freeze all other actions -> look into the unhandled_input flow chart again, I think that may be our answer
+	#       We can just "handle" all input here by sinking it into an empty return
 	if event.is_action_pressed("interact") and can_interact:
 		print("Dialogue to show is: ", curr_dialogue)
+		check_npc_event(curr_npc)
+
 
 # TODO: THIS IS A MAP OF ALL DIALOGUE FOR CHAPTER ONE
 # MOVE THIS TO A FILE!!!!
@@ -37,7 +48,8 @@ func load_dialogue():
 		"NPC3": "Gah... the lines haven't been this long in years!! // That damned population increase...",
 		"NPC4": "<Conversation with NPC5>",
 		"NPC5": "<Conversation with NPC4>",
-		"NPC6": "Permit please!", # "Papers, please!" as a small ode to that game lol
+		"CitadelGuard": "Permit please!", # "Papers, please!" as a small ode to that game lol
+		"OldMan": "Ah, hello there young fellow!",
 	} 
 
 func connect_to_npc_signals():
@@ -48,6 +60,10 @@ func connect_to_npc_signals():
 
 		npc.npc_collision_enter.connect(_on_character_enters_npc_area)
 		npc.npc_collision_leave.connect(_on_character_leaves_npc_area)
+
+		if npc.name == "OldMan":
+			old_man = npc
+			old_man.hide() # This doesn't hide the hitbox
 	
 # When an NPC emits a collision signal on entry, we show the interact button
 # TODO: Set the current dialogue... and maybe that cascades into 
@@ -59,11 +75,21 @@ func _on_character_enters_npc_area(body: Node3D):
 	interact_button.show()
 	can_interact = true
 	curr_dialogue = npc_dialogue_map[npc_name]
+	curr_npc = npc_name
 
 func _on_character_leaves_npc_area(_body: Node3D):
 	interact_button.hide()
 	can_interact = false
-	
-# When the interact button is hit and it's visible, show the NPC dialogue that emitted the last entry signal
-# TODO: Freeze all other actions -> look into the unhandled_input flow chart again, I think that may be our answer
-#       We can just "handle" all input here by sinking it into an empty return
+
+## EVENT TRIGGERING ##
+# I don't like that this is in the dialogue control. It has nothing to do with dialogue. But I think
+# we can have some script tracking the events of the "current scene" and then when it changes we update our
+# global state. Then we save that global state with all those independent fields
+# And somehow each scene will have potential events and such to trigger, as opposed to all of them
+# being in one huge file
+
+var flag_checked_for_permit = false
+func check_npc_event(npc_name):
+	if npc_name == "CitadelGuard":
+		flag_checked_for_permit = true
+		old_man.show()
