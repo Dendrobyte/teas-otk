@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bxiejgf8jjimw"]
+
+[ext_resource type="Script" uid="uid://btqp10lt30b0u" path="res://overworld_base.gd" id="1_00tp4"]
+[ext_resource type="Script" uid="uid://pqjcyxq2vas3" path="res://chapter2/char_movement.gd" id="2_77dp3"]
+[ext_resource type="PackedScene" uid="uid://dqud3sgjo74y8" path="res://assets/asset_plane_base.tscn" id="3_5tkv4"]
+[ext_resource type="Texture2D" uid="uid://t67h43i4vd1b" path="res://assets/base_person_128x256.png" id="4_0m0f1"]
+[ext_resource type="Texture2D" uid="uid://c4oypf7c134xg" path="res://assets/base_tea_plant_128x128.png" id="9_45l4g"]
+[ext_resource type="Texture2D" uid="uid://byevew7i3q486" path="res://assets/base_tile_128x128.png" id="10_4uo0j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7pokv"]
+size = Vector3(2.0336914, 0.25708008, 2.5019531)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_46g0g"]
+albedo_texture = ExtResource("10_4uo0j")
+uv1_scale = Vector3(32, 32, 32)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_b0jfn"]
+lightmap_size_hint = Vector2i(12, 12)
+
+[node name="OverworldBase" type="Node3D" unique_id=2002152738]
+script = ExtResource("1_00tp4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=479800490]
+transform = Transform3D(0.9999991, -0.00087653694, 0.0009770769, -0.00042503336, 0.48803693, 0.8728229, -0.0012419112, -0.8728225, 0.48803616, -0.005060926, 10.202808, 16.834465)
+
+[node name="Character" type="CharacterBody3D" parent="." unique_id=1379564249]
+script = ExtResource("2_77dp3")
+
+[node name="AssetPlaneBase" parent="Character" unique_id=1830317028 instance=ExtResource("3_5tkv4")]
+plane_texture_img = ExtResource("4_0m0f1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Character" unique_id=1724490323]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, -0.011230469, 0.5228205, -0.5392207)
+shape = SubResource("BoxShape3D_7pokv")
+
+[node name="Camera" type="Camera3D" parent="Character" unique_id=663389705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2349854, 10.813459)
+current = true
+
+[node name="TeaPlantBase" parent="." unique_id=1332769204 instance=ExtResource("3_5tkv4")]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 1.825, 0, 0)
+plane_texture_img = ExtResource("9_45l4g")
+
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=404712858]
+transform = Transform3D(54.63465, 0, 0, 0, 1, 0, 0, 0, 42.75453, -0.0009946823, 0.091383934, -0.068897724)
+material_override = SubResource("StandardMaterial3D_46g0g")
+mesh = SubResource("PlaneMesh_b0jfn")

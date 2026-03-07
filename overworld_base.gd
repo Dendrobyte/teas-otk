@@ -1,7 +1,7 @@
 extends Node3D
 
+# This overworld base script is for every overworld, so nothing too specific here
 func _enter_tree():
-	# TODO: I feel like we would switch the gamemode earlier...? Or perhaps we have a loading state and switch it first
 	GlobalState.set_gamemode(GlobalState.GameMode.OVERWORLD)
 	# TODO: Load assets
 
