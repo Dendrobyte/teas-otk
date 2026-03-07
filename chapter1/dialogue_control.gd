@@ -1,5 +1,12 @@
 extends Control
 
+#### SCOPE ####
+# The dialogue control should ONLY handle:
+# 	1. The loading of dialogue per NPC to be displayed with a dialogue box
+#	2. Show/hide of interaction button
+#	3. It can trigger event updates
+# It should contain NONE of the branching flow, etc. Just loading "what's next" for an NPC
+
 # Key is NPC name, value is string
 # (for now, we'll figure this system out eventually when I dig into yarnspinner)
 var npc_dialogue_map = {}
@@ -31,8 +38,9 @@ func _ready():
 func _input(event):
 	# TODO: Freeze all other actions -> look into the unhandled_input flow chart again, I think that may be our answer
 	#       We can just "handle" all input here by sinking it into an empty return
+	# TODO: If this dialogue triggers an event change (like talking to the old man), reload their dialogue
 	if event.is_action_pressed("interact") and can_interact:
-		print("Dialogue to show is: ", curr_dialogue)
+		print(curr_npc + " says " + curr_dialogue)
 		check_npc_event(curr_npc)
 
 
@@ -48,9 +56,13 @@ func load_dialogue():
 		"NPC3": "Gah... the lines haven't been this long in years!! // That damned population increase...",
 		"NPC4": "<Conversation with NPC5>",
 		"NPC5": "<Conversation with NPC4>",
-		"CitadelGuard": "Permit please!", # "Papers, please!" as a small ode to that game lol
+		"CitadelGuard":
+			{
+				"flag_talked_to_old_man_false": "Permit please!", # "Papers, please!" as a small ode to that game lol
+				"flag_talked_to_old_man_true": "Welcome in, you two",
+			},
 		"OldMan": "Ah, hello there young fellow!",
-	} 
+	}
 
 func connect_to_npc_signals():
 	# The NPC parent MUST be on the same level as our dialogue control node
@@ -75,6 +87,20 @@ func _on_character_enters_npc_area(body: Node3D):
 	interact_button.show()
 	can_interact = true
 	curr_dialogue = npc_dialogue_map[npc_name]
+
+	## EVENT TRIGGERING ##
+	# This is the place where I want something that could potentially be more dynamic...
+	# Like checking this flag on every character here- is that a good place for it?
+	# Or is it better to update a new map of dialogue with "what should be said given the current state"
+	# when the state changes?
+	# I don't like that this is so conditional here, so tracking it "elsewhere" would make it more
+	# readable- i.e. the above line npc_dialogue_map[npc_name] would be the only line we need
+	if npc_name == "CitadelGuard":
+		if flag_talked_to_old_man == false:
+			curr_dialogue = curr_dialogue["flag_talked_to_old_man_false"]
+		else:
+			curr_dialogue = curr_dialogue["flag_talked_to_old_man_true"]
+
 	curr_npc = npc_name
 
 func _on_character_leaves_npc_area(_body: Node3D):
@@ -89,7 +115,10 @@ func _on_character_leaves_npc_area(_body: Node3D):
 # being in one huge file
 
 var flag_checked_for_permit = false
+var flag_talked_to_old_man = false
 func check_npc_event(npc_name):
 	if npc_name == "CitadelGuard":
 		flag_checked_for_permit = true
 		old_man.show()
+	if npc_name == "OldMan":
+		flag_talked_to_old_man = true
