@@ -1,0 +1,63 @@
+title: Chapter1_Overworld
+position: 243,47
+color: orange
+---
+<<declare $name = "Merk">>
+<<declare $flag_talked_to_old_man = false>>
+===
+
+// Just throwing in the NPC dialogue for now
+
+title: NPC1
+position: -19,75
+---
+Jerry: Ey kid... boy, lot of us sure are lookin' worse for wear.
+Jerry: Military sure is convinced they need to give everything to the soldiers but they're forgettin' about their people... *grumble grumble*
+===
+
+title: NPC2
+position: -297,-15
+---
+Miranda: Stop talkin' to randos out on the street. Help me pack up the crates, we need to set up early today.
+Miranda: *She tosses you an apple*
+Miranda: Be on your way, kid.
+===
+
+title: NPC3
+color: red
+position: -275,165
+---
+Some Dude: Gah... the lines haven't been this long in years!!
+Some Dude: That damned population increase...
+===
+
+title: NPC4
+position: 59,-261
+---
+NPC4: <Conversation with NPC 4>
+===
+
+title: NPC5
+color: red
+position: -262,-296
+---
+NPC5: <Conversation with NPC 5>
+===
+
+title: CitadelGuard
+position: 67,274
+---
+// I'm structuring booleans such that the first event is what we check first
+<<if $flag_talked_to_old_man == false>>
+  Citadel Guard: Permit, please!
+  // TODO: Branching dialogue options, maybe?
+<<else>>
+  Citadel Guard: Sure, come on in then...
+<<endif>>
+===
+
+title: OldMan
+position: 207,-154
+---
+Old Man: Ah, hello there young fellow!
+===
