@@ -18,7 +18,7 @@ Jerry: Military sure is convinced they need to give everything to the soldiers b
 title: NPC2
 position: -297,-15
 ---
-Miranda: Stop talkin' to randos out on the street. Help me pack up the crates, we need to set up early today.
+Miranda: Stop talkin' to randos out on the street... everyone's here to fend for 'em selves.
 Miranda: *She tosses you an apple*
 Miranda: Be on your way, kid.
 ===
@@ -60,4 +60,5 @@ title: OldMan
 position: 207,-154
 ---
 Old Man: Ah, hello there young fellow!
+<<set $flag_talked_to_old_man to true>>
 ===

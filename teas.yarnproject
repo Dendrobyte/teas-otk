@@ -1,0 +1,15 @@
+{
+  "projectFileVersion": 3,
+  "sourceFiles": [
+    "**/*.yarn"
+  ],
+  "excludeFiles": [],
+  "baseLanguage": "en",
+  "localisation": {
+    "en": {
+      "assets": "Localisation/en"
+    }
+  },
+  "definitions": "definitions.ysls.json",
+  "compilerOptions": {}
+}
