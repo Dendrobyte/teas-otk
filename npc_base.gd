@@ -2,9 +2,11 @@ extends Node3D
 class_name NPCBase
 
 @export var plane_texture_img: Texture2D
+@export var start_interactable: bool = true
 var dialogue = null
 var area: Area3D = null
 var player: CharacterBody3D = null
+var interactable = true # Assume NPCs start as interactable
 
 signal npc_collision_enter
 signal npc_collision_leave
@@ -21,20 +23,30 @@ func _ready():
 	$AssetPlaneBase.plane_texture_img = plane_texture_img
 	$AssetPlaneBase.init_texture()
 
-	# FUTURE-TODO: Load NPC information from a file (where relevant, may not be necessary for some)
-	# This way we can have each NPC with its own flags that are sent up, and then we can have our dialogue setup
-	# rely on those flags. The system will certainly have to evolve but it should help avoid some confusion.
-	# So like helped_skyla (or generally a pos/neg favor romance value) is sent up, and we use those same strings
-	# in our dialogue setup. Instead of "if skyla.helped_skyla..." we can just pull the dialogue for what
-	# flag we return? Enough thinking on that, but we'll go from there. AdventureHeart was a good learning lesson,
-	# and those scenes were all the same. Anyway!
+	if !start_interactable:
+		disable()
 
 # When we enter/exit, we'll send this npc's body
 # We send the WHOLE body because we may want to send other characteristics
-# NOTE: Check if the body is of type Character... if there's other stuff moving around?
 # NOTE: This is a place where layer and stuff probably makes sense?
 func _on_Character_enters(_body):
-	npc_collision_enter.emit(self)
+	if interactable:
+		npc_collision_enter.emit(self)
 
 func _on_Character_leaves(_body):
-	npc_collision_leave.emit(self)
+	if interactable:
+		npc_collision_leave.emit(self)
+
+# Some NPCs will be enabled/disabled when certain events happen
+func enable():
+	interactable = true
+	show()
+
+func disable():
+	interactable = false
+	hide()
+
+# Sometimes we keep them shown but don't want to re-initialize dialogue until a flag has been changed
+# NOTE: We could do this with the flags and just not have the button show up, but this works too? I'm not sure if one is better than the other
+func set_interactable(new_value: bool):
+	interactable = new_value

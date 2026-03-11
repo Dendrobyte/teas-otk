@@ -2,8 +2,11 @@ title: Chapter1_Overworld
 position: 243,47
 color: orange
 ---
+// TODO: Load these from the script... Will need to figure that out in the next related task
+// When the Dialogue Control switches to new scenes, it should "reload" the yarn script we're loading in
 <<declare $name = "Merk">>
-<<declare $flag_talked_to_old_man = false>>
+<<declare $checked_for_permit = false>>
+<<declare $talked_to_old_man = false>>
 ===
 
 // Just throwing in the NPC dialogue for now
@@ -48,8 +51,10 @@ title: CitadelGuard
 position: 67,274
 ---
 // I'm structuring booleans such that the first event is what we check first
-<<if $flag_talked_to_old_man == false>>
-  Citadel Guard: Permit, please!
+<<if $talked_to_old_man == false>>
+  Citadel Guard: Permit, please...
+  Citadel Guard: No permit? No entry!
+  <<set $checked_for_permit to true>>
   // TODO: Branching dialogue options, maybe?
 <<else>>
   Citadel Guard: Sure, come on in then...
@@ -60,5 +65,5 @@ title: OldMan
 position: 207,-154
 ---
 Old Man: Ah, hello there young fellow!
-<<set $flag_talked_to_old_man to true>>
+<<set $talked_to_old_man to true>>
 ===

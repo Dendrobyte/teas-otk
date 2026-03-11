@@ -16,8 +16,15 @@ var curr_dialogue = null
 
 ## NPC STUFF! / what i want to move out of here
 # This is also meant to be moved out like the events at the bottom
-var curr_npc = null # merge with above, see note about blob
-var old_man: NPCBase = null
+# I think this one can be held onto in the dialogue control, as it indicates whose dialogue we show
+var curr_npc = null
+
+# Some map of all NPCs whose behavior we need to tweak
+# Should be hard written like the flags end up being
+# Every key in here MUST match the node name of NPCs in the Godot Scene
+var CUSTOM_NPCS: Dictionary[String, NPCBase] = {
+	"OldMan": null,
+}
 
 ## End of NPC stuff
 
@@ -48,6 +55,7 @@ func _ready():
 	# Move to show/hide and dialogue loading
 	hide_dialogue()
 	connect_to_npc_signals()
+	dialogue_runner.dialogue_completed.connect(finish_up_dialogue)
 
 	# Set up the interact button
 	var interact_texture = ImageTexture.create_from_image(Image.load_from_file("res://assets/ui/keyboard_e.png"))
@@ -73,11 +81,9 @@ func connect_to_npc_signals():
 		npc.npc_collision_enter.connect(_on_character_enters_npc_area)
 		npc.npc_collision_leave.connect(_on_character_leaves_npc_area)
 
-		# TODO: Is there a better way to register this kind of thing?
-		# How can we move it into the EVENT TRIGGERING block so we can load these unique events in different overworld scenes?
-		if npc.name == "OldMan":
-			old_man = npc
-			old_man.hide() # This doesn't hide the hitbox
+		# This is where we grab the custom NPCs from the scene's... uh... entities? node? and then register them in here or something
+		if CUSTOM_NPCS.has(npc.name):
+			CUSTOM_NPCS[npc.name] = npc
 	
 # When an NPC emits a collision signal on entry, we show the interact button
 # TODO: Set the current dialogue... and maybe that cascades into 
@@ -95,6 +101,9 @@ func _on_character_leaves_npc_area(_body: Node3D):
 	can_interact = false
 	hide_dialogue()
 
+func finish_up_dialogue():
+	interact_button.hide()
+	can_interact = false
 
 ## EVENT TRIGGERING ##
 # I don't like that this is in the dialogue control. It has nothing to do with dialogue. But I think
@@ -111,6 +120,8 @@ func _on_character_leaves_npc_area(_body: Node3D):
 # That should be the connect YS -> Dialogue Control -> Story State
 
 # Holds on to a flag value and the function to call when it changes
+# TODO: Establish these in a scene's ready function, and then check for a file with the
+# saved information (or however state is saved) to load updated values from.
 var FLAGS = {
 	"checked_for_permit": { # Talk to CitadelGuard
 		"value": false,
@@ -123,19 +134,21 @@ var FLAGS = {
 }
 
 # Connected to the variable_storage variable_changes signal
-# TODO: Update some map of flags in this file
-func update_flag(var_name, value):
+# TODO: We should ensure we have an inverse of this, such that we update whatever yarn is holding on to
+# if we change a flag in code (though I'm not sure when that will happen, so I won't worry about for now)
+func update_flag(var_name: String, value):
+	var flag_name = var_name.substr(1)
+	FLAGS[flag_name]["function"].call()
 	print("Updating ", var_name, " to ", value)
 
 # All the functions executed on flag change to keep the map somewhat readable
+# Remember to let YarnSpinner handle anything dialogue related with the flags
 func on_checked_for_permit():
 	print("Permit checked!")
-	# YarnSpinner flag updates should take it from here, as below
-	# TODO: Spawn in the old man
+	CUSTOM_NPCS["OldMan"].enable()
 
 func on_talked_to_old_man():
 	print("Talked to old man!")
-	# Since our YS flag update function should update the var, I don't think we need to do anything for that
-	# TODO: Ensure player can't interact (talk again) to old man, e.g. remove bounding box?
+	CUSTOM_NPCS["OldMan"].set_interactable(false)
 
 # End of flag execution functions
