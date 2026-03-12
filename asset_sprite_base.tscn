@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ctgjq4krm4248"]
+
+[ext_resource type="Texture2D" uid="uid://cnafqi5q10xrq" path="res://chapter1/character_128x256.png" id="1_1smih"]
+[ext_resource type="Script" uid="uid://dai1h7aytuu1i" path="res://asset_sprite_base.gd" id="2_kthyy"]
+
+[node name="AssetSpriteBase" type="Sprite3D" unique_id=977840974]
+offset = Vector2(0, 128)
+texture = ExtResource("1_1smih")
+script = ExtResource("2_kthyy")

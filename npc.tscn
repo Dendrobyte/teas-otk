@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://rnhvdrm6nr7"]
+
+[ext_resource type="PackedScene" uid="uid://ctgjq4krm4248" path="res://asset_sprite_base.tscn" id="1_ideak"]
+[ext_resource type="Script" uid="uid://b74k6q5f4jake" path="res://npc_base.gd" id="2_xxcha"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xxcha"]
+size = Vector3(1.9139404, 1.1969604, 2.0246468)
+
+[node name="NPCSpriteBase" unique_id=977840974 instance=ExtResource("1_ideak")]
+script = ExtResource("2_xxcha")
+plane_texture_img = null
+start_interactable = true
+
+[node name="NPCArea3D" type="Area3D" parent="." index="0" unique_id=1535549466]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCArea3D" index="0" unique_id=1491579194]
+transform = Transform3D(1, 0, 0, 0, 1.0000006, 0, 0, 0, 1.0000006, 0.011657715, 0.14780506, -1.0126781)
+shape = SubResource("BoxShape3D_xxcha")

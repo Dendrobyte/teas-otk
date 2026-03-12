@@ -14,8 +14,9 @@ func _ready():
 
 	# Ensure we can't move when dialogue is started
 	# NOTE: Am I going to have to hide the interact button?
-	dialogue_runner.dialogue_started.connect(func(): is_in_dialogue = true)
-	dialogue_runner.dialogue_completed.connect(func(): is_in_dialogue = false)
+	if dialogue_runner != null: # It's not always present, such as when testing overworld stuff
+		dialogue_runner.dialogue_started.connect(func(): is_in_dialogue = true)
+		dialogue_runner.dialogue_completed.connect(func(): is_in_dialogue = false)
 
 func _physics_process(_delta):
 	if is_in_dialogue:

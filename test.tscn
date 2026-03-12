@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://btqp10lt30b0u" path="res://overworld_base.gd" id="1_00tp4"]
 [ext_resource type="Script" uid="uid://pqjcyxq2vas3" path="res://chapter2/char_movement.gd" id="2_77dp3"]
-[ext_resource type="PackedScene" uid="uid://dqud3sgjo74y8" path="res://assets/asset_plane_base.tscn" id="3_5tkv4"]
+[ext_resource type="PackedScene" uid="uid://dqud3sgjo74y8" path="res://assets/asset_plane_base_deprecated.tscn" id="3_5tkv4"]
 [ext_resource type="Texture2D" uid="uid://t67h43i4vd1b" path="res://assets/base_person_128x256.png" id="4_0m0f1"]
 [ext_resource type="Texture2D" uid="uid://c4oypf7c134xg" path="res://assets/base_tea_plant_128x128.png" id="9_45l4g"]
 [ext_resource type="Texture2D" uid="uid://byevew7i3q486" path="res://assets/base_tile_128x128.png" id="10_4uo0j"]

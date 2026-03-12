@@ -17,12 +17,6 @@ func _ready():
 	area.body_entered.connect(self._on_Character_enters)
 	area.body_exited.connect(self._on_Character_leaves)
 
-	# The asset plane base should handle collision and such
-	# Perhaps it can emit a signal or something that triggers a specific NPC's dialogue
-	# Need to also set the asset plane's base image with the texture provide
-	$AssetPlaneBase.plane_texture_img = plane_texture_img
-	$AssetPlaneBase.init_texture()
-
 	if !start_interactable:
 		disable()
 

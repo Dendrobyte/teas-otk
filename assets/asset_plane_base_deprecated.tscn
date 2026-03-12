@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dqud3sgjo74y8"]
 
-[ext_resource type="Script" uid="uid://0f6bqkrdmfjm" path="res://assets/asset_plane_base.gd" id="1_no1ny"]
+[ext_resource type="Script" uid="uid://0f6bqkrdmfjm" path="res://assets/asset_plane_base_deprecated.gd" id="1_no1ny"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ly7xb"]
 

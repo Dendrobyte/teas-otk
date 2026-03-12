@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bc16kytrg0t32"]
+
+[ext_resource type="Script" uid="uid://pqjcyxq2vas3" path="res://chapter2/char_movement.gd" id="1_7ig0a"]
+[ext_resource type="PackedScene" uid="uid://ctgjq4krm4248" path="res://asset_sprite_base.tscn" id="2_lcuhw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7pokv"]
+size = Vector3(2.0336914, 0.25708008, 2.5019531)
+
+[node name="Character" type="CharacterBody3D" unique_id=862054798]
+script = ExtResource("1_7ig0a")
+
+[node name="AssetSpriteBase" parent="." unique_id=977840974 instance=ExtResource("2_lcuhw")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1297511523]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, -0.011230469, 0.5228205, -0.5392207)
+shape = SubResource("BoxShape3D_7pokv")
+
+[node name="Camera" type="Camera3D" parent="." unique_id=1230000429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2349854, 10.813459)
+current = true
