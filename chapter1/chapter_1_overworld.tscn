@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://rnhvdrm6nr7" path="res://npc.tscn" id="11_swfx4"]
 [ext_resource type="Texture2D" uid="uid://83l2tqqy2j53" path="res://chapter1/npc5.png" id="12_jqiwu"]
 [ext_resource type="Texture2D" uid="uid://coktyswq0hufq" path="res://chapter1/npc4.png" id="13_swfx4"]
+[ext_resource type="Texture2D" uid="uid://ssrsce5i7p3t" path="res://chapter1/oldman.png" id="15_jqiwu"]
 
 [sub_resource type="Theme" id="Theme_6rr84"]
 default_font_size = 32
@@ -119,7 +120,7 @@ texture = ExtResource("12_jqiwu")
 
 [node name="OldMan" parent="NPCs" unique_id=670409553 instance=ExtResource("11_swfx4")]
 transform = Transform3D(0.9009634, 0, -0.43389496, 0, 1, 0, 0.43389496, 0, 0.9009634, -45.881863, 0, 5.768857)
-texture = ExtResource("12_jqiwu")
+texture = ExtResource("15_jqiwu")
 start_interactable = false
 
 [node name="Node" type="Node" parent="." unique_id=723667208]
