@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://kmcdpx3tde62"]
 
 [ext_resource type="Script" uid="uid://cgxq82dhb7gja" path="res://brewing_base.gd" id="1_ni0av"]
-[ext_resource type="PackedScene" uid="uid://dqud3sgjo74y8" path="res://assets/asset_plane_base_deprecated.tscn" id="2_0ef7w"]
 [ext_resource type="Script" uid="uid://bw4ywnt705a6l" path="res://chapter2/brewing_ui.gd" id="2_aynr4"]
 [ext_resource type="Script" uid="uid://t7m4u5is2712" path="res://chapter2/brewing_player_controller.gd" id="2_tya4k"]
-[ext_resource type="Texture2D" uid="uid://t67h43i4vd1b" path="res://assets/base_person_128x256.png" id="3_o1n6l"]
 [ext_resource type="Texture2D" uid="uid://cd0cpv1841q5g" path="res://assets/models/kettle_Texture_Kettle.png" id="4_1uy5m"]
 [ext_resource type="ArrayMesh" uid="uid://s8d4osl66ypr" path="res://assets/models/kettle.obj" id="4_2n2jf"]
 
@@ -345,8 +343,3 @@ mesh = SubResource("CylinderMesh_2n2jf")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BrewingStand/Cup6" unique_id=1571570089]
 transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0038452148, 0)
 shape = SubResource("CylinderShape3D_2n2jf")
-
-[node name="AssetPlaneBase" parent="." unique_id=1648767978 instance=ExtResource("2_0ef7w")]
-transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, -1.2172863, 0.46112913, 0.80552316)
-plane_texture_img = ExtResource("3_o1n6l")
-scale_factor = 1
