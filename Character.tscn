@@ -16,5 +16,5 @@ transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70
 shape = SubResource("BoxShape3D_7pokv")
 
 [node name="Camera" type="Camera3D" parent="." unique_id=1230000429]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7581925, 7.8223696)
+transform = Transform3D(0.9998382, -0.017993374, 1.496439e-09, 0.01442984, 0.80182314, 0.5973872, -0.010749012, -0.59729046, 0.80195296, 0, 7.339772, 5.970345)
 current = true

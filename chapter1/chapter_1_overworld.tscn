@@ -83,8 +83,9 @@ layout_mode = 2
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=479800490]
 transform = Transform3D(0.83626544, -0.47841692, 0.26791298, -0.0004250334, 0.48803696, 0.8728229, -0.54832464, -0.7300255, 0.4079251, 36.518227, 88.14396, 73.44497)
 
-[node name="Character" parent="." unique_id=862054798 instance=ExtResource("7_58wme")]
+[node name="Character" parent="." unique_id=862054798 node_paths=PackedStringArray("dialogue_runner") instance=ExtResource("7_58wme")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.956703, 5.1498337, -0.66265464)
+dialogue_runner = NodePath("../DialogueControl/YarnDialogueRunner")
 
 [node name="Environment" type="Node3D" parent="." unique_id=1948100022]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.102295, 0)
@@ -120,7 +121,7 @@ transform = Transform3D(0.7297329, 0, 0.6837324, 0, 1, 0, -0.6837324, 0, 0.72973
 texture = ExtResource("12_jqiwu")
 
 [node name="OldMan" parent="NPCs" unique_id=670409553 instance=ExtResource("11_swfx4")]
-transform = Transform3D(0.9009634, 0, -0.43389496, 0, 1, 0, 0.43389496, 0, 0.9009634, -38.873665, 0, 1.3126621)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -38.873665, 0, 1.3126621)
 texture = ExtResource("15_jqiwu")
 start_interactable = false
 

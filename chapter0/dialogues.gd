@@ -1,6 +1,6 @@
 extends Control
 
-# TODO: Obviously temporary, load from file
+# TODO: Load this from a yarn file. Let it handle sequencing and such.
 var dialogues = [
 	"This is the first scene where two entities are fighting",
 	"This is the squad around the fire",

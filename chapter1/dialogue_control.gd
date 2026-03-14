@@ -71,6 +71,8 @@ func _input(event):
 	if event.is_action_pressed("interact") and can_interact:
 		dialogue_runner.start_dialogue(curr_npc)
 		show_dialogue()
+		interact_button.hide()
+		can_interact = false
 
 func connect_to_npc_signals():
 	# The NPC parent MUST be on the same level as our dialogue control node
@@ -104,6 +106,7 @@ func _on_character_leaves_npc_area(_body: Node3D):
 func finish_up_dialogue():
 	interact_button.hide()
 	can_interact = false
+	# TODO: Update variables here? The two lines are repeated elsewhere but this is meant to be expanded
 
 ## EVENT TRIGGERING ##
 # I don't like that this is in the dialogue control. It has nothing to do with dialogue. But I think

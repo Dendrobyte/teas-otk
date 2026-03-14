@@ -10,7 +10,7 @@ func set_gamemode(new_gamemode):
 #### High level variables for use across scenes ####
 var CURRENT_CHAPTER = null
 var ROTATION_ANGLE = {
-	GlobalState.GameMode.OVERWORLD: 0,
+	GlobalState.GameMode.OVERWORLD: 45,
 	GlobalState.GameMode.BREWING: 0,
 }
 
