@@ -5,9 +5,9 @@
 [ext_resource type="Script" uid="uid://flra500ihbix" path="res://addons/yarn_spinner/dialogue_runner.gd" id="2_swfx4"]
 [ext_resource type="Resource" uid="uid://dww6p7spgh185" path="res://teas.yarnproject" id="3_jqiwu"]
 [ext_resource type="Script" uid="uid://cged8u182768u" path="res://addons/yarn_spinner/ui/line_presenter.gd" id="5_7k04j"]
-[ext_resource type="PackedScene" uid="uid://driiwb4q8aol6" path="res://assets/models/ch1_overworld_env.glb" id="6_2q104"]
 [ext_resource type="Script" uid="uid://cogqy630mjgv7" path="res://addons/yarn_spinner/ui/options_presenter.gd" id="6_6rr84"]
 [ext_resource type="PackedScene" uid="uid://bc16kytrg0t32" path="res://Character.tscn" id="7_58wme"]
+[ext_resource type="PackedScene" uid="uid://dawik2saygkps" path="res://chapter1/models/ch1_overworld_env.glb" id="8_jqiwu"]
 [ext_resource type="Texture2D" uid="uid://d3w2pxctulr1w" path="res://chapter1/npc1.png" id="8_p5ixt"]
 [ext_resource type="Texture2D" uid="uid://gxj1g80lbwmk" path="res://chapter1/npc2.png" id="9_r61fc"]
 [ext_resource type="Texture2D" uid="uid://dvffwvgdg23d3" path="res://chapter1/npc3.png" id="10_p0328"]
@@ -84,42 +84,43 @@ layout_mode = 2
 transform = Transform3D(0.83626544, -0.47841692, 0.26791298, -0.0004250334, 0.48803696, 0.8728229, -0.54832464, -0.7300255, 0.4079251, 36.518227, 88.14396, 73.44497)
 
 [node name="Character" parent="." unique_id=862054798 instance=ExtResource("7_58wme")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.620205, 14.813091, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.956703, 5.1498337, -0.66265464)
 
 [node name="Environment" type="Node3D" parent="." unique_id=1948100022]
-transform = Transform3D(0.87, 0, 0, 0, 0.87, 0, 0, 0, 0.87, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.102295, 0)
 
-[node name="ch1_overworld_env" parent="Environment" unique_id=1950368290 instance=ExtResource("6_2q104")]
+[node name="ch1_overworld_env" parent="Environment" unique_id=1081340691 instance=ExtResource("8_jqiwu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.409, 0, -2.395)
 
 [node name="NPCs" type="Node3D" parent="." unique_id=1170896753]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.913579, 14.727459, -1.156765)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.913579, 5.1751747, -1.156765)
 
 [node name="NPC1" parent="NPCs" unique_id=977840974 instance=ExtResource("11_swfx4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.187515, 0, -0.11981106)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.161106, 0, -0.11981106)
 texture = ExtResource("8_p5ixt")
 
 [node name="NPC2" parent="NPCs" unique_id=1602502584 instance=ExtResource("11_swfx4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.846134, 0, 0.03348446)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.257633, 0, -0.89205074)
 texture = ExtResource("9_r61fc")
 
 [node name="NPC3" parent="NPCs" unique_id=539337291 instance=ExtResource("11_swfx4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.582394, 0, -1.608758)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.630974, 0, -1.608758)
 texture = ExtResource("10_p0328")
 
 [node name="NPC4" parent="NPCs" unique_id=2141868576 instance=ExtResource("11_swfx4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.027283, 0, -0.73523235)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.99017, 0, -0.73523235)
 texture = ExtResource("13_swfx4")
 
 [node name="NPC5" parent="NPCs" unique_id=1595521905 instance=ExtResource("11_swfx4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.858547, 0, 1.1861105)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.794422, 0, 1.1861105)
 texture = ExtResource("12_jqiwu")
 
 [node name="CitadelGuard" parent="NPCs" unique_id=1062812291 instance=ExtResource("11_swfx4")]
-transform = Transform3D(0.7297329, 0, 0.6837324, 0, 1, 0, -0.6837324, 0, 0.7297329, -61.412113, 0, 1.1861105)
+transform = Transform3D(0.7297329, 0, 0.6837324, 0, 1, 0, -0.6837324, 0, 0.7297329, -64.35391, 0, -1.4251738)
 texture = ExtResource("12_jqiwu")
 
 [node name="OldMan" parent="NPCs" unique_id=670409553 instance=ExtResource("11_swfx4")]
-transform = Transform3D(0.9009634, 0, -0.43389496, 0, 1, 0, 0.43389496, 0, 0.9009634, -45.881863, 0, 5.768857)
+transform = Transform3D(0.9009634, 0, -0.43389496, 0, 1, 0, 0.43389496, 0, 0.9009634, -38.873665, 0, 1.3126621)
 texture = ExtResource("15_jqiwu")
 start_interactable = false
 

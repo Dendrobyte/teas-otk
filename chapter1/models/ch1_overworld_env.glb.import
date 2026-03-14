@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://driiwb4q8aol6"
-path="res://.godot/imported/ch1_overworld_env.glb-d2d7dfac740b606e4008e819fda0b586.scn"
+uid="uid://dawik2saygkps"
+path="res://.godot/imported/ch1_overworld_env.glb-0e84a3ecbdd19890d32f9e1fa2ae56cf.scn"
 
 [deps]
 
-source_file="res://assets/models/ch1_overworld_env.glb"
-dest_files=["res://.godot/imported/ch1_overworld_env.glb-d2d7dfac740b606e4008e819fda0b586.scn"]
+source_file="res://chapter1/models/ch1_overworld_env.glb"
+dest_files=["res://.godot/imported/ch1_overworld_env.glb-0e84a3ecbdd19890d32f9e1fa2ae56cf.scn"]
 
 [params]
 
