@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t4mkvm0hip30"
-path.s3tc="res://.godot/imported/Land.png-7c2022d2588dca7f582e3d4d49ef0654.s3tc.ctex"
+uid="uid://brckehh6cbx1e"
+path.s3tc="res://.godot/imported/ch1_overworld_env_dirt.png-aad2b92221fa488240bdc10aa3311a5a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "6b0bdb4dd5b7d63f98565dc4d89f4cbf"
+}
 
 [deps]
 
-source_file="res://ART/blender models/textures/Land.png"
-dest_files=["res://.godot/imported/Land.png-7c2022d2588dca7f582e3d4d49ef0654.s3tc.ctex"]
+source_file="res://chapter1/models/ch1_overworld_env_dirt.png"
+dest_files=["res://.godot/imported/ch1_overworld_env_dirt.png-aad2b92221fa488240bdc10aa3311a5a.s3tc.ctex"]
 
 [params]
 

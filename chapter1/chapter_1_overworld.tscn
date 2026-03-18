@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cged8u182768u" path="res://addons/yarn_spinner/ui/line_presenter.gd" id="5_7k04j"]
 [ext_resource type="Script" uid="uid://cogqy630mjgv7" path="res://addons/yarn_spinner/ui/options_presenter.gd" id="6_6rr84"]
 [ext_resource type="PackedScene" uid="uid://bc16kytrg0t32" path="res://Character.tscn" id="7_58wme"]
-[ext_resource type="PackedScene" uid="uid://dawik2saygkps" path="res://chapter1/models/ch1_overworld_env.glb" id="8_jqiwu"]
+[ext_resource type="PackedScene" uid="uid://dw3q4t8c4y1tg" path="res://chapter1/Chapter 1 Overworld.tscn" id="8_bnibg"]
 [ext_resource type="Texture2D" uid="uid://d3w2pxctulr1w" path="res://chapter1/npc1.png" id="8_p5ixt"]
 [ext_resource type="PackedScene" uid="uid://beqg2nk1p3ugp" path="res://assets/models/torch.glb" id="9_7k04j"]
 [ext_resource type="Texture2D" uid="uid://gxj1g80lbwmk" path="res://chapter1/npc2.png" id="9_r61fc"]
@@ -96,8 +96,8 @@ dialogue_runner = NodePath("../DialogueControl/YarnDialogueRunner")
 [node name="Environment" type="Node3D" parent="." unique_id=1948100022]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.102295, 0)
 
-[node name="ch1_overworld_env" parent="Environment" unique_id=1081340691 instance=ExtResource("8_jqiwu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.409, 0, -2.395)
+[node name="ch1_overworld_env2" parent="Environment" unique_id=513462218 instance=ExtResource("8_bnibg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.766834, 0, -2.4615293)
 
 [node name="Torches" type="Node3D" parent="Environment" unique_id=837266263]
 

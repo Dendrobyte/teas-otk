@@ -21,11 +21,15 @@ func _ready():
 		dialogue_runner.dialogue_started.connect(func(): is_in_dialogue = true)
 		dialogue_runner.dialogue_completed.connect(func(): is_in_dialogue = false)
 
-func _physics_process(_delta):
+var gravity = 8
+func _physics_process(delta):
 	if is_in_dialogue:
 		return
 
 	var direction = Vector3.ZERO
+
+	if not is_on_floor():
+		target_velocity.y -= gravity * delta
 
 	# TODO: Support both movements to go diagonally
 	if Input.is_action_pressed("move_up"):
