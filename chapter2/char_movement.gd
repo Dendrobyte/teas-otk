@@ -22,13 +22,6 @@ func _ready():
 		dialogue_runner.dialogue_started.connect(func(): is_in_dialogue = true)
 		dialogue_runner.dialogue_completed.connect(func(): is_in_dialogue = false)
 
-	var mesh_instance = MeshInstance3D.new()
-	var box_mesh = BoxMesh.new()
-	box_mesh.size = Vector3(1, 1, 1)
-	mesh_instance.mesh = box_mesh
-	mesh_instance.position = global_position 
-	add_child(mesh_instance)
-
 var gravity = 8
 func _physics_process(delta):
 	if is_in_dialogue:
@@ -52,18 +45,17 @@ func _physics_process(delta):
 
 	# Snap y level to ground mesh
 	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(
-		Vector3(global_position.x, global_position.y+5, global_position.z), # Start above the player?
-		Vector3(global_position.x, global_position.y-10, global_position.z), # I don't think we need to go too far down?
-	)
+	var ray_start = Vector3(global_position.x, global_position.y+5, global_position.z) # Start above the player?
+	var ray_end = Vector3(global_position.x, global_position.y-10, global_position.z) # I don't think we need to go too far down?
+	var query = PhysicsRayQueryParameters3D.create(ray_start, ray_end)
 	query.exclude = [self]
 	var result = space_state.intersect_ray(query)
 	# If no result, player is attempting to walk off something
 	# TODO: Mess with vector length, potentially "float" players down if not high up
 	if result:
-		global_position.y = result.position.y + 2
+		global_position.y = result.position.y + 0.5
 
-	if direction != Vector3.ZERO and result:
+	if direction != Vector3.ZERO:
 		direction = direction.normalized()
 		# TODO: Update the sprite shown here based on direction
 		target_velocity.x = direction.x * speed
