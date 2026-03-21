@@ -8,6 +8,7 @@ extends CharacterBody3D
 
 var target_velocity = Vector3.ZERO
 var is_in_dialogue = false
+var bottom_center = 0 # y value representing bottom of the image
 
 func _ready():
 	var camera = $Camera
@@ -21,6 +22,13 @@ func _ready():
 		dialogue_runner.dialogue_started.connect(func(): is_in_dialogue = true)
 		dialogue_runner.dialogue_completed.connect(func(): is_in_dialogue = false)
 
+	var mesh_instance = MeshInstance3D.new()
+	var box_mesh = BoxMesh.new()
+	box_mesh.size = Vector3(1, 1, 1)
+	mesh_instance.mesh = box_mesh
+	mesh_instance.position = global_position 
+	add_child(mesh_instance)
+
 var gravity = 8
 func _physics_process(delta):
 	if is_in_dialogue:
@@ -30,6 +38,7 @@ func _physics_process(delta):
 
 	if not is_on_floor():
 		target_velocity.y -= gravity * delta
+
 
 	# TODO: Support both movements to go diagonally
 	if Input.is_action_pressed("move_up"):
@@ -41,7 +50,20 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
 
-	if direction != Vector3.ZERO:
+	# Snap y level to ground mesh
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(
+		Vector3(global_position.x, global_position.y+5, global_position.z), # Start above the player?
+		Vector3(global_position.x, global_position.y-10, global_position.z), # I don't think we need to go too far down?
+	)
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+	# If no result, player is attempting to walk off something
+	# TODO: Mess with vector length, potentially "float" players down if not high up
+	if result:
+		global_position.y = result.position.y + 2
+
+	if direction != Vector3.ZERO and result:
 		direction = direction.normalized()
 		# TODO: Update the sprite shown here based on direction
 		target_velocity.x = direction.x * speed
