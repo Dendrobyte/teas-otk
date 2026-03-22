@@ -92,6 +92,7 @@ transform = Transform3D(0.83626544, -0.47841692, 0.26791298, -0.0004250334, 0.48
 [node name="Character" parent="." unique_id=862054798 node_paths=PackedStringArray("dialogue_runner") instance=ExtResource("7_58wme")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.643356, 5.230688, -0.66265464)
 dialogue_runner = NodePath("../DialogueControl/YarnDialogueRunner")
+offset_const = 0.2
 
 [node name="Environment" type="Node3D" parent="." unique_id=1948100022]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.102295, 0)
@@ -150,15 +151,16 @@ texture = ExtResource("12_nya86")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.074615, 7.850157, -3.7902708)
 texture = ExtResource("12_nya86")
 
-[node name="Tree" parent="Environment/Grass" unique_id=2050382323 instance=ExtResource("11_bnibg")]
+[node name="Trees" type="Node3D" parent="Environment" unique_id=776605685]
+script = ExtResource("10_wgy84")
+scatter_count_min = 3
+scatter_count_max = 5
+
+[node name="Tree" parent="Environment/Trees" unique_id=19215973 instance=ExtResource("11_bnibg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.26966, 8.929084, -12.1629925)
 texture = ExtResource("13_pbw25")
 
-[node name="Tree2" parent="Environment/Grass" unique_id=296336254 instance=ExtResource("11_bnibg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.2429, 8.929084, 10.980214)
-texture = ExtResource("13_pbw25")
-
-[node name="Tree3" parent="Environment/Grass" unique_id=2010651609 instance=ExtResource("11_bnibg")]
+[node name="Tree3" parent="Environment/Trees" unique_id=1251217679 instance=ExtResource("11_bnibg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.879852, 8.929084, -1.5630169)
 texture = ExtResource("13_pbw25")
 
