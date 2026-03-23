@@ -6,8 +6,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_7pokv"]
 size = Vector3(1.0008545, 2.3405762, 0.080566406)
 
-[node name="Character" type="CharacterBody3D" unique_id=862054798]
+[node name="Character" type="CharacterBody3D" unique_id=862054798 node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_7ig0a")
+sprite = NodePath("AssetSpriteBase")
 
 [node name="AssetSpriteBase" parent="." unique_id=977840974 instance=ExtResource("2_lcuhw")]
 

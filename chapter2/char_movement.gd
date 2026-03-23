@@ -6,10 +6,17 @@ extends CharacterBody3D
 # TODO: Do this programatically instead of in the editor? Depends on how I spawn in the scene I guess
 @export var dialogue_runner: Node
 @export var offset_const = .5
+@export var sprite: Sprite3D
 
 var target_velocity = Vector3.ZERO
 var is_in_dialogue = false
 var bottom_center = 0 # y value representing bottom of the image
+
+# TODO: Remove this in the next bit! It should be a proper sprite sheet
+var texture_left: Texture2D = preload("res://chapter1/character_128x256_LEFT.png")
+var texture_right: Texture2D = preload("res://chapter1/character_128x256_RIGHT.png")
+var texture_up: Texture2D = preload("res://chapter1/character_128x256_UP.png")
+var texture_down: Texture2D = preload("res://chapter1/character_128x256_DOWN.png")
 
 func _ready():
 	var camera = $Camera
@@ -44,15 +51,19 @@ func _physics_process(_delta):
 	if Input.is_action_pressed("move_up"):
 		direction.z -= 1
 		ray_offset.z = offset_const*-1
+		sprite.texture = texture_up
 	if Input.is_action_pressed("move_down"):
 		direction.z += 1
 		ray_offset.z = offset_const # Moving "down" is positive in the Z direction, toward the camera
+		sprite.texture = texture_down
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
 		ray_offset.x = offset_const
+		sprite.texture = texture_right
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
 		ray_offset.x = offset_const*-1
+		sprite.texture = texture_left
 
 	# Snap y level to ground mesh
 	var space_state = get_world_3d().direct_space_state
