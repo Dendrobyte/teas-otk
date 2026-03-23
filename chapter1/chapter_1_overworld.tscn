@@ -97,8 +97,42 @@ offset_const = 0.2
 [node name="Environment" type="Node3D" parent="." unique_id=1948100022]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.102295, 0)
 
+[node name="Entities" type="Node3D" parent="Environment" unique_id=294199281]
+
+[node name="Grass" type="Node3D" parent="Environment/Entities" unique_id=1384433322]
+script = ExtResource("10_wgy84")
+
+[node name="Bush" parent="Environment/Entities/Grass" unique_id=977840974 instance=ExtResource("11_bnibg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.189983, 7.850157, 0)
+texture = ExtResource("12_nya86")
+
+[node name="Bush2" parent="Environment/Entities/Grass" unique_id=2110537328 instance=ExtResource("11_bnibg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.788986, 7.850157, 11.88283)
+texture = ExtResource("12_nya86")
+
+[node name="Bush3" parent="Environment/Entities/Grass" unique_id=501519709 instance=ExtResource("11_bnibg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.577747, 7.850157, 8.691341)
+texture = ExtResource("12_nya86")
+
+[node name="Bush4" parent="Environment/Entities/Grass" unique_id=1290385931 instance=ExtResource("11_bnibg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.074615, 7.850157, -3.7902708)
+texture = ExtResource("12_nya86")
+
 [node name="ch1_overworld_env" parent="Environment" unique_id=1243955844 instance=ExtResource("8_bnibg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.239178, 0, -2.4137726)
+
+[node name="Trees" type="Node3D" parent="Environment" unique_id=776605685]
+script = ExtResource("10_wgy84")
+scatter_count_min = 3
+scatter_count_max = 5
+
+[node name="Tree" parent="Environment/Trees" unique_id=19215973 instance=ExtResource("11_bnibg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.26966, 8.929084, -12.1629925)
+texture = ExtResource("13_pbw25")
+
+[node name="Tree3" parent="Environment/Trees" unique_id=1251217679 instance=ExtResource("11_bnibg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.879852, 8.929084, -1.5630169)
+texture = ExtResource("13_pbw25")
 
 [node name="Torches" type="Node3D" parent="Environment" unique_id=837266263]
 
@@ -131,38 +165,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.4294, 8.075622, -4.846305
 
 [node name="Torch10" parent="Environment/Torches" unique_id=2060399275 instance=ExtResource("9_7k04j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.5987, 8.075622, -4.846305)
-
-[node name="Grass" type="Node3D" parent="Environment" unique_id=1384433322]
-script = ExtResource("10_wgy84")
-
-[node name="Bush" parent="Environment/Grass" unique_id=977840974 instance=ExtResource("11_bnibg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.189983, 7.850157, 0)
-texture = ExtResource("12_nya86")
-
-[node name="Bush2" parent="Environment/Grass" unique_id=2110537328 instance=ExtResource("11_bnibg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.788986, 7.850157, 11.88283)
-texture = ExtResource("12_nya86")
-
-[node name="Bush3" parent="Environment/Grass" unique_id=501519709 instance=ExtResource("11_bnibg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.577747, 7.850157, 8.691341)
-texture = ExtResource("12_nya86")
-
-[node name="Bush4" parent="Environment/Grass" unique_id=1290385931 instance=ExtResource("11_bnibg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.074615, 7.850157, -3.7902708)
-texture = ExtResource("12_nya86")
-
-[node name="Trees" type="Node3D" parent="Environment" unique_id=776605685]
-script = ExtResource("10_wgy84")
-scatter_count_min = 3
-scatter_count_max = 5
-
-[node name="Tree" parent="Environment/Trees" unique_id=19215973 instance=ExtResource("11_bnibg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.26966, 8.929084, -12.1629925)
-texture = ExtResource("13_pbw25")
-
-[node name="Tree3" parent="Environment/Trees" unique_id=1251217679 instance=ExtResource("11_bnibg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.879852, 8.929084, -1.5630169)
-texture = ExtResource("13_pbw25")
 
 [node name="NPCs" type="Node3D" parent="." unique_id=1170896753]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.913579, 5.1751747, -1.156765)

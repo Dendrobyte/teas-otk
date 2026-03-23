@@ -10,11 +10,11 @@ extends Control
 # Key is NPC name, value is string
 # (for now, we'll figure this system out eventually when I dig into yarnspinner)
 var npc_dialogue_map = {}
-var interact_button: Sprite3D = Sprite3D.new()
 var can_interact = false # I feel like this interaction button thing can become a separate script, if only to modularize it with item gathering
 var curr_dialogue = null
 
 ## NPC STUFF! / what i want to move out of here
+## TODO: I also need to move out all the entity stuff.
 # This is also meant to be moved out like the events at the bottom
 # I think this one can be held onto in the dialogue control, as it indicates whose dialogue we show
 var curr_npc = null
@@ -57,12 +57,11 @@ func _ready():
 	connect_to_npc_signals()
 	dialogue_runner.dialogue_completed.connect(finish_up_dialogue)
 
-	# Set up the interact button
-	var interact_texture = ImageTexture.create_from_image(Image.load_from_file("res://assets/ui/keyboard_e.png"))
-	interact_button.texture = interact_texture
-	interact_button.scale = Vector3(2, 2, 2)
-	add_child(interact_button)
-	interact_button.hide()
+	# Entity and environment setup
+	connect_to_entity_signals()
+
+	# The interact button lives here I guess... it's technically UI?
+	Util.add_interact_button_to_scene(self)
 
 func _input(event):
 	# TODO: Freeze all other actions -> look into the unhandled_input flow chart again, I think that may be our answer
@@ -71,7 +70,7 @@ func _input(event):
 	if event.is_action_pressed("interact") and can_interact:
 		dialogue_runner.start_dialogue(curr_npc)
 		show_dialogue()
-		interact_button.hide()
+		Util.interact_button_hide()
 		can_interact = false
 
 func connect_to_npc_signals():
@@ -80,31 +79,44 @@ func connect_to_npc_signals():
 	for npc_node in npc_parent_node.get_children():
 		var npc: NPCBase = npc_node as NPCBase
 
-		npc.npc_collision_enter.connect(_on_character_enters_npc_area)
-		npc.npc_collision_leave.connect(_on_character_leaves_npc_area)
+		npc.npc_collision_enter.connect(_on_character_enters_entity_area)
+		npc.npc_collision_leave.connect(_on_character_leaves_entity_area)
 
 		# This is where we grab the custom NPCs from the scene's... uh... entities? node? and then register them in here or something
 		if CUSTOM_NPCS.has(npc.name):
 			CUSTOM_NPCS[npc.name] = npc
+
+# To connect to bushes, trees, etc.
+# It's possible we may generalize this? Do we want this in dialogue control???
+func connect_to_entity_signals():
+	var entity_parent_node = get_parent().get_node("Environment").get_node("Entities")
+	# Current structure is Entities -> ScatterGroup -> Entity1, Entity2, etc.
+	# NOTE: May need to rework this?
+	for npc_node_group in entity_parent_node.get_children():
+		print(npc_node_group)
+		for	npc_node in npc_node_group.get_children():
+			var entity: EntityBase = npc_node as EntityBase
+
+			entity.entity_collision_enter.connect(_on_character_enters_entity_area)
+			entity.entity_collision_leave.connect(_on_character_leaves_entity_area)
 	
 # When an NPC emits a collision signal on entry, we show the interact button
-# TODO: Set the current dialogue... and maybe that cascades into 
-func _on_character_enters_npc_area(body: Node3D):
+# NOTE: Doubling up and doing all entities here
+func _on_character_enters_entity_area(body: Node3D):
 	var npc_name = body.name
-	var location = body.global_position
-	location.y = location.y + 5
-	interact_button.position = location
-	interact_button.show()
+	Util.interact_button_show(body.global_position)
 	can_interact = true
 	curr_npc = npc_name
 
-func _on_character_leaves_npc_area(_body: Node3D):
-	interact_button.hide()
+func _on_character_leaves_entity_area(_body: Node3D):
+	Util.interact_button_hide()
 	can_interact = false
+	# TODO: If entity is npc... etc.
+	# Or I could make something for the entities? Show's a diff dialogue but via yarn?
 	hide_dialogue()
 
 func finish_up_dialogue():
-	interact_button.hide()
+	Util.interact_button_hide()
 	can_interact = false
 	# TODO: Update variables here? The two lines are repeated elsewhere but this is meant to be expanded
 

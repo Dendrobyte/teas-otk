@@ -3,7 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://cnafqi5q10xrq" path="res://chapter1/character_128x256.png" id="1_1smih"]
 [ext_resource type="Script" uid="uid://dai1h7aytuu1i" path="res://asset_sprite_base.gd" id="2_kthyy"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1smih"]
+size = Vector3(1.5678711, 1.315918, 0.8125458)
+
 [node name="AssetSpriteBase" type="Sprite3D" unique_id=977840974]
 offset = Vector2(0, 128)
 texture = ExtResource("1_1smih")
 script = ExtResource("2_kthyy")
+
+[node name="EnvironmentArea3D" type="Area3D" parent="." unique_id=806725636]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnvironmentArea3D" unique_id=506487404]
+transform = Transform3D(0.9999991, -0.0013439031, 0, 0.0013439031, 0.9999991, 0, 0, 0, 1, 0.031982407, 0.6028262, 0.008842468)
+shape = SubResource("BoxShape3D_1smih")
