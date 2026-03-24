@@ -30,6 +30,8 @@ func _ready():
 		dialogue_runner.dialogue_started.connect(func(): is_in_dialogue = true)
 		dialogue_runner.dialogue_completed.connect(func(): is_in_dialogue = false)
 
+	sprite.frame = 1
+
 var gravity = 8
 func _physics_process(_delta):
 	if is_in_dialogue:
@@ -51,19 +53,19 @@ func _physics_process(_delta):
 	if Input.is_action_pressed("move_up"):
 		direction.z -= 1
 		ray_offset.z = offset_const*-1
-		sprite.texture = texture_up
+		sprite.frame = 0
 	if Input.is_action_pressed("move_down"):
 		direction.z += 1
 		ray_offset.z = offset_const # Moving "down" is positive in the Z direction, toward the camera
-		sprite.texture = texture_down
+		sprite.frame = 1
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
 		ray_offset.x = offset_const
-		sprite.texture = texture_right
+		sprite.frame = 3
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
 		ray_offset.x = offset_const*-1
-		sprite.texture = texture_left
+		sprite.frame = 2
 
 	# Snap y level to ground mesh
 	var space_state = get_world_3d().direct_space_state
