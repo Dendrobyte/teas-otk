@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ssrsce5i7p3t"
-path.s3tc="res://.godot/imported/oldman.png-59d0e564ba996d940632954bdf0fe247.s3tc.ctex"
+uid="uid://cgv8q2hwh6wt1"
+path.s3tc="res://.godot/imported/overworld_character_spritesheet.png-42ccfb80f6aad304faa64db1adefa40f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://chapter1/oldman.png"
-dest_files=["res://.godot/imported/oldman.png-59d0e564ba996d940632954bdf0fe247.s3tc.ctex"]
+source_file="res://chapter1/drawings/overworld_character_spritesheet.png"
+dest_files=["res://.godot/imported/overworld_character_spritesheet.png-42ccfb80f6aad304faa64db1adefa40f.s3tc.ctex"]
 
 [params]
 

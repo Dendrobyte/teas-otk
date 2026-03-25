@@ -24,6 +24,7 @@ var curr_npc = null
 # Every key in here MUST match the node name of NPCs in the Godot Scene
 var CUSTOM_NPCS: Dictionary[String, NPCBase] = {
 	"OldMan": null,
+	"SadGuard": null,
 }
 
 ## End of NPC stuff
@@ -142,9 +143,13 @@ var FLAGS = {
 		"value": false,
 		"function": on_checked_for_permit,
 	},
-	"talked_to_old_man": { # Talk to CitadelGuard
+	"talked_to_old_man": { # Talk to OldMan
 		"value": false,
 		"function": on_talked_to_old_man,
+	},
+	"talked_to_sad_guard": { # Talk to SadGuard
+		"value": false,
+		"function": on_talked_to_sad_guard,
 	}
 }
 
@@ -160,10 +165,25 @@ func update_flag(var_name: String, value):
 # Remember to let YarnSpinner handle anything dialogue related with the flags
 func on_checked_for_permit():
 	print("Permit checked!")
+	# TODO: Add helper like you did for toggle interactable, will be more readable as I scale
 	CUSTOM_NPCS["OldMan"].enable()
+	CUSTOM_NPCS["SadGuard"].enable()
 
+# NOTE: Is there a way to show these events are related? Definitely overkill, but if I make
+# more complicated things that aren't binary in the future, it's worth noting
+# Something like "person helped", since that flag will need to come up
 func on_talked_to_old_man():
-	print("Talked to old man!")
-	CUSTOM_NPCS["OldMan"].set_interactable(false)
+	print("Talked to old man")
+	toggle_npc_interactable("OldMan", false)
+	toggle_npc_interactable("SadGuard", false)
+	# TODO: Set a global var of who you helped
 
+func on_talked_to_sad_guard():
+	print("Talked to sad guard")
+	toggle_npc_interactable("SadGuard", false)
+	toggle_npc_interactable("OldMan", false)
+	# TODO: Set a global var of who you helped
+
+func toggle_npc_interactable(npc_name: String, flag: bool):
+	CUSTOM_NPCS[npc_name].set_interactable(flag)
 # End of flag execution functions

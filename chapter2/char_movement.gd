@@ -12,12 +12,6 @@ var target_velocity = Vector3.ZERO
 var is_in_dialogue = false
 var bottom_center = 0 # y value representing bottom of the image
 
-# TODO: Remove this in the next bit! It should be a proper sprite sheet
-var texture_left: Texture2D = preload("res://chapter1/character_128x256_LEFT.png")
-var texture_right: Texture2D = preload("res://chapter1/character_128x256_RIGHT.png")
-var texture_up: Texture2D = preload("res://chapter1/character_128x256_UP.png")
-var texture_down: Texture2D = preload("res://chapter1/character_128x256_DOWN.png")
-
 func _ready():
 	var camera = $Camera
 	var x_rotation = deg_to_rad(-1*GlobalState.ROTATION_ANGLE[GlobalState.GameMode.OVERWORLD])

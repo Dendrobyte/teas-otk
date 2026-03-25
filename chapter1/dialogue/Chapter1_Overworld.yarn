@@ -7,6 +7,7 @@ color: orange
 <<declare $name = "Merk">>
 <<declare $checked_for_permit = false>>
 <<declare $talked_to_old_man = false>>
+<<declare $talked_to_sad_guard = false>>
 ===
 
 // Just throwing in the NPC dialogue for now
@@ -66,4 +67,10 @@ position: 207,-154
 ---
 Old Man: Ah, hello there young fellow!
 <<set $talked_to_old_man to true>>
+===
+
+title: SadGuard
+---
+Sad Guard: I'm told I can't just let people in even if they need it and it's weighing me down...
+<<set $talked_to_sad_guard to true>>
 ===

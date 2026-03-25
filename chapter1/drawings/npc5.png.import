@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3w2pxctulr1w"
-path.s3tc="res://.godot/imported/npc1.png-353de1ae9089f6fbae99dd9ce8385720.s3tc.ctex"
+uid="uid://83l2tqqy2j53"
+path.s3tc="res://.godot/imported/npc5.png-7069a57941ddd1c1ceccd31fa2e61a99.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://chapter1/npc1.png"
-dest_files=["res://.godot/imported/npc1.png-353de1ae9089f6fbae99dd9ce8385720.s3tc.ctex"]
+source_file="res://chapter1/drawings/npc5.png"
+dest_files=["res://.godot/imported/npc5.png-7069a57941ddd1c1ceccd31fa2e61a99.s3tc.ctex"]
 
 [params]
 

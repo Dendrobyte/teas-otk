@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnafqi5q10xrq"
-path.s3tc="res://.godot/imported/character_128x256.png-93a0d9a3040942181187691cd68e2db5.s3tc.ctex"
+uid="uid://k72pn2jky354"
+path.s3tc="res://.godot/imported/sadguard.png-2edbad119686fcf566f0b692c410567b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://chapter1/character_128x256.png"
-dest_files=["res://.godot/imported/character_128x256.png-93a0d9a3040942181187691cd68e2db5.s3tc.ctex"]
+source_file="res://chapter1/drawings/sadguard.png"
+dest_files=["res://.godot/imported/sadguard.png-2edbad119686fcf566f0b692c410567b.s3tc.ctex"]
 
 [params]
 

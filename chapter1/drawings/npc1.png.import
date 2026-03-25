@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx3my8v6c3dmo"
-path="res://.godot/imported/character_128x256_DOWN.png-0aeeb7a957e7cec49efad1cdc1ee904a.ctex"
+uid="uid://d3w2pxctulr1w"
+path.s3tc="res://.godot/imported/npc1.png-84ccf2c717a71eb24fde3f5a0a700cc0.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://chapter1/character_128x256_DOWN.png"
-dest_files=["res://.godot/imported/character_128x256_DOWN.png-0aeeb7a957e7cec49efad1cdc1ee904a.ctex"]
+source_file="res://chapter1/drawings/npc1.png"
+dest_files=["res://.godot/imported/npc1.png-84ccf2c717a71eb24fde3f5a0a700cc0.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -23,7 +24,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -37,4 +38,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

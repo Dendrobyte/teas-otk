@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8rscvsilxfgu"
-path="res://.godot/imported/character_128x256_RIGHT.png-d4899aa5786bb7e8a8e93d3786db44ef.ctex"
+uid="uid://d2mrsh2lxffsl"
+path="res://.godot/imported/guard.png-b37b474bd2574fddc394c848a160edfd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://chapter1/character_128x256_RIGHT.png"
-dest_files=["res://.godot/imported/character_128x256_RIGHT.png-d4899aa5786bb7e8a8e93d3786db44ef.ctex"]
+source_file="res://chapter1/drawings/guard.png"
+dest_files=["res://.godot/imported/guard.png-b37b474bd2574fddc394c848a160edfd.ctex"]
 
 [params]
 
