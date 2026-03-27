@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cyfckdlbvre5t" path="res://chapter1/dialogue_control.gd" id="2_p0328"]
 [ext_resource type="Script" uid="uid://flra500ihbix" path="res://addons/yarn_spinner/dialogue_runner.gd" id="2_swfx4"]
 [ext_resource type="Resource" uid="uid://dww6p7spgh185" path="res://teas.yarnproject" id="3_jqiwu"]
+[ext_resource type="Script" uid="uid://blscysur1lidj" path="res://chapter1/animation_control.gd" id="3_pbw25"]
 [ext_resource type="Script" uid="uid://cged8u182768u" path="res://addons/yarn_spinner/ui/line_presenter.gd" id="5_7k04j"]
 [ext_resource type="Script" uid="uid://cogqy630mjgv7" path="res://addons/yarn_spinner/ui/options_presenter.gd" id="6_6rr84"]
 [ext_resource type="PackedScene" uid="uid://bc16kytrg0t32" path="res://Character.tscn" id="7_58wme"]
@@ -38,6 +39,10 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_p0328")
+
+[node name="AnimationControl" type="Node3D" parent="DialogueControl" unique_id=1436219520 node_paths=PackedStringArray("dialogue_control")]
+script = ExtResource("3_pbw25")
+dialogue_control = NodePath("..")
 
 [node name="YarnDialogueRunner" type="Node" parent="DialogueControl" unique_id=1764383554]
 script = ExtResource("2_swfx4")

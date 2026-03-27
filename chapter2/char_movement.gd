@@ -12,6 +12,8 @@ var target_velocity = Vector3.ZERO
 var is_in_dialogue = false
 var bottom_center = 0 # y value representing bottom of the image
 
+var is_in_cutscene = false
+
 func _ready():
 	var camera = $Camera
 	var x_rotation = deg_to_rad(-1*GlobalState.ROTATION_ANGLE[GlobalState.GameMode.OVERWORLD])
@@ -28,7 +30,9 @@ func _ready():
 
 var gravity = 8
 func _physics_process(_delta):
-	if is_in_dialogue:
+	# TODO: I can apparently set_process_input(false) and set_physics_process(false)
+	# to do this on the engine level? But it has to be done on a node, obviously not global
+	if is_in_dialogue or is_in_cutscene:
 		return
 
 	var direction = Vector3.ZERO

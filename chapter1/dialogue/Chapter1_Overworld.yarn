@@ -1,6 +1,4 @@
 title: Chapter1_Overworld
-position: 243,47
-color: orange
 ---
 // TODO: Load these from the script... Will need to figure that out in the next related task
 // When the Dialogue Control switches to new scenes, it should "reload" the yarn script we're loading in
@@ -13,14 +11,12 @@ color: orange
 // Just throwing in the NPC dialogue for now
 
 title: NPC1
-position: -19,75
 ---
 Jerry: Ey kid... boy, lot of us sure are lookin' worse for wear.
 Jerry: Military sure is convinced they need to give everything to the soldiers but they're forgettin' about their people... *grumble grumble*
 ===
 
 title: NPC2
-position: -297,-15
 ---
 Miranda: Stop talkin' to randos out on the street... everyone's here to fend for 'em selves.
 Miranda: *She tosses you an apple*
@@ -28,8 +24,6 @@ Miranda: Be on your way, kid.
 ===
 
 title: NPC3
-color: red
-position: -275,165
 ---
 Some Dude: Gah... the lines haven't been this long in years!!
 Some Dude: That damned population increase...
@@ -42,14 +36,11 @@ NPC4: <Conversation with NPC 4>
 ===
 
 title: NPC5
-color: red
-position: -262,-296
 ---
 NPC5: <Conversation with NPC 5>
 ===
 
 title: CitadelGuard
-position: 67,274
 ---
 // I'm structuring booleans such that the first event is what we check first
 <<if $talked_to_old_man == false>>
@@ -58,12 +49,12 @@ position: 67,274
   <<set $checked_for_permit to true>>
   // TODO: Branching dialogue options, maybe?
 <<else>>
-  Citadel Guard: Sure, come on in then...
+  Citadel Guard: I told you, you can't come in without a permit!
+  
 <<endif>>
 ===
 
 title: OldMan
-position: 207,-154
 ---
 Old Man: Ah, hello there young fellow!
 <<set $talked_to_old_man to true>>
@@ -73,4 +64,11 @@ title: SadGuard
 ---
 Sad Guard: I'm told I can't just let people in even if they need it and it's weighing me down...
 <<set $talked_to_sad_guard to true>>
+===
+
+title: OldManCitadelEnter
+---
+Old Man: Ah, this here is my hired help!
+Old Man: I have a secondary designation on my permit somewhere...
+Citadel Guard: Looks good then, carry on. Make sure to stick with your employer next time...
 ===

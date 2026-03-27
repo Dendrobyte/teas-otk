@@ -1,4 +1,5 @@
 extends Control
+class_name DialogueControl
 
 #### SCOPE ####
 # The dialogue control should ONLY handle:
@@ -69,10 +70,15 @@ func _input(event):
 	#       We can just "handle" all input here by sinking it into an empty return
 	# TODO: If this dialogue triggers an event change (like talking to the old man), reload their dialogue
 	if event.is_action_pressed("interact") and can_interact:
-		dialogue_runner.start_dialogue(curr_npc)
+		dialogue_runner.start_dialogue(curr_npc) # Hmm, node names might change over time? Or do I want to organize within yarn?
 		show_dialogue()
 		Util.interact_button_hide()
 		can_interact = false
+
+# NOTE: Maybe move this out? It's so that we can trigger from the animation control
+func externally_start_dialogue(yarn_node_name):
+	dialogue_runner.start_dialogue(yarn_node_name)
+	show_dialogue()
 
 func connect_to_npc_signals():
 	# The NPC parent MUST be on the same level as our dialogue control node

@@ -1,5 +1,25 @@
 {
-  "commands": [],
+  "commands": [
+    {
+      "async": false,
+      "definitionName": "_yarn_command_trigger_animation",
+      "fileName": "animation_control.gd",
+      "language": "gdscript",
+      "parameters": [
+        {
+          "documentation": "the AnimationControl to call this command on",
+          "name": "target",
+          "subtype": "AnimationControl",
+          "type": "instance"
+        },
+        {
+          "name": "animation_name",
+          "type": "any"
+        }
+      ],
+      "yarnName": "trigger_animation"
+    }
+  ],
   "functions": [],
   "version": 1
 }
