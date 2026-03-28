@@ -28,6 +28,8 @@ var CUSTOM_NPCS: Dictionary[String, NPCBase] = {
 	"SadGuard": null,
 }
 
+var CHARACTER_REF: CharacterBody3D = null
+
 ## End of NPC stuff
 
 ## YarnSpinner setup
@@ -61,6 +63,11 @@ func _ready():
 
 	# Entity and environment setup
 	connect_to_entity_signals()
+	CHARACTER_REF = get_parent().get_node("Character")
+
+	# Manually register commands, doesn't seem to find it properly despite the output saying a command was registered
+	# TODO: Solve this a little better in the refactor...
+	dialogue_runner.add_command("trigger_animation", _yarn_command_trigger_animation)
 
 	# The interact button lives here I guess... it's technically UI?
 	Util.add_interact_button_to_scene(self)
@@ -193,3 +200,85 @@ func on_talked_to_sad_guard():
 func toggle_npc_interactable(npc_name: String, flag: bool):
 	CUSTOM_NPCS[npc_name].set_interactable(flag)
 # End of flag execution functions
+
+# Obviously, this needs to be all moved out
+#### ANIMATIONS ####
+
+# These are set up in an order of what we want to trigger
+enum EVENT_TYPE { Animation, Dialogue }
+
+signal cutscene_started
+signal cutscene_ended
+
+# TODO: Moving animations out into files etc. Parse things like destination based on some format
+# I don't think the names of these functions will match events, we can just
+# trigger them manually. The whole thing is quite manual inherently.
+# NOTE: Type this? Makes it autocomplete?
+var old_man_approaches_at_gate = [
+	{"type": EVENT_TYPE.Animation, "node": "OldMan", "dest": Vector3(-61, 0, -1.2), "dur": 1.0, "parallel": false},
+	{"type": EVENT_TYPE.Dialogue, "yarn_node": "OldManCitadelEnter"},
+	{"type": EVENT_TYPE.Animation, "node": "OldMan", "dest": Vector3(-68, 0, -1.2), "dur": 1.0, "parallel": false},
+	# TODO: Some way to pass player "z" pos into here? Replacing any part of the dest, to encourage a straight line
+	{"type": EVENT_TYPE.Animation, "node": "Character", "dest": Vector3(-68, 0, -0), "dur": 1.0, "parallel": true},
+]
+
+# I feel like reflection is how we'd do this without the map and I don't wanna deal with that rn
+# But maybe it's easy! Figure it out another time though
+var animations = {
+	"old_man_approaches_at_gate": old_man_approaches_at_gate,
+}
+
+#### END OF ANIMATIONS ####
+var tween
+func start_animation(animation_name):
+	cutscene_started.emit()
+
+	var events = animations[animation_name]
+	for event in events:
+		print("Running event: ", event)
+		if event.type == EVENT_TYPE.Animation:
+			# NOTE: Do I have to create a tween each time? Feels weird, but might be because dialogue cuts between
+			tween = create_tween()
+			# TODO: Replacing this with a ref to our external class, wherever that is
+			# Should match dialogue control access
+			# TODO: I don't like this. It's ok for now but if we move more than just NPCs...?
+			var npc_ref
+			if event.node == "Character":
+				npc_ref = CHARACTER_REF
+			else:
+				npc_ref = CUSTOM_NPCS[event.node]
+			# TODO: Need to parse this since it'll eventually be from a file. Could just do another map of x/y/z
+			var dest_pos: Vector3 = event.dest
+			var dur_sec = event.dur
+			# The first parallel animation should be set to FALSE
+			var is_parallel = event.parallel
+			# This is always position... for now. Probably easy to add to the structure of what field we're modifying,
+			# and we can use the x/y/z for the same thing
+			if is_parallel:
+				tween.parallel().tween_property(npc_ref, "position", dest_pos, dur_sec)
+			else:
+				tween.tween_property(npc_ref, "position", dest_pos, dur_sec)
+			await tween.finished
+			tween.kill()
+		elif event.type == EVENT_TYPE.Dialogue:
+			externally_start_dialogue(event.yarn_node)
+			# Tweens are coroutines, so we listen in for the completed step
+			await dialogue_runner.dialogue_completed
+
+	cutscene_ended.emit()
+
+# To be triggered from yarn files directly. As long as this is in the scene tree it should be found.
+# NOTE: Probably remove the underscore if/when used in the code and not just yarn
+func _yarn_command_trigger_animation(animation_name):
+	print("Triggering animation: ", animation_name)
+	start_animation(animation_name)
+	# TODO: If this returns a signal, the dialogue pauses until that signal is fired
+	# Not sure how I can use that but I probably could
+
+# We assume there is only one active "event stream" happening at a time
+# NOTE: I may not need this if we can just listen for the dialogue_completed runner
+# func _yarn_command_resume_animation(animation_name):
+# 	print("Resuming!")
+# 	# Undo the pause which resumes loop iterations
+
+#### END OF ALL THE ANIMATION STUFF ####

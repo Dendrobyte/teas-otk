@@ -50,7 +50,7 @@ title: CitadelGuard
   // TODO: Branching dialogue options, maybe?
 <<else>>
   Citadel Guard: I told you, you can't come in without a permit!
-  
+  <<trigger_animation "old_man_approaches_at_gate">>
 <<endif>>
 ===
 
