@@ -191,10 +191,13 @@ func on_talked_to_old_man():
 	toggle_npc_interactable("SadGuard", false)
 	# TODO: Set a global var of who you helped
 
+# TODO: I should have some conditional for this happening?
+# Unsure if necessary seeing as this triggers upon dialogue end
 func on_talked_to_sad_guard():
 	print("Talked to sad guard")
 	toggle_npc_interactable("SadGuard", false)
 	toggle_npc_interactable("OldMan", false)
+	toggle_npc_interactable("CitadelGuard", false) # there could be a better place for this but I'm fine with here for now
 	# TODO: Set a global var of who you helped
 
 func toggle_npc_interactable(npc_name: String, flag: bool):
@@ -216,6 +219,10 @@ signal cutscene_ended
 # NOTE: Type this? Makes it autocomplete?
 # TODO: Make a "teleport" command that isn't a tween but sets a position
 # For example, the old man shouldn't zoom in from the other side of the bridge
+# TODO: Any use of a "pause" instruction? Or some "react" instruction that changes the sprite? That could be cool
+
+# Triggers when you talk to the guard outside the gate after helping the old man
+# We also just run this with the sad guard
 var old_man_approaches_at_gate = [
 	{"type": EVENT_TYPE.Animation, "node": "OldMan", "dest": Vector3(-61, 0, -1.2), "dur": 1.0, "parallel": false},
 	{"type": EVENT_TYPE.Dialogue, "yarn_node": "OldManCitadelEnter"},
@@ -224,10 +231,24 @@ var old_man_approaches_at_gate = [
 	{"type": EVENT_TYPE.Animation, "node": "Character", "dest": Vector3(-84, 5.231, -2.7), "dur": 1.0, "parallel": true},
 ]
 
+# Triggers when you cheer up the sad guard and removes the current guard there
+var sad_guard_replaces_other_guard = [
+	{"type": EVENT_TYPE.Animation, "node": "SadGuard", "dest": Vector3(-64.354, 0, -2.473), "dur": 1.5, "parallel": false},
+	{"type": EVENT_TYPE.Animation, "node": "CitadelGuard", "dest": Vector3(-64.354, 0, 2.139), "dur": 2.0, "parallel": false},
+	{"type": EVENT_TYPE.Animation, "node": "SadGuard", "dest": Vector3(-64.354, 0, -1.091), "dur": 2.0, "parallel": false},
+	# TODO: Rotate the guard; I need a "type" and can just base it off of the types in tweening
+	# {"type": EVENT_TYPE.Animation, "node": "SadGuard", "dest": Vector3(-64.354, 0, -1.091), "dur": 2.0, "parallel": false},
+	# TODO: This is where the reaction / sprite change instruction comes in. Change to sad_guard_happy or some shit haha, to be animated in the future
+	# but an instruction for sprite animation can come later; that's where the pause would come in despite it being short?
+	# The timing will be a whole other thing, but anyway
+	# {"type": EVENT_TYPE.Animation, "node": "SadGuard", "dest": Vector3(-64.354, 0, -1.091), "dur": 2.0, "parallel": false},
+]
+
 # I feel like reflection is how we'd do this without the map and I don't wanna deal with that rn
 # But maybe it's easy! Figure it out another time though
 var animations = {
 	"old_man_approaches_at_gate": old_man_approaches_at_gate,
+	"sad_guard_replaces_other_guard": sad_guard_replaces_other_guard,
 }
 
 #### END OF ANIMATIONS ####
@@ -281,11 +302,5 @@ func _yarn_command_trigger_animation(animation_name):
 	start_animation(animation_name)
 	# TODO: If this returns a signal, the dialogue pauses until that signal is fired
 	# Not sure how I can use that but I probably could
-
-# We assume there is only one active "event stream" happening at a time
-# NOTE: I may not need this if we can just listen for the dialogue_completed runner
-# func _yarn_command_resume_animation(animation_name):
-# 	print("Resuming!")
-# 	# Undo the pause which resumes loop iterations
 
 #### END OF ALL THE ANIMATION STUFF ####

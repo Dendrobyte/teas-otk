@@ -43,11 +43,11 @@ NPC5: <Conversation with NPC 5>
 title: CitadelGuard
 ---
 // I'm structuring booleans such that the first event is what we check first
+// TODO: Branching dialogue options, maybe?
 <<if $talked_to_old_man == false>>
   Citadel Guard: Permit, please...
   Citadel Guard: No permit? No entry!
   <<set $checked_for_permit to true>>
-  // TODO: Branching dialogue options, maybe?
 <<else>>
   Citadel Guard: I told you, you can't come in without a permit!
   <<trigger_animation "old_man_approaches_at_gate">>
@@ -62,13 +62,32 @@ Old Man: Ah, hello there young fellow!
 
 title: SadGuard
 ---
-Sad Guard: I'm told I can't just let people in even if they need it and it's weighing me down...
-<<set $talked_to_sad_guard to true>>
+// TODO: I think I should set a flag that's more like "cheered_up_sad_guard"
+// But right now, you can only talk to one of them anyway so it works
+<<if $talked_to_sad_guard == false>>
+  Sad Guard: I'm told I can't just let people in even if they need it and it's weighing me down...
+  -> You: Hey you're just doing your job, sometimes things have to be the way they are
+  -> You: I know the feeling of wanting to help when you just can't...
+  You: But surely there are ways you can use the rules to help others who don't know them as well as you?
+  Sad Guard: You're right! There are some ways people can get in without their own permit... I'll just have to be careful
+  <<set $talked_to_sad_guard to true>>
+  <<trigger_animation "sad_guard_replaces_other_guard">>
+<<else>>
+  Sad Guard: I really want to let you in but I don't want to get in trouble.
+  Sad Guard: However, if you can find someone that allows a second person in... *wink*
+  <<trigger_animation "old_man_approaches_at_gate">>
+<<endif>>
+
 ===
 
 title: OldManCitadelEnter
 ---
+<<if $talked_to_old_man == true>>
 Old Man: Ah, this here is my hired help!
 Old Man: I have a secondary designation on my permit somewhere...
 Citadel Guard: Looks good then, carry on. Make sure to stick with your employer next time...
+<<elseif $talked_to_sad_guard == true>>
+Old Man: I happen to have a secondary designation! Young fellow, would you mind giving me a hand?
+Sad Guard: That works for me! Carry on- and thanks for the chat.
+<<endif>>
 ===
