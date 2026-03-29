@@ -214,12 +214,14 @@ signal cutscene_ended
 # I don't think the names of these functions will match events, we can just
 # trigger them manually. The whole thing is quite manual inherently.
 # NOTE: Type this? Makes it autocomplete?
+# TODO: Make a "teleport" command that isn't a tween but sets a position
+# For example, the old man shouldn't zoom in from the other side of the bridge
 var old_man_approaches_at_gate = [
 	{"type": EVENT_TYPE.Animation, "node": "OldMan", "dest": Vector3(-61, 0, -1.2), "dur": 1.0, "parallel": false},
 	{"type": EVENT_TYPE.Dialogue, "yarn_node": "OldManCitadelEnter"},
-	{"type": EVENT_TYPE.Animation, "node": "OldMan", "dest": Vector3(-68, 0, -1.2), "dur": 1.0, "parallel": false},
+	{"type": EVENT_TYPE.Animation, "node": "OldMan", "dest": Vector3(-68, 0, -1.2), "dur": 1.0, "parallel": true},
 	# TODO: Some way to pass player "z" pos into here? Replacing any part of the dest, to encourage a straight line
-	{"type": EVENT_TYPE.Animation, "node": "Character", "dest": Vector3(-68, 0, -0), "dur": 1.0, "parallel": true},
+	{"type": EVENT_TYPE.Animation, "node": "Character", "dest": Vector3(-84, 5.231, -2.7), "dur": 1.0, "parallel": true},
 ]
 
 # I feel like reflection is how we'd do this without the map and I don't wanna deal with that rn
@@ -254,17 +256,22 @@ func start_animation(animation_name):
 			var is_parallel = event.parallel
 			# This is always position... for now. Probably easy to add to the structure of what field we're modifying,
 			# and we can use the x/y/z for the same thing
+			# NOTE: When running parallel tweens, BOTH need parallel set to true
+			# At least with this setup, we need to ensure we don't await finish nor kill it before it's done
 			if is_parallel:
 				tween.parallel().tween_property(npc_ref, "position", dest_pos, dur_sec)
 			else:
 				tween.tween_property(npc_ref, "position", dest_pos, dur_sec)
-			await tween.finished
-			tween.kill()
+				await tween.finished
+				tween.kill()
 		elif event.type == EVENT_TYPE.Dialogue:
 			externally_start_dialogue(event.yarn_node)
 			# Tweens are coroutines, so we listen in for the completed step
 			await dialogue_runner.dialogue_completed
 
+	# TODO: This may presumably fail if the last tween isn't parallel
+	await tween.finished
+	tween.kill()
 	cutscene_ended.emit()
 
 # To be triggered from yarn files directly. As long as this is in the scene tree it should be found.
