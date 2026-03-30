@@ -21,11 +21,13 @@ var curr_dialogue = null
 var curr_npc = null
 
 # Some map of all NPCs whose behavior we need to tweak
+# Or anything that might be referenced in an animation
 # Should be hard written like the flags end up being
 # Every key in here MUST match the node name of NPCs in the Godot Scene
 var CUSTOM_NPCS: Dictionary[String, NPCBase] = {
 	"OldMan": null,
 	"SadGuard": null,
+	"CitadelGuard": null,
 }
 
 var CHARACTER_REF: CharacterBody3D = null
@@ -290,9 +292,13 @@ func start_animation(animation_name):
 			# Tweens are coroutines, so we listen in for the completed step
 			await dialogue_runner.dialogue_completed
 
-	# TODO: This may presumably fail if the last tween isn't parallel
-	await tween.finished
-	tween.kill()
+	# Clean up the edge case of final tweens being parallel
+	# NOTE: We could always add a "stop" instruction that's just "false" that is at the
+	# end of every sequence...? But that would just be this exact if statement
+	if tween.is_running():
+		await tween.finished
+		tween.kill()
+	print("Emitting cutscene ended signal")
 	cutscene_ended.emit()
 
 # To be triggered from yarn files directly. As long as this is in the scene tree it should be found.
