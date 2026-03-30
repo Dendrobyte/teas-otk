@@ -16,7 +16,6 @@ var ROTATION_ANGLE = {
 
 const BASE_TILE_SIZE = 128
 
-
 # "Now whenever we run any scene in the project, this script will always be loaded."
 # But does that mean it also maintains its state...?
 var game_state = {

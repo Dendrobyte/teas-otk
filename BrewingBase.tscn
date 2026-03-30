@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://kmcdpx3tde62"]
 
 [ext_resource type="Script" uid="uid://cgxq82dhb7gja" path="res://brewing_base.gd" id="1_ni0av"]
-[ext_resource type="Script" uid="uid://bw4ywnt705a6l" path="res://chapter2/brewing_ui.gd" id="2_aynr4"]
-[ext_resource type="Script" uid="uid://t7m4u5is2712" path="res://chapter2/brewing_player_controller.gd" id="2_tya4k"]
+[ext_resource type="Script" uid="uid://bw4ywnt705a6l" path="res://brewing_ui.gd" id="2_aynr4"]
+[ext_resource type="Script" uid="uid://t7m4u5is2712" path="res://brewing_player_controller.gd" id="2_tya4k"]
 [ext_resource type="Texture2D" uid="uid://cd0cpv1841q5g" path="res://assets/models/kettle_Texture_Kettle.png" id="4_1uy5m"]
 [ext_resource type="ArrayMesh" uid="uid://s8d4osl66ypr" path="res://assets/models/kettle.obj" id="4_2n2jf"]
 
