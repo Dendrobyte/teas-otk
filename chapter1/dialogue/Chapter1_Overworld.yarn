@@ -44,11 +44,13 @@ title: CitadelGuard
 ---
 // I'm structuring booleans such that the first event is what we check first
 // TODO: Branching dialogue options, maybe?
-<<if $talked_to_old_man == false>>
+<<if $talked_to_old_man == false && $talked_to_sad_guard == false>>
   Citadel Guard: Permit, please...
   Citadel Guard: No permit? No entry!
   <<set $checked_for_permit to true>>
-<<else>>
+<<elseif $talked_to_sad_guard == true>>
+  Citadel Guard: I'm on my break...
+<<else>> // if talked_to_old_man is true
   Citadel Guard: I told you, you can't come in without a permit!
   <<trigger_animation "old_man_approaches_at_gate">>
 <<endif>>

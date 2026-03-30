@@ -26,7 +26,8 @@ func _ready():
 	if dialogue_runner != null: # It's not always present, such as when testing overworld stuff
 		dialogue_runner.dialogue_started.connect(func(): is_in_dialogue = true)
 		dialogue_runner.dialogue_completed.connect(func(): is_in_dialogue = false)
-	
+
+	print(dialogue_control)	
 	dialogue_control.cutscene_started.connect(func(): is_in_cutscene = true)
 	dialogue_control.cutscene_ended.connect(func(): is_in_cutscene = false)
 

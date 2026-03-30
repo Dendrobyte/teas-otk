@@ -197,9 +197,7 @@ func on_talked_to_old_man():
 # Unsure if necessary seeing as this triggers upon dialogue end
 func on_talked_to_sad_guard():
 	print("Talked to sad guard")
-	toggle_npc_interactable("SadGuard", false)
 	toggle_npc_interactable("OldMan", false)
-	toggle_npc_interactable("CitadelGuard", false) # there could be a better place for this but I'm fine with here for now
 	# TODO: Set a global var of who you helped
 
 func toggle_npc_interactable(npc_name: String, flag: bool):
@@ -298,6 +296,7 @@ func start_animation(animation_name):
 	if tween.is_running():
 		await tween.finished
 		tween.kill()
+	
 	print("Emitting cutscene ended signal")
 	cutscene_ended.emit()
 
