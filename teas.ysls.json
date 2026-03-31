@@ -3,7 +3,7 @@
     {
       "async": false,
       "definitionName": "_yarn_command_trigger_animation",
-      "fileName": "dialogue_control.gd",
+      "fileName": "dialogue_controller.gd",
       "language": "gdscript",
       "parameters": [
         {

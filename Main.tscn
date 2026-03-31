@@ -1,6 +1,78 @@
 [gd_scene format=3 uid="uid://m3t7cwmjnyjf"]
 
 [ext_resource type="Script" uid="uid://r4eobiqfvh8" path="res://main.gd" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://cyfckdlbvre5t" path="res://narrative_controller/dialogue_controller.gd" id="2_lgr22"]
+[ext_resource type="Script" uid="uid://flra500ihbix" path="res://addons/yarn_spinner/dialogue_runner.gd" id="3_trn2v"]
+[ext_resource type="Resource" uid="uid://dww6p7spgh185" path="res://teas.yarnproject" id="4_03owx"]
+[ext_resource type="Script" uid="uid://cged8u182768u" path="res://addons/yarn_spinner/ui/line_presenter.gd" id="5_wkp8b"]
+[ext_resource type="Script" uid="uid://cogqy630mjgv7" path="res://addons/yarn_spinner/ui/options_presenter.gd" id="6_20pc6"]
+[ext_resource type="Script" uid="uid://blscysur1lidj" path="res://narrative_controller/event_controller.gd" id="7_5vvyt"]
+
+[sub_resource type="Theme" id="Theme_c6i3y"]
+default_font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_c2ibq"]
+font_size = 18
 
 [node name="Main" type="Node3D" unique_id=40555209]
 script = ExtResource("1_glv2v")
+
+[node name="NarrativeController" type="Node" parent="." unique_id=121952724]
+
+[node name="DialogueController" type="Control" parent="NarrativeController" unique_id=803034153]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_lgr22")
+
+[node name="YarnDialogueRunner" type="Node" parent="NarrativeController/DialogueController" unique_id=1163534322]
+script = ExtResource("3_trn2v")
+yarn_project = ExtResource("4_03owx")
+start_node = "Chapter1_Overworld"
+metadata/_custom_type_script = "uid://flra500ihbix"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="NarrativeController/DialogueController" unique_id=2035450275]
+
+[node name="LinePresenter" type="PanelContainer" parent="NarrativeController/DialogueController/CanvasLayer" unique_id=291845100 node_paths=PackedStringArray("text_label", "character_label", "character_container", "continue_indicator")]
+offset_left = 36.0
+offset_top = 754.0
+offset_right = 1417.0
+offset_bottom = 1036.0
+script = ExtResource("5_wkp8b")
+text_label = NodePath("VBoxContainer/TextLabel")
+character_label = NodePath("VBoxContainer/CharacterLabel")
+character_container = NodePath("VBoxContainer")
+continue_indicator = NodePath("VBoxContainer/ContinueIndicator")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NarrativeController/DialogueController/CanvasLayer/LinePresenter" unique_id=18788224]
+layout_mode = 2
+theme = SubResource("Theme_c6i3y")
+theme_override_constants/separation = 8
+
+[node name="CharacterLabel" type="Label" parent="NarrativeController/DialogueController/CanvasLayer/LinePresenter/VBoxContainer" unique_id=1223101587]
+layout_mode = 2
+text = "Char Name:"
+
+[node name="TextLabel" type="RichTextLabel" parent="NarrativeController/DialogueController/CanvasLayer/LinePresenter/VBoxContainer" unique_id=1657170741]
+layout_mode = 2
+text = "Dialogue text is here I imagine"
+fit_content = true
+
+[node name="ContinueIndicator" type="Label" parent="NarrativeController/DialogueController/CanvasLayer/LinePresenter/VBoxContainer" unique_id=1974204735]
+layout_mode = 2
+text = "Continue..."
+label_settings = SubResource("LabelSettings_c2ibq")
+
+[node name="OptionsPresenter" type="PanelContainer" parent="NarrativeController/DialogueController/CanvasLayer" unique_id=1557240386]
+offset_left = 1428.0
+offset_top = 755.0
+offset_right = 1866.0
+offset_bottom = 1035.0
+script = ExtResource("6_20pc6")
+
+[node name="OptionsContainer" type="VBoxContainer" parent="NarrativeController/DialogueController/CanvasLayer/OptionsPresenter" unique_id=1703760668]
+layout_mode = 2
+
+[node name="EventController" type="Node3D" parent="NarrativeController" unique_id=221045353]
+script = ExtResource("7_5vvyt")
