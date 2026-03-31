@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://m3t7cwmjnyjf"]
 
 [ext_resource type="Script" uid="uid://r4eobiqfvh8" path="res://main.gd" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://by1q5b8oetlpn" path="res://narrative_controller/narrative_controller.gd" id="2_03owx"]
 [ext_resource type="Script" uid="uid://cyfckdlbvre5t" path="res://narrative_controller/dialogue_controller.gd" id="2_lgr22"]
 [ext_resource type="Script" uid="uid://flra500ihbix" path="res://addons/yarn_spinner/dialogue_runner.gd" id="3_trn2v"]
 [ext_resource type="Resource" uid="uid://dww6p7spgh185" path="res://teas.yarnproject" id="4_03owx"]
 [ext_resource type="Script" uid="uid://cged8u182768u" path="res://addons/yarn_spinner/ui/line_presenter.gd" id="5_wkp8b"]
 [ext_resource type="Script" uid="uid://cogqy630mjgv7" path="res://addons/yarn_spinner/ui/options_presenter.gd" id="6_20pc6"]
 [ext_resource type="Script" uid="uid://blscysur1lidj" path="res://narrative_controller/event_controller.gd" id="7_5vvyt"]
+[ext_resource type="Script" uid="uid://wri18fyw7bj3" path="res://narrative_controller/entity_controller.gd" id="9_wkp8b"]
 
 [sub_resource type="Theme" id="Theme_c6i3y"]
 default_font_size = 32
@@ -17,7 +19,11 @@ font_size = 18
 [node name="Main" type="Node3D" unique_id=40555209]
 script = ExtResource("1_glv2v")
 
-[node name="NarrativeController" type="Node" parent="." unique_id=121952724]
+[node name="NarrativeController" type="Node" parent="." unique_id=121952724 node_paths=PackedStringArray("dialogue_controller", "event_controller", "entity_controller")]
+script = ExtResource("2_03owx")
+dialogue_controller = NodePath("DialogueController")
+event_controller = NodePath("EventController")
+entity_controller = NodePath("EntityController")
 
 [node name="DialogueController" type="Control" parent="NarrativeController" unique_id=803034153]
 layout_mode = 3
@@ -76,3 +82,8 @@ layout_mode = 2
 
 [node name="EventController" type="Node3D" parent="NarrativeController" unique_id=221045353]
 script = ExtResource("7_5vvyt")
+
+[node name="EntityController" type="Node" parent="NarrativeController" unique_id=492654928]
+script = ExtResource("9_wkp8b")
+
+[node name="GameScene" type="Node3D" parent="." unique_id=1699575499]

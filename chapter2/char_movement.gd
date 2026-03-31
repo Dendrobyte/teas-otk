@@ -4,7 +4,7 @@ extends CharacterBody3D
 # I should have a "brewing" and "overworld" folder setup for assets/scripts re-used depending on environment
 @export var speed = 10
 # TODO: Do this programatically instead of in the editor? Depends on how I spawn in the scene I guess
-@export var dialogue_control: DialogueControl # This is getting so messy lmao
+@export var dialogue_control: DialogueController # This is getting so messy lmao
 @export var dialogue_runner: Node
 @export var offset_const = .5
 @export var sprite: Sprite3D

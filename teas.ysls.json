@@ -7,9 +7,9 @@
       "language": "gdscript",
       "parameters": [
         {
-          "documentation": "the DialogueControl to call this command on",
+          "documentation": "the DialogueController to call this command on",
           "name": "target",
-          "subtype": "DialogueControl",
+          "subtype": "DialogueController",
           "type": "instance"
         },
         {
