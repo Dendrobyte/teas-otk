@@ -10,7 +10,13 @@ class_name EventController
 # and should effectively be structured like below
 # Then this effectively acts like an API, such as the update_flag functions and whatnot
 
+var narrative_controller: NarrativeController
+func initialize(narrative_controller_ref: NarrativeController):
+	narrative_controller = narrative_controller_ref
+
 # Holds on to a flag value and the function to call when it changes
+# These trigger based on the flag name in our yarn file, but match our global state/saved flags
+# The function names can be pulled in, but should be "on_FLAG_NAME" for consistency
 # TODO: Establish these in a scene's ready function, and then check for a file with the
 # saved information (or however state is saved) to load updated values from.
 var FLAGS = {
@@ -28,21 +34,33 @@ var FLAGS = {
 	}
 }
 
-# Connected to the variable_storage variable_changes signal
+# This is updated every time we update a signal
+# I don't love it, but it'll work for this refactor
+var NPC_REFS: Dictionary[String, NPCBase] = {}
+
 # TODO: We should ensure we have an inverse of this, such that we update whatever yarn is holding on to
 # if we change a flag in code (though I'm not sure when that will happen, so I won't worry about for now)
-func update_flag(var_name: String, value):
+func update_flag_and_call_function(var_name: String, value, npc_refs):
 	var flag_name = var_name.substr(1)
+	NPC_REFS = npc_refs
+	# TODO: If flag_name in FLAGS, call() Else don't call and update flag
 	FLAGS[flag_name]["function"].call()
 	print("Updating ", var_name, " to ", value)
+
+########## TODO ############
+# We want to move all of these out into each game scene or something, flags included
+# I'll tackle it later, right now it's all pretty concretely coded for scene one
+# I wouldn't be opposed to just hiding it in some inherited node like we plan to do
+# with the NPC and dialogue stuff
+############################
 
 # All the functions executed on flag change to keep the map somewhat readable
 # Remember to let YarnSpinner handle anything dialogue related with the flags
 func on_checked_for_permit():
 	print("Permit checked!")
 	# TODO: Add helper like you did for toggle interactable, will be more readable as I scale
-	CUSTOM_NPCS["OldMan"].enable()
-	CUSTOM_NPCS["SadGuard"].enable()
+	NPC_REFS["OldMan"].enable()
+	NPC_REFS["SadGuard"].enable()
 
 # NOTE: Is there a way to show these events are related? Definitely overkill, but if I make
 # more complicated things that aren't binary in the future, it's worth noting
@@ -60,11 +78,12 @@ func on_talked_to_sad_guard():
 	toggle_npc_interactable("OldMan", false)
 	# TODO: Set a global var of who you helped
 
+# NOTE: This is the kind of thing that should go narrativectrl -> entityctrl
+# It's fine for now since it's super simple, but be careful in case entity controller
+# needs to know about this! Though I guess it's an NPC ref property anyway
 func toggle_npc_interactable(npc_name: String, flag: bool):
-	CUSTOM_NPCS[npc_name].set_interactable(flag)
-# End of flag execution functions
+	NPC_REFS[npc_name].set_interactable(flag)
 
-# Obviously, this needs to be all moved out
 #### ANIMATIONS ####
 
 # These are set up in an order of what we want to trigger
@@ -113,7 +132,7 @@ var animations = {
 
 #### END OF ANIMATIONS ####
 var tween
-func start_animation(animation_name):
+func start_animation(animation_name, character_ref):
 	cutscene_started.emit()
 
 	var events = animations[animation_name]
@@ -122,14 +141,11 @@ func start_animation(animation_name):
 		if event.type == EVENT_TYPE.Animation:
 			# NOTE: Do I have to create a tween each time? Feels weird, but might be because dialogue cuts between
 			tween = create_tween()
-			# TODO: Replacing this with a ref to our external class, wherever that is
-			# Should match dialogue control access
-			# TODO: I don't like this. It's ok for now but if we move more than just NPCs...?
-			var npc_ref
+			var move_node_ref 
 			if event.node == "Character":
-				npc_ref = CHARACTER_REF
+				move_node_ref = character_ref
 			else:
-				npc_ref = CUSTOM_NPCS[event.node]
+				move_node_ref = NPC_REFS[event.node]
 			# TODO: Need to parse this since it'll eventually be from a file. Could just do another map of x/y/z
 			var dest_pos: Vector3 = event.dest
 			var dur_sec = event.dur
@@ -140,15 +156,16 @@ func start_animation(animation_name):
 			# NOTE: When running parallel tweens, BOTH need parallel set to true
 			# At least with this setup, we need to ensure we don't await finish nor kill it before it's done
 			if is_parallel:
-				tween.parallel().tween_property(npc_ref, "position", dest_pos, dur_sec)
+				tween.parallel().tween_property(move_node_ref, "position", dest_pos, dur_sec)
 			else:
-				tween.tween_property(npc_ref, "position", dest_pos, dur_sec)
+				tween.tween_property(move_node_ref, "position", dest_pos, dur_sec)
 				await tween.finished
 				tween.kill()
 		elif event.type == EVENT_TYPE.Dialogue:
-			externally_start_dialogue(event.yarn_node)
 			# Tweens are coroutines, so we listen in for the completed step
-			await dialogue_runner.dialogue_completed
+			# TODO: We're gonna have to see if this works
+			var dialogue_completed_signal: Signal = narrative_controller.start_dialogue(event.yarn_node)
+			await dialogue_completed_signal
 
 	# Clean up the edge case of final tweens being parallel
 	# NOTE: We could always add a "stop" instruction that's just "false" that is at the
@@ -159,13 +176,5 @@ func start_animation(animation_name):
 	
 	print("Emitting cutscene ended signal")
 	cutscene_ended.emit()
-
-# To be triggered from yarn files directly. As long as this is in the scene tree it should be found.
-# NOTE: Probably remove the underscore if/when used in the code and not just yarn
-func _yarn_command_trigger_animation(animation_name):
-	print("Triggering animation: ", animation_name)
-	start_animation(animation_name)
-	# TODO: If this returns a signal, the dialogue pauses until that signal is fired
-	# Not sure how I can use that but I probably could
 
 #### END OF ALL THE ANIMATION STUFF ####

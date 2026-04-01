@@ -3,13 +3,13 @@
     {
       "async": false,
       "definitionName": "_yarn_command_trigger_animation",
-      "fileName": "dialogue_controller.gd",
+      "fileName": "narrative_controller.gd",
       "language": "gdscript",
       "parameters": [
         {
-          "documentation": "the DialogueController to call this command on",
+          "documentation": "the NarrativeController to call this command on",
           "name": "target",
-          "subtype": "DialogueController",
+          "subtype": "NarrativeController",
           "type": "instance"
         },
         {
