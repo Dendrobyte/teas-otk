@@ -22,8 +22,10 @@ func _ready():
 	camera.set_global_rotation(Vector3(x_rotation, 0.0, 0.0))
 
 	sprite.frame = 1
-	# Get the "game scene" node. Maybe I should operate from root instead?
-	get_parent().get_parent().character_is_loaded()
+	# Get the "game scene" node (operate from root?)
+	# NOTE: This assumes I'm always testing from Main. I don't mind that right now, but worth redoing if it gets in the way
+	# It would just need to be a reference- but it'd have to exist on every entity... so either way I have to find it programmatically
+	get_parent().get_parent().character_is_loaded(self)
 
 var gravity = 8
 func _physics_process(_delta):

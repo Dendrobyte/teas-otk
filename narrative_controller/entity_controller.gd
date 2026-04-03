@@ -5,6 +5,8 @@ var narrative_controller: NarrativeController
 func initialize(narrative_controller_ref: NarrativeController):
 	narrative_controller = narrative_controller_ref
 
+	narrative_controller.game_scene.npc_initialized.connect(init_npc_base)
+
 # TODO
 # We'll get to this next with the entity refactors
 # For now, just scrap together what works with the most simplicity
@@ -25,32 +27,21 @@ var CUSTOM_NPCS: Dictionary[String, NPCBase] = {
 func get_custom_npc_refs():
 	return CUSTOM_NPCS
 
-# NOTE
-# Anything global and not per-entity should be handled in Narrative Controller?
+func init_npc_base(npc: NPCBase):
+	npc.npc_collision_enter.connect(_on_character_enters_entity_area)
+	npc.npc_collision_leave.connect(_on_character_leaves_entity_area)
 
+# TODO: Wire this up. May end up being one function in the next refactor
+# func init_item_base(item: EntityBase)
+# 	# The items are structured in groups for the scatter script
+# 	# TODO: When refactoring NPCs/Entities, NPCBase and EntityBase might inherit from same thing?
+# 	# 		I could see a world where EntityBase is parent of NPCBase and ItemBase
+# 	for item_node_group in item_parent_node.get_children():
+# 		for	item_node in item_node_group.get_children():
+# 			var entity: EntityBase = item_node as EntityBase
 
-# Iterates over the entity nodes from the GameScene passed in by NarrativeController
-# npc_parent_node is the NPCs node
-# item_parent_node is the Environment (grass, trees, etc.)
-# NOTE: We might move these signals to NarrativeController at some point
-# in the off chance we want to have an inventory controller. But that inventory stuff
-# could sorta be a child of this, we just need to figure out the game state
-func init_load_entities(npc_parent_node, item_parent_node):
-	for npc_node in npc_parent_node.get_children():
-		var npc: NPCBase = npc_node as NPCBase
-
-		npc.npc_collision_enter.connect(_on_character_enters_entity_area)
-		npc.npc_collision_leave.connect(_on_character_leaves_entity_area)
-
-	# The items are structured in groups for the scatter script
-	# TODO: When refactoring NPCs/Entities, NPCBase and EntityBase might inherit from same thing?
-	# 		I could see a world where EntityBase is parent of NPCBase and ItemBase
-	for item_node_group in item_parent_node.get_children():
-		for	item_node in item_node_group.get_children():
-			var entity: EntityBase = item_node as EntityBase
-
-			entity.entity_collision_enter.connect(_on_character_enters_entity_area)
-			entity.entity_collision_leave.connect(_on_character_leaves_entity_area)
+# 			entity.entity_collision_enter.connect(_on_character_enters_entity_area)
+# 			entity.entity_collision_leave.connect(_on_character_leaves_entity_area)
 
 func get_entity_ref(node_name: String):
 	return CUSTOM_NPCS[node_name]
@@ -67,8 +58,8 @@ func get_nearest_entity_name():
 # NOTE: Seems like these signals don't have to do much but return some values
 # we should determine in the narrative controller
 func _on_character_enters_entity_area(body: Node3D):
-	var npc_name = body.name
-	curr_npc_in_range_name = npc_name
+	print("Entering an area")
+	curr_npc_in_range_name = body.name
 	narrative_controller.toggle_interact_button(true, body.global_position)
 
 func _on_character_leaves_entity_area(_body: Node3D):

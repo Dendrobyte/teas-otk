@@ -1,6 +1,8 @@
-extends Node
+extends Control
 class_name NarrativeController
 ## Narrative Controller ##
+# TODO: Just make this a singleton at this point... but the node in reference
+#		already kind of makes it one? Idk lol
 # Every signal gets listened to in NarrativeController and passes to the proper controller
 # The response of those processes is all handled in NarrativeController
 # All logic and information is done in the main three children
@@ -23,9 +25,6 @@ class_name NarrativeController
 @export var game_scene: GameScene
 
 var CHARACTER_REF: CharacterBody3D = null
-# Hold on to the name of npc in range
-# TODO: Find closest NPC, could make helper func in entity_controller
-var curr_npc_in_range: String = ""
 
 # We toggle this to control when we show the interact button
 var can_interact = false
@@ -34,16 +33,18 @@ func _ready():
 	if dialogue_controller == null or event_controller == null or entity_controller == null:
 		print("Missing a narrative controller required child!")
 	
-	# Get a signal for the character to emit itself when it loads
+	# Get a signal for the character setup and entity signals
 	game_scene.character_initialized.connect(func(body): CHARACTER_REF = body)
+	# Note the thing about change in this function's definition
 
-	# Pass self to children controls
-	# TODO: The rest of them (change all to setup, i think initialize is reserved)
+	# Pass self to children controls and set them up
+	# TODO: The rest of them
 	event_controller.initialize(self)
+	# TODO: Second one should be the item parent at some point
+	# However if we copy what we did with char movement, it'll hopefully be unnecessary
 	entity_controller.initialize(self)
-	
-	# Load all NPC references from the "sibling" game scene
-	# 
+	# Yep, idt I'm gonna need this
+	# entity_controller.init_load_entities(self, null)
 
 	# Load all events from some element of the game scene?
 
@@ -59,23 +60,17 @@ func _ready():
 	# TODO: May need to make this a control node?
 	Util.add_interact_button_to_scene(self)
 
-# TODO: Fiiiix
 func _input(event):
 	# TODO: Freeze all other actions -> look into the unhandled_input flow chart again, I think that may be our answer
 	#       We can just "handle" all input here by sinking it into an empty return
 	# TODO: If this dialogue triggers an event change (like talking to the old man), reload their dialogue
 	if event.is_action_pressed("interact") and can_interact:
-		# TODO: Get the curr_npc_in_range rom entity_controller.get_nearest_entity or whatever
-		dialogue_controller.start_dialogue(curr_npc_in_range)
+		var npc_name = entity_controller.get_nearest_entity_name()
+		# TODO: Get the curr_npc_in_range from entity_controller.get_nearest_entity or whatever
+		dialogue_controller.start_dialogue(npc_name)
 		toggle_interact_button(false)
-		# TODO: Listen in somwhere to update this back to true, don't await here
 
 ## Dialogue Controller Comms ##
-# This will return a signal when it's done, so we can compartmentalize yarn updates, etc.
-# TODO: Does returning a signal work? (:
-func start_dialogue(yarn_node_name): # Returns the signale
-	dialogue_controller.start_dialogue(yarn_node_name)
-	return dialogue_controller.dialogue_controller_dialogue_finished
 
 ## Event Controller Comms ##
 # All flags and events are held in event controller, name based on the flag name
@@ -106,10 +101,10 @@ func _yarn_command_trigger_animation(animation_name):
 
 # To be called from within the entity controller as to whether or not we show the interact button
 # NOTE: I think (second note on this) we should make this a control node!
-func toggle_interact_button(value, position = null):
+func toggle_interact_button(value, entity_pos = null):
 	can_interact = value
 	if value == true:
-		# TODO: Get the curr npc ref (see above TODO) and 
-		Util.interact_button_show(CHARACTER_REF.position)
+		var button_pos = entity_pos if entity_pos != null else CHARACTER_REF.position
+		Util.interact_button_show(button_pos)
 	else:
 		Util.interact_button_hide()

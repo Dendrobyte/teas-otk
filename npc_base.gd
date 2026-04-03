@@ -24,6 +24,10 @@ func _ready():
 	var x_rotation = deg_to_rad(-1*GlobalState.ROTATION_ANGLE[GlobalState.GameMode.OVERWORLD])
 	global_rotate(Vector3(1.0, 0.0, 0.0), x_rotation)
 
+	# Call the GameScene function to emit a signal
+	# NPCs -> overworld_scene_ex -> GameScene
+	get_parent().get_parent().get_parent().npc_is_loaded(self)
+
 # When we enter/exit, we'll send this npc's body
 # We send the WHOLE body because we may want to send other characteristics
 # NOTE: This is a place where layer and stuff probably makes sense?

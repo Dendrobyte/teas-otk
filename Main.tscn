@@ -20,7 +20,11 @@ font_size = 18
 [node name="Main" type="Node3D" unique_id=40555209]
 script = ExtResource("1_glv2v")
 
-[node name="NarrativeController" type="Node" parent="." unique_id=121952724 node_paths=PackedStringArray("dialogue_controller", "event_controller", "entity_controller", "game_scene")]
+[node name="NarrativeController" type="Control" parent="." unique_id=1229687535 node_paths=PackedStringArray("dialogue_controller", "event_controller", "entity_controller", "game_scene")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 script = ExtResource("2_03owx")
 dialogue_controller = NodePath("DialogueController")
 event_controller = NodePath("EventController")
@@ -28,7 +32,6 @@ entity_controller = NodePath("EntityController")
 game_scene = NodePath("../GameScene")
 
 [node name="DialogueController" type="Control" parent="NarrativeController" unique_id=803034153]
-layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

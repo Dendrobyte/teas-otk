@@ -41,5 +41,4 @@ func start_dialogue(yarn_node_name):
 
 func finish_dialogue():
 	# TODO: Update variables here? The two lines are repeated elsewhere but this is meant to be expanded
-	print("Triggering dialogue finish in dialogue controller")
 	dialogue_controller_dialogue_finished.emit()
