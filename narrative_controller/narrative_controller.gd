@@ -34,8 +34,8 @@ func _ready():
 	if dialogue_controller == null or event_controller == null or entity_controller == null:
 		print("Missing a narrative controller required child!")
 	
-	# Get a reference to the character
-	CHARACTER_REF = get_parent().get_node("GameScene").get_child(0).get_node("Character")
+	# Get a signal for the character to emit itself when it loads
+	game_scene.character_initialized.connect(func(body): CHARACTER_REF = body)
 
 	# Pass self to children controls
 	# TODO: The rest of them (change all to setup, i think initialize is reserved)

@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name CharacterController
 
 # NOTE: Why is this in chapter 2 ._. I guess the old chapter 1 was an overworld thing
 # I should have a "brewing" and "overworld" folder setup for assets/scripts re-used depending on environment
@@ -10,9 +11,9 @@ extends CharacterBody3D
 
 var target_velocity = Vector3.ZERO
 var is_in_dialogue = false
-var bottom_center = 0 # y value representing bottom of the image
-
 var is_in_cutscene = false
+
+var bottom_center = 0 # y value representing bottom of the image
 
 func _ready():
 	var camera = $Camera
@@ -20,16 +21,9 @@ func _ready():
 	# Set rotation, in case I've modified it in the editor
 	camera.set_global_rotation(Vector3(x_rotation, 0.0, 0.0))
 
-	# Ensure we can't move when dialogue is started
-	# NOTE: Am I going to have to hide the interact button?
-	if dialogue_runner != null: # It's not always present, such as when testing overworld stuff
-		dialogue_runner.dialogue_started.connect(func(): is_in_dialogue = true)
-		dialogue_runner.dialogue_completed.connect(func(): is_in_dialogue = false)
-
-	dialogue_control.cutscene_started.connect(func(): is_in_cutscene = true)
-	dialogue_control.cutscene_ended.connect(func(): is_in_cutscene = false)
-
 	sprite.frame = 1
+	# Get the "game scene" node. Maybe I should operate from root instead?
+	get_parent().get_parent().character_is_loaded()
 
 var gravity = 8
 func _physics_process(_delta):
@@ -87,3 +81,10 @@ func _physics_process(_delta):
 		target_velocity.z = direction.z * speed
 		velocity = target_velocity
 		move_and_slide()
+
+# To be triggered externally. This node should have no context of the outside world.
+func set_is_in_cutscene(value):
+	is_in_cutscene = value
+
+func set_is_in_dialogue(value):
+	is_in_dialogue = value

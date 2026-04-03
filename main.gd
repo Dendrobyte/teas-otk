@@ -9,7 +9,7 @@ func _ready():
 	var overworld_scene = preload("res://chapter1/chapter_1_overworld.tscn").instantiate()
 	# TODO: Understand why we need to do call_deferred here
 	# TODO: Register the chapter's flags with the narrative controller
-	get_tree().root.add_child.call_deferred(overworld_scene)
+	get_tree().root.get_node("Main").get_node("GameScene").add_child.call_deferred(overworld_scene)
 
 
 # Just have this here for now... state management soon:tm:
