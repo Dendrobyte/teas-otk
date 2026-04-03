@@ -3,8 +3,7 @@ extends CharacterBody3D
 # NOTE: Why is this in chapter 2 ._. I guess the old chapter 1 was an overworld thing
 # I should have a "brewing" and "overworld" folder setup for assets/scripts re-used depending on environment
 @export var speed = 10
-# TODO: Do this programatically instead of in the editor? Depends on how I spawn in the scene I guess
-@export var dialogue_control: DialogueController # This is getting so messy lmao
+@export var narrative_controller: NarrativeController
 @export var dialogue_runner: Node
 @export var offset_const = .5
 @export var sprite: Sprite3D
@@ -27,7 +26,6 @@ func _ready():
 		dialogue_runner.dialogue_started.connect(func(): is_in_dialogue = true)
 		dialogue_runner.dialogue_completed.connect(func(): is_in_dialogue = false)
 
-	print(dialogue_control)	
 	dialogue_control.cutscene_started.connect(func(): is_in_cutscene = true)
 	dialogue_control.cutscene_ended.connect(func(): is_in_cutscene = false)
 

@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cogqy630mjgv7" path="res://addons/yarn_spinner/ui/options_presenter.gd" id="6_20pc6"]
 [ext_resource type="Script" uid="uid://blscysur1lidj" path="res://narrative_controller/event_controller.gd" id="7_5vvyt"]
 [ext_resource type="Script" uid="uid://wri18fyw7bj3" path="res://narrative_controller/entity_controller.gd" id="9_wkp8b"]
+[ext_resource type="Script" uid="uid://6sa2n566gvbd" path="res://character_controller.gd" id="10_20pc6"]
 [ext_resource type="Script" uid="uid://ch8xa62o1jdsp" path="res://narrative_controller/game_scene.gd" id="10_wkp8b"]
 
 [sub_resource type="Theme" id="Theme_c6i3y"]
@@ -86,6 +87,9 @@ script = ExtResource("7_5vvyt")
 
 [node name="EntityController" type="Node" parent="NarrativeController" unique_id=492654928]
 script = ExtResource("9_wkp8b")
+
+[node name="CharacterController" type="Node" parent="NarrativeController" unique_id=169767201]
+script = ExtResource("10_20pc6")
 
 [node name="GameScene" type="Node3D" parent="." unique_id=1699575499]
 script = ExtResource("10_wkp8b")

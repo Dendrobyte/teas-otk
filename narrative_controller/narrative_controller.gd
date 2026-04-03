@@ -19,6 +19,7 @@ class_name NarrativeController
 @export var dialogue_controller: DialogueController
 @export var event_controller: EventController
 @export var entity_controller: EntityController
+# @export var character_controller: CharacterController # Abandoning this idea
 @export var game_scene: GameScene
 
 var CHARACTER_REF: CharacterBody3D = null
@@ -33,12 +34,13 @@ func _ready():
 	if dialogue_controller == null or event_controller == null or entity_controller == null:
 		print("Missing a narrative controller required child!")
 	
-	# Pass self to children controls
-	# TODO: The rest of them
-	event_controller.initialize(self)
-	entity_controller.initializedpsfakd(self)
-
 	# Get a reference to the character
+	CHARACTER_REF = get_parent().get_node("GameScene").get_child(0).get_node("Character")
+
+	# Pass self to children controls
+	# TODO: The rest of them (change all to setup, i think initialize is reserved)
+	event_controller.initialize(self)
+	entity_controller.initialize(self)
 	
 	# Load all NPC references from the "sibling" game scene
 	# 
@@ -71,7 +73,7 @@ func _input(event):
 ## Dialogue Controller Comms ##
 # This will return a signal when it's done, so we can compartmentalize yarn updates, etc.
 # TODO: Does returning a signal work? (:
-func start_dialogue(yarn_node_name) -> Signal:
+func start_dialogue(yarn_node_name): # Returns the signale
 	dialogue_controller.start_dialogue(yarn_node_name)
 	return dialogue_controller.dialogue_controller_dialogue_finished
 
