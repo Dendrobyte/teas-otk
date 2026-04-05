@@ -18,13 +18,14 @@ class_name NarrativeController
 # TODO: Or... maybe it will... since we could have an InventoryController for later! <:O
 ##########################
 
+@export_group("Parent Scenes")
 @export var dialogue_controller: DialogueController
 @export var event_controller: EventController
 @export var entity_controller: EntityController
 # @export var character_controller: CharacterController # Abandoning this idea
 @export var game_scene: GameScene
 
-var CHARACTER_REF: CharacterBody3D = null
+var CHARACTER_REF: CharacterController = null
 
 # We toggle this to control when we show the interact button
 var can_interact = false
@@ -34,30 +35,23 @@ func _ready():
 		print("Missing a narrative controller required child!")
 	
 	# Get a signal for the character setup and entity signals
-	game_scene.character_initialized.connect(func(body): CHARACTER_REF = body)
+	game_scene.character_initialized.connect(func(body): CHARACTER_REF = body as CharacterController)
 	# Note the thing about change in this function's definition
 
 	# Pass self to children controls and set them up
 	# TODO: The rest of them
 	event_controller.initialize(self)
-	# TODO: Second one should be the item parent at some point
-	# However if we copy what we did with char movement, it'll hopefully be unnecessary
 	entity_controller.initialize(self)
-	# Yep, idt I'm gonna need this
-	# entity_controller.init_load_entities(self, null)
-
-	# Load all events from some element of the game scene?
 
 	# Connect to yarn signals
 	dialogue_controller.dialogue_runner.variable_storage.variable_changed.connect(update_flag)
 
 	# Add general yarn commands
-	# Manually register commands, doesn't seem to find it properly despite the output saying a command was registered
-	# TODO: Re-verify this claim now that narrative controller has them?
+	# Need to manually register them here, probably since it's on a different node
 	dialogue_controller.dialogue_runner.add_command("trigger_animation", _yarn_command_trigger_animation)
+	dialogue_controller.dialogue_controller_dialogue_finished.connect(cleanup_dialogue_finish)
 
 	# The interact button lives here, so we'll keep it here
-	# TODO: May need to make this a control node?
 	Util.add_interact_button_to_scene(self)
 
 func _input(event):
@@ -68,9 +62,13 @@ func _input(event):
 		var npc_name = entity_controller.get_nearest_entity_name()
 		# TODO: Get the curr_npc_in_range from entity_controller.get_nearest_entity or whatever
 		dialogue_controller.start_dialogue(npc_name)
+		CHARACTER_REF.set_is_in_dialogue(true)
 		toggle_interact_button(false)
 
 ## Dialogue Controller Comms ##
+
+func cleanup_dialogue_finish():
+	CHARACTER_REF.set_is_in_dialogue(false)
 
 ## Event Controller Comms ##
 # All flags and events are held in event controller, name based on the flag name
@@ -87,14 +85,12 @@ func update_flag(flag_name, value):
 func add_yarn_command(command_name: String, function_ref):
 	dialogue_controller.dialogue_runner.add_command(command_name, function_ref)
 
-# To be triggered from yarn files directly. As long as this is in the scene tree it should be found.
+# To be triggered from yarn files directly
 # NOTE: Probably remove the underscore if/when used in the code and not just yarn
 func _yarn_command_trigger_animation(animation_name):
 	print("Triggering animation: ", animation_name)
 	# TODO: is in cutscene set to true on the character
 	event_controller.start_animation(animation_name, CHARACTER_REF)
-	# TODO: If this returns a signal, the dialogue pauses until that signal is fired
-	# Not sure how I can use that but I probably could
 
 ## Entity Controller Comms ##
 

@@ -13,12 +13,12 @@ class_name EventController
 var narrative_controller: NarrativeController
 func initialize(narrative_controller_ref: NarrativeController):
 	narrative_controller = narrative_controller_ref
+	# Load all events from some element of the game scene?
 
 # Holds on to a flag value and the function to call when it changes
 # These trigger based on the flag name in our yarn file, but match our global state/saved flags
 # The function names can be pulled in, but should be "on_FLAG_NAME" for consistency
-# TODO: Establish these in a scene's ready function, and then check for a file with the
-# saved information (or however state is saved) to load updated values from.
+# TODO: Establish these in a scene's ready function, and then check for information in that scene with the flags
 var FLAGS = {
 	"checked_for_permit": { # Talk to CitadelGuard
 		"value": false,
@@ -34,8 +34,7 @@ var FLAGS = {
 	}
 }
 
-# This is updated every time we update a signal
-# I don't love it, but it'll work for this refactor
+# This is updated every time we send with the update function
 var NPC_REFS: Dictionary[String, NPCBase] = {}
 
 # TODO: We should ensure we have an inverse of this, such that we update whatever yarn is holding on to
@@ -53,6 +52,8 @@ func update_flag_and_call_function(var_name: String, value, npc_refs):
 # I'll tackle it later, right now it's all pretty concretely coded for scene one
 # I wouldn't be opposed to just hiding it in some inherited node like we plan to do
 # with the NPC and dialogue stuff
+# https://trello.com/c/DGKXi2Ix
+# https://trello.com/c/lt8owXUM
 ############################
 
 # All the functions executed on flag change to keep the map somewhat readable
@@ -164,7 +165,6 @@ func start_animation(animation_name, character_ref):
 				tween.kill()
 		elif event.type == EVENT_TYPE.Dialogue:
 			# Tweens are coroutines, so we listen in for the completed step
-			# TODO: We're gonna have to see if this works
 			var dialogue_completed_signal: Signal = narrative_controller.dialogue_controller.start_dialogue(event.yarn_node)
 			await dialogue_completed_signal
 
