@@ -35,9 +35,11 @@ func hide_dialogue():
 
 # NOTE: To be called from NarrativeControl, since that'll "play" animations/events
 # Starts a dialogue based on the Godot Node name (which should match the Yarn Node name)
+# Returns a signal for dialogue finish that the EventController can use
 func start_dialogue(yarn_node_name):
 	dialogue_runner.start_dialogue(yarn_node_name)
 	show_dialogue()
+	return dialogue_controller_dialogue_finished # I love this pattern
 
 func finish_dialogue():
 	# TODO: Update variables here? The two lines are repeated elsewhere but this is meant to be expanded

@@ -91,6 +91,7 @@ func add_yarn_command(command_name: String, function_ref):
 # NOTE: Probably remove the underscore if/when used in the code and not just yarn
 func _yarn_command_trigger_animation(animation_name):
 	print("Triggering animation: ", animation_name)
+	# TODO: is in cutscene set to true on the character
 	event_controller.start_animation(animation_name, CHARACTER_REF)
 	# TODO: If this returns a signal, the dialogue pauses until that signal is fired
 	# Not sure how I can use that but I probably could

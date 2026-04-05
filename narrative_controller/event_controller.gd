@@ -43,6 +43,7 @@ var NPC_REFS: Dictionary[String, NPCBase] = {}
 func update_flag_and_call_function(var_name: String, value, npc_refs):
 	var flag_name = var_name.substr(1)
 	NPC_REFS = npc_refs
+	print("Given npc refs: ", NPC_REFS)
 	# TODO: If flag_name in FLAGS, call() Else don't call and update flag
 	FLAGS[flag_name]["function"].call()
 	print("Updating ", var_name, " to ", value)
@@ -164,7 +165,7 @@ func start_animation(animation_name, character_ref):
 		elif event.type == EVENT_TYPE.Dialogue:
 			# Tweens are coroutines, so we listen in for the completed step
 			# TODO: We're gonna have to see if this works
-			var dialogue_completed_signal: Signal = narrative_controller.start_dialogue(event.yarn_node)
+			var dialogue_completed_signal: Signal = narrative_controller.dialogue_controller.start_dialogue(event.yarn_node)
 			await dialogue_completed_signal
 
 	# Clean up the edge case of final tweens being parallel

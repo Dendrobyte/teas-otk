@@ -30,6 +30,9 @@ func get_custom_npc_refs():
 func init_npc_base(npc: NPCBase):
 	npc.npc_collision_enter.connect(_on_character_enters_entity_area)
 	npc.npc_collision_leave.connect(_on_character_leaves_entity_area)
+	# TODO: See bigger note above, but don't hard code these values p much
+	if CUSTOM_NPCS.has(npc.name):
+		CUSTOM_NPCS[npc.name] = npc
 
 # TODO: Wire this up. May end up being one function in the next refactor
 # func init_item_base(item: EntityBase)
@@ -57,8 +60,8 @@ func get_nearest_entity_name():
 # NOTE: Doubling up and doing all entities here
 # NOTE: Seems like these signals don't have to do much but return some values
 # we should determine in the narrative controller
+# TODO: This triggers on init. Should I not do that?
 func _on_character_enters_entity_area(body: Node3D):
-	print("Entering an area")
 	curr_npc_in_range_name = body.name
 	narrative_controller.toggle_interact_button(true, body.global_position)
 
