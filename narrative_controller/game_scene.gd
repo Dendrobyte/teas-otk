@@ -11,3 +11,9 @@ func character_is_loaded(body: CharacterBody3D):
 # or just the one if I can successfully combine them
 func npc_is_loaded(npc_base: NPCBase):
     npc_initialized.emit(npc_base)
+
+func load_scene(scene_path):
+    print("Loading scene ", scene_path)
+
+func unload_scene(scene_path):
+    print("Unloading scene ", scene_path)

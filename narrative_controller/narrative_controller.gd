@@ -50,6 +50,7 @@ func _ready():
 	# Need to manually register them here, probably since it's on a different node
 	dialogue_controller.dialogue_runner.add_command("trigger_animation", _yarn_command_trigger_animation)
 	dialogue_controller.dialogue_controller_dialogue_finished.connect(cleanup_dialogue_finish)
+	event_controller.cutscene_ended.connect(cleanup_cutscene_finish)
 
 	# The interact button lives here, so we'll keep it here
 	Util.add_interact_button_to_scene(self)
@@ -79,6 +80,9 @@ func update_flag(flag_name, value):
 	var npc_refs = entity_controller.get_custom_npc_refs()
 	event_controller.update_flag_and_call_function(flag_name, value, npc_refs)
 
+func cleanup_cutscene_finish():
+	CHARACTER_REF.set_is_in_cutscene(false)
+
 # For any command that may be game specific, we can call this
 # NOTE: We could also just define a bunch in entity controller if this is used a lot
 # and then do it manually if Yarn continues to not detect them automatically
@@ -91,6 +95,7 @@ func _yarn_command_trigger_animation(animation_name):
 	print("Triggering animation: ", animation_name)
 	# TODO: is in cutscene set to true on the character
 	event_controller.start_animation(animation_name, CHARACTER_REF)
+	CHARACTER_REF.set_is_in_cutscene(true)
 
 ## Entity Controller Comms ##
 
