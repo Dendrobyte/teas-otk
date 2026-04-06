@@ -1,25 +1,25 @@
 extends Node3D
 
 @export var narrative_controller: NarrativeController
+var game_scene: GameScene
 
 # Not really sure about the entry point yet, but for now we can launch into our narrative start / chapter 0
 func _ready():
 	# TODO: If testing, always load a specific scene here
 	# NOTE: We're going to rework this all, I just want something visible rn
-	var overworld_scene = preload("res://chapter1/chapter_1_overworld.tscn").instantiate()
+	var current_scene = preload("res://chapter1/chapter_1_overworld.tscn").instantiate()
+	# var current_scene = preload("res://BrewingBase_ch1.tscn").instantiate()
 	# TODO: Understand why we need to do call_deferred here
 	# TODO: Register the chapter's flags with the narrative controller
-	get_tree().root.get_node("Main").get_node("GameScene").add_child.call_deferred(overworld_scene)
+
+	game_scene = get_tree().root.get_node("Main").get_node("GameScene")
+	game_scene.add_child.call_deferred(current_scene)
 
 
 # Just have this here for now... state management soon:tm:
+# NOTE: I really need to figure out how why this "double press" is happening
+var is_transitioning = false
 func _process(_delta):
-	if Input.is_action_pressed("debug_scene_change"):
-		scene_change()
-
-# TODO: Fill out properly, next scene based on global state list, etc.
-func scene_change():
-	print("Switching from overworld to brewing...")
-	get_tree().root.get_node("OverworldBase").queue_free()
-	var brewing_scene = preload("res://BrewingBase.tscn").instantiate()
-	get_tree().root.add_child.call_deferred(brewing_scene)
+	if Input.is_action_pressed("debug_scene_change") and not is_transitioning:
+		is_transitioning = true
+		narrative_controller.transition_scenes("res://BrewingBase_ch1.tscn")

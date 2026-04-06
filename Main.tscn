@@ -17,8 +17,9 @@ default_font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_c2ibq"]
 font_size = 18
 
-[node name="Main" type="Node3D" unique_id=40555209]
+[node name="Main" type="Node3D" unique_id=40555209 node_paths=PackedStringArray("narrative_controller")]
 script = ExtResource("1_glv2v")
+narrative_controller = NodePath("NarrativeController")
 
 [node name="NarrativeController" type="Control" parent="." unique_id=1229687535 node_paths=PackedStringArray("dialogue_controller", "event_controller", "entity_controller", "game_scene")]
 layout_mode = 3

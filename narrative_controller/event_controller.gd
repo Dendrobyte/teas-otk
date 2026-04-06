@@ -89,7 +89,7 @@ func toggle_npc_interactable(npc_name: String, flag: bool):
 #### ANIMATIONS ####
 
 # These are set up in an order of what we want to trigger
-enum EVENT_TYPE { Animation, Dialogue }
+enum EVENT_TYPE { Animation, Dialogue, TransitionScene }
 
 signal cutscene_started
 signal cutscene_ended
@@ -110,6 +110,8 @@ var old_man_approaches_at_gate = [
 	{"type": EVENT_TYPE.Animation, "node": "OldMan", "dest": Vector3(-68, 0, -1.2), "dur": 1.0, "parallel": true},
 	# TODO: Some way to pass player "z" pos into here? Replacing any part of the dest, to encourage a straight line
 	{"type": EVENT_TYPE.Animation, "node": "Character", "dest": Vector3(-84, 5.231, -2.7), "dur": 1.0, "parallel": true},
+	# TODO: Change to the collection screen if we're in an overworld instead. Maybe let GameScene handle it depending on name?
+	{"type": EVENT_TYPE.TransitionScene, "scene": "res://BrewingBase_ch1.tscn"},
 ]
 
 # Triggers when you cheer up the sad guard and removes the current guard there
@@ -135,6 +137,7 @@ var animations = {
 #### END OF ANIMATIONS ####
 var tween
 func start_animation(animation_name, character_ref):
+	var scene_transition = "" # See note in the TransitionScene elif
 	cutscene_started.emit()
 
 	var events = animations[animation_name]
@@ -167,6 +170,11 @@ func start_animation(animation_name, character_ref):
 			# Tweens are coroutines, so we listen in for the completed step
 			var dialogue_completed_signal: Signal = narrative_controller.dialogue_controller.start_dialogue(event.yarn_node)
 			await dialogue_completed_signal
+		elif event.type == EVENT_TYPE.TransitionScene:
+			# NOTE: If we have more of these things that run at the end, we can
+			#		change the variable to a function reference instead of a boolean
+			scene_transition = event.scene
+
 
 	# Clean up the edge case of final tweens being parallel
 	# NOTE: We could always add a "stop" instruction that's just "false" that is at the
@@ -177,5 +185,7 @@ func start_animation(animation_name, character_ref):
 	
 	print("Emitting cutscene ended signal")
 	cutscene_ended.emit()
+	if scene_transition != "":
+		narrative_controller.transition_scenes(scene_transition)
 
 #### END OF ALL THE ANIMATION STUFF ####

@@ -22,7 +22,6 @@ class_name NarrativeController
 @export var dialogue_controller: DialogueController
 @export var event_controller: EventController
 @export var entity_controller: EntityController
-# @export var character_controller: CharacterController # Abandoning this idea
 @export var game_scene: GameScene
 
 var CHARACTER_REF: CharacterController = null
@@ -110,3 +109,12 @@ func toggle_interact_button(value, entity_pos = null):
 		Util.interact_button_show(button_pos)
 	else:
 		Util.interact_button_hide()
+
+## Game Scene Comms ##
+# TODO: Will revisit this flow in the state design and whatnot
+# TODO: Trigger save
+# TODO: Fade out
+func transition_scenes(new_scene_path):
+	print("Triggering scene transition from narrative controller")
+	game_scene.unload_scene()
+	game_scene.load_scene(new_scene_path)
