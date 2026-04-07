@@ -9,6 +9,7 @@
 [sub_resource type="Environment" id="Environment_vodtt"]
 
 [sub_resource type="SystemFont" id="SystemFont_1uy5m"]
+subpixel_positioning = 0
 
 [sub_resource type="Theme" id="Theme_npiso"]
 default_font = SubResource("SystemFont_1uy5m")
@@ -70,10 +71,12 @@ pitch_min = -20.0
 pitch_max = 30.0
 
 [node name="Camera3D" type="Camera3D" parent="Character" unique_id=663389705]
-transform = Transform3D(0.7870206, 0, 0, 0, 0.7870206, 0, 0, 0, 0.7870206, 0, 0, 0)
+transform = Transform3D(0.7870206, 0, 0, 0, 0.7825936, 0.08335885, 0, -0.08335885, 0.7825936, 0, 0, 3.6666431)
 environment = SubResource("Environment_vodtt")
+projection = 1
 current = true
 fov = 48.3
+size = 7.271
 
 [node name="Control" type="Control" parent="Character" unique_id=1180801294]
 layout_mode = 3
