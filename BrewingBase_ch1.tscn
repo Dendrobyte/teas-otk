@@ -3,8 +3,7 @@
 [ext_resource type="Script" uid="uid://cgxq82dhb7gja" path="res://brewing_base.gd" id="1_ni0av"]
 [ext_resource type="Script" uid="uid://bw4ywnt705a6l" path="res://brewing_ui.gd" id="2_aynr4"]
 [ext_resource type="Script" uid="uid://t7m4u5is2712" path="res://brewing_player_controller.gd" id="2_tya4k"]
-[ext_resource type="Texture2D" uid="uid://cd0cpv1841q5g" path="res://assets/models/kettle_Texture_Kettle.png" id="4_1uy5m"]
-[ext_resource type="ArrayMesh" uid="uid://s8d4osl66ypr" path="res://assets/models/kettle.obj" id="4_2n2jf"]
+[ext_resource type="PackedScene" uid="uid://bcbs4m76eq7fj" path="res://assets/models/brewing_env.glb" id="4_wwe0j"]
 
 [sub_resource type="Environment" id="Environment_vodtt"]
 
@@ -15,67 +14,21 @@ subpixel_positioning = 0
 default_font = SubResource("SystemFont_1uy5m")
 default_font_size = 30
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vodtt"]
-albedo_color = Color(0.44705883, 0.36078432, 0.5803922, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_b0jfn"]
-material = SubResource("StandardMaterial3D_vodtt")
-
-[sub_resource type="BoxMesh" id="BoxMesh_04vyi"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_0ef7w"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04vyi"]
-albedo_color = Color(0.93333334, 0.57254905, 0.44313726, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_04vyi"]
-material = SubResource("StandardMaterial3D_04vyi")
-
-[sub_resource type="BoxMesh" id="BoxMesh_o1n6l"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_npiso"]
-albedo_texture = ExtResource("4_1uy5m")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_aynr4"]
-size = Vector3(0.22526747, 0.41407934, 0.24356705)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1n6l"]
-albedo_color = Color(0.6557576, 0.15030047, 0.12612024, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_aynr4"]
-material = SubResource("StandardMaterial3D_o1n6l")
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_aynr4"]
-height = 0.05596875
-radius = 0.20117188
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tya4k"]
-albedo_color = Color(0.9313707, 0.77096987, 0.79249656, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_2n2jf"]
-material = SubResource("StandardMaterial3D_tya4k")
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_2n2jf"]
-height = 0.23913574
-radius = 0.11230469
-
 [node name="BrewingBase" type="Node3D" unique_id=2002152738]
 transform = Transform3D(1.2706147, 0, 0, 0, 1.2706147, 0, 0, 0, 1.2706147, 0, 0, 0)
 script = ExtResource("1_ni0av")
 
 [node name="Character" type="Node3D" parent="." unique_id=1850063740]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.339371, 3.363797, 8.925308)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.339, 2.6808574, 6.3990054)
 script = ExtResource("2_tya4k")
-yaw_limit = 40.0
-pitch_min = -20.0
+yaw_limit = 90.0
 pitch_max = 30.0
 
 [node name="Camera3D" type="Camera3D" parent="Character" unique_id=663389705]
-transform = Transform3D(0.7870206, 0, 0, 0, 0.7825936, 0.08335885, 0, -0.08335885, 0.7825936, 0, 0, 3.6666431)
+transform = Transform3D(0.7870206, 0, 0, 0, 0.7870206, 0, 0, 0, 0.7870206, 0, 0, 0)
 environment = SubResource("Environment_vodtt")
-projection = 1
 current = true
-fov = 48.3
+fov = 52.6
 size = 7.271
 
 [node name="Control" type="Control" parent="Character" unique_id=1180801294]
@@ -85,264 +38,19 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 script = ExtResource("2_aynr4")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Character/Control" unique_id=438323098]
+[node name="DebugText" type="RichTextLabel" parent="Character/Control" unique_id=438323098]
 layout_mode = 0
 offset_top = 790.0
 offset_right = 773.0
 offset_bottom = 1077.0
 theme = SubResource("Theme_npiso")
-text = "1. Pick up pot (click pot)
-2. Put bot on burner (click burner)
-3. Pour water into cup (click on pot then cup)
-4. Serve cup (click cup)"
-
-[node name="Ground" type="MeshInstance3D" parent="." unique_id=404712858]
-transform = Transform3D(120.96186, 0, 0, 0, 2.2140136, 0, 0, 0, 94.65912, 0.086766146, 0.2595186, 0.06925421)
-mesh = SubResource("PlaneMesh_b0jfn")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=479800490]
-transform = Transform3D(1, 0, 0, 0, 0.6770943, 0.7358963, 0, -0.7358963, 0.6770943, 0.086766146, 37.952866, 10.504125)
-light_color = Color(0.6666667, 0.84705883, 0.6039216, 1)
-light_energy = 2.815
-
-[node name="TableSet" type="Node3D" parent="." unique_id=1406520396]
-transform = Transform3D(2.2140136, 0, 0, 0, 2.2140136, 0, 0, 0, 2.2140136, -7.7896914, 0.2595186, -5.688503)
-
-[node name="Table" type="MeshInstance3D" parent="TableSet" unique_id=1212409496]
-transform = Transform3D(1.8886156, 0, 0, 0, 0.13711351, 0, 0, 0, 1.1665672, 0, 0.7182708, 0)
-mesh = SubResource("BoxMesh_04vyi")
-
-[node name="Chair" type="MeshInstance3D" parent="TableSet" unique_id=389376020]
-transform = Transform3D(0.095619194, 0, 0, 0, 1, 0, 0, 0, 0.4080552, -1.2367978, 0.5250219, 0)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair2" type="MeshInstance3D" parent="TableSet" unique_id=1390319016]
-transform = Transform3D(-0.095619194, 0, -3.5673317e-08, 0, 1, 0, 8.3592955e-09, 0, -0.4080552, 1.237, 0.525, 0)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair3" type="MeshInstance3D" parent="TableSet" unique_id=1591382385]
-transform = Transform3D(-4.1796477e-09, 8.742278e-08, -0.4080552, 0, -1, -3.5673317e-08, -0.095619194, -3.821371e-15, 1.7836658e-08, 0.5080782, 0.525, -0.78975886)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair4" type="MeshInstance3D" parent="TableSet" unique_id=312269674]
-transform = Transform3D(-4.1796477e-09, 8.742278e-08, -0.4080552, 0, -1, -3.5673317e-08, -0.095619194, -3.821371e-15, 1.7836658e-08, -0.508, 0.525, -0.79)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair5" type="MeshInstance3D" parent="TableSet" unique_id=865676128]
-transform = Transform3D(4.179649e-09, -8.742277e-08, 0.4080552, 1.4438097e-08, -1, -3.5673317e-08, 0.095619194, 1.509958e-07, -1.7836658e-08, 0.5080782, 0.525, 0.79)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair6" type="MeshInstance3D" parent="TableSet" unique_id=1039396258]
-transform = Transform3D(4.179649e-09, -8.742277e-08, 0.4080552, 1.4438097e-08, -1, -3.5673317e-08, 0.095619194, 1.509958e-07, -1.7836658e-08, -0.508, 0.525, 0.79)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="TableSet2" type="Node3D" parent="." unique_id=1844730976]
-transform = Transform3D(2.2140136, 0, 0, 0, 2.2140136, 0, 0, 0, 2.2140136, 7.9642262, 0.2595186, -5.6884665)
-
-[node name="Table" type="MeshInstance3D" parent="TableSet2" unique_id=1814413452]
-transform = Transform3D(1.8886156, 0, 0, 0, 0.13711351, 0, 0, 0, 1.1665672, 0, 0.7182708, 0)
-mesh = SubResource("BoxMesh_04vyi")
-
-[node name="Chair" type="MeshInstance3D" parent="TableSet2" unique_id=555711402]
-transform = Transform3D(0.095619194, 0, 0, 0, 1, 0, 0, 0, 0.4080552, -1.2367978, 0.5250219, 0)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair2" type="MeshInstance3D" parent="TableSet2" unique_id=1011431939]
-transform = Transform3D(-0.095619194, 0, -3.5673317e-08, 0, 1, 0, 8.3592955e-09, 0, -0.4080552, 1.237, 0.525, 0)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair3" type="MeshInstance3D" parent="TableSet2" unique_id=1975417921]
-transform = Transform3D(-4.1796477e-09, 8.742278e-08, -0.4080552, 0, -1, -3.5673317e-08, -0.095619194, -3.821371e-15, 1.7836658e-08, 0.5080782, 0.525, -0.78975886)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair4" type="MeshInstance3D" parent="TableSet2" unique_id=27715324]
-transform = Transform3D(-4.1796477e-09, 8.742278e-08, -0.4080552, 0, -1, -3.5673317e-08, -0.095619194, -3.821371e-15, 1.7836658e-08, -0.508, 0.525, -0.79)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair5" type="MeshInstance3D" parent="TableSet2" unique_id=965963402]
-transform = Transform3D(4.179649e-09, -8.742277e-08, 0.4080552, 1.4438097e-08, -1, -3.5673317e-08, 0.095619194, 1.509958e-07, -1.7836658e-08, 0.5080782, 0.525, 0.79)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair6" type="MeshInstance3D" parent="TableSet2" unique_id=1200004461]
-transform = Transform3D(4.179649e-09, -8.742277e-08, 0.4080552, 1.4438097e-08, -1, -3.5673317e-08, 0.095619194, 1.509958e-07, -1.7836658e-08, -0.508, 0.525, 0.79)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="TableSet3" type="Node3D" parent="." unique_id=453693164]
-transform = Transform3D(2.2140136, 0, 0, 0, 2.2140136, 0, 0, 0, 2.2140136, -7.7896914, 0.2595186, -16.869324)
-
-[node name="Table" type="MeshInstance3D" parent="TableSet3" unique_id=2080926391]
-transform = Transform3D(1.8886156, 0, 0, 0, 0.13711351, 0, 0, 0, 1.1665672, 0, 0.7182708, 0)
-mesh = SubResource("BoxMesh_04vyi")
-
-[node name="Chair" type="MeshInstance3D" parent="TableSet3" unique_id=1396856250]
-transform = Transform3D(0.095619194, 0, 0, 0, 1, 0, 0, 0, 0.4080552, -1.2367978, 0.5250219, 0)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair2" type="MeshInstance3D" parent="TableSet3" unique_id=1833311044]
-transform = Transform3D(-0.095619194, 0, -3.5673317e-08, 0, 1, 0, 8.3592955e-09, 0, -0.4080552, 1.237, 0.525, 0)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair3" type="MeshInstance3D" parent="TableSet3" unique_id=1884609473]
-transform = Transform3D(-4.1796477e-09, 8.742278e-08, -0.4080552, 0, -1, -3.5673317e-08, -0.095619194, -3.821371e-15, 1.7836658e-08, 0.5080782, 0.525, -0.78975886)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair4" type="MeshInstance3D" parent="TableSet3" unique_id=1366911111]
-transform = Transform3D(-4.1796477e-09, 8.742278e-08, -0.4080552, 0, -1, -3.5673317e-08, -0.095619194, -3.821371e-15, 1.7836658e-08, -0.508, 0.525, -0.79)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair5" type="MeshInstance3D" parent="TableSet3" unique_id=115032781]
-transform = Transform3D(4.179649e-09, -8.742277e-08, 0.4080552, 1.4438097e-08, -1, -3.5673317e-08, 0.095619194, 1.509958e-07, -1.7836658e-08, 0.5080782, 0.525, 0.79)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair6" type="MeshInstance3D" parent="TableSet3" unique_id=563721468]
-transform = Transform3D(4.179649e-09, -8.742277e-08, 0.4080552, 1.4438097e-08, -1, -3.5673317e-08, 0.095619194, 1.509958e-07, -1.7836658e-08, -0.508, 0.525, 0.79)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="TableSet4" type="Node3D" parent="." unique_id=715003230]
-transform = Transform3D(2.2140136, 0, 0, 0, 2.2140136, 0, 0, 0, 2.2140136, 7.9642262, 0.2595186, -16.869287)
-
-[node name="Table" type="MeshInstance3D" parent="TableSet4" unique_id=1581596806]
-transform = Transform3D(1.8886156, 0, 0, 0, 0.13711351, 0, 0, 0, 1.1665672, 0, 0.7182708, 0)
-mesh = SubResource("BoxMesh_04vyi")
-
-[node name="Chair" type="MeshInstance3D" parent="TableSet4" unique_id=701739490]
-transform = Transform3D(0.095619194, 0, 0, 0, 1, 0, 0, 0, 0.4080552, -1.2367978, 0.5250219, 0)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair2" type="MeshInstance3D" parent="TableSet4" unique_id=338780779]
-transform = Transform3D(-0.095619194, 0, -3.5673317e-08, 0, 1, 0, 8.3592955e-09, 0, -0.4080552, 1.237, 0.525, 0)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair3" type="MeshInstance3D" parent="TableSet4" unique_id=587211391]
-transform = Transform3D(-4.1796477e-09, 8.742278e-08, -0.4080552, 0, -1, -3.5673317e-08, -0.095619194, -3.821371e-15, 1.7836658e-08, 0.5080782, 0.525, -0.78975886)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair4" type="MeshInstance3D" parent="TableSet4" unique_id=1719316041]
-transform = Transform3D(-4.1796477e-09, 8.742278e-08, -0.4080552, 0, -1, -3.5673317e-08, -0.095619194, -3.821371e-15, 1.7836658e-08, -0.508, 0.525, -0.79)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair5" type="MeshInstance3D" parent="TableSet4" unique_id=1740885253]
-transform = Transform3D(4.179649e-09, -8.742277e-08, 0.4080552, 1.4438097e-08, -1, -3.5673317e-08, 0.095619194, 1.509958e-07, -1.7836658e-08, 0.5080782, 0.525, 0.79)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Chair6" type="MeshInstance3D" parent="TableSet4" unique_id=2001197077]
-transform = Transform3D(4.179649e-09, -8.742277e-08, 0.4080552, 1.4438097e-08, -1, -3.5673317e-08, 0.095619194, 1.509958e-07, -1.7836658e-08, -0.508, 0.525, 0.79)
-mesh = SubResource("BoxMesh_0ef7w")
-
-[node name="Walls" type="Node3D" parent="." unique_id=69486144]
-transform = Transform3D(2.2140136, 0, 0, 0, 2.2140136, 0, 0, 0, 2.2140136, 0.086766146, 0.2595186, 0.06925421)
-
-[node name="Back" type="MeshInstance3D" parent="Walls" unique_id=189530815]
-transform = Transform3D(7.394896, 0, 0, 0, -4.3711392e-08, -3.5911503, 0, 1.0000001, -1.5697417e-07, 0, 3.445, -11.652)
-mesh = SubResource("PlaneMesh_04vyi")
-
-[node name="StageLeft" type="MeshInstance3D" parent="Walls" unique_id=492496584]
-transform = Transform3D(-3.2324118e-07, -1.0000001, 1.5697417e-07, 0, -4.3711392e-08, -3.5911503, 7.394896, -4.3711392e-08, 6.8615585e-15, 7.3657246, 3.4451966, -4.25105)
-mesh = SubResource("PlaneMesh_04vyi")
-
-[node name="StageRight" type="MeshInstance3D" parent="Walls" unique_id=2129943128]
-transform = Transform3D(-3.2324118e-07, 1.0000001, -1.5697417e-07, 0, -4.3711392e-08, -3.5911503, -7.394896, -4.3711392e-08, 6.8615585e-15, -7.366, 3.445, -4.251)
-mesh = SubResource("PlaneMesh_04vyi")
-
-[node name="BrewingStand" type="Node3D" parent="." unique_id=1027184098]
-transform = Transform3D(2.2140136, 0, 0, 0, 2.2140136, 0, 0, 0, 2.2140136, 0.086766146, 0.2595186, 0.06925421)
-
-[node name="StandBase" type="MeshInstance3D" parent="BrewingStand" unique_id=1221802007]
-transform = Transform3D(6.3998184, 0, 0, 0, 1, 0, 0, 0, 0.43588066, 0, 0.42487597, 1.5555964)
-mesh = SubResource("BoxMesh_o1n6l")
-
-[node name="StandBase2" type="MeshInstance3D" parent="BrewingStand" unique_id=849995994]
-transform = Transform3D(1.0428451, 0, 0, 0, 0.17963272, 0, 0, 0, 0.6613726, -1.5851535, 0.7699063, 2.110672)
-mesh = SubResource("BoxMesh_o1n6l")
-
-[node name="StandBase3" type="MeshInstance3D" parent="BrewingStand" unique_id=908238711]
-transform = Transform3D(1.0428451, 0, 0, 0, 0.17963272, 0, 0, 0, 0.6613726, 0.41334474, 0.7699063, 2.110672)
-mesh = SubResource("BoxMesh_o1n6l")
-
-[node name="Pot" type="StaticBody3D" parent="BrewingStand" unique_id=1761437764]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.885253, 1.0635928, 1.9562407)
-
-[node name="PotMesh" type="MeshInstance3D" parent="BrewingStand/Pot" unique_id=2096397335]
-transform = Transform3D(0.2891079, 0, 0, 0, 0.15681952, 0, 0, 0, 0.25127867, 0, -0.21292216, 0)
-material_override = SubResource("StandardMaterial3D_npiso")
-mesh = ExtResource("4_2n2jf")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BrewingStand/Pot" unique_id=1472304998]
-shape = SubResource("BoxShape3D_aynr4")
-
-[node name="Burner" type="StaticBody3D" parent="BrewingStand" unique_id=1663944350]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4087763, 0.8805844, 2.0804462)
-
-[node name="BurnerMesh" type="MeshInstance3D" parent="BrewingStand/Burner" unique_id=2000199815]
-transform = Transform3D(0.4055699, 0, 0, 0, 0.027345452, 0, 0, 0, 0.37324813, 0, 0, 0)
-mesh = SubResource("CylinderMesh_aynr4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BrewingStand/Burner" unique_id=1898893664]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0013125539, 0)
-shape = SubResource("CylinderShape3D_aynr4")
-
-[node name="Cup" type="StaticBody3D" parent="BrewingStand" unique_id=848565934]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11061059, 0.9605373, 1.9562407)
-
-[node name="CupMesh" type="MeshInstance3D" parent="BrewingStand/Cup" unique_id=1637268016]
-transform = Transform3D(0.22526747, 0, 0, 0, 0.10595897, 0, 0, 0, 0.24356705, 0, 0, 0)
-mesh = SubResource("CylinderMesh_2n2jf")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BrewingStand/Cup" unique_id=1623999112]
-transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0038452148, 0)
-shape = SubResource("CylinderShape3D_2n2jf")
-
-[node name="Cup2" type="StaticBody3D" parent="BrewingStand" unique_id=1016135700]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39736703, 0.9605373, 1.9562407)
-
-[node name="CupMesh" type="MeshInstance3D" parent="BrewingStand/Cup2" unique_id=1320994283]
-transform = Transform3D(0.22526747, 0, 0, 0, 0.10595897, 0, 0, 0, 0.24356705, 0.05059293, 0, 0)
-mesh = SubResource("CylinderMesh_2n2jf")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BrewingStand/Cup2" unique_id=1364984757]
-transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 1, 0.050236285, -0.012058616, 0)
-shape = SubResource("CylinderShape3D_2n2jf")
-
-[node name="Cup3" type="StaticBody3D" parent="BrewingStand" unique_id=1510575584]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.77918315, 0.9605373, 1.9562407)
-
-[node name="CupMesh" type="MeshInstance3D" parent="BrewingStand/Cup3" unique_id=1905640015]
-transform = Transform3D(0.22526747, 0, 0, 0, 0.10595897, 0, 0, 0, 0.24356705, 0, 0, 0)
-mesh = SubResource("CylinderMesh_2n2jf")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BrewingStand/Cup3" unique_id=1909397310]
-transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0038452148, 0)
-shape = SubResource("CylinderShape3D_2n2jf")
-
-[node name="Cup4" type="StaticBody3D" parent="BrewingStand" unique_id=1199754254]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11061059, 0.9605373, 2.254138)
-
-[node name="CupMesh" type="MeshInstance3D" parent="BrewingStand/Cup4" unique_id=60633590]
-transform = Transform3D(0.22526747, 0, 0, 0, 0.10595897, 0, 0, 0, 0.24356705, 0, 0, 0)
-mesh = SubResource("CylinderMesh_2n2jf")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BrewingStand/Cup4" unique_id=1460508847]
-transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0038452148, 0)
-shape = SubResource("CylinderShape3D_2n2jf")
-
-[node name="Cup5" type="StaticBody3D" parent="BrewingStand" unique_id=948807650]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39736703, 0.9605373, 2.254138)
-
-[node name="CupMesh" type="MeshInstance3D" parent="BrewingStand/Cup5" unique_id=538353013]
-transform = Transform3D(0.22526747, 0, 0, 0, 0.10595897, 0, 0, 0, 0.24356705, 0.05059293, 0, 0)
-mesh = SubResource("CylinderMesh_2n2jf")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BrewingStand/Cup5" unique_id=1766438501]
-transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 1, 0.050337136, -0.012176871, 0)
-shape = SubResource("CylinderShape3D_2n2jf")
-
-[node name="Cup6" type="StaticBody3D" parent="BrewingStand" unique_id=1470586424]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7791832, 0.9605373, 2.254138)
-
-[node name="CupMesh" type="MeshInstance3D" parent="BrewingStand/Cup6" unique_id=140618937]
-transform = Transform3D(0.22526747, 0, 0, 0, 0.10595897, 0, 0, 0, 0.24356705, 0, 0, 0)
-mesh = SubResource("CylinderMesh_2n2jf")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BrewingStand/Cup6" unique_id=1571570089]
-transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0038452148, 0)
-shape = SubResource("CylinderShape3D_2n2jf")
+text = "Temp instructions, idk lol"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=607364963]
+transform = Transform3D(1, 0, 0, 0, 0.6770943, 0.7358963, 0, -0.7358963, 0.6770943, -1.6728696, 5.2063847, -1.3813279)
+light_color = Color(0.8392157, 0.58431375, 0.43137255, 1)
+light_energy = 7.346
+omni_range = 28.72214
+
+[node name="brewing_env" parent="." unique_id=169624594 instance=ExtResource("4_wwe0j")]
+transform = Transform3D(0.7870206, 0, 0, 0, 0.7870206, 0, 0, 0, 0.7870206, -1.7695396, 0, 2.590852)
