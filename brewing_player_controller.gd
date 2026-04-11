@@ -4,7 +4,7 @@ extends Node3D
 @export var yaw_limit: float = 60.0   # degrees left/right
 @export var pitch_min: float = -30.0  # degrees down
 @export var pitch_max: float = 25.0   # degrees up
-@export var ray_length = 100
+@export var ray_length = 40
 @onready var debug_text_label = $Control/DebugText
 
 # Assets to preload
@@ -34,48 +34,43 @@ func _input(event):
 		# NOTE: Just the structure of this item
 		## { "position": (-4.876412, 3.20117, 5.886989), "normal": (1.0, 0.0, 0.0), "face_index": -1, "collider_id": 30400316950, "collider": Pot:<StaticBody3D#30400316950>, "shape": 0, "rid": RID(631360192512) }
 		var collided_obj = check_raycast_collision()
+		print(collided_obj)
 		if !collided_obj.is_empty():
 			# TODO: Ideally the objects themselves only have visual updates, e.g. pot.start_boiling, and everything else handled otherwise
 			# 		or through property access, e.g. cup.tea_type
 			# TODO: Emit a signal if we update the inventory with this selection or something
 			trigger_item_interaction(collided_obj.collider)
 
-func check_raycast_collision():
-	var origin = cam.project_ray_origin($Control.cursor_pos)
-	var end = origin + cam.project_ray_normal($Control.cursor_pos) * ray_length
-	var query = PhysicsRayQueryParameters3D.create(origin, end)
-	query.collide_with_areas = true
-
-	var space_state = get_world_3d().direct_space_state
-	var result = space_state.intersect_ray(query)
-	return result
-
 # Not all of them use the passed in node, but it's good to have
 var item_interact_funcs = {
 	"TeaInv": shelf_interaction,
 	"TeaCup": cup_interaction,
+	"TeaServe": counter_interaction, # Something weird with COunter-col blah blah
 }
+
 func trigger_item_interaction(item_node_collider):
 	var item_node = item_node_collider.get_parent()
 	var item_name = item_node.name
-	print("Triggering interaction for: ", item_name)
 	var min_name = item_name.rstrip("0123456789")
 	# TODO: This passes the collider, so get the parent
 	item_interact_funcs[min_name].call(item_node)
-
-
 
 ## ITEM FUNCTIONS ##
 # Some day, maybe adding state to each of these items
 # But since I'm not worrying about animations or anything now, we're good
 
+var held_item: Node = null
+
+var is_holding_cup = false
+var is_cup_empty = true
 var has_teabag = false
 var teabag = null
 func shelf_interaction(_tea_inv_node):
-	if not has_teabag:
+	if not has_teabag and not is_holding_cup:
 		teabag = teabag_model.instantiate()
 		teabag.scale = Vector3(teabag.scale.x*.5, teabag.scale.y*.5, teabag.scale.z*.5)
 		add_child(teabag) # TODO: Add to a different child? But I want it to track there... So maybe I do keep it on player?
+		held_item = teabag
 		has_teabag = true
 		teabag.global_position = get_hold_location_pos()
 		debug_text_label.text = "Teabag picked up"
@@ -83,13 +78,37 @@ func shelf_interaction(_tea_inv_node):
 # TODO: Place teabag in cup, then pick up cup
 func cup_interaction(cup_node):
 	if has_teabag:
-		print("Teabag had! Pickup cup")
 		teabag.queue_free()
 		has_teabag = false
 		cup_node.global_position = get_hold_location_pos()
-		# TODO: Should probably delete cup, then spawn a new one actually, so we can add as child here
-		debug_text_label.text = "Cup picked up with teabag inside"
+		cup_node.reparent(self)
+		held_item = cup_node
+		is_holding_cup = true
+		debug_text_label.text = "Cup picked up"
 		# TODO: Can put cup down somewhere to pour water into
+
+func counter_interaction(counter_node):
+	if is_holding_cup:
+		var res = check_raycast_collision([held_item])
+		# PICKUP: Place cup at the intersect point
+		# Will likely need to reset orientation of it so it points up, should be fine to do original rotation
+		
+
+	
+	# TODO: If the cup is not empty trigger serve() or something?
+
+## Util Functions ##
+
+func check_raycast_collision(exceptions = []):
+	var origin = cam.project_ray_origin($Control.cursor_pos)
+	var end = origin + cam.project_ray_normal($Control.cursor_pos) * ray_length
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	query.exclude = exceptions
+	query.collide_with_areas = true
+
+	var space_state = get_world_3d().direct_space_state
+	var result = space_state.intersect_ray(query)
+	return result
 
 # We'll constantly use the ray approach to put an item at a position in front of the player
 func get_hold_location_pos():

@@ -19,13 +19,13 @@ transform = Transform3D(1.2706147, 0, 0, 0, 1.2706147, 0, 0, 0, 1.2706147, 0, 0,
 script = ExtResource("1_ni0av")
 
 [node name="Character" type="Node3D" parent="." unique_id=1850063740]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.339, 2.6808574, 6.3990054)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.431, 2.681, 4.2326684)
 script = ExtResource("2_tya4k")
 yaw_limit = 90.0
 pitch_max = 30.0
 
 [node name="Camera3D" type="Camera3D" parent="Character" unique_id=663389705]
-transform = Transform3D(0.7870206, 0, 0, 0, 0.7870206, 0, 0, 0, 0.7870206, 0, 0, 0)
+transform = Transform3D(0.7870206, 0, 0, 0, 0.7870206, 0, 0, 0, 0.7870206, 0, 0.45517206, 0)
 environment = SubResource("Environment_vodtt")
 current = true
 fov = 52.6
@@ -37,6 +37,7 @@ anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 script = ExtResource("2_aynr4")
+metadata/_edit_use_anchors_ = true
 
 [node name="DebugText" type="RichTextLabel" parent="Character/Control" unique_id=438323098]
 layout_mode = 0
@@ -45,12 +46,12 @@ offset_right = 773.0
 offset_bottom = 1077.0
 theme = SubResource("Theme_npiso")
 text = "Temp instructions, idk lol"
+metadata/_edit_use_anchors_ = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=607364963]
-transform = Transform3D(1, 0, 0, 0, 0.6770943, 0.7358963, 0, -0.7358963, 0.6770943, -1.6728696, 5.2063847, -1.3813279)
+transform = Transform3D(1, 0, 0, 0, 0.6770943, 0.7358963, 0, -0.7358963, 0.6770943, 0.097, 5.206, 1.21)
 light_color = Color(0.8392157, 0.58431375, 0.43137255, 1)
 light_energy = 7.346
 omni_range = 28.72214
 
-[node name="brewing_env" parent="." unique_id=169624594 instance=ExtResource("4_wwe0j")]
-transform = Transform3D(0.7870206, 0, 0, 0, 0.7870206, 0, 0, 0, 0.7870206, -1.7695396, 0, 2.590852)
+[node name="brewing_env" parent="." unique_id=210895622 instance=ExtResource("4_wwe0j")]
