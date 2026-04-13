@@ -79,7 +79,7 @@ func shelf_interaction(_tea_inv_node):
 		debug_text_label.text = "Teabag picked up"
 
 # TODO: Place teabag in cup, then pick up cup
-func cup_interaction(cup_node):
+func cup_interaction(cup_node: TeaCup):
 	if held_item == null:
 		# -.-
 		if cup_node.name in filled_cups:
@@ -126,7 +126,7 @@ var is_boiled = false
 # TODO: Set this better / when I do the OOP stuff
 var kettle_parent = null
 var kettle_position = null 
-func kettle_interaction(kettle_node):
+func kettle_interaction(kettle_node: Kettle):
 	if held_item == null and is_boiled == false:
 		kettle_parent = kettle_node.get_parent()
 		kettle_position = kettle_node.position

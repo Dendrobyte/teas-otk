@@ -17,7 +17,7 @@ func _enter_tree():
 	# TODO: Iteration for diff elements
 	var teacup_script = preload("res://brewing/teacup.gd")
 	var brewing_env = get_node("brewing_env")
-	var cup = brewing_env.get_node("TeaCup1") # I should add some tag in Blender of my own (e.g. auto_Name)
+	var cup: TeaCup = brewing_env.get_node("TeaCup1") # I should add some tag in Blender of my own (e.g. auto_Name)
 	cup_ref = cup.duplicate()
 	# NOTE: Find a better way to copy all properties. Probably some flag in duplicate()
 	cup_ref.name = cup.name.rstrip("0123456789")
