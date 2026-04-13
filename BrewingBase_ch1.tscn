@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://kmcdpx3tde62"]
 
-[ext_resource type="Script" uid="uid://cgxq82dhb7gja" path="res://brewing_base.gd" id="1_ni0av"]
-[ext_resource type="Script" uid="uid://bw4ywnt705a6l" path="res://brewing_ui.gd" id="2_aynr4"]
-[ext_resource type="Script" uid="uid://t7m4u5is2712" path="res://brewing_player_controller.gd" id="2_tya4k"]
+[ext_resource type="Script" path="res://brewing_base.gd" id="1_ni0av"]
+[ext_resource type="Script" path="res://brewing_ui.gd" id="2_aynr4"]
+[ext_resource type="Script" path="res://brewing_player_controller.gd" id="2_tya4k"]
 [ext_resource type="PackedScene" uid="uid://bcbs4m76eq7fj" path="res://assets/models/brewing_env.glb" id="4_wwe0j"]
 
 [sub_resource type="Environment" id="Environment_vodtt"]
@@ -54,4 +54,5 @@ light_color = Color(0.8392157, 0.58431375, 0.43137255, 1)
 light_energy = 7.346
 omni_range = 28.72214
 
-[node name="brewing_env" parent="." unique_id=210895622 instance=ExtResource("4_wwe0j")]
+[node name="brewing_env" parent="." unique_id=271861133 instance=ExtResource("4_wwe0j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0017548124, 0.008890774, -0.004421557)

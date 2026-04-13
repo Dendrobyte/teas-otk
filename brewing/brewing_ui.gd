@@ -8,4 +8,4 @@ func _ready():
 
 # Draw a circle at the reticle position
 func _draw():
-    draw_circle(Vector2(cursor_pos.x, cursor_pos.y), 9.3905, Color.ALICE_BLUE)
+    draw_circle(Vector2(cursor_pos.x, cursor_pos.y), 9.3905, Color.SEA_GREEN)

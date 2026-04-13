@@ -15,6 +15,7 @@ func _enter_tree():
 	# TODO: Should create node groups for each one
 	# For now, removing original elements and then creating new ones
 	# TODO: Iteration for diff elements
+	var teacup_script = preload("res://brewing/teacup.gd")
 	var brewing_env = get_node("brewing_env")
 	var cup = brewing_env.get_node("TeaCup1") # I should add some tag in Blender of my own (e.g. auto_Name)
 	cup_ref = cup.duplicate()
@@ -22,6 +23,8 @@ func _enter_tree():
 	cup_ref.name = cup.name.rstrip("0123456789")
 	cup_ref.scale = cup.scale
 	cup_ref.position = cup.position
+	cup_ref.get_node("Teabag").hide()
+	cup_ref.get_node("Water").hide()
 	cup.queue_free()
 
 	# Spawn in the items
@@ -32,6 +35,7 @@ func _enter_tree():
 		new_cup.name = cup_ref.name + str(i)
 		new_cup.scale = cup_ref.scale
 		new_cup.position = Vector3(cup_ref.position.x+cup_x_offset*i, cup_ref.position.y, cup_ref.position.z)
+		new_cup.set_script(teacup_script)
 		add_child(new_cup)
 
 	print("Finished loading brewing base")

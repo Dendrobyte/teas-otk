@@ -44,7 +44,8 @@ func _input(event):
 var item_interact_funcs = {
 	"TeaInv": shelf_interaction,
 	"TeaCup": cup_interaction,
-	"TeaServe": counter_interaction, # Something weird with COunter-col blah blah
+	"TeaServe": counter_interaction, # Something weird with Counter-col blah blah
+	"Kettle": kettle_interaction,
 }
 
 func trigger_item_interaction(item_node_collider):
@@ -62,8 +63,8 @@ func trigger_item_interaction(item_node_collider):
 var held_item: Node = null
 var held_item_static_body: StaticBody3D = null
 
-var is_holding_cup = false
-var is_cup_empty = true
+var is_holding_cup = false # replace with held_item check, OOP thing probably
+var filled_cups = [] # Again, OOP moment to fix
 var has_teabag = false
 var teabag = null
 func shelf_interaction(_tea_inv_node):
@@ -72,24 +73,39 @@ func shelf_interaction(_tea_inv_node):
 		teabag.scale = Vector3(teabag.scale.x*.5, teabag.scale.y*.5, teabag.scale.z*.5)
 		add_child(teabag) # TODO: Add to a different child? But I want it to track there... So maybe I do keep it on player?
 		set_held_item(teabag)
+		print(teabag.name)
 		has_teabag = true
-		teabag.global_position = get_hold_location_pos()
+		# teabag.global_position = get_hold_location_pos()
 		debug_text_label.text = "Teabag picked up"
 
 # TODO: Place teabag in cup, then pick up cup
 func cup_interaction(cup_node):
-	if has_teabag:
+	if held_item == null:
+		# -.-
+		if cup_node.name in filled_cups:
+			debug_text_label.text = "Served cup " + cup_node.name + "!"
+		return
+	if held_item.name == "teabag" and cup_node.name not in filled_cups: # lowercase because model name
 		teabag.queue_free()
-		has_teabag = false
+		has_teabag = false # could just check held_item
 		cup_node.global_position = get_hold_location_pos()
 		cup_node.reparent(self)
-		set_held_item(cup_node)
+		set_held_item(cup_node) # TODO: Don't pick up cup right away. Maybe have a right click to "insta pickup" or something in future?
 		is_holding_cup = true
-		debug_text_label.text = "Cup picked up"
+		cup_node.get_node("Teabag").show()
+		debug_text_label.text = "Cup picked up, teabag placed in side"
 		# TODO: Can put cup down somewhere to pour water into
+	elif held_item.name == "Kettle" and held_item.name not in filled_cups:
+		debug_text_label.text = "Filled a cup!"
+		cup_node.get_node("Water").show()
+		# TODO: Kettle.decrease_level() or some shit, but that can be made a new task
+		# Filling the kettle can just wait in general
+		filled_cups.append(cup_node.name)
 
 func counter_interaction(counter_node):
-	if is_holding_cup:
+	if held_item == null:
+		return
+	if held_item.name.contains("TeaCup"):
 		var res = check_raycast_collision([held_item.get_node("StaticBody3D")])
 		# again, idk position vs global at this point but no questions lol
 		# The cup origin is in the center of the cup, so I could change that
@@ -98,12 +114,32 @@ func counter_interaction(counter_node):
 		held_item.reparent(counter_node) # I should parent this in game_scene? Or at least set a reference for serving?
 		is_holding_cup = false
 		set_held_item(null)
+	elif held_item.name == "Kettle":
+		held_item.reparent(kettle_parent)
+		held_item.position = kettle_position
+		set_held_item(null)
+		debug_text_label.text = "Kettle has been placed back"
+
 	# TODO: If the cup is not empty "is_steeped" trigger serve() or something?
 
-## Util Functions ##
+var is_boiled = false
+# TODO: Set this better / when I do the OOP stuff
+var kettle_parent = null
+var kettle_position = null 
+func kettle_interaction(kettle_node):
+	if held_item == null and is_boiled == false:
+		kettle_parent = kettle_node.get_parent()
+		kettle_position = kettle_node.position
 
+		# TODO: Trigger kettle.boil()
+		is_boiled = true
+		debug_text_label.text = "Kettle has been boiled (and parent/position set...)"
+	elif held_item == null and is_boiled == true:
+		set_held_item(kettle_node)
+		kettle_node.reparent(self)
+
+## Util Functions ##
 func check_raycast_collision(exceptions = []):
-	print("Exceptions? ", exceptions)
 	var origin = cam.project_ray_origin($Control.cursor_pos)
 	var end = origin + cam.project_ray_normal($Control.cursor_pos) * ray_length
 	var query = PhysicsRayQueryParameters3D.create(origin, end)
@@ -123,6 +159,7 @@ func get_hold_location_pos():
 func set_held_item(held_item_node):
 	if held_item_node != null:
 		held_item = held_item_node
+		held_item_node.global_position = get_hold_location_pos()
 		if held_item_node.has_node("StaticBody3D"):
 			held_item_static_body = held_item_node.get_node("StaticBody3D")
 		else:
