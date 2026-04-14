@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://kmcdpx3tde62"]
 
-[ext_resource type="Script" path="res://brewing_base.gd" id="1_ni0av"]
-[ext_resource type="Script" path="res://brewing_ui.gd" id="2_aynr4"]
-[ext_resource type="Script" path="res://brewing_player_controller.gd" id="2_tya4k"]
+[ext_resource type="Script" uid="uid://cgxq82dhb7gja" path="res://brewing/brewing_base.gd" id="1_fyeyg"]
+[ext_resource type="Script" uid="uid://t7m4u5is2712" path="res://brewing/brewing_player_controller.gd" id="2_xyxxm"]
+[ext_resource type="Script" uid="uid://bw4ywnt705a6l" path="res://brewing/brewing_ui.gd" id="3_wwe0j"]
 [ext_resource type="PackedScene" uid="uid://bcbs4m76eq7fj" path="res://assets/models/brewing_env.glb" id="4_wwe0j"]
 
 [sub_resource type="Environment" id="Environment_vodtt"]
@@ -16,13 +16,11 @@ default_font_size = 30
 
 [node name="BrewingBase" type="Node3D" unique_id=2002152738]
 transform = Transform3D(1.2706147, 0, 0, 0, 1.2706147, 0, 0, 0, 1.2706147, 0, 0, 0)
-script = ExtResource("1_ni0av")
+script = ExtResource("1_fyeyg")
 
 [node name="Character" type="Node3D" parent="." unique_id=1850063740]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.431, 2.681, 4.2326684)
-script = ExtResource("2_tya4k")
-yaw_limit = 90.0
-pitch_max = 30.0
+script = ExtResource("2_xyxxm")
 
 [node name="Camera3D" type="Camera3D" parent="Character" unique_id=663389705]
 transform = Transform3D(0.7870206, 0, 0, 0, 0.7870206, 0, 0, 0, 0.7870206, 0, 0.45517206, 0)
@@ -36,7 +34,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-script = ExtResource("2_aynr4")
+script = ExtResource("3_wwe0j")
 metadata/_edit_use_anchors_ = true
 
 [node name="DebugText" type="RichTextLabel" parent="Character/Control" unique_id=438323098]

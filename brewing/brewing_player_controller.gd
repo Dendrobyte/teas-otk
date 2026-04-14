@@ -1,4 +1,5 @@
 extends Node3D
+class_name BrewingPlayer
 
 @export var sensitivity: float = 0.002
 @export var yaw_limit: float = 60.0   # degrees left/right
@@ -37,108 +38,24 @@ func _input(event):
 		if !collided_obj.is_empty():
 			# TODO: Ideally the objects themselves only have visual updates, e.g. pot.start_boiling, and everything else handled otherwise
 			# 		or through property access, e.g. cup.tea_type
-			# TODO: Emit a signal if we update the inventory with this selection or something
-			trigger_item_interaction(collided_obj.collider)
+			# TODO: Emit a signal to game_scene if we update the inventory with this selection or something
+			# If there's an interact function, call it
+			var item_node = collided_obj.collider.get_parent()
+			if item_node.has_method("interact"):
+				# NOTE: We're returning a string right now to set debug text
+				# Idt we need to actually return anything so... it's aight
+				debug_text_label.text = item_node.interact(self)
 
-# Not all of them use the passed in node, but it's good to have
-var item_interact_funcs = {
-	"TeaInv": shelf_interaction,
-	"TeaCup": cup_interaction,
-	"TeaServe": counter_interaction, # Something weird with Counter-col blah blah
-	"Kettle": kettle_interaction,
-}
-
-func trigger_item_interaction(item_node_collider):
-	var item_node = item_node_collider.get_parent()
-	var item_name = item_node.name
-	print("Triggering collision for ", item_name)
-	var min_name = item_name.rstrip("0123456789")
-	# TODO: This passes the collider, so get the parent
-	item_interact_funcs[min_name].call(item_node)
-
-## ITEM FUNCTIONS ##
-# Some day, maybe adding state to each of these items
-# But since I'm not worrying about animations or anything now, we're good
+## Item Handling Stuff ##
 
 var held_item: Node = null
 var held_item_static_body: StaticBody3D = null
 
-var is_holding_cup = false # replace with held_item check, OOP thing probably
-var filled_cups = [] # Again, OOP moment to fix
-var has_teabag = false
-var teabag = null
-func shelf_interaction(_tea_inv_node):
-	if not has_teabag and not is_holding_cup:
-		teabag = teabag_model.instantiate()
-		teabag.scale = Vector3(teabag.scale.x*.5, teabag.scale.y*.5, teabag.scale.z*.5)
-		add_child(teabag) # TODO: Add to a different child? But I want it to track there... So maybe I do keep it on player?
-		set_held_item(teabag)
-		print(teabag.name)
-		has_teabag = true
-		# teabag.global_position = get_hold_location_pos()
-		debug_text_label.text = "Teabag picked up"
+# NOTE: Having this in player controller isn't a problem imo. It's just for when they hold it.
+# Just used when picking up teabag atm, and set to held item inside of tea_inv. Could change?
+func new_teabag():
+	return teabag_model.instantiate()
 
-# TODO: Place teabag in cup, then pick up cup
-func cup_interaction(cup_node: TeaCup):
-	if held_item == null:
-		# -.-
-		if cup_node.name in filled_cups:
-			debug_text_label.text = "Served cup " + cup_node.name + "!"
-		return
-	if held_item.name == "teabag" and cup_node.name not in filled_cups: # lowercase because model name
-		teabag.queue_free()
-		has_teabag = false # could just check held_item
-		cup_node.global_position = get_hold_location_pos()
-		cup_node.reparent(self)
-		set_held_item(cup_node) # TODO: Don't pick up cup right away. Maybe have a right click to "insta pickup" or something in future?
-		is_holding_cup = true
-		cup_node.get_node("Teabag").show()
-		debug_text_label.text = "Cup picked up, teabag placed in side"
-		# TODO: Can put cup down somewhere to pour water into
-	elif held_item.name == "Kettle" and held_item.name not in filled_cups:
-		debug_text_label.text = "Filled a cup!"
-		cup_node.get_node("Water").show()
-		# TODO: Kettle.decrease_level() or some shit, but that can be made a new task
-		# Filling the kettle can just wait in general
-		filled_cups.append(cup_node.name)
-
-func counter_interaction(counter_node):
-	if held_item == null:
-		return
-	if held_item.name.contains("TeaCup"):
-		var res = check_raycast_collision([held_item.get_node("StaticBody3D")])
-		# again, idk position vs global at this point but no questions lol
-		# The cup origin is in the center of the cup, so I could change that
-		held_item.global_position = Vector3(res.position.x, res.position.y + .3, res.position.z)
-		# Manual adjustments until I make a "proper" snap or something
-		held_item.reparent(counter_node) # I should parent this in game_scene? Or at least set a reference for serving?
-		is_holding_cup = false
-		set_held_item(null)
-	elif held_item.name == "Kettle":
-		held_item.reparent(kettle_parent)
-		held_item.position = kettle_position
-		set_held_item(null)
-		debug_text_label.text = "Kettle has been placed back"
-
-	# TODO: If the cup is not empty "is_steeped" trigger serve() or something?
-
-var is_boiled = false
-# TODO: Set this better / when I do the OOP stuff
-var kettle_parent = null
-var kettle_position = null 
-func kettle_interaction(kettle_node: Kettle):
-	if held_item == null and is_boiled == false:
-		kettle_parent = kettle_node.get_parent()
-		kettle_position = kettle_node.position
-
-		# TODO: Trigger kettle.boil()
-		is_boiled = true
-		debug_text_label.text = "Kettle has been boiled (and parent/position set...)"
-	elif held_item == null and is_boiled == true:
-		set_held_item(kettle_node)
-		kettle_node.reparent(self)
-
-## Util Functions ##
 func check_raycast_collision(exceptions = []):
 	var origin = cam.project_ray_origin($Control.cursor_pos)
 	var end = origin + cam.project_ray_normal($Control.cursor_pos) * ray_length
@@ -156,9 +73,15 @@ func get_hold_location_pos():
 	var end = origin + cam.project_ray_normal($Control.cursor_pos) * 4
 	return end
 
+# TODO: Can't I make this a generic set() below the variable that runs?
+#		Just need to replace all instances
 func set_held_item(held_item_node):
 	if held_item_node != null:
 		held_item = held_item_node
+		if held_item.get_parent() == null:
+			add_child(held_item)
+		else:
+			held_item.reparent(self)
 		held_item_node.global_position = get_hold_location_pos()
 		if held_item_node.has_node("StaticBody3D"):
 			held_item_static_body = held_item_node.get_node("StaticBody3D")
@@ -167,3 +90,13 @@ func set_held_item(held_item_node):
 	else:
 		held_item = null
 		held_item_static_body = null
+
+# This exists to avoid a bunch of null checks when we get the name
+func get_held_item_name():
+	if held_item != null:
+		return held_item.name
+	else:
+		return "NULL"
+
+func get_held_item_min_name():
+	return get_held_item_name().rstrip("0123456789")
