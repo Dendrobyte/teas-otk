@@ -42,9 +42,13 @@ func _input(event):
 			# If there's an interact function, call it
 			var item_node = collided_obj.collider.get_parent()
 			if item_node.has_method("interact"):
-				# NOTE: We're returning a string right now to set debug text
-				# Idt we need to actually return anything so... it's aight
-				debug_text_label.text = item_node.interact(self)
+				var result_text = item_node.interact(self)
+				if result_text == null:
+					# Catch unhandled string returns for debugging
+					# Idt we need to actually return anything so... it's aight
+					debug_text_label.text = "Unhandled item on " + item_node.name
+				else:
+					debug_text_label.text = result_text
 
 ## Item Handling Stuff ##
 
@@ -91,11 +95,11 @@ func set_held_item(held_item_node):
 		held_item = null
 		held_item_static_body = null
 
-# This exists to avoid a bunch of null checks when we get the name
 func get_held_item_name():
 	if held_item != null:
 		return held_item.name
 	else:
+		# Helps avoid a bunch of null checks on the item before fetching name/min name
 		return "NULL"
 
 func get_held_item_min_name():

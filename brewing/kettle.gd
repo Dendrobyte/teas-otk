@@ -22,7 +22,6 @@ func interact(player_node):
         return "Picked up the kettle!"
     else:
         return "Unhandled kettle interaction"
-    
 
 func reset_position():
     reparent(kettle_parent)

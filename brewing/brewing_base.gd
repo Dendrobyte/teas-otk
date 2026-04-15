@@ -28,6 +28,7 @@ func _enter_tree():
 	cup_ref.get_node("Water").hide()
 	cup.queue_free()
 
+	# TODO: Refactor with for loop and array of tuples. Record it?
 	var kettle_script = preload("res://brewing/kettle.gd")
 	var kettle = brewing_env.get_node("Kettle")
 	kettle.set_script(kettle_script)
@@ -40,6 +41,14 @@ func _enter_tree():
 	var tea_serve_script = preload("res://brewing/tea_serve.gd")
 	var tea_serve = brewing_env.get_node("TeaServe")
 	tea_serve.set_script(tea_serve_script)
+
+	var tea_serve_tray_script = preload("res://brewing/tea_serve_tray.gd")
+	var tea_serve_tray = brewing_env.get_node("ServeTray")
+	tea_serve_tray.set_script(tea_serve_tray_script)
+
+	var burner_script = preload("res://brewing/burner.gd")
+	var burner = brewing_env.get_node("Burner")
+	burner.set_script(burner_script)
 
 	# Spawn in the items
 	# NOTE: Obviously, this is quite manual
