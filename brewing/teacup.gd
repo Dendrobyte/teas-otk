@@ -11,8 +11,12 @@ class_name TeaCup
 		has_teabag = value
 		if is_node_ready(): toggle_teabag(value)
 
-# func _ready():
-# 	print("Loaded cup: ", name)
+# We'll store references that can effectively be used as boolean checks as well, versus traversing for the node?
+var tray_ref: TeaServeTray = null
+var tea_serve_ref: TeaServe = null
+
+func _ready():
+	print("Loaded cup: ", name)
 
 func toggle_water(value):
 	if value:
@@ -30,13 +34,22 @@ func interact(player_node):
 	if player_node.held_item == null:
 		player_node.set_held_item(self) # fourth instance! maybe pickup_item? takes the new parent, but its always player so
 		reparent(player_node)
+		if tray_ref != null:
+			tray_ref.clear_tray()
+			tray_ref = null
+		if tea_serve_ref != null:
+			tea_serve_ref.free_snap_point(name)
+			tea_serve_ref = null
 		return "Picked up " + name
-	elif player_node.get_held_item_name() == "teabag" and not is_filled:
+	elif player_node.get_held_item_name() == "teabag" and not has_teabag:
+		if tea_serve_ref != null:
+			tea_serve_ref.free_snap_point(name)
+			tea_serve_ref = null
+
 		player_node.held_item.queue_free()
 		player_node.set_held_item(self) # third instance I'm seeing these two lines I think
 		reparent(player_node)
 		has_teabag = true
-
 		return "Cup picked up, teabag placed inside"
 	elif player_node.get_held_item_name() == "Kettle" and not is_filled:
 		is_filled = true

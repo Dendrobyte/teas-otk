@@ -1,5 +1,6 @@
 extends Node3D
 class_name TeaInv
+# TODO: TeaContainer
 
 var tea_type = "Bullet_Green" # TODO: Sort the specific teas out way later
 

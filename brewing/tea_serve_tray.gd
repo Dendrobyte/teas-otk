@@ -21,10 +21,14 @@ func interact(player_node):
             # NOTE: could make this a function of each item too, used in tea_serve
             # Namely, for this "position on and reparent to interacted object and reset held item"
             placed_cup_node.place(global_position)
+            placed_cup_node.tray_ref = self
             placed_cup_node.reparent(self)
             player_node.set_held_item(null)
             return "Placed cup on serving tray!"
         else:
             return "Cup cannot be served!"
 
+# I just feel like I might have to do more here? Idk
+func clear_tray():
+    placed_cup_node = null
     
