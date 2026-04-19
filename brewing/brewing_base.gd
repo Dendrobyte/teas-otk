@@ -69,3 +69,8 @@ func _enter_tree():
 	
 func change_debug_text(new_text):
 	get_node("Character").debug_text_label.text = new_text
+
+# I don't mind this here, but the setup is flawed
+# Something better will evolve
+func start_minigame():
+	get_node("Character").start_minigame()

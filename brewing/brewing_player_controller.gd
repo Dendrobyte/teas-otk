@@ -6,6 +6,7 @@ class_name BrewingPlayer
 @export var pitch_min: float = -30.0  # degrees down
 @export var pitch_max: float = 25.0   # degrees up
 @export var ray_length = 40
+@onready var control = $Control
 @onready var debug_text_label = $Control/DebugText
 
 # Assets to preload
@@ -23,6 +24,7 @@ func _ready():
 
 # NOTE: Potential use case for _unhandled_input?
 func _input(event):
+	# I want to eventually move this or use _unhandled_input since the control should activate
 	if event is InputEventMouseMotion:
 		yaw -= event.relative.x * sensitivity
 		pitch -= event.relative.y * sensitivity
