@@ -13,10 +13,12 @@ class_name TeaCup
 
 # We'll store references that can effectively be used as boolean checks as well, versus traversing for the node?
 var tray_ref: TeaServeTray = null
-var tea_serve_ref: TeaServe = null
+var tea_prep_ref: TeaPrep = null
 
 func _ready():
-	print("Loaded cup: ", name)
+	$Water.hide()
+	$Teabag.hide()
+	print("Cup copying goes here")
 
 func toggle_water(value):
 	if value:
@@ -37,14 +39,14 @@ func interact(player_node):
 		if tray_ref != null:
 			tray_ref.clear_tray()
 			tray_ref = null
-		if tea_serve_ref != null:
-			tea_serve_ref.free_snap_point(name)
-			tea_serve_ref = null
+		if tea_prep_ref != null:
+			tea_prep_ref.free_snap_point(name)
+			tea_prep_ref = null
 		return "Picked up " + name
 	elif player_node.get_held_item_name() == "teabag" and not has_teabag:
-		if tea_serve_ref != null:
-			tea_serve_ref.free_snap_point(name)
-			tea_serve_ref = null
+		if tea_prep_ref != null:
+			tea_prep_ref.free_snap_point(name)
+			tea_prep_ref = null
 
 		player_node.held_item.queue_free()
 		player_node.set_held_item(self) # third instance I'm seeing these two lines I think

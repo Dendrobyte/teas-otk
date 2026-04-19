@@ -56,7 +56,7 @@ var held_item: Node = null
 var held_item_static_body: StaticBody3D = null
 
 # NOTE: Having this in player controller isn't a problem imo. It's just for when they hold it.
-# Just used when picking up teabag atm, and set to held item inside of tea_inv. Could change?
+# Just used when picking up teabag atm, and set to held item inside of tea_container. Could change?
 func new_teabag():
 	return teabag_model.instantiate()
 

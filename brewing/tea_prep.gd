@@ -1,5 +1,5 @@
 extends Node3D
-class_name TeaServe
+class_name TeaPrep
 
 @export var total_snap_points = 5
 var snapping_points = [] # Treated as a stack!
@@ -10,7 +10,7 @@ func _ready():
 	for i in range(0, total_snap_points):
 		snapping_points.push_back(Vector3(start_x + i, center.y+.4, center.z))
 
-# We use "TeaServe" because "Counter" seems like it might be a reserved variable
+# We use "TeaPrep" because "Counter" seems like it might be a reserved variable
 # Also "counter" is kind of a naming convention of its own
 func interact(player_node):
 	var held_item = player_node.held_item
@@ -20,7 +20,7 @@ func interact(player_node):
 		var cup_node = held_item as TeaCup
 		var was_placed = snap_cup_placement(cup_node)
 		if was_placed:
-			cup_node.tea_serve_ref = self
+			cup_node.tea_prep_ref = self
 			cup_node.reparent(self)
 			player_node.set_held_item(null)
 			return "Cup placed on prep area"
