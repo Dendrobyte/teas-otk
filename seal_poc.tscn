@@ -2,11 +2,24 @@
 
 [ext_resource type="Script" uid="uid://bajd1fuajquva" path="res://seal_drawing_ui.gd" id="1_lkxin"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_lkxin"]
+font_size = 106
+
 [node name="SealDrawingControl" type="Control" unique_id=521979309]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 323.0
+offset_right = -298.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lkxin")
+
+[node name="ResultLabel" type="Label" parent="." unique_id=876562796]
+layout_mode = 0
+offset_top = 933.0
+offset_right = 348.0
+offset_bottom = 1079.0
+text = "Result:"
+label_settings = SubResource("LabelSettings_lkxin")
