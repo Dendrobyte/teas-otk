@@ -8,8 +8,6 @@ title: Chapter1_Overworld
 <<declare $talked_to_sad_guard = false>>
 ===
 
-// Just throwing in the NPC dialogue for now
-
 title: NPC1
 ---
 Jerry: Ey kid... boy, lot of us sure are lookin' worse for wear.
