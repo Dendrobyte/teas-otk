@@ -10,8 +10,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 323.0
-offset_right = -298.0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = -616.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lkxin")
@@ -23,3 +25,21 @@ offset_right = 348.0
 offset_bottom = 1079.0
 text = "Result:"
 label_settings = SubResource("LabelSettings_lkxin")
+
+[node name="MenuButton" type="MenuButton" parent="." unique_id=1779944704]
+layout_mode = 0
+offset_left = 1404.0
+offset_top = 73.0
+offset_right = 1719.0
+offset_bottom = 178.0
+theme_override_font_sizes/font_size = 63
+text = "Seals"
+flat = false
+
+[node name="ClearButton" type="Button" parent="." unique_id=1395887089]
+layout_mode = 0
+offset_left = 1462.0
+offset_top = 817.0
+offset_right = 1669.0645
+offset_bottom = 948.0
+text = "Clear"
