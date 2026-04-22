@@ -83,7 +83,6 @@ static func scale_to(points):
 		var scaled_x = point.x * (SQUARE_SIZE / bounds.w)
 		var scaled_y = point.y * (SQUARE_SIZE / bounds.h)
 		scaled_points.append(Vector2(scaled_x, scaled_y))
-	print("Scaled: ", scaled_points)
 	return scaled_points
 
 # Takes the points and returns bounding box. x,y are min_x,min_y of points

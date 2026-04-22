@@ -51,8 +51,6 @@ func _gui_input(event):
 			current_stroke = [event.position]
 		else:
 			drawing = false
-			print("Stroke finished with ", current_stroke.size(), " points")
-			print(current_stroke)
 			result_seal = identify_symbol() # { "name": ..., "confidence": ... }
 			# TODO: Return a const of the seal it matches
 			label.text = _label_base_text + result_seal.name + " (" + str(snapped(result_seal.confidence, 0.01)) + ")"
