@@ -52,5 +52,5 @@ light_color = Color(0.8392157, 0.58431375, 0.43137255, 1)
 light_energy = 7.346
 omni_range = 28.72214
 
-[node name="brewing_env" parent="." unique_id=1841483554 instance=ExtResource("4_wwe0j")]
+[node name="brewing_env" parent="." unique_id=1281848148 instance=ExtResource("4_wwe0j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0045463378, 0.008890681, -0.0034796025)

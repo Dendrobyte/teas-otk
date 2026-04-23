@@ -18,7 +18,6 @@ var tea_prep_ref: TeaPrep = null
 func _ready():
 	$Water.hide()
 	$Teabag.hide()
-	print("Cup copying goes here")
 
 func toggle_water(value):
 	if value:
