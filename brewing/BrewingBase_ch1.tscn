@@ -47,9 +47,9 @@ text = "Temp instructions, idk lol"
 metadata/_edit_use_anchors_ = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=607364963]
-transform = Transform3D(1, 0, 0, 0, 0.6770943, 0.7358963, 0, -0.7358963, 0.6770943, 0.097, 5.206, 1.21)
-light_color = Color(0.8392157, 0.58431375, 0.43137255, 1)
-light_energy = 7.346
+transform = Transform3D(0.7870206, 0, 0, 0, 0.53288716, 0.5791656, 0, -0.5791656, 0.53288716, 0.097, 6.2494273, 1.21)
+light_color = Color(0.88744664, 0.9392632, 0.9274047, 1)
+light_energy = 7.083
 omni_range = 28.72214
 
 [node name="brewing_env" parent="." unique_id=1281848148 instance=ExtResource("4_wwe0j")]
