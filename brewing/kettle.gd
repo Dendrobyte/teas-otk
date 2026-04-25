@@ -9,20 +9,27 @@ var is_boiling = false
 var is_boiled = false
 var water_level = 0
 
+var kettle_ready_mat: Material = null
+var kettle_not_ready_mat: Material = null
+
 func _ready():
 	kettle_parent = get_parent()
 	kettle_origin_position = position
-	kettle_notready()
-	# TOOD: Might need to reset timer based on water_level, etc. Not important rn though.
+
+	# Programmatically save materials... why not
+	# NOTE: I don't really like this. Prob better to import them somehow else, but it works for now
+	# Probably doesn't get imported if not assigned- not ready is just hidden
+	kettle_not_ready_mat = $KettleLight.get_active_material(0)
+	kettle_ready_mat = $KettleLight.get_active_material(1)
+
+	$KettleLight.set_surface_override_material(1, kettle_not_ready_mat)
+	# TODO: Might need to reset timer based on water_level, etc. Not important rn though.
 	timer = Timer.new()
-	timer.wait_time = 5.0
+	timer.wait_time = 1.0
 	timer.one_shot = true
 	timer.timeout.connect(_on_kettle_timer_done)
 	add_child(timer)
-	var mesh = $KettleLight
-	for i in mesh.mesh.get_surface_count():
-		var mat = mesh.mesh.surface_get_material(i)
-		print(mat)
+
 	
 	
 
@@ -52,16 +59,9 @@ func reset_position():
 	position = kettle_origin_position
 
 func _on_kettle_timer_done():
+	$KettleLight.set_surface_override_material(1, kettle_ready_mat)
 	is_boiled = true
-	kettle_ready()
 	# For debugging. I don't love the direction this is going but I"ll get rid of the text
 	# completely anyway at some point
 	var brewing_base = get_parent().get_parent()
 	brewing_base.change_debug_text("Kettle boiled!")
-
-func kettle_ready():
-	$KettleLight.rotation = Vector3.ZERO
-
-func kettle_notready():
-	$KettleLight.rotation = Vector3($KettleLight.rotation.x, $KettleLight.rotation.y, $KettleLight.rotation.z + deg_2_rad(180))
-	print("New rotation: ", $KettleLight.rotation)
