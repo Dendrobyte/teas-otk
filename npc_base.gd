@@ -24,9 +24,15 @@ func _ready():
 	var x_rotation = deg_to_rad(-1*GlobalState.ROTATION_ANGLE[GlobalState.GameMode.OVERWORLD])
 	global_rotate(Vector3(1.0, 0.0, 0.0), x_rotation)
 
-	# Call the GameScene function to emit a signal
-	# NPCs -> overworld_scene_ex -> GameScene
-	get_parent().get_parent().get_parent().npc_is_loaded(self)
+	# Get the "game scene" node and quit if it fails while testing
+	var game_scene: GameScene = null
+	var game_scene_group = get_tree().get_nodes_in_group("game_scene")
+	if game_scene_group.is_empty():
+		push_error("NO GAME SCENE FOUND IN ", self, "!")
+		get_tree().quit()
+	else:
+		game_scene = game_scene_group[0]
+		game_scene.npc_is_loaded(self)
 
 # When we enter/exit, we'll send this npc's body
 # We send the WHOLE body because we may want to send other characteristics

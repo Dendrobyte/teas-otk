@@ -8,34 +8,38 @@ title: Chapter1_Overworld
 <<declare $talked_to_sad_guard = false>>
 ===
 
+// Just a chill dude leaning back on the bridge, potentially with a bag of some sort
+// Pretty hooded figure, something mysterious. Can come back much later in the game
+// Should have some "business"- smoking is the right vibe, but not sure I want to do that
 title: NPC1
 ---
-Jerry: Ey kid... boy, lot of us sure are lookin' worse for wear.
-Jerry: Military sure is convinced they need to give everything to the soldiers but they're forgettin' about their people... *grumble grumble*
+Bystander: You've seen better days... nice bird though. Thinking of selling 'er?
+-> ...
+-> She's my bird
+Bystander: No? That's a bummer.
+Bystander: Good luck getting in then, at least you're in time before the Citadel shuts us all out for the night.
+Bystander: Peace keeping center of the continent my ass...
 ===
 
+// This is someone that appears to be some sort of armored mercenary
+// She's got a slight attitude, and the other guy is scrambling to get her payment
 title: NPC2
 ---
-Miranda: Stop talkin' to randos out on the street... everyone's here to fend for 'em selves.
-Miranda: *She tosses you an apple*
-Miranda: Be on your way, kid.
+Miranda: Heh, you run into those grunts at the river, huh? That's why I do what I do.
+Miranda: I don't have a permit but I should be able to make it to a nearby village before nightfall...
+Miranda: ...
+Miranda: Give me my coin, man.
+Sketchy Farmer: Uh, yes, uhh, it's in here somewhere...
 ===
 
+// This is a sketchy farmer that's been escorted here by the mercenary
+// He's a farmer, a cart, but something is a little sketchy
+// TODO: If you talk to the mercenary first, say she's paid and something else. Those vars can just exist within here.
 title: NPC3
 ---
-Some Dude: Gah... the lines haven't been this long in years!!
-Some Dude: That damned population increase...
-===
-
-title: NPC4
-position: 59,-261
----
-NPC4: <Conversation with NPC 4>
-===
-
-title: NPC5
----
-NPC5: <Conversation with NPC 5>
+Sketchy Farmer: Okay, she's paid...
+Sketchy Farmer: Got my permit, got the vials, I'll just need to spread it...
+Sketchy Farmer: Heh? Get away, I can call that woman back here right away!
 ===
 
 title: CitadelGuard

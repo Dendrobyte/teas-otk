@@ -12,8 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://d3w2pxctulr1w" path="res://chapter1/drawings/npc1.png" id="15_bnibg"]
 [ext_resource type="Texture2D" uid="uid://gxj1g80lbwmk" path="res://chapter1/drawings/npc2.png" id="16_nya86"]
 [ext_resource type="Texture2D" uid="uid://dvffwvgdg23d3" path="res://chapter1/drawings/npc3.png" id="17_pbw25"]
-[ext_resource type="Texture2D" uid="uid://coktyswq0hufq" path="res://chapter1/drawings/npc4.png" id="18_lq43w"]
-[ext_resource type="Texture2D" uid="uid://83l2tqqy2j53" path="res://chapter1/drawings/npc5.png" id="19_bnibg"]
 [ext_resource type="Texture2D" uid="uid://d2mrsh2lxffsl" path="res://chapter1/drawings/guard.png" id="20_bnibg"]
 [ext_resource type="Texture2D" uid="uid://ssrsce5i7p3t" path="res://chapter1/drawings/oldman.png" id="21_bnibg"]
 [ext_resource type="Texture2D" uid="uid://k72pn2jky354" path="res://chapter1/drawings/sadguard.png" id="22_nya86"]
@@ -25,7 +23,7 @@ script = ExtResource("1_yxqur")
 transform = Transform3D(0.83626544, -0.47841692, 0.26791298, -0.0004250334, 0.48803696, 0.8728229, -0.54832464, -0.7300255, 0.4079251, 36.518227, 88.14396, 73.44497)
 
 [node name="Character" parent="." unique_id=862054798 instance=ExtResource("7_58wme")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.643356, 5.230688, -0.66265464)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.14325, 7.009182, -1.3235204)
 offset_const = 0.2
 
 [node name="Environment" type="Node3D" parent="." unique_id=1948100022]
@@ -104,24 +102,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.5987, 8.075622, -4.846305
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.913579, 5.1751747, -1.156765)
 
 [node name="NPC1" parent="NPCs" unique_id=264516795 instance=ExtResource("11_swfx4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.161106, 0, -0.11981106)
+transform = Transform3D(0.9470367, 0, 0.32112542, 0, 1, 0, -0.32112542, 0, 0.9470367, -35.161106, 0, -3.1229115)
 texture = ExtResource("15_bnibg")
 
 [node name="NPC2" parent="NPCs" unique_id=1602502584 instance=ExtResource("11_swfx4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.257633, 0, -0.89205074)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.658806, 0, -0.89205074)
 texture = ExtResource("16_nya86")
 
 [node name="NPC3" parent="NPCs" unique_id=539337291 instance=ExtResource("11_swfx4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.630974, 0, -1.608758)
 texture = ExtResource("17_pbw25")
-
-[node name="NPC4" parent="NPCs" unique_id=2141868576 instance=ExtResource("11_swfx4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.99017, 0, -0.73523235)
-texture = ExtResource("18_lq43w")
-
-[node name="NPC5" parent="NPCs" unique_id=1595521905 instance=ExtResource("11_swfx4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.794422, 0, 1.1861105)
-texture = ExtResource("19_bnibg")
 
 [node name="CitadelGuard" parent="NPCs" unique_id=1062812291 instance=ExtResource("11_swfx4")]
 transform = Transform3D(0.7297329, 0, 0.6837324, 0, 1, 0, -0.6837324, 0, 0.7297329, -64.35391, 0, -1.4251738)

@@ -5,7 +5,7 @@ static var interact_button: Sprite3D = Sprite3D.new()
 # Everything should be trashed aside from game state, and I don't necessarily
 # mind the button living in one spot (dialogue control)
 static func add_interact_button_to_scene(some_scene_node):
-	var interact_texture = ImageTexture.create_from_image(Image.load_from_file("res://assets/ui/keyboard_e.png"))
+	var interact_texture = preload("res://assets/ui/keyboard_e.png")
 	interact_button.texture = interact_texture
 	interact_button.scale = Vector3(2, 2, 2)
 	some_scene_node.add_child(interact_button)

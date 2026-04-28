@@ -4,6 +4,9 @@ class_name GameScene
 signal character_initialized
 signal npc_initialized
 
+func _enter_tree():
+	add_to_group("game_scene")
+
 func character_is_loaded(body: CharacterBody3D):
 	character_initialized.emit(body)
 
