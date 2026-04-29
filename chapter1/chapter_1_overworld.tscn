@@ -23,7 +23,7 @@ script = ExtResource("1_yxqur")
 transform = Transform3D(0.83626544, -0.47841692, 0.26791298, -0.0004250334, 0.48803696, 0.8728229, -0.54832464, -0.7300255, 0.4079251, 36.518227, 88.14396, 73.44497)
 
 [node name="Character" parent="." unique_id=862054798 instance=ExtResource("7_58wme")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.14325, 7.009182, -1.3235204)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.734055, 7.009182, 0.65493035)
 offset_const = 0.2
 
 [node name="Environment" type="Node3D" parent="." unique_id=1948100022]
@@ -50,7 +50,7 @@ texture = ExtResource("12_nya86")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.074615, 7.850157, -3.7902708)
 texture = ExtResource("12_nya86")
 
-[node name="ch1_overworld_env" parent="Environment" unique_id=1243955844 instance=ExtResource("8_bnibg")]
+[node name="ch1_overworld_env" parent="Environment" unique_id=1810524862 instance=ExtResource("8_bnibg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.239178, 0, -2.4137726)
 
 [node name="Trees" type="Node3D" parent="Environment" unique_id=776605685]
@@ -68,32 +68,8 @@ texture = ExtResource("13_pbw25")
 
 [node name="Torches" type="Node3D" parent="Environment" unique_id=837266263]
 
-[node name="Torch" parent="Environment/Torches" unique_id=2043489040 instance=ExtResource("9_7k04j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.26295, 8.075622, 2.033438)
-
-[node name="Torch2" parent="Environment/Torches" unique_id=1290255390 instance=ExtResource("9_7k04j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69.399345, 8.075622, 2.033438)
-
-[node name="Torch3" parent="Environment/Torches" unique_id=786196158 instance=ExtResource("9_7k04j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.11547, 8.075622, 2.033438)
-
-[node name="Torch4" parent="Environment/Torches" unique_id=516438249 instance=ExtResource("9_7k04j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.4294, 8.075622, 2.033438)
-
 [node name="Torch5" parent="Environment/Torches" unique_id=1610113900 instance=ExtResource("9_7k04j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.5987, 8.075622, 2.033438)
-
-[node name="Torch6" parent="Environment/Torches" unique_id=1603092507 instance=ExtResource("9_7k04j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.26295, 8.075622, -4.846305)
-
-[node name="Torch7" parent="Environment/Torches" unique_id=1423360624 instance=ExtResource("9_7k04j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69.399345, 8.075622, -4.846305)
-
-[node name="Torch8" parent="Environment/Torches" unique_id=312476464 instance=ExtResource("9_7k04j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.11547, 8.075622, -4.846305)
-
-[node name="Torch9" parent="Environment/Torches" unique_id=627436582 instance=ExtResource("9_7k04j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.4294, 8.075622, -4.846305)
 
 [node name="Torch10" parent="Environment/Torches" unique_id=2060399275 instance=ExtResource("9_7k04j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.5987, 8.075622, -4.846305)
@@ -106,23 +82,23 @@ transform = Transform3D(0.9470367, 0, 0.32112542, 0, 1, 0, -0.32112542, 0, 0.947
 texture = ExtResource("15_bnibg")
 
 [node name="NPC2" parent="NPCs" unique_id=1602502584 instance=ExtResource("11_swfx4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.658806, 0, -0.89205074)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.40066, 0, 0.42833042)
 texture = ExtResource("16_nya86")
 
 [node name="NPC3" parent="NPCs" unique_id=539337291 instance=ExtResource("11_swfx4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.630974, 0, -1.608758)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.37283, 0, -0.2883768)
 texture = ExtResource("17_pbw25")
 
 [node name="CitadelGuard" parent="NPCs" unique_id=1062812291 instance=ExtResource("11_swfx4")]
-transform = Transform3D(0.7297329, 0, 0.6837324, 0, 1, 0, -0.6837324, 0, 0.7297329, -64.35391, 0, -1.4251738)
+transform = Transform3D(0.7297329, 0, 0.6837324, 0, 1, 0, -0.6837324, 0, 0.7297329, -43.10114, 0, -0.2948618)
 texture = ExtResource("20_bnibg")
 
 [node name="OldMan" parent="NPCs" unique_id=670409553 instance=ExtResource("11_swfx4")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -60.25471, 0, 1.3126621)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -47.405987, -0.08291435, -3.4925847)
 texture = ExtResource("21_bnibg")
 start_interactable = false
 
 [node name="SadGuard" parent="NPCs" unique_id=853644851 instance=ExtResource("11_swfx4")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -57.346966, 0, -3.037459)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -43.36195, 0, -3.8403554)
 texture = ExtResource("22_nya86")
 start_interactable = false

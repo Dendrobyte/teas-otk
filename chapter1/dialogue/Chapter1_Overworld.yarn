@@ -48,19 +48,24 @@ title: CitadelGuard
 // TODO: Branching dialogue options, maybe?
 <<if $talked_to_old_man == false && $talked_to_sad_guard == false>>
   Citadel Guard: Permit, please...
-  Citadel Guard: No permit? No entry!
+    -> Permit?
+  Citadel Guard: *sigh* Rejecting so many people lately. Sorry, can't let you in.
   <<set $checked_for_permit to true>>
 <<elseif $talked_to_sad_guard == true>>
   Citadel Guard: I'm on my break...
 <<else>> // if talked_to_old_man is true
-  Citadel Guard: I told you, you can't come in without a permit!
+  Citadel Guard: Look, if you don't have a permit to get in, I can't let you in. That's just my jo-
   <<trigger_animation "old_man_approaches_at_gate">>
 <<endif>>
 ===
 
 title: OldMan
 ---
-Old Man: Ah, hello there young fellow!
+Old Man: Gah I should have tied these... my wife was right
+  -> When ain't the wife right?
+  -> Can I lend you a hand?
+Old Man: Ah haha, aren't you fortunately timed. That would be grand.
+Old Man: Just grab that box there...
 <<set $talked_to_old_man to true>>
 ===
 
@@ -69,16 +74,24 @@ title: SadGuard
 // TODO: I think I should set a flag that's more like "cheered_up_sad_guard"
 // But right now, you can only talk to one of them anyway so it works
 <<if $talked_to_sad_guard == false>>
-  Sad Guard: I'm told I can't just let people in even if they need it and it's weighing me down...
-  -> You: Hey you're just doing your job, sometimes things have to be the way they are
-  -> You: I know the feeling of wanting to help when you just can't...
-  You: But surely there are ways you can use the rules to help others who don't know them as well as you?
-  Sad Guard: You're right! There are some ways people can get in without their own permit... I'll just have to be careful
+  // Looks wistfully looks off into the distance, in an old looking uniform.
+  Sad Guard: *sigh*
+    -> Watcha eating?
+    -> Hypothetically speaking, could you take a bribe to let someone in?
+  Sad Guard: What... hah.
+  Sad Guard: Look, we've turned away the most people today in a while, and it hurts every time.
+  Sad Guard: We were supposed to be the peace! The safe haven! We're built off of visitors and yet...
+  Sad Guard: Now we're told to kick them out? This isn't what I joined for.
+    -> You're just doing the job, as long as you're not hurting anyone- right?
+    -> Sounds like you'd want to help, your hearts in the right place
+  You: You seem like you know the rules- surely you can give advice to passersby?
+  Content Guard: I guess visitors don't know the way...
+  Content Guard: Anyway, I guess that's my break. There's a town about an hour's ride from here, no permit required.
   <<set $talked_to_sad_guard to true>>
   <<trigger_animation "sad_guard_replaces_other_guard">>
 <<else>>
-  Sad Guard: I really want to let you in but I don't want to get in trouble.
-  Sad Guard: However, if you can find someone that allows a second person in... *wink*
+  Content Guard: Ah, hey! Look you seem well intentioned but I can't let you in.
+  Content Guard: Uh, though, some permits do allow a second party, so...
   <<trigger_animation "old_man_approaches_at_gate">>
 <<endif>>
 
@@ -87,11 +100,14 @@ title: SadGuard
 title: OldManCitadelEnter
 ---
 <<if $talked_to_old_man == true>>
-Old Man: Ah, this here is my hired help!
-Old Man: I have a secondary designation on my permit somewhere...
-Citadel Guard: Looks good then, carry on. Make sure to stick with your employer next time...
+Old Man: Ah, there you are young fellow! I was wondering where my hired help had gone off to
+Old Man: Good day sir, you can see my open second designation for helpers on the bottom right.
+Citadel Guard: Hmm... looks good then, carry on.
+Citadel Guard: Make sure to stick with your employer next time.
 <<elseif $talked_to_sad_guard == true>>
-Old Man: I happen to have a secondary designation! Young fellow, would you mind giving me a hand?
-Sad Guard: That works for me! Carry on- and thanks for the chat.
+Old Man: If you'd be willing to help an old man carry some boxes, I have a secondary designation here!
+Old Man: One of my strings broke...
+// He doesn't even look at the permit
+Content Guard: That works for me! Carry on- oh! and thanks for the chat. Maybe this kind of thing will help out
 <<endif>>
 ===

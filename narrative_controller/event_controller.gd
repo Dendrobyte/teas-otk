@@ -111,7 +111,7 @@ var old_man_approaches_at_gate = [
 	# TODO: Some way to pass player "z" pos into here? Replacing any part of the dest, to encourage a straight line
 	{"type": EVENT_TYPE.Animation, "node": "Character", "dest": Vector3(-84, 5.231, -2.7), "dur": 1.0, "parallel": true},
 	# TODO: Change to the collection screen if we're in an overworld instead. Maybe let GameScene handle it depending on name?
-	{"type": EVENT_TYPE.TransitionScene, "scene": "res://BrewingBase_ch1.tscn"},
+	{"type": EVENT_TYPE.TransitionScene, "scene": "res://brewing/BrewingBase_ch1.tscn"},
 ]
 
 # Triggers when you cheer up the sad guard and removes the current guard there

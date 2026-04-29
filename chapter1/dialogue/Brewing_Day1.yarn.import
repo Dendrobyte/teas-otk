@@ -1,0 +1,14 @@
+[remap]
+
+importer="yarn_spinner.yarn_file"
+type="Resource"
+uid="uid://bf3kfhqs6bygp"
+path="res://.godot/imported/Brewing_Day1.yarn-05a77b8eee47e0b1b5b6466074500db9.res"
+
+[deps]
+
+source_file="res://chapter1/dialogue/Brewing_Day1.yarn"
+dest_files=["res://.godot/imported/Brewing_Day1.yarn-05a77b8eee47e0b1b5b6466074500db9.res"]
+
+[params]
+

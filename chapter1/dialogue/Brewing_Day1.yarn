@@ -1,0 +1,8 @@
+// NOTE: When I return to this, it's worth breaking up a yarn project for each "chapter" of the game.
+// We can use this namespacing convention epending on the phases of that chapter, since it may not be consistent across chapters
+
+// TODO: Change the scene name- I want to make sure the naming scheme can programmatically be "scene" + "_" + "node"
+title: BrewingBase_ch1_OldMan
+---
+Old Man: Welcome into my tea shop, {$name}! I'm so glad I could help...
+===
