@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cogqy630mjgv7" path="res://addons/yarn_spinner/ui/options_presenter.gd" id="6_20pc6"]
 [ext_resource type="Script" uid="uid://blscysur1lidj" path="res://narrative_controller/event_controller.gd" id="7_5vvyt"]
 [ext_resource type="Script" uid="uid://wri18fyw7bj3" path="res://narrative_controller/entity_controller.gd" id="9_wkp8b"]
+[ext_resource type="Script" uid="uid://cdgyd2lwi4gf2" path="res://debug_narrative_menu.gd" id="10_20pc6"]
 [ext_resource type="Script" uid="uid://ch8xa62o1jdsp" path="res://narrative_controller/game_scene.gd" id="10_wkp8b"]
 
 [sub_resource type="Theme" id="Theme_c6i3y"]
@@ -21,7 +22,7 @@ font_size = 18
 script = ExtResource("1_glv2v")
 narrative_controller = NodePath("NarrativeController")
 
-[node name="NarrativeController" type="Control" parent="." unique_id=1229687535 node_paths=PackedStringArray("dialogue_controller", "event_controller", "entity_controller", "game_scene")]
+[node name="NarrativeController" type="Control" parent="." unique_id=1229687535 node_paths=PackedStringArray("dialogue_controller", "event_controller", "entity_controller", "debug_menu", "game_scene")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -30,6 +31,7 @@ script = ExtResource("2_03owx")
 dialogue_controller = NodePath("DialogueController")
 event_controller = NodePath("EventController")
 entity_controller = NodePath("EntityController")
+debug_menu = NodePath("DebugNarrativeMenu")
 game_scene = NodePath("../GameScene")
 
 [node name="DialogueController" type="Control" parent="NarrativeController" unique_id=803034153]
@@ -91,6 +93,22 @@ script = ExtResource("7_5vvyt")
 
 [node name="EntityController" type="Node" parent="NarrativeController" unique_id=492654928]
 script = ExtResource("9_wkp8b")
+
+[node name="DebugNarrativeMenu" type="Control" parent="NarrativeController" unique_id=468361810]
+visible = false
+anchors_preset = 0
+offset_left = 23.0
+offset_top = 14.0
+offset_right = 223.0
+offset_bottom = 292.0
+script = ExtResource("10_20pc6")
+
+[node name="ItemList" type="ItemList" parent="NarrativeController/DebugNarrativeMenu" unique_id=1275982617]
+layout_mode = 0
+offset_right = 208.0
+offset_bottom = 284.0
+select_mode = 2
+allow_reselect = true
 
 [node name="GameScene" type="Node3D" parent="." unique_id=1699575499]
 script = ExtResource("10_wkp8b")

@@ -8,7 +8,9 @@ func _ready():
 	# TODO: If testing, always load a specific scene here
 	# NOTE: We're going to rework this all, I just want something visible rn
 	var current_scene = preload("res://chapter1/chapter_1_overworld.tscn").instantiate()
+	GlobalState.set_current_scene("Overworld")
 	# var current_scene = preload("res://brewing/BrewingBase_ch1.tscn").instantiate()
+	# GlobalState.set_current_scene("Brewing")
 	# var current_scene = preload("res://seal_poc.tscn")
 	# TODO: Understand why we need to do call_deferred here
 	# TODO: Register the chapter's flags with the narrative controller
@@ -19,8 +21,9 @@ func _ready():
 
 # Just have this here for now... state management soon:tm:
 # NOTE: I really need to figure out how why this "double press" is happening
+# TODO: Insta-hop to next scene
 var is_transitioning = false
 func _process(_delta):
 	if Input.is_action_pressed("debug_scene_change") and not is_transitioning:
 		is_transitioning = true
-		narrative_controller.transition_scenes("res://BrewingBase_ch1.tscn")
+		narrative_controller.transition_scenes("res://brewing/BrewingBase_ch1.tscn", "Brewing")

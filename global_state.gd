@@ -7,6 +7,12 @@ var CURRENT_GAMEMODE = GlobalState.GameMode.NARRATIVE # TODO: Default to menu pr
 func set_gamemode(new_gamemode):
 	CURRENT_GAMEMODE = new_gamemode
 
+# We hold on to this largely for yarn nodes. This should eventually become chapter or based on how I organize the yarn files.
+var CURRENT_SCENE = ""
+
+func set_current_scene(scene_name):
+	CURRENT_SCENE = scene_name
+
 #### High level variables for use across scenes ####
 var CURRENT_CHAPTER = null
 var ROTATION_ANGLE = {

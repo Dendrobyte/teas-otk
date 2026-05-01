@@ -1,13 +1,10 @@
 extends Node3D
 
+var narrative_controller: NarrativeController
+
 # Some fields for each brewing scene, this should be configurable with however I do the dialogue
 # For example, a later chapter should have more cups / etc.
-var cup_count = 4 # I think ultimately cups should be infinite, e.g. just a dish rack
-var cup_pos  # NOTE: Ideally this ends up being done programmatically. Keep models uniform?
-var cup_ref = null
 func _enter_tree():
-	# TODO: I feel like we would switch the gamemode earlier...? Or perhaps we have a loading state and switch it first
-	print("Global state: ", GlobalState)
 	GlobalState.set_gamemode(GlobalState.GameMode.BREWING)
 
 	# Modify environment in custom ways
@@ -15,6 +12,8 @@ func _enter_tree():
 	# For now, removing original elements and then creating new ones
 	# TODO: Iteration for diff elements, now it's done manually to find a pattern
 	var brewing_env = get_node("brewing_env")
+	# Access via group? Or brewing base can just have an explicit reference set in the editor?
+	narrative_controller = get_tree().get_root().get_node("Main").get_node("NarrativeController")
 
 	# Programmatically load nodes and attach their scripts via map ref
 	# The keys are the names from Blender, the value is the script path to attach and special behavior
@@ -44,7 +43,7 @@ func _enter_tree():
 		if item_name == "TeaCup1":
 			var cup_node = brewing_env.get_node(item_name)
 			# Generate the cup reference
-			cup_ref = cup_node.duplicate()
+			var cup_ref = cup_node.duplicate()
 			cup_ref.name = cup_node.name.rstrip("0123456789")
 			cup_node.queue_free()
 
@@ -66,6 +65,11 @@ func _enter_tree():
 			item_node.set_script(item_script)
 
 	print("Finished loading brewing base")
+
+	# TODO: To be done when we make the tutorial bit, but properly loading events and flags depending on what brewing scene we're in
+	# Since brewing is always the same thing, maybe this is in a file? We could just load it from memory for now, but I do want a second brewing phase
+	# Point is, it can't be the same as the overworld separations since those will be individual scenes/environments
+	narrative_controller.dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + "OldMan")
 	
 func change_debug_text(new_text):
 	get_node("Character").debug_text_label.text = new_text

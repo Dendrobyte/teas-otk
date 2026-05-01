@@ -22,9 +22,12 @@ class_name NarrativeController
 @export var dialogue_controller: DialogueController
 @export var event_controller: EventController
 @export var entity_controller: EntityController
+@export var debug_menu: DebugNarrativeMenu
 @export var game_scene: GameScene
 
 var CHARACTER_REF: CharacterController = null
+var is_in_dialogue = false
+var is_in_cutscene = false
 
 # We toggle this to control when we show the interact button
 var can_interact = false
@@ -32,6 +35,7 @@ var can_interact = false
 func _ready():
 	if dialogue_controller == null or event_controller == null or entity_controller == null:
 		print("Missing a narrative controller required child!")
+	add_to_group("narrative_controller")
 	
 	# Get a signal for the character setup and entity signals
 	game_scene.character_initialized.connect(func(body): CHARACTER_REF = body as CharacterController)
@@ -41,6 +45,7 @@ func _ready():
 	# TODO: The rest of them
 	event_controller.initialize(self)
 	entity_controller.initialize(self)
+	debug_menu.initialize(self)
 
 	# Connect to yarn signals
 	dialogue_controller.dialogue_runner.variable_storage.variable_changed.connect(update_flag)
@@ -61,14 +66,17 @@ func _input(event):
 	if event.is_action_pressed("interact") and can_interact:
 		var npc_name = entity_controller.get_nearest_entity_name()
 		# TODO: Get the curr_npc_in_range from entity_controller.get_nearest_entity or whatever
-		dialogue_controller.start_dialogue(npc_name)
-		CHARACTER_REF.set_is_in_dialogue(true)
+		dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + npc_name)
+		is_in_dialogue = true
 		toggle_interact_button(false)
 
 ## Dialogue Controller Comms ##
-
 func cleanup_dialogue_finish():
-	CHARACTER_REF.set_is_in_dialogue(false)
+	is_in_dialogue = false
+
+# We'll leave the responsibility of adding "$" at callsite
+func update_yarn_variable(variable_name, variable_value):
+	dialogue_controller.dialogue_runner.variable_storage.set_value(variable_name, variable_value)
 
 ## Event Controller Comms ##
 # All flags and events are held in event controller, name based on the flag name
@@ -80,7 +88,7 @@ func update_flag(flag_name, value):
 	event_controller.update_flag_and_call_function(flag_name, value, npc_refs)
 
 func cleanup_cutscene_finish():
-	CHARACTER_REF.set_is_in_cutscene(false)
+	is_in_cutscene = false
 
 # For any command that may be game specific, we can call this
 # NOTE: We could also just define a bunch in entity controller if this is used a lot
@@ -94,14 +102,16 @@ func _yarn_command_trigger_animation(animation_name):
 	print("Triggering animation: ", animation_name)
 	# TODO: is in cutscene set to true on the character
 	event_controller.start_animation(animation_name, CHARACTER_REF)
-	CHARACTER_REF.set_is_in_cutscene(true)
+	is_in_cutscene = true
 
 ## Entity Controller Comms ##
+# Currently these apply only in the overworld, and should only be called so?
 
 # TODO: get_nearest_entity
 
 # To be called from within the entity controller as to whether or not we show the interact button
 # NOTE: I think (second note on this) we should make this a control node!
+# NOTE: No interaction button for brewing, but if you do end up wanting it we would need to ensure character_ref can be whatever
 func toggle_interact_button(value, entity_pos = null):
 	can_interact = value
 	if value == true:
@@ -114,7 +124,8 @@ func toggle_interact_button(value, entity_pos = null):
 # TODO: Will revisit this flow in the state design and whatnot
 # TODO: Trigger save
 # TODO: Fade out
-func transition_scenes(new_scene_path):
+func transition_scenes(new_scene_path, scene_name):
 	print("Triggering scene transition from narrative controller")
+	GlobalState.set_current_scene(scene_name) # Why is this here? It should be set when the scene finishes loading?
 	game_scene.unload_scene()
 	game_scene.load_scene(new_scene_path)

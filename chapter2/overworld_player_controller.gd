@@ -10,8 +10,6 @@ class_name CharacterController
 @export var sprite: Sprite3D
 
 var target_velocity = Vector3.ZERO
-var is_in_dialogue = false
-var is_in_cutscene = false
 
 var bottom_center = 0 # y value representing bottom of the image
 
@@ -23,7 +21,9 @@ func _ready():
 
 	sprite.frame = 1
 
-	# Get the "game scene" node and quit if it fails while testing
+	# Get the "game scene" and narrative controller nodes and quit if it fails while testing
+	# TODO: If this is a pattern... constants... but rn it's just the two places
+	# Or a function to attach this since the errors follow a pattern
 	var game_scene: GameScene = null
 	var game_scene_group = get_tree().get_nodes_in_group("game_scene")
 	if game_scene_group.is_empty():
@@ -31,12 +31,22 @@ func _ready():
 	else:
 		game_scene = game_scene_group[0]
 		game_scene.character_is_loaded(self)
+
+	var narrative_controller_group = get_tree().get_nodes_in_group("narrative_controller")
+	if narrative_controller_group.is_empty():
+		push_error("NO NARRATIVE CONTROLLER FOUND FOR ", self, "!")
+	else:
+		narrative_controller = narrative_controller_group[0]
+
+# Nullify character ref instead of errors when a node is queue_free'd
+func _exit_tree():
+	narrative_controller.CHARACTER_REF = null
 		
 var gravity = 8
 func _physics_process(_delta):
 	# TODO: I can apparently set_process_input(false) and set_physics_process(false)
 	# to do this on the engine level? But it has to be done on a node, obviously not global
-	if is_in_dialogue or is_in_cutscene:
+	if narrative_controller.is_in_dialogue or narrative_controller.is_in_cutscene:
 		return
 
 	var direction = Vector3.ZERO
@@ -88,10 +98,3 @@ func _physics_process(_delta):
 		target_velocity.z = direction.z * speed
 		velocity = target_velocity
 		move_and_slide()
-
-# To be triggered externally. This node should have no context of the outside world.
-func set_is_in_cutscene(value):
-	is_in_cutscene = value
-
-func set_is_in_dialogue(value):
-	is_in_dialogue = value

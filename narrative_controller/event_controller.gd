@@ -19,6 +19,7 @@ func initialize(narrative_controller_ref: NarrativeController):
 # These trigger based on the flag name in our yarn file, but match our global state/saved flags
 # The function names can be pulled in, but should be "on_FLAG_NAME" for consistency
 # TODO: Establish these in a scene's ready function, and then check for information in that scene with the flags
+# In other words, they shouldn't be hardcoded here for multiple chapters
 var FLAGS = {
 	"checked_for_permit": { # Talk to CitadelGuard
 		"value": false,
@@ -40,12 +41,21 @@ var NPC_REFS: Dictionary[String, NPCBase] = {}
 # TODO: We should ensure we have an inverse of this, such that we update whatever yarn is holding on to
 # if we change a flag in code (though I'm not sure when that will happen, so I won't worry about for now)
 func update_flag_and_call_function(var_name: String, value, npc_refs):
-	var flag_name = var_name.substr(1)
+	# Updates coming from Yarn will have variables starting with `$`
+	var is_yarn_var = var_name.begins_with("$")
+	var flag_name = var_name.substr(1) if is_yarn_var else var_name
+	
 	NPC_REFS = npc_refs
-	print("Given npc refs: ", NPC_REFS)
 	# TODO: If flag_name in FLAGS, call() Else don't call and update flag
 	FLAGS[flag_name]["function"].call()
+
+	# If it's not a yarn variable, it's not being updated from yarn
+	# So we want to make sure we update yarn's variable storage
+	if not is_yarn_var:
+		narrative_controller.update_yarn_variable("$" + flag_name, value)
+
 	print("Updating ", var_name, " to ", value)
+
 
 ########## TODO ############
 # We want to move all of these out into each game scene or something, flags included
@@ -106,12 +116,13 @@ signal cutscene_ended
 # We also just run this with the sad guard
 var old_man_approaches_at_gate = [
 	{"type": EVENT_TYPE.Animation, "node": "OldMan", "dest": Vector3(-61, 0, -1.2), "dur": 1.0, "parallel": false},
-	{"type": EVENT_TYPE.Dialogue, "yarn_node": "OldManCitadelEnter"},
+	{"type": EVENT_TYPE.Dialogue, "yarn_node": "Overworld_OldManCitadelEnter"},
 	{"type": EVENT_TYPE.Animation, "node": "OldMan", "dest": Vector3(-68, 0, -1.2), "dur": 1.0, "parallel": true},
 	# TODO: Some way to pass player "z" pos into here? Replacing any part of the dest, to encourage a straight line
 	{"type": EVENT_TYPE.Animation, "node": "Character", "dest": Vector3(-84, 5.231, -2.7), "dur": 1.0, "parallel": true},
 	# TODO: Change to the collection screen if we're in an overworld instead. Maybe let GameScene handle it depending on name?
-	{"type": EVENT_TYPE.TransitionScene, "scene": "res://brewing/BrewingBase_ch1.tscn"},
+	# TODO: Name is just for the yarnspinner node stuff, may eventually change. GameScene should handle this exact thing, not global state. Revisit.
+	{"type": EVENT_TYPE.TransitionScene, "scene": "res://brewing/BrewingBase_ch1.tscn", "scene_name": "Brewing"},
 ]
 
 # Triggers when you cheer up the sad guard and removes the current guard there
@@ -138,6 +149,7 @@ var animations = {
 var tween
 func start_animation(animation_name, character_ref):
 	var scene_transition = "" # See note in the TransitionScene elif
+	var scene_transition_name = ""
 	cutscene_started.emit()
 
 	var events = animations[animation_name]
@@ -174,6 +186,7 @@ func start_animation(animation_name, character_ref):
 			# NOTE: If we have more of these things that run at the end, we can
 			#		change the variable to a function reference instead of a boolean
 			scene_transition = event.scene
+			scene_transition_name = event.scene_name
 
 
 	# Clean up the edge case of final tweens being parallel
@@ -186,6 +199,6 @@ func start_animation(animation_name, character_ref):
 	print("Emitting cutscene ended signal")
 	cutscene_ended.emit()
 	if scene_transition != "":
-		narrative_controller.transition_scenes(scene_transition)
+		narrative_controller.transition_scenes(scene_transition, scene_transition_name)
 
 #### END OF ALL THE ANIMATION STUFF ####
