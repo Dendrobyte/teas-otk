@@ -49,16 +49,22 @@ func init_npc_base(npc: NPCBase):
 func get_entity_ref(node_name: String):
 	return CUSTOM_NPCS[node_name]
 
+# NOTE: Do we want to return a ref instead at this point? Ref used for position when showing dialogue.
+# NOTE: Don't really need the get functions, but makes more sense when writing code to me?
 var curr_npc_in_range_name: String
 func get_nearest_entity_name():
 	return curr_npc_in_range_name
-# NOTE: Do we want to return a ref instead? Name oK for now
+
+var curr_npc_in_range: Node3D
+func get_nearest_entity_ref():
+	return curr_npc_in_range
 
 # When an NPC emits a collision signal on entry, we show the interact button
 # TODO: If there already is an NPC held on to, we only save the closest one
 #		For now, we just replace. Should become a list ordered by close-ness
 # TODO: This triggers on init based on print statements. Does that become a problem?
 func _on_character_enters_entity_area(body: Node3D):
+	curr_npc_in_range = body
 	curr_npc_in_range_name = body.name
 	narrative_controller.toggle_interact_button(true, body.global_position)
 

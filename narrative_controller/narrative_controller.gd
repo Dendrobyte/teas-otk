@@ -66,7 +66,7 @@ func _input(event):
 	if event.is_action_pressed("interact") and can_interact:
 		var npc_name = entity_controller.get_nearest_entity_name()
 		# TODO: Get the curr_npc_in_range from entity_controller.get_nearest_entity or whatever
-		dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + npc_name)
+		dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + npc_name, entity_controller.get_nearest_entity_ref())
 		is_in_dialogue = true
 		toggle_interact_button(false)
 

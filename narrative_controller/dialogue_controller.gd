@@ -44,14 +44,27 @@ func hide_dialogue():
 # NOTE: To be called from NarrativeControl, since that'll "play" animations/events
 # Starts a dialogue based on the Godot Node name (which should match the Yarn Node name)
 # Returns a signal for dialogue finish that the EventController can
-func start_dialogue(yarn_node_name: String):
+# If target is passed in, we're in 3D space and want to loosely project the dialogue box on screen
+# Otherwise, we're in a situation where we can use a large box
+# NOTE: We can potentially use this flag to also determine whether to show a portrait?
+# Though I'm wondering if that setup will be totally different
+func start_dialogue(yarn_node_name: String, target: Node3D = null):
 	# NOTE: This is "proof of concept" code for changing the UI elements
 	var char_name = yarn_node_name.get_slice("_", 1) # -1 to get last index doesn't work, OK for prototype
 	var char_color = custom_npc_colors.get(char_name, default_color)
-	print("Got char name: ", char_name)
-	print("Got char color: ", char_color)
 	character_name_label.set("theme_override_colors/font_color", char_color)
 	dialogue_runner.start_dialogue(yarn_node_name)
+
+	print("Target: ", target)
+	if target != null:
+		var cam = get_viewport().get_camera_3d()
+		var pos_2d = cam.unproject_position(target.global_position)
+		print("1: ", global_position)
+		global_position = pos_2d
+		print("2: ", global_position)
+	else:
+		reset_size()
+
 	show_dialogue()
 
 	return dialogue_controller_dialogue_finished # I love this pattern
