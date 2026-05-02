@@ -32,7 +32,13 @@ func _ready():
 	hide_dialogue()
 	dialogue_runner.dialogue_completed.connect(finish_dialogue)
 
-	# Set up the references for UI
+	character_name_label.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
+	dialogue_text_label.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
+	cont_label.add_theme_stylebox_override("normal", StyleBoxEmpty.new())
+
+var narrative_controller: NarrativeController
+func initialize(narrative_controller_ref: NarrativeController):
+	narrative_controller = narrative_controller_ref
 
 # Separate show/hide functions in case I add stuff to show/hide that isn't just the canvas layer
 func show_dialogue():
@@ -55,15 +61,10 @@ func start_dialogue(yarn_node_name: String, target: Node3D = null):
 	character_name_label.set("theme_override_colors/font_color", char_color)
 	dialogue_runner.start_dialogue(yarn_node_name)
 
-	print("Target: ", target)
 	if target != null:
-		var cam = get_viewport().get_camera_3d()
-		var pos_2d = cam.unproject_position(target.global_position)
-		print("1: ", global_position)
-		global_position = pos_2d
-		print("2: ", global_position)
+		modify_dialogue_window_position(target.global_position)
 	else:
-		reset_size()
+		reset_dialogue_window_position()
 
 	show_dialogue()
 
@@ -75,9 +76,20 @@ func finish_dialogue():
 
 ## UI Stuff ##
 ## Anything that relates to colors and whatnot shall go here
+# TODO: Add a color for the BG, but for prototype scope we'll keep it black/default
 var custom_npc_colors = {
 	"NPC1": Color(.4, .4, 1.0),
 	"OldMan": Color(.1, 1.0, .3),
 	"SadGuard": Color(.8, .6, .0),
 }
 var default_color = Color(1.0, 1.0, 1.0)
+
+func modify_dialogue_window_position(position_in_3d: Vector3):
+	var cam = get_viewport().get_camera_3d()
+	var pos_2d = cam.unproject_position(position_in_3d)
+	# line_presenter.global_position = pos_2d
+	# line_presenter.size = line_presenter.size / 2
+	# TODO: Figure out what to do with options
+
+func reset_dialogue_window_position():
+	reset_size()

@@ -22,6 +22,7 @@ class_name NarrativeController
 @export var dialogue_controller: DialogueController
 @export var event_controller: EventController
 @export var entity_controller: EntityController
+@export var dialogue_projection: DialogueProjection
 @export var debug_menu: DebugNarrativeMenu
 @export var game_scene: GameScene
 
@@ -43,6 +44,7 @@ func _ready():
 
 	# Pass self to children controls and set them up
 	# TODO: The rest of them
+	dialogue_controller.initialize(self)
 	event_controller.initialize(self)
 	entity_controller.initialize(self)
 	debug_menu.initialize(self)
@@ -77,6 +79,7 @@ func cleanup_dialogue_finish():
 # We'll leave the responsibility of adding "$" at callsite
 func update_yarn_variable(variable_name, variable_value):
 	dialogue_controller.dialogue_runner.variable_storage.set_value(variable_name, variable_value)
+
 
 ## Event Controller Comms ##
 # All flags and events are held in event controller, name based on the flag name

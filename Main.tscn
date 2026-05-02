@@ -3,16 +3,28 @@
 [ext_resource type="Script" uid="uid://r4eobiqfvh8" path="res://main.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://by1q5b8oetlpn" path="res://narrative_controller/narrative_controller.gd" id="2_03owx"]
 [ext_resource type="Script" uid="uid://cyfckdlbvre5t" path="res://narrative_controller/dialogue_controller.gd" id="2_lgr22"]
+[ext_resource type="Script" uid="uid://51eld5yjbtv8" path="res://dialogue_projection.gd" id="3_c6i3y"]
 [ext_resource type="Script" uid="uid://flra500ihbix" path="res://addons/yarn_spinner/dialogue_runner.gd" id="3_trn2v"]
 [ext_resource type="Resource" uid="uid://dww6p7spgh185" path="res://teas.yarnproject" id="4_03owx"]
 [ext_resource type="Script" uid="uid://cged8u182768u" path="res://addons/yarn_spinner/ui/line_presenter.gd" id="5_wkp8b"]
 [ext_resource type="Script" uid="uid://cogqy630mjgv7" path="res://addons/yarn_spinner/ui/options_presenter.gd" id="6_20pc6"]
 [ext_resource type="Script" uid="uid://blscysur1lidj" path="res://narrative_controller/event_controller.gd" id="7_5vvyt"]
+[ext_resource type="FontFile" uid="uid://drkyymsqomrhx" path="res://assets/ui/Leander.ttf" id="7_c6i3y"]
 [ext_resource type="Script" uid="uid://wri18fyw7bj3" path="res://narrative_controller/entity_controller.gd" id="9_wkp8b"]
 [ext_resource type="Script" uid="uid://cdgyd2lwi4gf2" path="res://debug_narrative_menu.gd" id="10_20pc6"]
 [ext_resource type="Script" uid="uid://ch8xa62o1jdsp" path="res://narrative_controller/game_scene.gd" id="10_wkp8b"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20pc6"]
+content_margin_left = 48.0
+content_margin_top = 28.0
+bg_color = Color(0.025811909, 0.063856445, 0.07085293, 0.65882355)
+corner_radius_top_left = 36
+corner_radius_top_right = 36
+corner_radius_bottom_right = 36
+corner_radius_bottom_left = 36
+
 [sub_resource type="Theme" id="Theme_c6i3y"]
+default_font = ExtResource("7_c6i3y")
 default_font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_c2ibq"]
@@ -22,7 +34,7 @@ font_size = 18
 script = ExtResource("1_glv2v")
 narrative_controller = NodePath("NarrativeController")
 
-[node name="NarrativeController" type="Control" parent="." unique_id=1229687535 node_paths=PackedStringArray("dialogue_controller", "event_controller", "entity_controller", "debug_menu", "game_scene")]
+[node name="NarrativeController" type="Control" parent="." unique_id=1229687535 node_paths=PackedStringArray("dialogue_controller", "event_controller", "entity_controller", "dialogue_projection", "debug_menu", "game_scene")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -31,8 +43,16 @@ script = ExtResource("2_03owx")
 dialogue_controller = NodePath("DialogueController")
 event_controller = NodePath("EventController")
 entity_controller = NodePath("EntityController")
+dialogue_projection = NodePath("DialogueProjection")
 debug_menu = NodePath("DebugNarrativeMenu")
 game_scene = NodePath("../GameScene")
+
+[node name="DialogueProjection" type="Node3D" parent="NarrativeController" unique_id=1492992761]
+script = ExtResource("3_c6i3y")
+
+[node name="DialogueSprite3D" type="Sprite3D" parent="NarrativeController/DialogueProjection" unique_id=1598151462]
+
+[node name="SubViewport" type="SubViewport" parent="NarrativeController/DialogueProjection/DialogueSprite3D" unique_id=589366333]
 
 [node name="DialogueController" type="Control" parent="NarrativeController" unique_id=803034153]
 anchors_preset = 0
@@ -53,6 +73,7 @@ offset_left = 36.0
 offset_top = 754.0
 offset_right = 1417.0
 offset_bottom = 1036.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_20pc6")
 script = ExtResource("5_wkp8b")
 text_label = NodePath("VBoxContainer/TextLabel")
 character_label = NodePath("VBoxContainer/CharacterLabel")
