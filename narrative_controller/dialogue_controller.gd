@@ -67,6 +67,9 @@ func start_dialogue(yarn_node_name: String, target: Node3D = null):
 		reset_dialogue_window_position()
 
 	show_dialogue()
+	# Left off trying to change the references, but looks like I need to treat yarnspinner as priority
+	# get_parent().remove_child(self)
+	# narrative_controller.dialogue_projection.set_viewport_child(self)
 
 	return dialogue_controller_dialogue_finished # I love this pattern
 
