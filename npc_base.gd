@@ -48,11 +48,13 @@ func _on_Character_leaves(_body):
 # Some NPCs will be enabled/disabled when certain events happen
 func enable():
 	interactable = true
-	show()
+	self.modulate.a = 1.0
+	# show()
 
 func disable():
 	interactable = false
-	hide()
+	self.modulate.a = 0.3
+	# hide()
 
 # Sometimes we keep them shown but don't want to re-initialize dialogue until a flag has been changed
 # NOTE: We could do this with the flags and just not have the button show up, but this works too? I'm not sure if one is better than the other

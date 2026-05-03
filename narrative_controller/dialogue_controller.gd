@@ -80,10 +80,16 @@ func finish_dialogue():
 ## UI Stuff ##
 ## Anything that relates to colors and whatnot shall go here
 # TODO: Add a color for the BG, but for prototype scope we'll keep it black/default
+# TODO: Add this on the nodes themselves somehow...?
+# A dictionary of every NPC is unsustainable for obvious reason
+# Actually, the colors can probably be done in yarn. This doesn't change header color for diff "speakers"
 var custom_npc_colors = {
 	"NPC1": Color(.4, .4, 1.0),
 	"OldMan": Color(.1, 1.0, .3),
 	"SadGuard": Color(.8, .6, .0),
+	"CitadelGuard": Color(.8, .2, .0),
+	"NPC2": Color(.2, .8, .3),
+	"NPC3": Color(.2, .3, .8),
 }
 var default_color = Color(1.0, 1.0, 1.0)
 

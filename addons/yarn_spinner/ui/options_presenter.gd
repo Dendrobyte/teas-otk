@@ -178,8 +178,8 @@ func _create_option_buttons() -> void:
 
 		if button is Button:
 			button.text = option.get_plain_text()
-			button.custom_minimum_size = Vector2(0, 80)
-			button.add_theme_font_size_override("font_size", 40)
+			button.custom_minimum_size = Vector2(0, 40)
+			button.add_theme_font_size_override("font_size", 32)
 		elif button.has_method("set_option_text"):
 			button.set_option_text(option.get_plain_text())
 
