@@ -1,0 +1,14 @@
+[remap]
+
+importer="yarn_spinner.yarn_file"
+type="Resource"
+uid="uid://csgcb8p530yl"
+path="res://.godot/imported/Chapter1_Overworld.yarn-0a5051910aa0d41e755b38406a6e9d37.res"
+
+[deps]
+
+source_file="res://dialogue/Chapter1_Overworld.yarn"
+dest_files=["res://.godot/imported/Chapter1_Overworld.yarn-0a5051910aa0d41e755b38406a6e9d37.res"]
+
+[params]
+

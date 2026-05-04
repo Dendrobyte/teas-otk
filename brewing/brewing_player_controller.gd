@@ -10,7 +10,7 @@ class_name BrewingPlayer
 @onready var debug_text_label = $Control/DebugText
 
 # Assets to preload
-@onready var teabag_model = preload("res://assets/models/teabag.glb")
+@onready var teabag_model = preload("res://assets/models/brewing/teabag.glb")
 
 # Camera & character movement
 @onready var cam = $Camera3D

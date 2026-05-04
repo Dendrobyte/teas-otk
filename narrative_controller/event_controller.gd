@@ -99,7 +99,7 @@ func toggle_npc_interactable(npc_name: String, flag: bool):
 #### ANIMATIONS ####
 
 # These are set up in an order of what we want to trigger
-enum EVENT_TYPE { Animation, Dialogue, TransitionScene }
+enum EVENT_TYPE {Animation, Dialogue, TransitionScene}
 
 signal cutscene_started
 signal cutscene_ended
@@ -122,7 +122,7 @@ var old_man_approaches_at_gate = [
 	{"type": EVENT_TYPE.Animation, "node": "Character", "dest": Vector3(-84, 5.231, -2.7), "dur": 1.0, "parallel": true},
 	# TODO: Change to the collection screen if we're in an overworld instead. Maybe let GameScene handle it depending on name?
 	# TODO: Name is just for the yarnspinner node stuff, may eventually change. GameScene should handle this exact thing, not global state. Revisit.
-	{"type": EVENT_TYPE.TransitionScene, "scene": "res://brewing/BrewingBase_ch1.tscn", "scene_name": "Brewing"},
+	{"type": EVENT_TYPE.TransitionScene, "scene": "res://brewing/brewing_base_scene.tscn", "scene_name": "Brewing"},
 ]
 
 # Triggers when you cheer up the sad guard and removes the current guard there
@@ -158,7 +158,7 @@ func start_animation(animation_name, character_ref):
 		if event.type == EVENT_TYPE.Animation:
 			# NOTE: Do I have to create a tween each time? Feels weird, but might be because dialogue cuts between
 			tween = create_tween()
-			var move_node_ref 
+			var move_node_ref
 			if event.node == "Character":
 				move_node_ref = character_ref
 			else:

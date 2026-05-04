@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rnfghqamgpo6"
-path="res://.godot/imported/torch_torch.png-41bd40d147fdb4fedb17171145a92cb2.ctex"
+uid="uid://cnv0uqtw18jfg"
+path="res://.godot/imported/Teabag.png-5d3b891b469ebdd00d28dbd70c7d521f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/models/torch_torch.png"
-dest_files=["res://.godot/imported/torch_torch.png-41bd40d147fdb4fedb17171145a92cb2.ctex"]
+source_file="res://assets/models/brewing/textures/Teabag.png"
+dest_files=["res://.godot/imported/Teabag.png-5d3b891b469ebdd00d28dbd70c7d521f.ctex"]
 
 [params]
 
