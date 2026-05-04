@@ -7,10 +7,10 @@ var game_scene: GameScene
 func _ready():
 	# TODO: If testing, always load a specific scene here
 	# NOTE: We're going to rework this all, I just want something visible rn
-	# var current_scene = preload("res://overworld/chapter_1_overworld.tscn").instantiate()
-	# GlobalState.set_current_scene("Overworld")
-	var current_scene = preload("res://brewing/brewing_base_scene.tscn").instantiate()
-	GlobalState.set_current_scene("Brewing")
+	var current_scene = preload("res://overworld/chapter_1_overworld.tscn").instantiate()
+	GlobalState.set_current_scene("Overworld")
+	# var current_scene = preload("res://brewing/brewing_base_scene.tscn").instantiate()
+	# GlobalState.set_current_scene("Brewing")
 	# var current_scene = preload("res://seal_poc.tscn")
 	# TODO: Understand why we need to do call_deferred here
 	# TODO: Register the chapter's flags with the narrative controller

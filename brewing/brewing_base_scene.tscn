@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://kmcdpx3tde62"]
 
 [ext_resource type="Script" uid="uid://cgxq82dhb7gja" path="res://brewing/brewing_base.gd" id="1_c48yr"]
+[ext_resource type="PackedScene" uid="uid://ctgjq4krm4248" path="res://asset_sprite_base.tscn" id="2_0qvjg"]
 [ext_resource type="Script" uid="uid://t7m4u5is2712" path="res://brewing/brewing_player_controller.gd" id="2_ns4kx"]
 [ext_resource type="Script" uid="uid://bw4ywnt705a6l" path="res://brewing/brewing_ui.gd" id="3_0qvjg"]
+[ext_resource type="Texture2D" uid="uid://g6wv4ob57ocu" path="res://assets/drawings/temp_sprite1.png" id="3_th32l"]
+[ext_resource type="Texture2D" uid="uid://dfyhgtcidqdph" path="res://assets/drawings/temp_sprite1_large.png" id="4_5crc6"]
 [ext_resource type="PackedScene" uid="uid://bcbs4m76eq7fj" path="res://assets/models/brewing/brewing_env.glb" id="4_th32l"]
 
 [sub_resource type="Environment" id="Environment_vodtt"]
@@ -17,6 +20,14 @@ default_font_size = 30
 [node name="BrewingBase" type="Node3D" unique_id=2002152738]
 transform = Transform3D(1.2706147, 0, 0, 0, 1.2706147, 0, 0, 0, 1.2706147, 0, 0, 0)
 script = ExtResource("1_c48yr")
+
+[node name="Reyla" parent="." unique_id=977840974 instance=ExtResource("2_0qvjg")]
+transform = Transform3D(1.6322944, 0, 0, 0, 1.6322944, 0, 0, 0, 1, 2.7427444, 0.7806564, -3.043714)
+texture = ExtResource("3_th32l")
+
+[node name="Aloy" parent="." unique_id=1813412723 instance=ExtResource("2_0qvjg")]
+transform = Transform3D(0.33483648, 0, 0, 0, 0.33483648, 0, 0, 0, 1, 0.24297135, 2.1820402, -2.5351198)
+texture = ExtResource("4_5crc6")
 
 [node name="Character" type="Node3D" parent="." unique_id=1850063740]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.431, 2.681, 4.2326684)
