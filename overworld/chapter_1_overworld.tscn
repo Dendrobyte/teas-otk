@@ -12,9 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://ckjsos5fjdhgq" path="res://assets/drawings/temp_fade.png" id="12_injd8"]
 [ext_resource type="Texture2D" uid="uid://2tyb4f5pycuc" path="res://assets/drawings/overworld/base_bush_128x128.png" id="12_nya86"]
 [ext_resource type="Texture2D" uid="uid://c08im8e4vsoho" path="res://assets/drawings/overworld/tree_1_384x384.png" id="13_pbw25"]
-[ext_resource type="Texture2D" uid="uid://d2mrsh2lxffsl" path="res://assets/drawings/guard.png" id="20_bnibg"]
+[ext_resource type="Texture2D" uid="uid://ieqgga5kamne" path="res://assets/drawings/guard_lines.png" id="13_yxr4e"]
+[ext_resource type="Texture2D" uid="uid://djqylme7yix3l" path="res://assets/drawings/guard_nolines.png" id="15_injd8"]
 [ext_resource type="Texture2D" uid="uid://ssrsce5i7p3t" path="res://assets/drawings/oldman.png" id="21_bnibg"]
-[ext_resource type="Texture2D" uid="uid://k72pn2jky354" path="res://assets/drawings/sadguard.png" id="22_nya86"]
 
 [node name="OverworldBase" type="Node3D" unique_id=2002152738]
 script = ExtResource("1_yxqur")
@@ -89,8 +89,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.37283, 0, -0.2883768)
 texture = ExtResource("12_injd8")
 
 [node name="CitadelGuard" parent="NPCs" unique_id=1062812291 instance=ExtResource("11_swfx4")]
-transform = Transform3D(0.7297329, 0, 0.6837324, 0, 1, 0, -0.6837324, 0, 0.7297329, -43.10114, 0, -0.2948618)
-texture = ExtResource("20_bnibg")
+transform = Transform3D(0.21116972, 0, 0.6837324, 0, 0.28937954, 0, -0.19785812, 0, 0.7297329, -43.10114, 1.1014705, -0.2948618)
+texture = ExtResource("13_yxr4e")
 
 [node name="OldMan" parent="NPCs" unique_id=670409553 instance=ExtResource("11_swfx4")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -47.405987, -0.08291435, -3.4925847)
@@ -98,6 +98,6 @@ texture = ExtResource("21_bnibg")
 start_interactable = false
 
 [node name="SadGuard" parent="NPCs" unique_id=853644851 instance=ExtResource("11_swfx4")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -43.36195, 0, -3.8403554)
-texture = ExtResource("22_nya86")
+transform = Transform3D(0.289, 0, 0, 0, 0.289, 0, 0, 0, 1, -43.36195, 1.1204807, -3.8403554)
+texture = ExtResource("15_injd8")
 start_interactable = false
