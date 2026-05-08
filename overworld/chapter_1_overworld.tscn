@@ -13,8 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://dta355p7gtyar" path="res://assets/drawings/merc_nolines.png" id="12_yxr4e"]
 [ext_resource type="Texture2D" uid="uid://c08im8e4vsoho" path="res://assets/drawings/overworld/tree_1_384x384.png" id="13_pbw25"]
 [ext_resource type="Texture2D" uid="uid://ieqgga5kamne" path="res://assets/drawings/guard_lines.png" id="13_yxr4e"]
+[ext_resource type="Texture2D" uid="uid://dp1cduef2anw3" path="res://assets/drawings/old_man_lines.png" id="14_injd8"]
+[ext_resource type="Texture2D" uid="uid://c8hik1s6lw3pv" path="res://assets/drawings/old_man_nolines.png" id="15_478q5"]
 [ext_resource type="Texture2D" uid="uid://djqylme7yix3l" path="res://assets/drawings/guard_nolines.png" id="15_injd8"]
-[ext_resource type="Texture2D" uid="uid://ssrsce5i7p3t" path="res://assets/drawings/oldman.png" id="21_bnibg"]
 
 [node name="OverworldBase" type="Node3D" unique_id=2002152738]
 script = ExtResource("1_yxqur")
@@ -93,9 +94,13 @@ transform = Transform3D(0.21116972, 0, 0.6837324, 0, 0.28937954, 0, -0.19785812,
 texture = ExtResource("13_yxr4e")
 
 [node name="OldMan" parent="NPCs" unique_id=670409553 instance=ExtResource("11_swfx4")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -47.405987, -0.08291435, -3.4925847)
-texture = ExtResource("21_bnibg")
+transform = Transform3D(0.2752169, 0, 0, 0, 0.27521694, 0, 0, 0, 0.99999994, -44.15535, 0.8141637, -3.4925847)
+texture = ExtResource("14_injd8")
 start_interactable = false
+
+[node name="OldMan2" parent="NPCs" unique_id=1042124805 instance=ExtResource("11_swfx4")]
+transform = Transform3D(0.2752169, 0, 0, 0, 0.27521694, 0, 0, 0, 0.99999994, -45.90004, 0.8141637, -3.4925847)
+texture = ExtResource("15_478q5")
 
 [node name="SadGuard" parent="NPCs" unique_id=853644851 instance=ExtResource("11_swfx4")]
 transform = Transform3D(0.289, 0, 0, 0, 0.289, 0, 0, 0, 1, -43.36195, 1.1204807, -3.8403554)
