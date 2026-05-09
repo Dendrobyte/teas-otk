@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dxb0v1ibc70vu" path="res://character.tscn" id="7_58wme"]
 [ext_resource type="PackedScene" uid="uid://dawik2saygkps" path="res://assets/models/overworld/ch1_overworld_env.glb" id="8_bnibg"]
 [ext_resource type="PackedScene" uid="uid://beqg2nk1p3ugp" path="res://assets/models/brewing/torch.glb" id="9_7k04j"]
+[ext_resource type="Texture2D" uid="uid://d3w2pxctulr1w" path="res://assets/drawings/npc1.png" id="10_injd8"]
 [ext_resource type="Script" uid="uid://btwkuqh33iglq" path="res://overworld/scatter_placement.gd" id="10_wgy84"]
-[ext_resource type="Texture2D" uid="uid://c8ujuwn27ligr" path="res://assets/drawings/temp_aloy.png" id="10_yxr4e"]
 [ext_resource type="PackedScene" uid="uid://ctgjq4krm4248" path="res://asset_sprite_base.tscn" id="11_bnibg"]
 [ext_resource type="PackedScene" uid="uid://rnhvdrm6nr7" path="res://npc.tscn" id="11_swfx4"]
 [ext_resource type="Texture2D" uid="uid://brys7el6sxxcu" path="res://assets/drawings/merc_lines.png" id="11_yxr4e"]
@@ -78,8 +78,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.5987, 8.075622, -4.846305
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.913579, 5.1751747, -1.156765)
 
 [node name="NPC1" parent="NPCs" unique_id=264516795 instance=ExtResource("11_swfx4")]
-transform = Transform3D(0.9470367, 0, 0.32112542, 0, 1, 0, -0.32112542, 0, 0.9470367, -35.161106, 0, -3.1229115)
-texture = ExtResource("10_yxr4e")
+transform = Transform3D(0.9470367, 0, 0.32112542, 0, 1, 0, -0.32112542, 0, 0.9470367, -34.908806, 0.1424303, -1.4480228)
+texture = ExtResource("10_injd8")
+plane_texture_img = ExtResource("12_yxr4e")
 
 [node name="NPC2" parent="NPCs" unique_id=1602502584 instance=ExtResource("11_swfx4")]
 transform = Transform3D(0.36850494, 0, 0, 0, 0.36850494, 0, 0, 0, 1, -38.82938, 1.0388618, 0.42833042)

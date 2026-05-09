@@ -2,6 +2,8 @@ extends Node3D
 
 var narrative_controller: NarrativeController
 
+var active_customer_controller#: CustomerActions
+
 # Some fields for each brewing scene, this should be configurable with however I do the dialogue
 # For example, a later chapter should have more cups / etc.
 func _enter_tree():
@@ -14,6 +16,10 @@ func _enter_tree():
 	var brewing_env = get_node("brewing_env")
 	# Access via group? Or brewing base can just have an explicit reference set in the editor?
 	narrative_controller = get_tree().get_root().get_node("Main").get_node("NarrativeController")
+
+	# Wire up dialogue signals that eventually hit narrative (and thus dialogue) controller
+	active_customer_controller = get_node("ActiveCustomer")
+	active_customer_controller.char_dialogue_action.connect(trigger_character_dialogue)
 
 	# Programmatically load nodes and attach their scripts via map ref
 	# The keys are the names from Blender, the value is the script path to attach and special behavior
@@ -36,7 +42,6 @@ func _enter_tree():
 		var item_script = load(script_path)
 		# NOTE: This errors atm because TeaCont doesn't exist.
 		var item_node = brewing_env.get_node(item_name)
-		print("Loading: ", item_name)
 
 		# NOTE: I'd love to move this dupe stuff into the respective ready funcs
 		# but not a prio for now
@@ -64,12 +69,11 @@ func _enter_tree():
 		else:
 			item_node.set_script(item_script)
 
-	print("Finished loading brewing base")
+		# For specific items, wire up signals here
+		# TODO: Tea serve tray emits tea served signal
+		# TODO: with teabag type, etc.
 
-	# TODO: To be done when we make the tutorial bit, but properly loading events and flags depending on what brewing scene we're in
-	# Since brewing is always the same thing, maybe this is in a file? We could just load it from memory for now, but I do want a second brewing phase
-	# Point is, it can't be the same as the overworld separations since those will be individual scenes/environments
-	narrative_controller.dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + "OldMan")
+	print("Finished loading brewing base")
 	
 func change_debug_text(new_text):
 	get_node("Character").debug_text_label.text = new_text
@@ -78,3 +82,15 @@ func change_debug_text(new_text):
 # Something better will evolve
 func start_minigame():
 	get_node("Character").start_minigame()
+
+# To be triggered from NPC serving, etc.
+# We toggle the served variable which will change what dialogue we get from yarnspinner
+func trigger_character_dialogue(character_name, is_served):
+	# TODO: (Way later) Pass along if it's the correct tea or something too. Perhaps just the type here
+	# and we can check it here in the brewing_base depending on how we load the character info
+	# Revisit
+	# Also, there could be incorrect tea but we still need to know the type?
+	narrative_controller.dialogue_controller.dialogue_runner.variable_storage.set_value("$is_served", is_served)
+	narrative_controller.dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + character_name)
+
+	# TODO: Modify character controller so you can't move while progressing, and can't click

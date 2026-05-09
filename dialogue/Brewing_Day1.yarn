@@ -4,5 +4,10 @@
 // TODO: Change the scene name- I want to make sure the naming scheme can programmatically be "scene" + "_" + "node"
 title: Brewing_OldMan
 ---
+<<if $is_served == false>>
 Old Man: Welcome into my tea shop, {$name}! I'm so glad I could help...
+<<else>> // served = true
+// TODO: Pass along correct_tea true/false
+Old Man: Just the kick I wanted, thank you!
+<<endif>>>>
 ===
