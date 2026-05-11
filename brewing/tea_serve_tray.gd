@@ -1,6 +1,8 @@
 extends Node3D
 class_name TeaServeTray
 
+signal tea_served_on_tray
+
 # For now, this only clears when someone says something? Not sure it's necessary since
 # we'll- in theory- pause the game when a cup is served
 # Not sure why I'm preparing for multiple cups being served at once lol
@@ -10,8 +12,7 @@ var placed_cup_node: TeaCup = null
 func interact(player_node):
     var held_item = player_node.held_item
     if held_item == null and placed_cup_node != null:
-        placed_cup_node.queue_free()
-        return "Cup removed from tray"
+        return "Cup is on tray, clicking tray does nothing"
     elif player_node.get_held_item_min_name() == "TeaCup" and placed_cup_node != null:
         return "There is already a cup on the tray!"
     elif player_node.get_held_item_min_name() == "TeaCup" and placed_cup_node == null:
@@ -24,6 +25,7 @@ func interact(player_node):
             placed_cup_node.tray_ref = self
             placed_cup_node.reparent(self)
             player_node.set_held_item(null)
+            tea_served_on_tray.emit() # TODO: Teabag information. Store in the teacup class.
             return "Placed cup on serving tray!"
         else:
             return "Cup cannot be served!"

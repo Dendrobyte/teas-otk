@@ -21,6 +21,10 @@ func _enter_tree():
 	active_customer_controller = get_node("ActiveCustomer")
 	active_customer_controller.char_dialogue_action.connect(trigger_character_dialogue)
 
+	# NOTE: Is... is this ok? This is kinda weird.
+	# Active customer emits dialogue start, and then can listen for the dialogue finish
+	narrative_controller.dialogue_controller.dialogue_controller_dialogue_finished.connect(active_customer_controller.dialogue_finished)
+
 	# Programmatically load nodes and attach their scripts via map ref
 	# The keys are the names from Blender, the value is the script path to attach and special behavior
 	var brewing_dir = "res://brewing/"
@@ -70,6 +74,9 @@ func _enter_tree():
 			item_node.set_script(item_script)
 
 		# For specific items, wire up signals here
+		if item_name == "ServeTray":
+			var tea_tray = item_node as TeaServeTray
+			tea_tray.tea_served_on_tray.connect(active_customer_controller.trigger_current_customer_served)
 		# TODO: Tea serve tray emits tea served signal
 		# TODO: with teabag type, etc.
 
@@ -90,7 +97,28 @@ func trigger_character_dialogue(character_name, is_served):
 	# and we can check it here in the brewing_base depending on how we load the character info
 	# Revisit
 	# Also, there could be incorrect tea but we still need to know the type?
+	print(narrative_controller.dialogue_controller.dialogue_runner.variable_storage.get_value("$is_served"))
 	narrative_controller.dialogue_controller.dialogue_runner.variable_storage.set_value("$is_served", is_served)
 	narrative_controller.dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + character_name)
 
 	# TODO: Modify character controller so you can't move while progressing, and can't click
+	# NOTE: Will need to wire up dialogue finished too
+
+#### INPUT FOR DEBUGGING ####
+# TODO: Extend the menu UI to "reset cups" or "insta fill cup" etc.
+# I can't rely on buttons and creating more buttons
+func _input(event):
+	# up arrow for now. just triggers respawn, eventually will go down the list
+	# TODO: maybe set up a debug flag or whatnot as you test serving a few different characters
+	if event.is_action_pressed("brewing_skip"):
+		print("Triggering skip")
+		active_customer_controller.trigger_next_customer()
+	# Just some generic thing, hopefully can be reused idk
+	elif event.is_action_pressed("instant_run"):
+		var cup_node = get_node("TeaCup2") as TeaCup
+		if cup_node == null:
+			cup_node = get_node("TeaCup3").duplicate() # obviously, don't use teacup 3 when testing lol
+			cup_node.name = "TeaCup2"
+			cup_node.position = Vector3(cup_node.position.x + 2, cup_node.position.y, cup_node.position.z)
+		cup_node.is_filled = true
+		cup_node.has_teabag = true

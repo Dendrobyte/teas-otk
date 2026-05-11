@@ -46,8 +46,8 @@ func update_flag_and_call_function(var_name: String, value, npc_refs):
 	var flag_name = var_name.substr(1) if is_yarn_var else var_name
 	
 	NPC_REFS = npc_refs
-	# TODO: If flag_name in FLAGS, call() Else don't call and update flag
-	FLAGS[flag_name]["function"].call()
+	if flag_name in FLAGS.keys():
+		FLAGS[flag_name]["function"].call()
 
 	# If it's not a yarn variable, it's not being updated from yarn
 	# So we want to make sure we update yarn's variable storage

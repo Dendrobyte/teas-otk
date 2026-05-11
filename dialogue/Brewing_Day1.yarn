@@ -1,13 +1,32 @@
 // NOTE: When I return to this, it's worth breaking up a yarn project for each "chapter" of the game.
 // We can use this namespacing convention epending on the phases of that chapter, since it may not be consistent across chapters
 
+title: Brewing_Day1
+---
+<<declare $is_served = false>>
+<<declare $is_pref = true>>
+===
+
 // TODO: Change the scene name- I want to make sure the naming scheme can programmatically be "scene" + "_" + "node"
 title: Brewing_OldMan
 ---
 <<if $is_served == false>>
-Old Man: Welcome into my tea shop, {$name}! I'm so glad I could help...
-<<else>> // served = true
-// TODO: Pass along correct_tea true/false
+Old Man: Welcome into my tea shop, {$name}! I'm glad the world brought us together
+<<elseif $is_served == true and $is_pref == true>>
 Old Man: Just the kick I wanted, thank you!
-<<endif>>>>
+// TODO: Pass along is pref and have another option when it isn't the pref 
+<<endif>>
+===
+
+// I was planning on just a generic character here, but she could work
+title: Brewing_Mercenary
+---
+<<if $is_served == false>>
+Miranda: May as well get something while I'm here...
+<<elseif $is_served == true and $is_pref == true>>
+Miranda: Huh, I didn't think leaf water would be enticing. I suppose the nearby inn isn't too expensive to stay a night.
+// TODO: Pass along is pref and have another option when it isn't the pref 
+// TODO: If I keep Miranda, we can use "is pref" depending on what's served. Just two for now, but neither is "bad"?
+// I guess we'll want the freedom for more in the future, but that is not in the prototype scope
+<<endif>>
 ===

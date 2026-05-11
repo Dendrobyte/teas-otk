@@ -54,17 +54,17 @@ func hide_dialogue():
 # Otherwise, we're in a situation where we can use a large box
 # NOTE: We can potentially use this flag to also determine whether to show a portrait?
 # Though I'm wondering if that setup will be totally different
-func start_dialogue(yarn_node_name: String, target: Node3D = null):
+func start_dialogue(yarn_node_name: String, _target: Node3D = null):
 	# NOTE: This is "proof of concept" code for changing the UI elements
 	var char_name = yarn_node_name.get_slice("_", 1) # -1 to get last index doesn't work, OK for prototype
 	var char_color = custom_npc_colors.get(char_name, default_color)
 	character_name_label.set("theme_override_colors/font_color", char_color)
 	dialogue_runner.start_dialogue(yarn_node_name)
 
-	if target != null:
-		modify_dialogue_window_position(target.global_position)
-	else:
-		reset_dialogue_window_position()
+	# if target != null:
+	# 	modify_dialogue_window_position(target.global_position)
+	# else:
+	# 	reset_dialogue_window_position()
 
 	show_dialogue()
 	# Left off trying to change the references, but looks like I need to treat yarnspinner as priority
@@ -93,12 +93,12 @@ var custom_npc_colors = {
 }
 var default_color = Color(1.0, 1.0, 1.0)
 
-func modify_dialogue_window_position(position_in_3d: Vector3):
-	var cam = get_viewport().get_camera_3d()
-	var pos_2d = cam.unproject_position(position_in_3d)
-	# line_presenter.global_position = pos_2d
-	# line_presenter.size = line_presenter.size / 2
-	# TODO: Figure out what to do with options
+# func modify_dialogue_window_position(position_in_3d: Vector3):
+# 	var cam = get_viewport().get_camera_3d()
+# 	var pos_2d = cam.unproject_position(position_in_3d)
+# 	line_presenter.global_position = pos_2d
+# 	line_presenter.size = line_presenter.size / 2
+# 	# TODO: Figure out what to do with options
 
 func reset_dialogue_window_position():
 	reset_size()
