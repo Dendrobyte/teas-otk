@@ -81,7 +81,12 @@ func _enter_tree():
 		# TODO: with teabag type, etc.
 
 	print("Finished loading brewing base")
-	
+
+# Using ready to make sure all children have loaded
+var brewing_player_controller: BrewingPlayer
+func _ready():
+	brewing_player_controller = get_node("Character")
+
 func change_debug_text(new_text):
 	get_node("Character").debug_text_label.text = new_text
 
@@ -101,7 +106,9 @@ func trigger_character_dialogue(character_name, is_served):
 	narrative_controller.dialogue_controller.dialogue_runner.variable_storage.set_value("$is_served", is_served)
 	narrative_controller.dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + character_name)
 
-	# TODO: Modify character controller so you can't move while progressing, and can't click
+	# Ensure we can't move around / click on the items around in order to focus on dialogue
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	brewing_player_controller.dialogue_started()
 	# NOTE: Will need to wire up dialogue finished too
 
 #### INPUT FOR DEBUGGING ####

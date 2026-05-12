@@ -17,6 +17,8 @@ class_name BrewingPlayer
 var yaw: float = 0.0
 var pitch: float = 0.0
 
+var is_in_dialogue = false # Externally modified
+
 # Some text as a temporary visual indicator of where I am and what's updating where
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -24,6 +26,9 @@ func _ready():
 
 # NOTE: Potential use case for _unhandled_input?
 func _input(event):
+	if is_in_dialogue:
+		return
+
 	# I want to eventually move this or use _unhandled_input since the control should activate
 	if event is InputEventMouseMotion:
 		yaw -= event.relative.x * sensitivity
@@ -51,6 +56,12 @@ func _input(event):
 					debug_text_label.text = "Unhandled item on " + item_node.name
 				else:
 					debug_text_label.text = result_text
+
+func dialogue_started():
+	is_in_dialogue = true
+
+func dialogue_finished():
+	is_in_dialogue = false
 
 ## Item Handling Stuff ##
 

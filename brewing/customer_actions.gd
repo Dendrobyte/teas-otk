@@ -33,8 +33,8 @@ func trigger_next_customer():
 		return
 	# Spawn in and move
 	# TODO: Set up according to list and some cursor. Opp to get on those constants!
-	# TODO: Images are going to need to match the NPC names too; which is good actually
-	sprite.texture = load("res://assets/drawings/" + curr_char_name + ".png")
+	var img_resource = load("res://assets/drawings/" + curr_char_name + ".png")
+	sprite.texture = img_resource if img_resource != null else load("res://assets/drawings/NPC_NoTexture.png")
 	sprite.position = start_pos
 	show()
 

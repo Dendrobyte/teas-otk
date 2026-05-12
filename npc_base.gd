@@ -1,7 +1,7 @@
-extends Node3D
+@tool
+extends Sprite3D
 class_name NPCBase
 
-@export var plane_texture_img: Texture2D
 @export var start_interactable: bool = true
 var dialogue = null
 var area: Area3D = null
@@ -11,7 +11,25 @@ var interactable = true # Assume NPCs start as interactable
 signal npc_collision_enter
 signal npc_collision_leave
 
+@export_tool_button("Reload Image", "Callable") var reload_image = reload_npc_image
+
+# All NPC images will match on name and I want to be able to see them in-editor
+# There may be exception in future
+func reload_npc_image():
+	var img_resource = load("res://assets/drawings/" + name + ".png")
+	texture = img_resource if img_resource != null else load("res://assets/drawings/NPC_NoTexture.png")
+
+	# You're not supposed to modify the root node of a scene so we'll have that adjustment here
+	scale = Vector3(0.3, 0.3, 0.3)
+	# TODO: Make sure it makes contact with ground plane properly
+	# 		Editor can be rough, in-game should be precise
+
 func _ready():
+	# Guard to not load this in-editor. Needed because I made this a tool script.
+	if Engine.is_editor_hint():
+		reload_npc_image()
+		return
+
 	# Wire up the area 3D's signals
 	area = $NPCArea3D
 	area.body_entered.connect(self._on_Character_enters)

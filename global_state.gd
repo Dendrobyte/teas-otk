@@ -8,6 +8,8 @@ func set_gamemode(new_gamemode):
 	CURRENT_GAMEMODE = new_gamemode
 
 # We hold on to this largely for yarn nodes. This should eventually become chapter or based on how I organize the yarn files.
+# Dialogues are prefixed with the scene type, but we should move to using node names
+# So Overworld_Ch1 is the name of the level we load, and thus that's the current scene
 var CURRENT_SCENE = ""
 
 func set_current_scene(scene_name):

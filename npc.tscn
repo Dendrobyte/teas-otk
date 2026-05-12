@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://rnhvdrm6nr7"]
 
 [ext_resource type="PackedScene" uid="uid://ctgjq4krm4248" path="res://asset_sprite_base.tscn" id="1_ideak"]
+[ext_resource type="Texture2D" uid="uid://c4gmlwagq4lps" path="res://assets/drawings/NPC_NoTexture.png" id="2_kh24r"]
 [ext_resource type="Script" uid="uid://b74k6q5f4jake" path="res://npc_base.gd" id="2_xxcha"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xxcha"]
 size = Vector3(1.9139404, 1.1969604, 2.0246468)
 
 [node name="NPCSpriteBase" unique_id=977840974 instance=ExtResource("1_ideak")]
+texture = ExtResource("2_kh24r")
 script = ExtResource("2_xxcha")
-plane_texture_img = null
 start_interactable = true
 
 [node name="NPCArea3D" type="Area3D" parent="." index="0" unique_id=1535549466]

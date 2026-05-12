@@ -42,6 +42,8 @@ default_font_size = 4
 [node name="Main" type="Node3D" unique_id=40555209 node_paths=PackedStringArray("narrative_controller")]
 script = ExtResource("1_glv2v")
 narrative_controller = NodePath("NarrativeController")
+current_scene_type = "Brewing"
+scene_tscn_name = "brewing/brewing_base_scene"
 metadata/_edit_horizontal_guides_ = [-94.0]
 metadata/_edit_vertical_guides_ = [960.0, 1651.0]
 
