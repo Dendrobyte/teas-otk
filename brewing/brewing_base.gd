@@ -2,7 +2,7 @@ extends Node3D
 
 var narrative_controller: NarrativeController
 
-var active_customer_controller#: CustomerActions
+var active_customer_controller: CustomerActions
 
 # Some fields for each brewing scene, this should be configurable with however I do the dialogue
 # For example, a later chapter should have more cups / etc.
@@ -17,13 +17,11 @@ func _enter_tree():
 	# Access via group? Or brewing base can just have an explicit reference set in the editor?
 	narrative_controller = get_tree().get_root().get_node("Main").get_node("NarrativeController")
 
+	narrative_controller.dialogue_controller.dialogue_controller_dialogue_finished.connect(brewing_dialogue_finished)
+
 	# Wire up dialogue signals that eventually hit narrative (and thus dialogue) controller
 	active_customer_controller = get_node("ActiveCustomer")
 	active_customer_controller.char_dialogue_action.connect(trigger_character_dialogue)
-
-	# NOTE: Is... is this ok? This is kinda weird.
-	# Active customer emits dialogue start, and then can listen for the dialogue finish
-	narrative_controller.dialogue_controller.dialogue_controller_dialogue_finished.connect(active_customer_controller.dialogue_finished)
 
 	# Programmatically load nodes and attach their scripts via map ref
 	# The keys are the names from Blender, the value is the script path to attach and special behavior
@@ -77,8 +75,6 @@ func _enter_tree():
 		if item_name == "ServeTray":
 			var tea_tray = item_node as TeaServeTray
 			tea_tray.tea_served_on_tray.connect(active_customer_controller.trigger_current_customer_served)
-		# TODO: Tea serve tray emits tea served signal
-		# TODO: with teabag type, etc.
 
 	print("Finished loading brewing base")
 
@@ -107,9 +103,21 @@ func trigger_character_dialogue(character_name, is_served):
 	narrative_controller.dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + character_name)
 
 	# Ensure we can't move around / click on the items around in order to focus on dialogue
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	brewing_player_controller.dialogue_started()
 	# NOTE: Will need to wire up dialogue finished too
+
+# Triggers a few different things when the dialogue wraps up
+func brewing_dialogue_finished():
+	# NOTE: Is... is this ok? This is kinda weird. We'll see what happens when I move shit around?
+	# Active customer emits dialogue start, and then can listen for the dialogue finish
+	active_customer_controller.dialogue_finished()
+	brewing_player_controller.dialogue_finished()
+
+	# TODO: This should be a reference. I just don't know if I want to hold references to each object atm?
+	# Can wait for a pattern to emerge, but also to be changed when we do the event stuff and
+	# maybe that'll just have the reference.
+	var serve_tray = get_node("brewing_env/ServeTray") as TeaServeTray
+	serve_tray.clear_tray()
 
 #### INPUT FOR DEBUGGING ####
 # TODO: Extend the menu UI to "reset cups" or "insta fill cup" etc.
@@ -122,10 +130,12 @@ func _input(event):
 		active_customer_controller.trigger_next_customer()
 	# Just some generic thing, hopefully can be reused idk
 	elif event.is_action_pressed("instant_run"):
-		var cup_node = get_node("TeaCup2") as TeaCup
-		if cup_node == null:
-			cup_node = get_node("TeaCup3").duplicate() # obviously, don't use teacup 3 when testing lol
-			cup_node.name = "TeaCup2"
-			cup_node.position = Vector3(cup_node.position.x + 2, cup_node.position.y, cup_node.position.z)
-		cup_node.is_filled = true
-		cup_node.has_teabag = true
+		if get_node("TeaCup3") == null:
+			print("When you're testing, you gotta not use teacup3")
+		else:
+			var cup_node = get_node("TeaCup3").duplicate() as TeaCup
+			cup_node.name = "TeaCup999"
+			cup_node.position = Vector3(cup_node.position.x, cup_node.position.y + 2, cup_node.position.z)
+			add_child(cup_node)
+			cup_node.is_filled = true
+			cup_node.has_teabag = true

@@ -16,6 +16,7 @@ class_name BrewingPlayer
 @onready var cam = $Camera3D
 var yaw: float = 0.0
 var pitch: float = 0.0
+var original_camera_transform: Transform3D
 
 var is_in_dialogue = false # Externally modified
 
@@ -23,6 +24,7 @@ var is_in_dialogue = false # Externally modified
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	debug_text_label.text = "Entered scene"
+	original_camera_transform = $Camera3D.transform
 
 # NOTE: Potential use case for _unhandled_input?
 func _input(event):
@@ -59,9 +61,11 @@ func _input(event):
 
 func dialogue_started():
 	is_in_dialogue = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func dialogue_finished():
 	is_in_dialogue = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 ## Item Handling Stuff ##
 

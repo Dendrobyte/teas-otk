@@ -42,16 +42,19 @@ func interact(player_node):
 			tea_prep_ref.free_snap_point(name)
 			tea_prep_ref = null
 		return "Picked up " + name
-	elif player_node.get_held_item_name() == "teabag" and not has_teabag:
-		if tea_prep_ref != null:
-			tea_prep_ref.free_snap_point(name)
-			tea_prep_ref = null
+	elif player_node.get_held_item_name() == "teabag":
+		if not has_teabag:
+			if tea_prep_ref != null:
+				tea_prep_ref.free_snap_point(name)
+				tea_prep_ref = null
 
-		player_node.held_item.queue_free()
-		player_node.set_held_item(self) # third instance I'm seeing these two lines I think
-		reparent(player_node)
-		has_teabag = true
-		return "Cup picked up, teabag placed inside"
+			player_node.held_item.queue_free()
+			player_node.set_held_item(self) # third instance I'm seeing these two lines I think
+			reparent(player_node)
+			has_teabag = true
+			return "Cup picked up, teabag placed inside"
+		else:
+			return "Cup already has teabag"
 	elif player_node.get_held_item_name() == "Kettle" and not is_filled:
 		is_filled = true
 		# TODO: Call a decrease_level function from kettle since we have it

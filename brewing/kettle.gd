@@ -30,9 +30,6 @@ func _ready():
 	timer.timeout.connect(_on_kettle_timer_done)
 	add_child(timer)
 
-	
-	
-
 # Pointless, but I like it for right now
 # Just updates the debug text with current kettle time
 # IF i keep the text, add an ew one to show other actions, but i'll

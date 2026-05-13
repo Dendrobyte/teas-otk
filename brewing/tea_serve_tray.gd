@@ -10,27 +10,31 @@ signal tea_served_on_tray
 var placed_cup_node: TeaCup = null
 
 func interact(player_node):
-    var held_item = player_node.held_item
-    if held_item == null and placed_cup_node != null:
-        return "Cup is on tray, clicking tray does nothing"
-    elif player_node.get_held_item_min_name() == "TeaCup" and placed_cup_node != null:
-        return "There is already a cup on the tray!"
-    elif player_node.get_held_item_min_name() == "TeaCup" and placed_cup_node == null:
-        var cup_node = player_node.held_item as TeaCup
-        if cup_node.can_be_served():
-            placed_cup_node = cup_node
-            # NOTE: could make this a function of each item too, used in tea_serve
-            # Namely, for this "position on and reparent to interacted object and reset held item"
-            placed_cup_node.place(global_position)
-            placed_cup_node.tray_ref = self
-            placed_cup_node.reparent(self)
-            player_node.set_held_item(null)
-            tea_served_on_tray.emit() # TODO: Teabag information. Store in the teacup class.
-            return "Placed cup on serving tray!"
-        else:
-            return "Cup cannot be served!"
+	var held_item = player_node.held_item
+	if held_item == null and placed_cup_node != null:
+		return "Cup is on tray, clicking tray does nothing"
+	elif player_node.get_held_item_min_name() == "TeaCup" and placed_cup_node != null:
+		return "There is already a cup on the tray!"
+	elif player_node.get_held_item_min_name() == "TeaCup" and placed_cup_node == null:
+		var cup_node = player_node.held_item as TeaCup
+		if cup_node.can_be_served():
+			placed_cup_node = cup_node
+			# NOTE: could make this a function of each item too, used in tea_serve
+			# Namely, for this "position on and reparent to interacted object and reset held item"
+			placed_cup_node.place(global_position)
+			placed_cup_node.tray_ref = self
+			placed_cup_node.reparent(self)
+			player_node.set_held_item(null)
+			tea_served_on_tray.emit() # TODO: Teabag information. Store in the teacup class.
+			return "Placed cup on serving tray!"
+		else:
+			return "Cup cannot be served!"
 
-# I just feel like I might have to do more here? Idk
+# I just feel like I might have to do more here
+# NOTE: We don't currently prevent cup placement before anyone is served
+# https://trello.com/c/ZbF8dN4V
 func clear_tray():
-    placed_cup_node = null
-    
+	if placed_cup_node:
+		placed_cup_node.queue_free()
+		placed_cup_node = null
+	

@@ -60,14 +60,17 @@ func trigger_current_customer_served():
 	curr_char_served = true
 	char_dialogue_action.emit(curr_char_name, true)
 
+# We want to make sure we're only serving someone after they show up, until they leave
 func dialogue_finished():
 	if curr_char_served:
 		# TODO: See note above about calculation. We're just going with default served dialogue for current ask
 		curr_char_served = false
 		tween = create_tween()
+		end_pos = get_chair_position()
 		tween.tween_property(sprite, "position", end_pos, 1.5)
 		await tween.finished
 		tween.kill()
+		add_child(sprite.duplicate())
 		# TODO: Create a sprite copy of the character at this position and put it in the scene
 		# Won't be interacted with again, but we can keep the name in it in case I want to do that
 
@@ -75,5 +78,11 @@ func dialogue_finished():
 		# Could think of it like potion craft serving
 		# So this script, for example, would load all the NPCs and
 		# the link to YarnSpinner just as all their dialogue
-		trigger_next_customer() 
+		trigger_next_customer()
 
+func get_chair_position():
+	var random_chair = $ChairPositions.get_children().pick_random()
+	random_chair.queue_free()
+	return random_chair.global_position
+
+	
