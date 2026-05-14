@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://caj6nlq2let87"
-path.s3tc="res://.godot/imported/OldMan.png-861c0bfc19a241a84c753a2b8dbb63b7.s3tc.ctex"
+path.s3tc="res://.godot/imported/oldman.png-146fec0e6111a50db2d9798b1776110e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/drawings/OldMan.png"
-dest_files=["res://.godot/imported/OldMan.png-861c0bfc19a241a84c753a2b8dbb63b7.s3tc.ctex"]
+source_file="res://assets/drawings/oldman.png"
+dest_files=["res://.godot/imported/oldman.png-146fec0e6111a50db2d9798b1776110e.s3tc.ctex"]
 
 [params]
 

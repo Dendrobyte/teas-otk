@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bcrkw1judwpfo"]
 
 [ext_resource type="Script" uid="uid://btqp10lt30b0u" path="res://overworld_base.gd" id="1_5ou8s"]
-[ext_resource type="PackedScene" uid="uid://dxb0v1ibc70vu" path="res://character.tscn" id="2_wxdv6"]
+[ext_resource type="PackedScene" uid="uid://dxb0v1ibc70vu" path="res://Character.tscn" id="2_wxdv6"]
 [ext_resource type="Script" uid="uid://btwkuqh33iglq" path="res://overworld/scatter_placement.gd" id="3_6fnbc"]
 [ext_resource type="PackedScene" uid="uid://ctgjq4krm4248" path="res://asset_sprite_base.tscn" id="4_3rmvi"]
 [ext_resource type="Texture2D" uid="uid://2tyb4f5pycuc" path="res://assets/drawings/overworld/base_bush_128x128.png" id="5_hsq35"]
@@ -9,10 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://c08im8e4vsoho" path="res://assets/drawings/overworld/tree_1_384x384.png" id="7_4hngy"]
 [ext_resource type="PackedScene" uid="uid://beqg2nk1p3ugp" path="res://assets/models/brewing/torch.glb" id="8_uf1ka"]
 [ext_resource type="PackedScene" uid="uid://rnhvdrm6nr7" path="res://npc.tscn" id="9_ipeki"]
+[ext_resource type="Texture2D" uid="uid://b3kf1e6lfldqs" path="res://assets/drawings/SketchyFarmer.png" id="11_13bsa"]
 [ext_resource type="Texture2D" uid="uid://vk82jo0cuctv" path="res://assets/drawings/Mercenary.png" id="11_bp8rp"]
 [ext_resource type="Texture2D" uid="uid://cv8sy4uu65psj" path="res://assets/drawings/CitadelGuard.png" id="12_13bsa"]
 [ext_resource type="Texture2D" uid="uid://caj6nlq2let87" path="res://assets/drawings/OldMan.png" id="13_5ou8s"]
-[ext_resource type="Texture2D" uid="uid://k72pn2jky354" path="res://assets/drawings/SadGuard.png" id="13_f2kuj"]
+[ext_resource type="Texture2D" uid="uid://k72pn2jky354" path="res://assets/drawings/SadGuard.png" id="14_wxdv6"]
 
 [node name="OverworldBase" type="Node3D" unique_id=2002152738]
 script = ExtResource("1_5ou8s")
@@ -83,6 +84,7 @@ texture = ExtResource("11_bp8rp")
 
 [node name="SketchyFarmer" parent="NPCs" unique_id=539337291 instance=ExtResource("9_ipeki")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -40.307304, 1.0431309, -0.28837872)
+texture = ExtResource("11_13bsa")
 
 [node name="CitadelGuard" parent="NPCs" unique_id=1062812291 instance=ExtResource("9_ipeki")]
 transform = Transform3D(0.21891986, 0, 0.20511974, 0, 0.3, 0, -0.20511974, 0, 0.21891986, -43.10114, 1.1674209, -0.2948618)
@@ -95,5 +97,5 @@ start_interactable = false
 
 [node name="SadGuard" parent="NPCs" unique_id=853644851 instance=ExtResource("9_ipeki")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -43.36195, 1.1204807, -3.8403554)
-texture = ExtResource("13_f2kuj")
+texture = ExtResource("14_wxdv6")
 start_interactable = false
