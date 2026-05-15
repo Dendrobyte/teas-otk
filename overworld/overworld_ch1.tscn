@@ -9,11 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://c08im8e4vsoho" path="res://assets/drawings/overworld/tree_1_384x384.png" id="7_4hngy"]
 [ext_resource type="PackedScene" uid="uid://beqg2nk1p3ugp" path="res://assets/models/brewing/torch.glb" id="8_uf1ka"]
 [ext_resource type="PackedScene" uid="uid://rnhvdrm6nr7" path="res://npc.tscn" id="9_ipeki"]
+[ext_resource type="Texture2D" uid="uid://cnt725o3haq2" path="res://assets/drawings/Bystander.png" id="10_13bsa"]
 [ext_resource type="Texture2D" uid="uid://b3kf1e6lfldqs" path="res://assets/drawings/SketchyFarmer.png" id="11_13bsa"]
 [ext_resource type="Texture2D" uid="uid://vk82jo0cuctv" path="res://assets/drawings/Mercenary.png" id="11_bp8rp"]
 [ext_resource type="Texture2D" uid="uid://cv8sy4uu65psj" path="res://assets/drawings/CitadelGuard.png" id="12_13bsa"]
-[ext_resource type="Texture2D" uid="uid://caj6nlq2let87" path="res://assets/drawings/OldMan.png" id="13_5ou8s"]
-[ext_resource type="Texture2D" uid="uid://k72pn2jky354" path="res://assets/drawings/SadGuard.png" id="14_wxdv6"]
+[ext_resource type="Texture2D" uid="uid://caj6nlq2let87" path="res://assets/drawings/OldMan.png" id="14_5ou8s"]
+[ext_resource type="Texture2D" uid="uid://k72pn2jky354" path="res://assets/drawings/SadGuard.png" id="15_wxdv6"]
 
 [node name="OverworldBase" type="Node3D" unique_id=2002152738]
 script = ExtResource("1_5ou8s")
@@ -76,7 +77,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.5987, 8.075622, -4.846305
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.913579, 5.1751747, -1.156765)
 
 [node name="Bystander" parent="NPCs" unique_id=264516795 instance=ExtResource("9_ipeki")]
-transform = Transform3D(0.28411102, 0, 0.096337624, 0, 0.3, 0, -0.096337624, 0, 0.28411102, -35.2275, 1.0853243, -3.0631137)
+transform = Transform3D(0.29774082, 0, -0.036747906, 0, 0.29999998, 0, 0.036747906, 0, 0.29774082, -35.2275, 1.0853243, -3.0631137)
+texture = ExtResource("10_13bsa")
 
 [node name="Mercenary" parent="NPCs" unique_id=1602502584 instance=ExtResource("9_ipeki")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -38.82938, 1.2390275, 0.42833042)
@@ -92,10 +94,10 @@ texture = ExtResource("12_13bsa")
 
 [node name="OldMan" parent="NPCs" unique_id=670409553 instance=ExtResource("9_ipeki")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -44.15535, 1.1196771, -3.4925847)
-texture = ExtResource("13_5ou8s")
+texture = ExtResource("14_5ou8s")
 start_interactable = false
 
 [node name="SadGuard" parent="NPCs" unique_id=853644851 instance=ExtResource("9_ipeki")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -43.36195, 1.1204807, -3.8403554)
-texture = ExtResource("14_wxdv6")
+texture = ExtResource("15_wxdv6")
 start_interactable = false
