@@ -56,7 +56,9 @@ func interact(player_node):
 		else:
 			return "Cup already has teabag"
 	elif player_node.get_held_item_name() == "Kettle" and not is_filled:
+		var kettle = player_node.held_item as Kettle
 		is_filled = true
+		kettle.show_pour_animation()
 		# TODO: Call a decrease_level function from kettle since we have it
 		#       imo signal unnecessary (we'd need to wire it up to every cup)
 		return "Filled cup!"

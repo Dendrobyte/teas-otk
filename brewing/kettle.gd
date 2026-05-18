@@ -73,6 +73,19 @@ func _on_kettle_timer_done():
 	var brewing_base = get_parent().get_parent()
 	brewing_base.change_debug_text("Kettle boiled!")
 
+var pour_tween
+func show_pour_animation():
+	print("Triggering pour animation")
+	pour_tween = create_tween()
+	# TODO: This can be cut off and resets to the not-actually-original rotation
+	var original_rotation = rotation
+	var pour_rotation = Vector3(rotation.x+deg_to_rad(-45), rotation.y, rotation.z)
+	print("Going from ", original_rotation, " to ", pour_rotation)
+	pour_tween.tween_property(self, "rotation", pour_rotation, 0.3)
+	pour_tween.tween_interval(0.5)
+	pour_tween.tween_property(self, "rotation", original_rotation, 0.3)
+	await pour_tween.finished
+
 # We can just alter the transparency mode
 var alpha = 0.3
 func set_transparent(val):

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bfs5v1y1ls70o" path="res://overworld/overworld_player_controller.gd" id="1_wa5vi"]
 [ext_resource type="PackedScene" uid="uid://ctgjq4krm4248" path="res://asset_sprite_base.tscn" id="2_wfnr8"]
-[ext_resource type="Texture2D" uid="uid://cgv8q2hwh6wt1" path="res://assets/drawings/overworld_character_spritesheet.png" id="3_px5sl"]
+[ext_resource type="Texture2D" uid="uid://c63avjaxyfbvt" path="res://assets/drawings/OverworldCharacterSheet.png" id="3_lcuhw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7pokv"]
 size = Vector3(1.0008545, 2.3405762, 0.080566406)
@@ -12,8 +12,8 @@ script = ExtResource("1_wa5vi")
 sprite = NodePath("AssetSpriteBase")
 
 [node name="AssetSpriteBase" parent="." unique_id=977840974 instance=ExtResource("2_wfnr8")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.48918116, 0)
-texture = ExtResource("3_px5sl")
+transform = Transform3D(0.28611353, 0, 0, 0, 0.28611353, 0, 0, 0, 0.5, 0, 1.1611881, 0)
+texture = ExtResource("3_lcuhw")
 hframes = 2
 vframes = 2
 
