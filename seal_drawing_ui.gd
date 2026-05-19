@@ -1,4 +1,5 @@
 extends Control
+class_name SealDrawingUI
 
 @onready var label = $ResultLabel
 # For now, debugging
@@ -8,6 +9,8 @@ extends Control
 @onready var canvas_bounds = Rect2(Vector2.ZERO, size)
 var _label_base_text = "Result: "
 var all_seals = SealTemplates.ALL_SEALS
+
+signal seal_complete
 
 func _ready():
 	var seal_popup = seal_menu.get_popup()
@@ -54,6 +57,8 @@ func _gui_input(event):
 			result_seal = identify_symbol() # { "name": ..., "confidence": ... }
 			# TODO: Return a const of the seal it matches
 			label.text = _label_base_text + result_seal.name + " (" + str(snapped(result_seal.confidence, 0.01)) + ")"
+			# TODO: Only emit if it matches a certain %
+			seal_complete.emit(result_seal)
 		queue_redraw()
 	elif event is InputEventMouseMotion and drawing and canvas_bounds.has_point(event.position):
 		current_stroke.append(event.position)

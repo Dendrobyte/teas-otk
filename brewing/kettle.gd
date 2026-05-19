@@ -15,6 +15,9 @@ var kettle_not_ready_mat: Material = null
 var kettle_wood: Material = null
 var kettle_metal: Material = null
 
+
+@onready var brewing_base = get_parent().get_parent()
+
 func _ready():
 	kettle_parent = get_parent()
 	kettle_origin_position = position # TODO: Change to transform
@@ -45,13 +48,12 @@ func _ready():
 # get rid of the text so idc right now
 func _process(_delta):
 	if timer.time_left != 0:
-		var brewing_base = get_parent().get_parent()
+		brewing_base = get_parent().get_parent()
 		brewing_base.change_debug_text("Kettle time remaining: " + str(snapped(timer.time_left, .1)) + " seconds")
 
 func interact(player_node):
 	if player_node.held_item == null and not is_boiled and not is_boiling:
-		is_boiling = true
-		timer.start()
+		brewing_base.show_seal_ui()
 		return "Kettle interact to boil has triggered"
 	elif player_node.held_item == null and is_boiled:
 		player_node.set_held_item(self)
@@ -65,22 +67,24 @@ func reset_position():
 	reparent(kettle_parent)
 	position = kettle_origin_position
 
+# TODO: Trigger from brewing base when phoenix is drawn
+func boil_kettle():
+	is_boiling = true
+	timer.start()
+
 func _on_kettle_timer_done():
 	$KettleLight.set_surface_override_material(1, kettle_ready_mat)
 	is_boiled = true
 	# For debugging. I don't love the direction this is going but I"ll get rid of the text
 	# completely anyway at some point
-	var brewing_base = get_parent().get_parent()
 	brewing_base.change_debug_text("Kettle boiled!")
 
 var pour_tween
 func show_pour_animation():
-	print("Triggering pour animation")
 	pour_tween = create_tween()
 	# TODO: This can be cut off and resets to the not-actually-original rotation
 	var original_rotation = rotation
 	var pour_rotation = Vector3(rotation.x+deg_to_rad(-45), rotation.y, rotation.z)
-	print("Going from ", original_rotation, " to ", pour_rotation)
 	pour_tween.tween_property(self, "rotation", pour_rotation, 0.3)
 	pour_tween.tween_interval(0.5)
 	pour_tween.tween_property(self, "rotation", original_rotation, 0.3)

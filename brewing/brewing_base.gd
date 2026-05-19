@@ -1,7 +1,9 @@
 extends Node3D
 
-var narrative_controller: NarrativeController
+@onready var seal_poc_scene = preload("res://seal_poc.tscn")
+var seal_poc
 
+var narrative_controller: NarrativeController
 var active_customer_controller: CustomerActions
 
 # Some fields for each brewing scene, this should be configurable with however I do the dialogue
@@ -83,13 +85,23 @@ var brewing_player_controller: BrewingPlayer
 func _ready():
 	brewing_player_controller = get_node("Character")
 
+	seal_poc = seal_poc_scene.instantiate() as SealDrawingUI
+	seal_poc.seal_complete.connect(_seal_drawing_complete)
+	add_child(seal_poc)
+	seal_poc.hide()
+
 func change_debug_text(new_text):
 	get_node("Character").debug_text_label.text = new_text
 
 # I don't mind this here, but the setup is flawed
 # Something better will evolve
-func start_minigame():
-	get_node("Character").start_minigame()
+func show_seal_ui():
+	# TODO: Lock the mouse
+	seal_poc.show()
+
+func _seal_drawing_complete(seal_name):
+	print("Received completed seal: ", seal_name)
+	seal_poc.hide()
 
 # To be triggered from NPC serving, etc.
 # We toggle the served variable which will change what dialogue we get from yarnspinner
