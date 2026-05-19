@@ -14,10 +14,11 @@ var target_velocity = Vector3.ZERO
 var bottom_center = 0 # y value representing bottom of the image
 
 func _ready():
-	var camera = $Camera
-	var x_rotation = deg_to_rad(-1*GlobalState.ROTATION_ANGLE[GlobalState.GameMode.OVERWORLD])
-	# Set rotation, in case I've modified it in the editor
-	camera.set_global_rotation(Vector3(x_rotation, 0.0, 0.0))
+	# If this is comment out, I'm experimenting :)
+	# var camera = $Camera
+	# var x_rotation = deg_to_rad(-1*GlobalState.ROTATION_ANGLE[GlobalState.GameMode.OVERWORLD])
+	# # Set rotation, in case I've modified it in the editor
+	# camera.set_global_rotation(Vector3(x_rotation, 0.0, 0.0))
 
 	sprite.frame = 1
 

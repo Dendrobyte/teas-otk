@@ -18,7 +18,7 @@ func set_current_scene(scene_name):
 #### High level variables for use across scenes ####
 var CURRENT_CHAPTER = null
 var ROTATION_ANGLE = {
-	GlobalState.GameMode.OVERWORLD: 0,
+	GlobalState.GameMode.OVERWORLD: 20,
 	GlobalState.GameMode.BREWING: 0,
 }
 
