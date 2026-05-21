@@ -43,7 +43,7 @@ default_font_size = 4
 script = ExtResource("1_glv2v")
 narrative_controller = NodePath("NarrativeController")
 current_scene_type = "Brewing"
-scene_tscn_name = "overworld/overworld_ch1"
+scene_tscn_name = "brewing/brewing_base_scene"
 metadata/_edit_horizontal_guides_ = [-94.0]
 metadata/_edit_vertical_guides_ = [960.0, 1651.0]
 

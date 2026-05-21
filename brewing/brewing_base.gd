@@ -86,22 +86,39 @@ func _ready():
 	brewing_player_controller = get_node("Character")
 
 	seal_poc = seal_poc_scene.instantiate() as SealDrawingUI
-	seal_poc.seal_complete.connect(_seal_drawing_complete)
 	add_child(seal_poc)
-	seal_poc.hide()
+	seal_poc.seal_complete.connect(_seal_drawing_complete)
+	seal_poc.seal_drawing_exit.connect(brewing_player_controller.overlay_hidden)
 
 func change_debug_text(new_text):
 	get_node("Character").debug_text_label.text = new_text
 
 # I don't mind this here, but the setup is flawed
 # Something better will evolve
-func show_seal_ui():
-	# TODO: Lock the mouse
-	seal_poc.show()
+# TODO: For the refactor, this little setup should have its own API/script
+#		Trusting this single callback func variable is... weird
+var seal_match: String = "" # Name of seal to be matched
+var seal_callback_func = null # Func to be called if match is success
+func show_seal_ui(seal_match_name, callback_func):
+	seal_poc.start_new()
+	brewing_player_controller.overlay_shown()
+	seal_match = seal_match_name
+	seal_callback_func = callback_func
 
+# TODO: I think we should eventually move seal recognition into the UI, and have that handle
+# any sort of animation, etc. and just deal with the success externally
+# Probably easier to retry any sort of "failed" seals instead of opening over and over
+# Literally just "if match, close_window() and overlay_hidden()"
 func _seal_drawing_complete(seal_name):
-	print("Received completed seal: ", seal_name)
-	seal_poc.hide()
+	if seal_name == seal_match:
+		seal_callback_func.call()
+		change_debug_text("Completed seal " + seal_name + " matched expected " + seal_match)
+	else:
+		change_debug_text("Completed seal " + seal_name + " does not match expected " + seal_match)
+	seal_match = ""
+	seal_callback_func = null
+	seal_poc.close_window()
+	brewing_player_controller.overlay_hidden()
 
 # To be triggered from NPC serving, etc.
 # We toggle the served variable which will change what dialogue we get from yarnspinner
@@ -115,7 +132,7 @@ func trigger_character_dialogue(character_name, is_served):
 	narrative_controller.dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + character_name)
 
 	# Ensure we can't move around / click on the items around in order to focus on dialogue
-	brewing_player_controller.dialogue_started()
+	brewing_player_controller.overlay_shown()
 	# NOTE: Will need to wire up dialogue finished too
 
 # Triggers a few different things when the dialogue wraps up
@@ -123,7 +140,7 @@ func brewing_dialogue_finished():
 	# NOTE: Is... is this ok? This is kinda weird. We'll see what happens when I move shit around?
 	# Active customer emits dialogue start, and then can listen for the dialogue finish
 	active_customer_controller.dialogue_finished()
-	brewing_player_controller.dialogue_finished()
+	brewing_player_controller.overlay_hidden()
 
 	# TODO: This should be a reference. I just don't know if I want to hold references to each object atm?
 	# Can wait for a pattern to emerge, but also to be changed when we do the event stuff and

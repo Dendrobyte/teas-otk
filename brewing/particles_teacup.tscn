@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://c7dflfmccjpwf"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3jmli"]
+particle_flag_rotate_y = true
+emission_shape_scale = Vector3(1, 0.1, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 90, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+angle_min = 78.500015
+angle_max = 290.6
+direction = Vector3(0, 7.04, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 0.6, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3jmli"]
+transparency = 1
+albedo_color = Color(0.3764706, 0.7372549, 0.6784314, 0.7058824)
+
+[sub_resource type="SphereMesh" id="SphereMesh_3jmli"]
+material = SubResource("StandardMaterial3D_3jmli")
+radius = 0.147
+height = 0.293
+rings = 2
+
+[node name="ParticlesTeacup" type="GPUParticles3D" unique_id=1745675896]
+transform = Transform3D(0.69939363, 0, 0, 0, 0.22436267, 0, 0, 0, 0.6494184, 0, 0, 0)
+emitting = false
+amount = 12
+lifetime = 0.09
+speed_scale = 0.44
+randomness = 0.4
+process_material = SubResource("ParticleProcessMaterial_3jmli")
+draw_pass_1 = SubResource("SphereMesh_3jmli")

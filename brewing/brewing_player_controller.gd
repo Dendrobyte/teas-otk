@@ -18,17 +18,16 @@ var yaw: float = 0.0
 var pitch: float = 0.0
 var original_camera_transform: Transform3D
 
-var is_in_dialogue = false # Externally modified
+# For dialogue, seal drawing
+var has_overlay = false
 
 # Some text as a temporary visual indicator of where I am and what's updating where
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	debug_text_label.text = "Entered scene"
 	original_camera_transform = $Camera3D.transform
 
-# NOTE: Potential use case for _unhandled_input?
 func _input(event):
-	if is_in_dialogue:
+	if has_overlay:
 		return
 
 	# I want to eventually move this or use _unhandled_input since the control should activate
@@ -38,8 +37,6 @@ func _input(event):
 		yaw = clamp(yaw, deg_to_rad(-yaw_limit), deg_to_rad(yaw_limit))
 		pitch = clamp(pitch, deg_to_rad(pitch_min), deg_to_rad(pitch_max))
 		rotation = Vector3(pitch, yaw, 0.0)
-	if event.is_action_pressed("escape"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if event.is_action_pressed("click"):
 		# NOTE: Just the structure of this item
 		## { "position": (-4.876412, 3.20117, 5.886989), "normal": (1.0, 0.0, 0.0), "face_index": -1, "collider_id": 30400316950, "collider": Pot:<StaticBody3D#30400316950>, "shape": 0, "rid": RID(631360192512) }
@@ -59,12 +56,18 @@ func _input(event):
 				else:
 					debug_text_label.text = result_text
 
-func dialogue_started():
-	is_in_dialogue = true
+# Seal UI escapes first, then we'll do this
+# But also this is just for debugging
+# func _unhandled_input(event):
+# 	if event.is_action_pressed("escape") and has_overlay == false:
+# 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func overlay_shown():
+	has_overlay = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-func dialogue_finished():
-	is_in_dialogue = false
+func overlay_hidden():
+	has_overlay = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 ## Item Handling Stuff ##

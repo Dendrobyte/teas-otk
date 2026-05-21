@@ -53,7 +53,7 @@ func _process(_delta):
 
 func interact(player_node):
 	if player_node.held_item == null and not is_boiled and not is_boiling:
-		brewing_base.show_seal_ui()
+		brewing_base.show_seal_ui("PHOENIX", boil_kettle)
 		return "Kettle interact to boil has triggered"
 	elif player_node.held_item == null and is_boiled:
 		player_node.set_held_item(self)
