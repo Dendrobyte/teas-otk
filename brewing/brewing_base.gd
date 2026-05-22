@@ -153,7 +153,10 @@ func brewing_dialogue_finished():
 # I can't rely on buttons and creating more buttons
 func _input(event):
 	# up arrow for now. just triggers respawn, eventually will go down the list
-	# TODO: maybe set up a debug flag or whatnot as you test serving a few different characters
+	if event.is_action_pressed("debug_free_mouse"):
+		# TODO: Technically, we'll need "escape" to become a menu thing
+		if not brewing_player_controller.has_overlay:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if event.is_action_pressed("brewing_skip"):
 		print("Triggering skip")
 		active_customer_controller.trigger_next_customer()

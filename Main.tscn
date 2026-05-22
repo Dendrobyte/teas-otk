@@ -75,10 +75,16 @@ metadata/_custom_type_script = "uid://flra500ihbix"
 [node name="CanvasLayer" type="CanvasLayer" parent="NarrativeController/DialogueController" unique_id=2035450275]
 
 [node name="LinePresenter" type="PanelContainer" parent="NarrativeController/DialogueController/CanvasLayer" unique_id=291845100 node_paths=PackedStringArray("text_label", "character_label", "character_container", "continue_indicator")]
-offset_left = 270.0
-offset_top = 754.0
-offset_right = 1651.0
-offset_bottom = 1036.0
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 88.0
+offset_top = -304.0
+offset_right = -569.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_20pc6")
 script = ExtResource("5_wkp8b")
 text_label = NodePath("VBoxContainer/TextLabel")

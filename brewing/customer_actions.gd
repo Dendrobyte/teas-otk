@@ -14,6 +14,7 @@ var curr_char_idx = -1
 var curr_char_name: String = "":
 	get():
 		return customers[curr_char_idx]
+var curr_char_being_served = false
 var curr_char_served = false
 
 signal char_dialogue_action
@@ -31,6 +32,7 @@ func trigger_next_customer():
 	if curr_char_idx > len(customers)-1:
 		print("All customers served!")
 		return
+	curr_char_being_served = true
 	# Spawn in and move
 	# TODO: Set up according to list and some cursor. Opp to get on those constants!
 	var img_resource = load("res://assets/drawings/" + curr_char_name + ".png")
@@ -57,8 +59,9 @@ func trigger_next_customer():
 #### That makes sense. I think the problem I'm seeing is the amount of back-and-forth between
 #### this and the brewing scene and the tea serve tray and blah blah blah
 func trigger_current_customer_served():
-	curr_char_served = true
-	char_dialogue_action.emit(curr_char_name, true)
+	if curr_char_being_served:
+		curr_char_served = true
+		char_dialogue_action.emit(curr_char_name, true)
 
 # We want to make sure we're only serving someone after they show up, until they leave
 func dialogue_finished():
@@ -79,6 +82,10 @@ func dialogue_finished():
 		# So this script, for example, would load all the NPCs and
 		# the link to YarnSpinner just as all their dialogue
 		trigger_next_customer()
+		
+		# This does nothing since "trigger next" is called immediately, but this is where it would go
+		# Just, technically before trigger_next_customer
+		curr_char_being_served = false 
 
 func get_chair_position():
 	var random_chair = $ChairPositions.get_children().pick_random()
