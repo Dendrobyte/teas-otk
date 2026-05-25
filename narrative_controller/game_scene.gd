@@ -23,7 +23,6 @@ func unload_scene():
 # TODO: I think we should await all signals complete in the child scene when it loads
 # before we show anything. To be figured out 'next'
 func load_scene(scene_path):
-	print("Loading scene: ", scene_path)
 	var scene = load(scene_path)
 	var instance = scene.instantiate()
 	add_child(instance)

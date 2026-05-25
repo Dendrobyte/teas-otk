@@ -13,7 +13,6 @@ func _ready():
 	# NOTE: We're going to rework this all, I just want something visible rn
 	var scene_to_load = load("res://" + scene_tscn_name + ".tscn").instantiate()
 	GlobalState.set_current_scene(current_scene_type) # TODO: See global state. We should use node name
-	# scene_to_load.instantiate() # we use the call defferred instead...?
 	# TODO: Understand why we need to do call_deferred here
 	# TODO: Register the chapter's flags with the narrative controller
 
@@ -25,7 +24,11 @@ func _ready():
 # NOTE: I really need to figure out how why this "double press" is happening
 # TODO: Insta-hop to next scene
 var is_transitioning = false
-func _process(_delta):
-	if Input.is_action_pressed("debug_scene_change") and not is_transitioning:
+func _input(_delta):
+	if Input.is_action_just_pressed("debug_scene_change") and not is_transitioning:
 		is_transitioning = true
-		narrative_controller.transition_scenes("res://brewing/brewing_base_scene.tscn", "Brewing")
+		if GlobalState.CURRENT_SCENE == "Overworld":
+			narrative_controller.transition_scenes("res://brewing/brewing_base_scene.tscn", "Brewing")
+		elif GlobalState.CURRENT_SCENE == "Brewing":
+			narrative_controller.transition_scenes("res://overworld/overworld_ch1.tscn", "Overworld")
+		is_transitioning = false

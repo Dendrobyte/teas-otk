@@ -13,8 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://b3kf1e6lfldqs" path="res://assets/drawings/SketchyFarmer.png" id="11_13bsa"]
 [ext_resource type="Texture2D" uid="uid://vk82jo0cuctv" path="res://assets/drawings/Mercenary.png" id="11_bp8rp"]
 [ext_resource type="Texture2D" uid="uid://cv8sy4uu65psj" path="res://assets/drawings/CitadelGuard.png" id="12_13bsa"]
-[ext_resource type="Texture2D" uid="uid://caj6nlq2let87" path="res://assets/drawings/OldMan.png" id="14_13bsa"]
-[ext_resource type="Texture2D" uid="uid://k72pn2jky354" path="res://assets/drawings/SadGuard.png" id="15_5ou8s"]
+[ext_resource type="Texture2D" uid="uid://drthm53m2pvud" path="res://assets/drawings/OldMan.png" id="14_13bsa"]
+[ext_resource type="Texture2D" uid="uid://d2gtggqfxxme8" path="res://assets/drawings/SadGuard.png" id="15_5ou8s"]
 
 [node name="OverworldBase" type="Node3D" unique_id=2002152738]
 script = ExtResource("1_5ou8s")
