@@ -17,5 +17,6 @@ func _ready():
 			var new_z = randi_range(original_pos.z-3.0, original_pos.z+3.0)
 			# The rotation when we add from the asset-plane-base script affects the weird placement I think
 			add_child(copy)
+			copy.name = original.name + str(n)
 			copy.global_position.x = new_x
 			copy.global_position.z = new_z

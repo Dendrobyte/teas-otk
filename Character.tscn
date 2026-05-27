@@ -16,6 +16,7 @@ transform = Transform3D(0.28611353, 0, 0, 0, 0.28611353, 0, 0, 0, 0.5, 0, 1.1611
 texture = ExtResource("3_lcuhw")
 hframes = 2
 vframes = 2
+script = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1297511523]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.016540527, 1.2504882, -0.029052734)

@@ -4,7 +4,7 @@ class_name EntityBase
 # TODO: Animations, etc. some day
 var area: Area3D = null
 # Like an NPC is interactable
-var collectable: bool = true
+@export var collectable: bool = true
 
 signal entity_collision_enter
 signal entity_collision_leave
@@ -18,6 +18,17 @@ func _ready():
 	area = $EnvironmentArea3D
 	area.body_entered.connect(self._on_Character_enters)
 	area.body_exited.connect(self._on_Character_leaves)
+
+	# Get the "game scene" node and quit if it fails while testing
+	# NOTE: Yoinked from npc_base
+	var game_scene: GameScene = null
+	var game_scene_group = get_tree().get_nodes_in_group("game_scene")
+	if game_scene_group.is_empty():
+		push_error("NO GAME SCENE FOUND IN ", self, "!")
+		get_tree().quit()
+	else:
+		game_scene = game_scene_group[0]
+		game_scene.entity_is_loaded(self)
 
 func _on_Character_enters(_body):
 	if collectable:

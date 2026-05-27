@@ -3,6 +3,7 @@ class_name GameScene
 
 signal character_initialized
 signal npc_initialized
+signal entity_initialized
 
 func _enter_tree():
 	add_to_group("game_scene")
@@ -14,6 +15,9 @@ func character_is_loaded(body: CharacterBody3D):
 # or just the one if I can successfully combine them
 func npc_is_loaded(npc_base: NPCBase):
 	npc_initialized.emit(npc_base)
+
+func entity_is_loaded(entity_base: EntityBase):
+	entity_initialized.emit(entity_base)
 
 func unload_scene():
 	var scene_name = get_children().get(0) # GameScene should only ever have one child

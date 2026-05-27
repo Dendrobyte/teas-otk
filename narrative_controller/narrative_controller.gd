@@ -32,6 +32,7 @@ var is_in_cutscene = false
 
 # We toggle this to control when we show the interact button
 var can_interact = false
+var entity_type: EntityType # NOTE: See the note next to the enum about how this shouldn't live here
 
 func _ready():
 	if dialogue_controller == null or event_controller == null or entity_controller == null:
@@ -59,17 +60,23 @@ func _ready():
 	event_controller.cutscene_ended.connect(cleanup_cutscene_finish)
 
 	# The interact button lives here, so we'll keep it here
-	Util.add_interact_button_to_scene(self)
+	Util.add_interact_button_to_scene(self )
 
 func _input(event):
 	# TODO: Freeze all other actions -> look into the unhandled_input flow chart again, I think that may be our answer
 	#       We can just "handle" all input here by sinking it into an empty return
 	# TODO: If this dialogue triggers an event change (like talking to the old man), reload their dialogue
 	if event.is_action_pressed("interact") and can_interact:
-		var npc_name = entity_controller.get_nearest_entity_name()
-		# TODO: Get the curr_npc_in_range from entity_controller.get_nearest_entity or whatever
-		dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + npc_name, entity_controller.get_nearest_entity_ref())
-		is_in_dialogue = true
+		# TODO: For that refactor around NPC/Entities, these could be merged and/or handled in the entity controller
+		# The fact this interact is done in narrative controller was a mistake; this is no longer just narrative stuff
+		if entity_type == EntityType.NPC:
+			var npc_name = entity_controller.get_nearest_npc_name()
+			# TODO: Get the curr_npc_in_range from entity_controller.get_nearest_entity or whatever
+			dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + npc_name, entity_controller.get_nearest_npc_ref())
+			is_in_dialogue = true
+		elif entity_type == EntityType.Item:
+			var item_name = entity_controller.get_nearest_entity_name()
+			entity_controller.collect_resource(item_name)
 		toggle_interact_button(false)
 
 ## Dialogue Controller Comms ##
@@ -79,7 +86,6 @@ func cleanup_dialogue_finish():
 # We'll leave the responsibility of adding "$" at callsite
 func update_yarn_variable(variable_name, variable_value):
 	dialogue_controller.dialogue_runner.variable_storage.set_value(variable_name, variable_value)
-
 
 ## Event Controller Comms ##
 # All flags and events are held in event controller, name based on the flag name
@@ -115,8 +121,13 @@ func _yarn_command_trigger_animation(animation_name):
 # To be called from within the entity controller as to whether or not we show the interact button
 # NOTE: I think (second note on this) we should make this a control node!
 # NOTE: No interaction button for brewing, but if you do end up wanting it we would need to ensure character_ref can be whatever
-func toggle_interact_button(value, entity_pos = null):
+# TODO: If/when we merge NPC and Entity, this enum can be moved elsewhere...
+# 		It kind of sucks that narrative controller is suddenly handling the interact change when dialogue may not be involved
+#		Or, we could always just add nodes for each of the items! lol
+enum EntityType { None, NPC, Item }
+func toggle_interact_button(value, interacted_entity_type = EntityType.None, entity_pos = null):
 	can_interact = value
+	entity_type = interacted_entity_type
 	if value == true:
 		var button_pos = entity_pos if entity_pos != null else CHARACTER_REF.position
 		Util.interact_button_show(button_pos)
@@ -128,7 +139,6 @@ func toggle_interact_button(value, entity_pos = null):
 # TODO: Trigger save
 # TODO: Fade out
 func transition_scenes(new_scene_path, scene_name):
-	print("Triggering scene transition from narrative controller")
 	GlobalState.set_current_scene(scene_name) # Why is this here? It should be set when the scene finishes loading?
 	game_scene.unload_scene()
 	game_scene.load_scene(new_scene_path)
