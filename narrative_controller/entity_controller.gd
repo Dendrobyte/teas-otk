@@ -88,7 +88,6 @@ func _on_character_leaves_npc_area(_body: Node3D):
 
 # NOTE: Refactor... -.-
 func _on_character_enters_entity_area(body: Node3D):
-	print("Curr entity is: ", body, " and name is: ", body.name)
 	curr_entity_in_range = body
 	curr_entity_in_range_name = body.name
 	narrative_controller.toggle_interact_button(true, narrative_controller.EntityType.Item, body.global_position)
