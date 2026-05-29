@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://wri18fyw7bj3" path="res://narrative_controller/entity_controller.gd" id="9_wkp8b"]
 [ext_resource type="Script" uid="uid://cdgyd2lwi4gf2" path="res://debug_narrative_menu.gd" id="10_20pc6"]
 [ext_resource type="Script" uid="uid://ch8xa62o1jdsp" path="res://narrative_controller/game_scene.gd" id="10_wkp8b"]
+[ext_resource type="Script" uid="uid://b3ccoqf0q761y" path="res://inventory_controller.gd" id="11_c2ibq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20pc6"]
 content_margin_left = 48.0
@@ -138,6 +139,9 @@ script = ExtResource("7_5vvyt")
 
 [node name="EntityController" type="Node" parent="NarrativeController" unique_id=492654928]
 script = ExtResource("9_wkp8b")
+
+[node name="InventoryController" type="Node" parent="NarrativeController" unique_id=2055341834]
+script = ExtResource("11_c2ibq")
 
 [node name="DialogueProjection" type="Node3D" parent="NarrativeController" unique_id=1492992761]
 visible = false

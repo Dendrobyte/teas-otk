@@ -22,6 +22,7 @@ class_name NarrativeController
 @export var dialogue_controller: DialogueController
 @export var event_controller: EventController
 @export var entity_controller: EntityController
+@export var inventory_controller: InventoryController
 @export var dialogue_projection: DialogueProjection
 @export var debug_menu: DebugNarrativeMenu
 @export var game_scene: GameScene
@@ -48,6 +49,7 @@ func _ready():
 	dialogue_controller.initialize(self)
 	event_controller.initialize(self)
 	entity_controller.initialize(self)
+	inventory_controller.initialize(self)
 	debug_menu.initialize(self)
 
 	# Connect to yarn signals

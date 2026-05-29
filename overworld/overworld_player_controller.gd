@@ -52,7 +52,7 @@ func _physics_process(_delta):
 
 	var direction = Vector3.ZERO
 
-	# I don't think I need falling logic yet?
+	# I don't think I need falling logic, we don't jump
 	# if not is_on_floor():
 	# 	target_velocity.y -= gravity * delta
 
@@ -79,6 +79,13 @@ func _physics_process(_delta):
 		direction.x -= 1
 		ray_offset.x = offset_const*-1
 		sprite.frame = 2
+
+	# If you ever need to debug without the floor
+	# direction = direction.normalized()
+	# target_velocity.x = direction.x * speed
+	# target_velocity.z = direction.z * speed
+	# velocity = target_velocity
+	# move_and_slide()
 
 	# Snap y level to ground mesh
 	var space_state = get_world_3d().direct_space_state

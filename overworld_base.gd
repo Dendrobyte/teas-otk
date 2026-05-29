@@ -10,8 +10,8 @@ func _enter_tree():
 func _exit_tree():
 	print("Finished exiting an overworld scene")
 
-func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+# func _ready():
+# 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 func _input(event):
 	# This is duped from brewing base
