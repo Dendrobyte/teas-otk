@@ -43,12 +43,12 @@ default_font_size = 4
 [node name="Main" type="Node3D" unique_id=40555209 node_paths=PackedStringArray("narrative_controller")]
 script = ExtResource("1_glv2v")
 narrative_controller = NodePath("NarrativeController")
-current_scene_type = "Overworld"
-scene_tscn_name = "overworld/overworld_ch1"
+current_scene_type = "Brewing"
+scene_tscn_name = "brewing/brewing_base_scene"
 metadata/_edit_horizontal_guides_ = [-94.0]
 metadata/_edit_vertical_guides_ = [960.0, 1651.0]
 
-[node name="NarrativeController" type="Control" parent="." unique_id=1229687535 node_paths=PackedStringArray("dialogue_controller", "event_controller", "entity_controller", "dialogue_projection", "debug_menu", "game_scene")]
+[node name="NarrativeController" type="Control" parent="." unique_id=1229687535 node_paths=PackedStringArray("dialogue_controller", "event_controller", "entity_controller", "inventory_controller", "dialogue_projection", "debug_menu", "game_scene")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -57,6 +57,7 @@ script = ExtResource("2_03owx")
 dialogue_controller = NodePath("DialogueController")
 event_controller = NodePath("EventController")
 entity_controller = NodePath("EntityController")
+inventory_controller = NodePath("InventoryController")
 dialogue_projection = NodePath("DialogueProjection")
 debug_menu = NodePath("DebugNarrativeMenu")
 game_scene = NodePath("../GameScene")

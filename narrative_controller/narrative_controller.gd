@@ -45,7 +45,7 @@ func _ready():
 	# Note the thing about change in this function's definition
 
 	# Pass self to children controls and set them up
-	# TODO: The rest of them
+	# Nil error? Remember: you need to set up the connection in the editor
 	dialogue_controller.initialize(self)
 	event_controller.initialize(self)
 	entity_controller.initialize(self)

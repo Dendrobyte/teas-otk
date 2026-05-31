@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bw4ywnt705a6l" path="res://brewing/brewing_ui.gd" id="3_0qvjg"]
 [ext_resource type="PackedScene" uid="uid://bcbs4m76eq7fj" path="res://assets/models/brewing/brewing_env.glb" id="4_th32l"]
 [ext_resource type="Script" uid="uid://b3ekjp8rt3fwx" path="res://brewing/customer_actions.gd" id="5_ns4kx"]
-[ext_resource type="Texture2D" uid="uid://c8hik1s6lw3pv" path="res://assets/drawings/old_man_nolines.png" id="6_0qvjg"]
+[ext_resource type="Texture2D" uid="uid://cantknc08n537" path="res://assets/drawings/OldMan.png" id="6_0qvjg"]
 
 [sub_resource type="Environment" id="Environment_vodtt"]
 
@@ -33,17 +33,21 @@ size = 7.271
 
 [node name="Control" type="Control" parent="Character" unique_id=1180801294]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource("3_0qvjg")
 metadata/_edit_use_anchors_ = true
 
 [node name="DebugText" type="RichTextLabel" parent="Character/Control" unique_id=438323098]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0031738281
+anchor_top = 0.47916666
+anchor_right = 0.0031738281
+anchor_bottom = 0.47916666
 offset_top = 790.0
-offset_right = 773.0
-offset_bottom = 1077.0
+offset_right = 754.0324
+offset_bottom = 1120.8779
 theme = SubResource("Theme_npiso")
 text = "Temp instructions, idk lol"
 metadata/_edit_use_anchors_ = true
