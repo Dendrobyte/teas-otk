@@ -7,7 +7,6 @@ class_name SealDrawingUI
 @onready var seal_menu = $MenuButton
 @onready var clear_button = $ClearButton
 @onready var canvas_bounds = Rect2(Vector2.ZERO, size)
-var _label_base_text = "Result: "
 var all_seals = SealTemplates.ALL_SEALS
 
 signal seal_complete

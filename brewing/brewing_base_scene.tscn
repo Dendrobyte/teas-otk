@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bw4ywnt705a6l" path="res://brewing/brewing_ui.gd" id="3_0qvjg"]
 [ext_resource type="PackedScene" uid="uid://bcbs4m76eq7fj" path="res://assets/models/brewing/brewing_env.glb" id="4_th32l"]
 [ext_resource type="Script" uid="uid://b3ekjp8rt3fwx" path="res://brewing/customer_actions.gd" id="5_ns4kx"]
-[ext_resource type="Texture2D" uid="uid://cantknc08n537" path="res://assets/drawings/OldMan.png" id="6_0qvjg"]
+[ext_resource type="Texture2D" uid="uid://drthm53m2pvud" path="res://assets/drawings/OldMan.png" id="6_0qvjg"]
 
 [sub_resource type="Environment" id="Environment_vodtt"]
 
@@ -23,6 +23,8 @@ script = ExtResource("1_c48yr")
 [node name="Character" type="Node3D" parent="." unique_id=1850063740]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.431, 2.681, 4.2326684)
 script = ExtResource("2_ns4kx")
+yaw_limit = 70.0
+mouse_mode = 1
 
 [node name="Camera3D" type="Camera3D" parent="Character" unique_id=663389705]
 transform = Transform3D(0.7870206, 0, 0, 0, 0.7870206, 0, 0, 0, 0.7870206, 0, 0.45517206, 0)
@@ -33,6 +35,7 @@ size = 7.271
 
 [node name="Control" type="Control" parent="Character" unique_id=1180801294]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("3_0qvjg")
@@ -51,6 +54,14 @@ offset_bottom = 1120.8779
 theme = SubResource("Theme_npiso")
 text = "Temp instructions, idk lol"
 metadata/_edit_use_anchors_ = true
+
+[node name="Label3D" type="Label3D" parent="Character" unique_id=2038332110]
+transform = Transform3D(0.47608224, 0.52252275, -0.70733005, 0.52252257, 0.47886854, 0.7054466, 0.70732987, -0.7054465, -0.045049116, 0.5001545, -0.49882317, 0)
+text = "Lavendar"
+
+[node name="Label3D" type="Label3D" parent="Character/Label3D" unique_id=629600921]
+transform = Transform3D(0.47608224, 0.52252275, -0.70733005, 0.52252257, 0.47886854, 0.7054466, 0.70732987, -0.7054465, -0.045049116, 0.5001545, -0.49882317, 0)
+text = "Lavendar"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=607364963]
 transform = Transform3D(1, 0, 0, 0, 0.6770943, 0.7358963, 0, -0.7358963, 0.6770943, 0.097, 6.242157, -5.8342404)

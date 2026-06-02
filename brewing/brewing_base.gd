@@ -157,6 +157,8 @@ func _input(event):
 		# TODO: Technically, we'll need "escape" to become a menu thing
 		if not brewing_player_controller.has_overlay:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if event.is_action_pressed("del_quit"):
+		get_tree().quit()
 	if event.is_action_pressed("brewing_skip"):
 		print("Triggering skip")
 		active_customer_controller.trigger_next_customer()

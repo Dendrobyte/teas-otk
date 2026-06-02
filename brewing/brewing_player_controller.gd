@@ -6,11 +6,9 @@ class_name BrewingPlayer
 @export var pitch_min: float = -30.0  # degrees down
 @export var pitch_max: float = 25.0   # degrees up
 @export var ray_length = 40
+@export_enum("Play", "Debug") var mouse_mode # for debug and testing
 @onready var control = $Control
 @onready var debug_text_label = $Control/DebugText
-
-# Assets to preload
-@onready var teabag_model = preload("res://assets/models/brewing/teabag.glb")
 
 # Camera & character movement
 @onready var cam = $Camera3D
@@ -23,7 +21,10 @@ var has_overlay = false
 
 # Some text as a temporary visual indicator of where I am and what's updating where
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if mouse_mode == 0:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	original_camera_transform = $Camera3D.transform
 
 func _input(event):
@@ -74,11 +75,6 @@ func overlay_hidden():
 
 var held_item: Node = null
 var held_item_static_body: StaticBody3D = null
-
-# NOTE: Having this in player controller isn't a problem imo. It's just for when they hold it.
-# Just used when picking up teabag atm, and set to held item inside of tea_container. Could change?
-func new_teabag():
-	return teabag_model.instantiate()
 
 func check_raycast_collision(exceptions = []):
 	var origin = cam.project_ray_origin($Control.cursor_pos)

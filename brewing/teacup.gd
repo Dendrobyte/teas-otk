@@ -11,8 +11,12 @@ class_name TeaCup
 		has_teabag = value
 		if is_node_ready(): toggle_teabag(value)
 
-@export var seal_drawn: bool = false
+# This is pretty much always set with has_teabag
+# Which I like keeping as a separate flag
+# NOTE: The tea may have other qualities in the future, but won't match "tea_info" 
+var tea_type = ""
 
+@export var seal_drawn: bool = false
 @onready var brewing_base = get_parent()
 
 # We'll store references that can effectively be used as boolean checks as well, versus traversing for the node?
@@ -36,6 +40,7 @@ func toggle_water(value):
 
 func toggle_teabag(value):
 	if value:
+		# TODO: Take type off of the teabag somehow
 		$Teabag.show()
 	else:
 		$Teabag.hide()
@@ -56,13 +61,18 @@ func interact(player_node):
 			if tea_prep_ref != null:
 				tea_prep_ref.free_snap_point(name)
 				tea_prep_ref = null
-			return "Picked up " + name
+			return "Picked up " + name + " of type: " + tea_type
 	elif player_node.get_held_item_name() == "teabag":
 		if not has_teabag:
 			if tea_prep_ref != null:
 				tea_prep_ref.free_snap_point(name)
 				tea_prep_ref = null
 
+			# Pull the type off of tea, we already know the held item is "teabag"
+			var held_teabag = player_node.held_item as Teabag
+			tea_type = held_teabag.type_str
+
+			# Clear up the item
 			player_node.held_item.queue_free()
 			player_node.set_held_item(self) # third instance I'm seeing these two lines I think
 			reparent(player_node)
