@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drthm53m2pvud"
-path.s3tc="res://.godot/imported/OldMan.png-861c0bfc19a241a84c753a2b8dbb63b7.s3tc.ctex"
+uid="uid://xqibes4lena2"
+path.s3tc="res://.godot/imported/Mercenary.png-8a97c9a28d9d5fecd36fe076a0f163ac.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://assets/drawings/OldMan.png"
-dest_files=["res://.godot/imported/OldMan.png-861c0bfc19a241a84c753a2b8dbb63b7.s3tc.ctex"]
+source_file="res://ART/blender models/textures/Mercenary.png"
+dest_files=["res://.godot/imported/Mercenary.png-8a97c9a28d9d5fecd36fe076a0f163ac.s3tc.ctex"]
 
 [params]
 

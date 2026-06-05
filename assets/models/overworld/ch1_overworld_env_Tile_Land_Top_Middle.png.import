@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drthm53m2pvud"
-path.s3tc="res://.godot/imported/OldMan.png-861c0bfc19a241a84c753a2b8dbb63b7.s3tc.ctex"
+uid="uid://cyn0180bv2nd"
+path.s3tc="res://.godot/imported/ch1_overworld_env_Tile_Land_Top_Middle.png-aac924d0626fa0169959bc303cfd4c1a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "9888d7bdb05e9429c1e80cdb382382fe"
+}
 
 [deps]
 
-source_file="res://assets/drawings/OldMan.png"
-dest_files=["res://.godot/imported/OldMan.png-861c0bfc19a241a84c753a2b8dbb63b7.s3tc.ctex"]
+source_file="res://assets/models/overworld/ch1_overworld_env_Tile_Land_Top_Middle.png"
+dest_files=["res://.godot/imported/ch1_overworld_env_Tile_Land_Top_Middle.png-aac924d0626fa0169959bc303cfd4c1a.s3tc.ctex"]
 
 [params]
 

@@ -66,10 +66,31 @@ func _enter_tree():
 				add_child(new_cup)
 
 		elif item_name == "TeaCont1":
-			# Give all the tea containers the scripts
+			# Give it the 'ol cup treatment
+			# TODO: Could functionize...?
+			var cont_node = brewing_env.get_node(item_name)
+			var cont_ref = cont_node.duplicate()
+			cont_ref.name = cont_node.name.rstrip("0123456789")
+			cont_node.queue_free()
+
+
+			var cont_z_offset = 0.6
+			var cont_y_offset = -0.9 
+			# second shelf is bottom shelf, primary model is middle shelf
+			var shelf = 0
+			var cont_on_shelf = 0
 			for i in range(1, 7):
-				var tea_container = brewing_env.get_node("TeaCont" + str(i))
-				tea_container.set_script(item_script)
+				var new_cont = cont_ref.duplicate()
+				new_cont.name = cont_ref.name + str(i)
+				new_cont.position = Vector3(cont_ref.position.x, cont_ref.position.y+cont_y_offset*shelf, cont_ref.position.z+cont_z_offset*cont_on_shelf)
+				new_cont.set_script(item_script)
+				add_child(new_cont)
+				cont_on_shelf += 1
+
+				# I'm feeling lazy
+				if cont_on_shelf == 3:
+					shelf += 1
+					cont_on_shelf = 0
 		else:
 			item_node.set_script(item_script)
 

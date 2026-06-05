@@ -10,36 +10,57 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 3.0
-offset_right = -616.0
-offset_bottom = 3.0
+offset_left = 72.0
+offset_top = 62.0
+offset_right = -43.0
+offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lkxin")
 
 [node name="ResultLabel" type="Label" parent="." unique_id=876562796]
-layout_mode = 0
-offset_top = 933.0
-offset_right = 348.0
-offset_bottom = 1079.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.105000004
+anchor_bottom = 0.48900002
+offset_left = 43.0
+offset_top = 843.0
+offset_right = -0.12503052
+offset_bottom = -22.252075
 text = "Result:"
 label_settings = SubResource("LabelSettings_lkxin")
 
 [node name="MenuButton" type="MenuButton" parent="." unique_id=1779944704]
-layout_mode = 0
-offset_left = 1404.0
-offset_top = 73.0
-offset_right = 1719.0
-offset_bottom = 178.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.46600002
+anchor_bottom = 0.076000005
+offset_left = 1422.0
+offset_top = 53.0
+offset_right = 1.1499023
+offset_bottom = 0.8319855
 theme_override_font_sizes/font_size = 63
 text = "Seals"
 flat = false
 
+[node name="ExitButton" type="Button" parent="." unique_id=1442156843]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.48000002
+anchor_bottom = 0.46600002
+offset_left = 1554.0
+offset_top = 794.0
+offset_right = -26.935669
+offset_bottom = -38.68805
+text = "Exit"
+
 [node name="ClearButton" type="Button" parent="." unique_id=1395887089]
-layout_mode = 0
-offset_left = 1462.0
-offset_top = 817.0
-offset_right = 1669.0645
-offset_bottom = 948.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.48100004
+anchor_bottom = 0.44900003
+offset_left = 1335.0
+offset_top = 798.0
+offset_right = -249.66064
+offset_bottom = 0.46795654
 text = "Clear"

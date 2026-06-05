@@ -6,7 +6,9 @@ class_name SealDrawingUI
 # TODO: We can eventually show a user available seals and their images like constellations / guardian signs
 @onready var seal_menu = $MenuButton
 @onready var clear_button = $ClearButton
-@onready var canvas_bounds = Rect2(Vector2.ZERO, size)
+@onready var exit_button = $ExitButton
+@onready var ui_bounds = Rect2(Vector2.ZERO, size)
+@onready var canvas_bounds = Rect2(Vector2.ZERO, size - size/4)
 var all_seals = SealTemplates.ALL_SEALS
 
 signal seal_complete
@@ -23,6 +25,7 @@ func _ready():
 	seal_popup.id_pressed.connect(_show_symbol)
 
 	clear_button.pressed.connect(_clear_canvas)
+	exit_button.pressed.connect(_exit_canvas)
 	hide()
 
 # STUB: I presume we'll be updating this and iterating over of what to draw
@@ -33,7 +36,8 @@ var actual_seal: String = "" # also for debugging
 var result_seal = null
 func _draw():
 	# Programmatically draw background
-	draw_rect(canvas_bounds, Color(0.15, 0.15, 0.2))
+	draw_rect(ui_bounds, Color(0.15, 0.15, 0.2))
+	draw_rect(canvas_bounds, Color(0.7, 0.85, 0.85))
 	if current_stroke.size() >= 2:
 		draw_polyline(PackedVector2Array(current_stroke), Color.FOREST_GREEN, 16.0, true)
 
@@ -81,11 +85,7 @@ func _gui_input(event):
 
 func _input(event):
 	if event.is_action_pressed("escape"):
-		# We'll also do this if the exit/back button is pressed...?
-		_clear_canvas()
-		close_window()
-		# Either this or the character has a ref to this, but signals feel more expandable
-		seal_drawing_exit.emit()
+		_exit_canvas()
 
 # NOTE: Yes I know I can modify the result_seal variable. No I don't want to.
 func identify_symbol():
@@ -109,6 +109,11 @@ func _clear_canvas():
 	result_stroke = []
 	result_seal = null
 	actual_seal = ""
+
+func _exit_canvas():
+	close_window()
+	# Either this or the character has a ref to this, but signals feel more expandable
+	seal_drawing_exit.emit()
 
 func _show_symbol(menu_idx):
 	var menu_label = seal_menu.get_popup().get_item_text(menu_idx)

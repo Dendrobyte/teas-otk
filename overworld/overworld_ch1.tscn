@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b3kf1e6lfldqs" path="res://assets/drawings/SketchyFarmer.png" id="11_13bsa"]
 [ext_resource type="Texture2D" uid="uid://vk82jo0cuctv" path="res://assets/drawings/Mercenary.png" id="11_bp8rp"]
 [ext_resource type="Texture2D" uid="uid://cv8sy4uu65psj" path="res://assets/drawings/CitadelGuard.png" id="12_13bsa"]
-[ext_resource type="Texture2D" uid="uid://cantknc08n537" path="res://assets/drawings/OldMan.png" id="14_13bsa"]
+[ext_resource type="Texture2D" uid="uid://drthm53m2pvud" path="res://assets/drawings/OldMan.png" id="14_13bsa"]
 [ext_resource type="Texture2D" uid="uid://cyjnbi088jwgf" path="res://assets/drawings/SadGuard.png" id="15_5ou8s"]
 [ext_resource type="PackedScene" uid="uid://dawik2saygkps" path="res://assets/models/overworld/ch1_overworld_env.glb" id="15_13bsa"]
 
@@ -28,6 +28,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.102295, 0)
 [node name="Entities" type="Node3D" parent="Environment" unique_id=294199281]
 
 [node name="Grass" type="Node3D" parent="Environment/Entities" unique_id=1384433322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4765244, 0)
 script = ExtResource("3_6fnbc")
 
 [node name="Bush" parent="Environment/Entities/Grass" unique_id=977840974 instance=ExtResource("4_3rmvi")]
@@ -47,6 +48,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.89659, 7.850157, -3.79027
 texture = ExtResource("5_hsq35")
 
 [node name="Trees" type="Node3D" parent="Environment" unique_id=776605685]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3667793, 0)
 script = ExtResource("3_6fnbc")
 scatter_count_min = 3
 scatter_count_max = 5
@@ -67,11 +69,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.5987, 8.075622, 2.033438)
 [node name="Torch10" parent="Environment/Torches" unique_id=2060399275 instance=ExtResource("8_uf1ka")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.5987, 8.075622, -4.846305)
 
-[node name="ch1_overworld_env" parent="Environment" unique_id=1152837202 instance=ExtResource("15_13bsa")]
+[node name="ch1_overworld_env" parent="Environment" unique_id=1437134414 instance=ExtResource("15_13bsa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.884007, -5.5167913, -13.666733)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment" unique_id=387808549]
-transform = Transform3D(0.44048765, -0.42922708, 0.78850156, 2.250026e-09, 0.8783002, 0.4781096, -0.89775854, -0.21060136, 0.38688046, -184.89378, 54.056915, 152.96182)
+transform = Transform3D(0.9747612, 0.10673807, -0.19608063, 2.8755231e-08, 0.8783002, 0.47810963, 0.2232502, -0.46604273, 0.8561328, -128.62724, 54.056915, 152.95535)
 
 [node name="NPCs" type="Node3D" parent="." unique_id=1170896753]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.913579, 5.1751747, -1.156765)
@@ -81,11 +83,11 @@ transform = Transform3D(0.29774082, 0, -0.036747906, 0, 0.3, 0, 0.036747906, 0, 
 texture = ExtResource("10_13bsa")
 
 [node name="Mercenary" parent="NPCs" unique_id=1602502584 instance=ExtResource("9_ipeki")]
-transform = Transform3D(0.28138667, 0, -0.104026675, 0, 0.3, 0, 0.104026675, 0, 0.28138667, -32.263275, 1.2390275, -10.063836)
+transform = Transform3D(0.28138667, 0, -0.10402667, 0, 0.3, 0, 0.10402667, 0, 0.28138667, -32.263275, 1.2390275, -10.063836)
 texture = ExtResource("11_bp8rp")
 
 [node name="SketchyFarmer" parent="NPCs" unique_id=539337291 instance=ExtResource("9_ipeki")]
-transform = Transform3D(0.28138667, 0, -0.104026675, 0, 0.3, 0, 0.104026675, 0, 0.28138667, -33.40098, 1.0431309, -11.248556)
+transform = Transform3D(0.28138667, 0, -0.10402667, 0, 0.3, 0, 0.10402667, 0, 0.28138667, -33.40098, 1.0431309, -11.248556)
 texture = ExtResource("11_13bsa")
 
 [node name="CitadelGuard" parent="NPCs" unique_id=1062812291 instance=ExtResource("9_ipeki")]
@@ -93,7 +95,7 @@ transform = Transform3D(0.20618331, 0, -0.21791844, 0, 0.3, 0, 0.21791844, 0, 0.
 texture = ExtResource("12_13bsa")
 
 [node name="OldMan" parent="NPCs" unique_id=670409553 instance=ExtResource("9_ipeki")]
-transform = Transform3D(-0.101301104, 0, -0.28237936, 0, 0.3, 0, 0.28237936, 0, -0.101301104, -33.48875, 1.1196771, 2.759379)
+transform = Transform3D(-0.23810476, 0, -0.18249965, 0, 0.3, 0, 0.18249965, 0, -0.23810476, -33.48875, 1.1196771, 2.759379)
 texture = ExtResource("14_13bsa")
 start_interactable = false
 

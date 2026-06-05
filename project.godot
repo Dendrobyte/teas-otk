@@ -22,7 +22,7 @@ YarnSpinner="*uid://bhiw7fae5n1e8"
 
 [display]
 
-window/size/viewport_width=4096
+window/size/viewport_width=3840
 window/size/viewport_height=2160
 window/stretch/scale_mode="integer"
 

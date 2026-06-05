@@ -3,7 +3,12 @@ class_name TeaContainer
 
 # Map of data of the tea this should hold
 var cont_num
-var tea_info
+var tea_info:
+	set(value):
+		tea_info = value
+		if tea_info.quantity == 0:
+			$ContainerInside.hide()
+
 var inventory_controller
 var container_label: Label3D
 var label_font: FontFile = preload("res://assets/ui/Leander.ttf")
@@ -27,8 +32,6 @@ func _ready():
 	# Set up a small display for counter
 	_create_text_label()
 	_refresh_text()
-
-	print("Set up container ", cont_num, " to hold ", tea_info.get("type"), " (quant: ", tea_info.get("quantity"), ")")
 
 func interact(player_node):
 	if player_node.get_held_item_min_name() not in ["teabag", "TeaCup"]:
