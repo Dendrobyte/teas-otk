@@ -8,6 +8,7 @@
 size = Vector3(1.9139404, 1.1969604, 2.0246468)
 
 [node name="NPCSpriteBase" unique_id=977840974 instance=ExtResource("1_ideak")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 texture = ExtResource("2_kh24r")
 script = ExtResource("2_xxcha")
 start_interactable = true
@@ -18,3 +19,6 @@ transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NPCArea3D" index="0" unique_id=1491579194]
 transform = Transform3D(1, 0, 0, 0, 1.0000006, 0, 0, 0, 1.0000006, 0.011657715, 0.14780506, -1.0126781)
 shape = SubResource("BoxShape3D_xxcha")
+
+[node name="EnvironmentArea3D" parent="." index="1" unique_id=806725636]
+transform = Transform3D(6.2124662, 0, 0, 0, 1, 0, 0, 0, 7.400948, 0, 0, 0)

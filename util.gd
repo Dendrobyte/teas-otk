@@ -7,13 +7,13 @@ static var interact_button: Sprite3D = Sprite3D.new()
 static func add_interact_button_to_scene(some_scene_node):
 	var interact_texture = preload("res://assets/ui/keyboard_e.png")
 	interact_button.texture = interact_texture
-	interact_button.scale = Vector3(2, 2, 2)
+	interact_button.scale = Vector3(1.5, 1.5, 1.5)
 	some_scene_node.add_child(interact_button)
 
 static func interact_button_hide():
 	interact_button.hide()
 
 static func interact_button_show(position):
-	position.y = position.y + 4
+	position.y = position.y + 3
 	interact_button.position = position
 	interact_button.show()

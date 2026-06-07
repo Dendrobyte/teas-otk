@@ -114,12 +114,16 @@ signal cutscene_ended
 
 # Triggers when you talk to the guard outside the gate after helping the old man
 # We also just run this with the sad guard
+# TODO: Eventually, it would be better to pass in node names around the map for their destinations
+#	However, if we end up doing pathfinding, that's eh. So an alternative approach would
+# 	be to then have them walk a certain number of "spaces" in each direction. For later...
 var old_man_approaches_at_gate = [
-	{"type": EVENT_TYPE.Animation, "node": "OldMan", "dest": Vector3(-61, 0, -1.2), "dur": 1.0, "parallel": false},
+	{"type": EVENT_TYPE.Animation, "node": "OldMan", "dest": Vector3(-30.053, 1.12, -2.091), "dur": 1.0, "parallel": false},
+	{"type": EVENT_TYPE.Animation, "node": "OldMan", "dest": Vector3(-15.391, 1.12, -1.9), "dur": 2.0, "parallel": false},
 	{"type": EVENT_TYPE.Dialogue, "yarn_node": "Overworld_OldManCitadelEnter"},
-	{"type": EVENT_TYPE.Animation, "node": "OldMan", "dest": Vector3(-68, 0, -1.2), "dur": 1.0, "parallel": true},
+	{"type": EVENT_TYPE.Animation, "node": "OldMan", "dest": Vector3(-9.249, 1.12, -4.025), "dur": 1.0, "parallel": true},
 	# TODO: Some way to pass player "z" pos into here? Replacing any part of the dest, to encourage a straight line
-	{"type": EVENT_TYPE.Animation, "node": "Character", "dest": Vector3(-84, 5.231, -2.7), "dur": 1.0, "parallel": true},
+	{"type": EVENT_TYPE.Animation, "node": "Character", "dest": Vector3(-25.666, 6.297, -0.143), "dur": 1.0, "parallel": true},
 	# TODO: Change to the collection screen if we're in an overworld instead. Maybe let GameScene handle it depending on name?
 	# TODO: Name is just for the yarnspinner node stuff, may eventually change. GameScene should handle this exact thing, not global state. Revisit.
 	{"type": EVENT_TYPE.TransitionScene, "scene": "res://brewing/brewing_base_scene.tscn", "scene_name": "Brewing"},
@@ -127,9 +131,9 @@ var old_man_approaches_at_gate = [
 
 # Triggers when you cheer up the sad guard and removes the current guard there
 var sad_guard_replaces_other_guard = [
-	{"type": EVENT_TYPE.Animation, "node": "SadGuard", "dest": Vector3(-64.354, 0, -2.473), "dur": 1.5, "parallel": false},
-	{"type": EVENT_TYPE.Animation, "node": "CitadelGuard", "dest": Vector3(-64.354, 0, 2.139), "dur": 2.0, "parallel": false},
-	{"type": EVENT_TYPE.Animation, "node": "SadGuard", "dest": Vector3(-64.354, 0, -1.091), "dur": 2.0, "parallel": false},
+	{"type": EVENT_TYPE.Animation, "node": "SadGuard", "dest": Vector3(-15.402, 0.983, -6.156), "dur": 1.0, "parallel": false},
+	{"type": EVENT_TYPE.Animation, "node": "CitadelGuard", "dest": Vector3(-18.051, 1.167, -0.492), "dur": 2.0, "parallel": false},
+	{"type": EVENT_TYPE.Animation, "node": "SadGuard", "dest": Vector3(-15.402, 0.983, -3.299), "dur": 1.5, "parallel": false},
 	# TODO: Rotate the guard; I need a "type" and can just base it off of the types in tweening
 	# {"type": EVENT_TYPE.Animation, "node": "SadGuard", "dest": Vector3(-64.354, 0, -1.091), "dur": 2.0, "parallel": false},
 	# TODO: This is where the reaction / sprite change instruction comes in. Change to sad_guard_happy or some shit haha, to be animated in the future

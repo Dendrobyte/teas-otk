@@ -4,6 +4,7 @@ class_name CharacterController
 # NOTE: Why is this in chapter 2 ._. I guess the old chapter 1 was an overworld thing
 # I should have a "brewing" and "overworld" folder setup for assets/scripts re-used depending on environment
 @export var speed = 10
+@export var run_speed = 20
 @export var narrative_controller: NarrativeController
 @export var dialogue_runner: Node
 @export var offset_const = .5
@@ -102,7 +103,12 @@ func _physics_process(_delta):
 	if direction != Vector3.ZERO and result:
 		direction = direction.normalized()
 		# TODO: Update the sprite shown here based on direction
-		target_velocity.x = direction.x * speed
-		target_velocity.z = direction.z * speed
+		# Sprint key | TODO: Change to an action (for controller support, if ever)
+		if Input.is_key_pressed(KEY_SHIFT):
+			target_velocity.x = direction.x * run_speed
+			target_velocity.z = direction.z * run_speed
+		else:
+			target_velocity.x = direction.x * speed
+			target_velocity.z = direction.z * speed
 		velocity = target_velocity
 		move_and_slide()
