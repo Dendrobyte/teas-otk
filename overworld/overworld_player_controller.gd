@@ -1,26 +1,23 @@
 extends CharacterBody3D
 class_name CharacterController
 
-# NOTE: Why is this in chapter 2 ._. I guess the old chapter 1 was an overworld thing
-# I should have a "brewing" and "overworld" folder setup for assets/scripts re-used depending on environment
+# Assigned in-engine
 @export var speed = 10
 @export var run_speed = 20
-@export var narrative_controller: NarrativeController
-@export var dialogue_runner: Node
 @export var offset_const = .5
 @export var sprite: Sprite3D
+# @export var camera: Camera3D # I don't think the character controller needs to know about the camera
+
+# Assigned in _ready func
+@export var narrative_controller: NarrativeController
+@export var dialogue_runner: Node
 
 var target_velocity = Vector3.ZERO
 
 var bottom_center = 0 # y value representing bottom of the image
 
 func _ready():
-	# If this is comment out, I'm experimenting :)
-	# var camera = $Camera
-	# var x_rotation = deg_to_rad(-1*GlobalState.ROTATION_ANGLE[GlobalState.GameMode.OVERWORLD])
-	# # Set rotation, in case I've modified it in the editor
-	# camera.set_global_rotation(Vector3(x_rotation, 0.0, 0.0))
-
+	print("Character readying")
 	sprite.frame = 1
 
 	# Get the "game scene" and narrative controller nodes and quit if it fails while testing

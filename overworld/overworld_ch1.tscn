@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://btqp10lt30b0u" path="res://overworld_base.gd" id="1_5ou8s"]
 [ext_resource type="PackedScene" uid="uid://dxb0v1ibc70vu" path="res://Character.tscn" id="2_wxdv6"]
 [ext_resource type="Script" uid="uid://btwkuqh33iglq" path="res://overworld/scatter_placement.gd" id="3_6fnbc"]
+[ext_resource type="Script" uid="uid://528ess56idwm" path="res://overworld/overworld_camera.gd" id="3_13bsa"]
 [ext_resource type="PackedScene" uid="uid://ctgjq4krm4248" path="res://asset_sprite_base.tscn" id="4_3rmvi"]
 [ext_resource type="Texture2D" uid="uid://2tyb4f5pycuc" path="res://assets/drawings/overworld/base_bush_128x128.png" id="5_hsq35"]
 [ext_resource type="Texture2D" uid="uid://c08im8e4vsoho" path="res://assets/drawings/overworld/tree_1_384x384.png" id="7_4hngy"]
@@ -19,7 +20,14 @@
 script = ExtResource("1_5ou8s")
 
 [node name="Character" parent="." unique_id=862054798 instance=ExtResource("2_wxdv6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.544586, 6.296915, -0.14304471)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.544586, 5.1169844, -0.14304471)
+
+[node name="Camera" type="Camera3D" parent="." unique_id=415505662 node_paths=PackedStringArray("character")]
+transform = Transform3D(1, 0, 0, 0, 0.9737182, 0.22775604, 0, -0.22775604, 0.9737182, -60.323402, 11.166765, 10.998458)
+current = true
+fov = 68.2
+script = ExtResource("3_13bsa")
+character = NodePath("../Character")
 
 [node name="Environment" type="Node3D" parent="." unique_id=1948100022]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.102295, 0)
@@ -165,6 +173,6 @@ texture = ExtResource("14_13bsa")
 start_interactable = false
 
 [node name="SadGuard" parent="NPCs" unique_id=853644851 instance=ExtResource("9_ipeki")]
-transform = Transform3D(0.26700443, -0.001031632, -0.13677567, 0.0010382014, 0.29999813, -0.0002360308, 0.13677563, -0.00026326472, 0.2670063, -19.571377, 0.98270416, -6.364895)
+transform = Transform3D(0.26700443, -0.0010316315, -0.13677567, 0.001038201, 0.29999813, -0.0002360307, 0.13677563, -0.00026326466, 0.2670063, -19.571377, 0.98270416, -6.364895)
 texture = ExtResource("15_5ou8s")
 start_interactable = false
