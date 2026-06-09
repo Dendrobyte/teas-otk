@@ -134,7 +134,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.50773, 9.176887, -16.854
 texture = ExtResource("7_4hngy")
 collectable = false
 
-[node name="ch1_overworld_env" parent="Environment" unique_id=1437134414 instance=ExtResource("15_13bsa")]
+[node name="ch1_overworld_env" parent="Environment" unique_id=1661654951 instance=ExtResource("15_13bsa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.884007, -5.5167913, -13.666733)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment" unique_id=387808549]
@@ -165,6 +165,6 @@ texture = ExtResource("14_13bsa")
 start_interactable = false
 
 [node name="SadGuard" parent="NPCs" unique_id=853644851 instance=ExtResource("9_ipeki")]
-transform = Transform3D(0.26700443, -0.0010316323, -0.13677567, 0.0010382017, 0.29999813, -0.00023603089, 0.13677563, -0.0002632648, 0.2670063, -19.571377, 0.98270416, -6.364895)
+transform = Transform3D(0.26700443, -0.001031632, -0.13677567, 0.0010382014, 0.29999813, -0.0002360308, 0.13677563, -0.00026326472, 0.2670063, -19.571377, 0.98270416, -6.364895)
 texture = ExtResource("15_5ou8s")
 start_interactable = false
