@@ -1,6 +1,8 @@
 extends Control
 class_name NarrativeController
 ## Narrative Controller ##
+# This kind of just holds on to all the cross-phase states of the game we want to keep
+# Whether it should be like that or not is whatever, but it is currently just that
 # TODO: Just make this a singleton at this point... but the node in reference
 #		already kind of makes it one? Idk lol
 # Every signal gets listened to in NarrativeController and passes to the proper controller
@@ -141,6 +143,12 @@ func toggle_interact_button(value, interacted_entity_type = EntityType.None, ent
 # TODO: Trigger save
 # TODO: Fade out
 func transition_scenes(new_scene_path, scene_name):
+	# We want to trigger the fade in/out to/from black
+	# Which... I guess I can just do as a one-off here?
+	# 1. Tween the black control node to fade over
+	# 2. Unload current scene and then change to brewing
 	GlobalState.set_current_scene(scene_name) # Why is this here? It should be set when the scene finishes loading?
 	game_scene.unload_scene()
 	game_scene.load_scene(new_scene_path)
+	# 3. Show text with button, etc.
+	# 4. Elsewhere, handle the buttone click to just queue_free the control node

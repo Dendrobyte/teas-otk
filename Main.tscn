@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://by1q5b8oetlpn" path="res://narrative_controller/narrative_controller.gd" id="2_03owx"]
 [ext_resource type="Script" uid="uid://cyfckdlbvre5t" path="res://narrative_controller/dialogue_controller.gd" id="2_lgr22"]
 [ext_resource type="Script" uid="uid://51eld5yjbtv8" path="res://dialogue_projection.gd" id="3_c6i3y"]
+[ext_resource type="Script" uid="uid://bifr1gy83mulr" path="res://transition_window.gd" id="3_j4qnp"]
 [ext_resource type="Script" uid="uid://flra500ihbix" path="res://addons/yarn_spinner/dialogue_runner.gd" id="3_trn2v"]
 [ext_resource type="Resource" uid="uid://dww6p7spgh185" path="res://teas.yarnproject" id="4_03owx"]
 [ext_resource type="Script" uid="uid://cged8u182768u" path="res://addons/yarn_spinner/ui/line_presenter.gd" id="5_wkp8b"]
@@ -61,6 +62,12 @@ inventory_controller = NodePath("InventoryController")
 dialogue_projection = NodePath("DialogueProjection")
 debug_menu = NodePath("DebugNarrativeMenu")
 game_scene = NodePath("../GameScene")
+
+[node name="TransitionWindow" type="Control" parent="NarrativeController" unique_id=1451263836]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_j4qnp")
 
 [node name="DialogueController" type="Control" parent="NarrativeController" unique_id=803034153]
 anchors_preset = 0
