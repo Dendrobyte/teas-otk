@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b3kf1e6lfldqs" path="res://assets/drawings/SketchyFarmer.png" id="11_13bsa"]
 [ext_resource type="Texture2D" uid="uid://vk82jo0cuctv" path="res://assets/drawings/Mercenary.png" id="11_bp8rp"]
 [ext_resource type="Texture2D" uid="uid://cv8sy4uu65psj" path="res://assets/drawings/CitadelGuard.png" id="12_13bsa"]
-[ext_resource type="Texture2D" uid="uid://drthm53m2pvud" path="res://assets/drawings/OldMan.png" id="14_13bsa"]
+[ext_resource type="Texture2D" uid="uid://dxo35oiy2wejv" path="res://assets/drawings/OldMan.png" id="14_13bsa"]
 [ext_resource type="Texture2D" uid="uid://cyjnbi088jwgf" path="res://assets/drawings/SadGuard.png" id="15_5ou8s"]
 [ext_resource type="PackedScene" uid="uid://dawik2saygkps" path="res://assets/models/overworld/ch1_overworld_env.glb" id="15_13bsa"]
 
@@ -31,8 +31,7 @@ background_color = Color(0.29522544, 0.66414136, 0.75878876, 1)
 sky = SubResource("Sky_13bsa")
 ambient_light_color = Color(0.3037755, 0.33355135, 0.281796, 1)
 ambient_light_energy = 0.41
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.0812
+volumetric_fog_density = 0.0141
 volumetric_fog_albedo = Color(0.54631716, 0.6250232, 0.6566097, 1)
 volumetric_fog_emission = Color(0.31987345, 0.31987318, 0.31987324, 1)
 volumetric_fog_length = 10.65
@@ -201,6 +200,6 @@ texture = ExtResource("14_13bsa")
 start_interactable = false
 
 [node name="SadGuard" parent="NPCs" unique_id=853644851 instance=ExtResource("9_ipeki")]
-transform = Transform3D(0.26700443, -0.001031631, -0.13677567, 0.0010382006, 0.29999813, -0.00023603061, 0.13677563, -0.00026326452, 0.2670063, -19.571377, 0.98270416, -6.364895)
+transform = Transform3D(0.26700443, -0.0010316309, -0.13677567, 0.0010382003, 0.29999813, -0.00023603052, 0.13677563, -0.00026326452, 0.2670063, -19.571377, 0.98270416, -6.364895)
 texture = ExtResource("15_5ou8s")
 start_interactable = false
