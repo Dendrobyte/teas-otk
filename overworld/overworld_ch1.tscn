@@ -31,6 +31,12 @@ background_color = Color(0.29522544, 0.66414136, 0.75878876, 1)
 sky = SubResource("Sky_13bsa")
 ambient_light_color = Color(0.3037755, 0.33355135, 0.281796, 1)
 ambient_light_energy = 0.41
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0812
+volumetric_fog_albedo = Color(0.54631716, 0.6250232, 0.6566097, 1)
+volumetric_fog_emission = Color(0.31987345, 0.31987318, 0.31987324, 1)
+volumetric_fog_length = 10.65
+volumetric_fog_detail_spread = 4.5471506
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_5ou8s"]
 
@@ -164,7 +170,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.50773, 9.176887, -16.854
 texture = ExtResource("7_4hngy")
 collectable = false
 
-[node name="ch1_overworld_env" type="Node3D" parent="Environment" unique_id=1661654951 instance=ExtResource("15_13bsa")]
+[node name="ch1_overworld_env" parent="Environment" unique_id=1661654951 instance=ExtResource("15_13bsa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.884007, -5.5167913, -13.666733)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment" unique_id=387808549]
@@ -195,6 +201,6 @@ texture = ExtResource("14_13bsa")
 start_interactable = false
 
 [node name="SadGuard" parent="NPCs" unique_id=853644851 instance=ExtResource("9_ipeki")]
-transform = Transform3D(0.26700443, -0.0010316313, -0.13677567, 0.0010382008, 0.29999813, -0.00023603062, 0.13677563, -0.0002632646, 0.2670063, -19.571377, 0.98270416, -6.364895)
+transform = Transform3D(0.26700443, -0.001031631, -0.13677567, 0.0010382006, 0.29999813, -0.00023603061, 0.13677563, -0.00026326452, 0.2670063, -19.571377, 0.98270416, -6.364895)
 texture = ExtResource("15_5ou8s")
 start_interactable = false
