@@ -200,6 +200,6 @@ texture = ExtResource("14_13bsa")
 start_interactable = false
 
 [node name="SadGuard" parent="NPCs" unique_id=853644851 instance=ExtResource("9_ipeki")]
-transform = Transform3D(0.26700443, -0.0010316307, -0.13677567, 0.0010382002, 0.29999813, -0.00023603052, 0.13677563, -0.00026326446, 0.2670063, -19.571377, 0.98270416, -6.364895)
+transform = Transform3D(0.26700443, -0.0010316306, -0.13677567, 0.0010382001, 0.29999813, -0.00023603045, 0.13677563, -0.00026326446, 0.2670063, -19.571377, 0.98270416, -6.364895)
 texture = ExtResource("15_5ou8s")
 start_interactable = false

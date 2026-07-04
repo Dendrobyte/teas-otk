@@ -14,22 +14,22 @@ title: Chapter1_Overworld
 // Should have some "business"- smoking is the right vibe, but not sure I want to do that
 title: Overworld_Bystander
 ---
-Bystander: You've seen better days... nice bird though. Thinking of selling 'er?
--> ...
--> She's mine
-Bystander: No? That's a bummer.
-Bystander: Good luck getting in then, at least you're in time before the Citadel shuts us all out for the night.
-// Bystander: Peace keeping center of the continent my ass...
+Bystander: Hey, $name, glad to see you're making it back before the Closing tonight. You've been cutting it close!
+-> So much to do, need to make use of the hours
+-> It's easy to lose track of time out here
+Bystander: Can't argue with that. I'll be riding through the night tonight. Some weird ask to gather some Night Pheasants...
+Bystander: Good luck getting in then!
 ===
 
 // This is someone that appears to be some sort of armored mercenary
 // She's got a slight attitude, and the other guy is scrambling to get her payment
 title: Overworld_Mercenary
 ---
-Miranda: Heh, you run into those grunts at the river, huh? That's why I do what I do.
-Miranda: I don't have a permit but I should be able to make it to a nearby village before nightfall...
-Miranda: ...
-Miranda: Give me my coin, man.
+Miranda: Hey, if it ain't Tea Guy. You end up running into those grunts at the river, too?
+-> Nope, must have missed them!
+-> Yea, I ended up skirting around them.
+Miranda: Well, really a pain in my ass. But hey, that's why they hire me...
+Miranda: Anyway, I'll come in a bit for my minty regular. Just waiting on my coin.
 Sketchy Farmer: Uh, yes, uhh, it's in here somewhere...
 ===
 
@@ -38,9 +38,8 @@ Sketchy Farmer: Uh, yes, uhh, it's in here somewhere...
 // TODO: If you talk to the mercenary first, say she's paid and something else. Those vars can just exist within here.
 title: Overworld_SketchyFarmer
 ---
-Sketchy Farmer: Okay, she's paid...
-Sketchy Farmer: Got my permit, got the vials, I'll just need to spread it...
-Sketchy Farmer: Heh? Get away, I can call that woman back here right away!
+Sketchy Farmer: Once I pay her, I'm good to go. I got my permit, got the vials, I'll just need to spread it...
+Sketchy Farmer: Heh? What are you eavesdropping in on?
 ===
 
 title: Overworld_CitadelGuard
@@ -49,14 +48,16 @@ title: Overworld_CitadelGuard
 // TODO: Branching dialogue options, maybe?
 <<if $checked_for_permit == false && $talked_to_old_man == false && $talked_to_sad_guard == false>>
   Citadel Guard: Permit, please...
-    -> Permit?
-  Citadel Guard: *sigh* Rejecting so many people lately. Sorry, can't let you in.
+    -> Uhhhh...
+  Citadel Guard: *sigh* Come on, $name, you know the drill. I can't let you in, sorry.
   <<set $checked_for_permit to true>>
 <<elseif $checked_for_permit == true && $talked_to_old_man == false && $talked_to_sad_guard == false>>
   // TODO: Shuffle responses or something
-  Citadel Guard: Still no permit? No entry. I don't make these rules
+  Citadel Guard: Still no permit? No entry. I don't make the rules
+    -> Come on, you've seen me come in!
+  Citadel Guard: I don't make the rules, and I'd rather not put my job on the line
 <<elseif $talked_to_sad_guard == true>>
-  Citadel Guard: I'm on my break...
+  Citadel Guard: I'm on my break, go bother Andy
 <<else>> // if talked_to_old_man is true
   Citadel Guard: Look, if you don't have a permit to get in, I can't let you in. That's just my jo-
   <<trigger_animation "old_man_approaches_at_gate">>
@@ -65,11 +66,11 @@ title: Overworld_CitadelGuard
 
 title: Overworld_OldMan
 ---
-Old Man: Gah I should have tied these...
-  -> Let me tie them
-  -> I'll help carry
-Old Man: Ah haha, aren't you fortunately timed. That would be grand.
-Old Man: Just grab that box there...
+Old Man: Ah, $name, I'm so lucky to have you!
+  -> I didn't get much today...
+  -> I was a little carried away on my own task...
+Old Man: Bah, that's alright. It's a quiet night and I'm sure we've got plenty to get by with
+Old Man: I just need to tie these together, then I'll meet you up at the gate!
 <<set $talked_to_old_man to true>>
 ===
 
@@ -78,19 +79,17 @@ title: Overworld_SadGuard
 // TODO: I think I should set a flag that's more like "cheered_up_sad_guard"
 // But right now, you can only talk to one of them anyway so it works
 <<if $talked_to_sad_guard == false>>
-  // Looks wistfully looks off into the distance, in an old looking uniform.
+  You approach Andy, a sad looking guard looking wistfully looks off into the distance, in an old looking uniform.
   Sad Guard: *sigh*
     -> Watcha eating?
-    -> What about bribes?
-  Sad Guard: What... hah.
-  Sad Guard: Look, we've turned away the most people today in a while, and it hurts every time.
-  Sad Guard: We were supposed to be the peace! The safe haven! We're built off of visitors and yet...
-  Sad Guard: Now we're told to kick them out? This isn't what I joined for.
-    -> You're just doing the job, as long as you're not hurting anyone- right?
-    -> Sounds like you'd want to help, your hearts in the right place
-  You: You seem like you know the rules- surely you can give advice to people?
-  Happy Guard: I guess visitors don't know the way...
-  Happy Guard: Anyway, I guess that's my break. There's a town about an hour's ride from here, no permit required.
+    -> You appear lost in thought...
+  Sad Guard: Ah, it's nothing... just...
+  Sad Guard: Today, we've turned away the most people today in a while, and it hurts every time.
+  Sad Guard: We were supposed to be the peace! The safe haven! We're built off of visitors and yet... we have to allow only those with proper permits?
+    -> At the end of the day, you're just doing your job
+    -> Yea that sucks, at least your heart's in the right place
+  Happy Guard: I suppose there's that. Though maybe I can figure something out...
+  Happy Guard: Anyway, I guess that's my break.
   <<set $talked_to_sad_guard to true>>
   <<trigger_animation "sad_guard_replaces_other_guard">>
 <<else>>
