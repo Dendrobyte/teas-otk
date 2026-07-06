@@ -69,7 +69,6 @@ func update_flag_and_call_function(var_name: String, value, npc_refs):
 # All the functions executed on flag change to keep the map somewhat readable
 # Remember to let YarnSpinner handle anything dialogue related with the flags
 func on_checked_for_permit():
-	print("Permit checked!")
 	# TODO: Add helper like you did for toggle interactable, will be more readable as I scale
 	NPC_REFS["OldMan"].enable()
 	NPC_REFS["SadGuard"].enable()
@@ -78,7 +77,6 @@ func on_checked_for_permit():
 # more complicated things that aren't binary in the future, it's worth noting
 # Something like "person helped", since that flag will need to come up
 func on_talked_to_old_man():
-	print("Talked to old man")
 	toggle_npc_interactable("OldMan", false)
 	toggle_npc_interactable("SadGuard", false)
 	# TODO: Set a global var of who you helped
@@ -86,7 +84,6 @@ func on_talked_to_old_man():
 # TODO: I should have some conditional for this happening?
 # Unsure if necessary seeing as this triggers upon dialogue end
 func on_talked_to_sad_guard():
-	print("Talked to sad guard")
 	toggle_npc_interactable("OldMan", false)
 	# TODO: Set a global var of who you helped
 
@@ -126,7 +123,7 @@ var old_man_approaches_at_gate = [
 	{"type": EVENT_TYPE.Animation, "node": "Character", "dest": Vector3(-25.666, 6.297, -0.143), "dur": 1.0, "parallel": true},
 	# TODO: Change to the collection screen if we're in an overworld instead. Maybe let GameScene handle it depending on name?
 	# TODO: Name is just for the yarnspinner node stuff, may eventually change. GameScene should handle this exact thing, not global state. Revisit.
-	{"type": EVENT_TYPE.TransitionScene, "scene": "res://brewing/brewing_base_scene.tscn", "scene_name": "Brewing"},
+	{"type": EVENT_TYPE.TransitionScene, "scene": "res://narration/narration_base.tscn", "scene_name": "Narration"},
 ]
 
 # Triggers when you cheer up the sad guard and removes the current guard there
@@ -200,7 +197,6 @@ func start_animation(animation_name, character_ref):
 		await tween.finished
 		tween.kill()
 	
-	print("Emitting cutscene ended signal")
 	cutscene_ended.emit()
 	if scene_transition != "":
 		narrative_controller.transition_scenes(scene_transition, scene_transition_name)

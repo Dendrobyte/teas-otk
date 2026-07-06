@@ -1,8 +1,8 @@
 extends Node
 
 #### General enums as consts ####
-enum GameMode { NARRATIVE, OVERWORLD, BREWING, MENU }
-var CURRENT_GAMEMODE = GlobalState.GameMode.NARRATIVE # TODO: Default to menu probably?
+enum GameMode { MENU, ANIMATIC, OVERWORLD, BREWING, NARRATION }
+var CURRENT_GAMEMODE = GlobalState.GameMode.MENU
 
 func set_gamemode(new_gamemode):
 	CURRENT_GAMEMODE = new_gamemode

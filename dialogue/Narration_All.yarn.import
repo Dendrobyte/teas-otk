@@ -1,0 +1,14 @@
+[remap]
+
+importer="yarn_spinner.yarn_file"
+type="Resource"
+uid="uid://c0thsv8y1q7ar"
+path="res://.godot/imported/Narration_All.yarn-21a3ed2a4fd090106556c8a589096eb6.res"
+
+[deps]
+
+source_file="res://dialogue/Narration_All.yarn"
+dest_files=["res://.godot/imported/Narration_All.yarn-21a3ed2a4fd090106556c8a589096eb6.res"]
+
+[params]
+

@@ -1,0 +1,24 @@
+// All the text for "narration" in betweens, might as well use it
+
+title: Narration_All
+---
+// These three handle our three prototype stages for now
+<<declare $start_screen = false>>
+<<declare $transition_worlds = false>>
+<<declare $ending_outcomes = false>>
+===
+
+title: Start_Screen
+---
+The world is...
+===
+
+title: Transition_Worlds
+---
+You go with the old man into the Citadel...
+===
+
+title: Ending
+---
+// TODO: Have both options. We'll show the respective images separately.
+===

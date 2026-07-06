@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bsad0hswd3ds"]
+
+[ext_resource type="Script" uid="uid://dl7et71w5rkui" path="res://narration/narration_base.gd" id="1_bkctf"]
+
+[node name="NarrationBase" type="Control" unique_id=81518452]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bkctf")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1988765679]
+layout_mode = 0
+offset_right = 2446.0
+offset_bottom = 1381.0
+text = "nothing to see here for now..."
