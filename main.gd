@@ -10,7 +10,6 @@ var game_scene: GameScene
 
 # Not really sure about the entry point yet, but for now we can launch into our narrative start / chapter 0
 func _ready():
-	# PICKUP: Show introductory text that then transitions into our first scene (overworld)
 	var scene_to_load = load("res://" + scene_tscn_name + ".tscn").instantiate()
 	GlobalState.set_current_scene(current_scene_type) # TODO: See global state. We should use node name
 	# TODO: Understand why we need to do call_deferred here
