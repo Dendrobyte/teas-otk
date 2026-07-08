@@ -110,6 +110,7 @@ func _ready():
 	add_child(seal_poc)
 	seal_poc.seal_complete.connect(_seal_drawing_complete)
 	seal_poc.seal_drawing_exit.connect(brewing_player_controller.overlay_hidden)
+	change_debug_text("Boil the kettle to begin serving")
 
 func change_debug_text(new_text):
 	get_node("Character").debug_text_label.text = new_text
@@ -168,6 +169,9 @@ func brewing_dialogue_finished():
 	# maybe that'll just have the reference.
 	var serve_tray = get_node("brewing_env/ServeTray") as TeaServeTray
 	serve_tray.clear_tray()
+
+func begin_customers():
+	active_customer_controller.trigger_next_customer()
 
 #### INPUT FOR DEBUGGING ####
 # TODO: Extend the menu UI to "reset cups" or "insta fill cup" etc.

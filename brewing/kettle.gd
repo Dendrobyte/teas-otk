@@ -77,7 +77,8 @@ func _on_kettle_timer_done():
 	is_boiled = true
 	# For debugging. I don't love the direction this is going but I"ll get rid of the text
 	# completely anyway at some point
-	brewing_base.change_debug_text("Kettle boiled!")
+	brewing_base.change_debug_text("Kettle boiled! Your first customer arrives...")
+	brewing_base.begin_customers()
 
 var pour_tween
 func show_pour_animation():
