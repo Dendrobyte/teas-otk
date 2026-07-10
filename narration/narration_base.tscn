@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://bsad0hswd3ds"]
 
 [ext_resource type="Script" uid="uid://dl7et71w5rkui" path="res://narration/narration_base.gd" id="1_bkctf"]
+[ext_resource type="FontFile" uid="uid://drkyymsqomrhx" path="res://assets/ui/Leander.ttf" id="1_x11pd"]
+
+[sub_resource type="Theme" id="Theme_bkctf"]
+default_font = ExtResource("1_x11pd")
+default_font_size = 166
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x11pd"]
+bg_color = Color(0.00019336981, 0.05176253, 0.08066354, 1)
 
 [node name="NarrationBase" type="Control" unique_id=81518452]
 layout_mode = 3
@@ -9,10 +17,42 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_bkctf")
 script = ExtResource("1_bkctf")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1988765679]
+[node name="Panel" type="Panel" parent="." unique_id=1135588532]
 layout_mode = 0
-offset_right = 2446.0
-offset_bottom = 1381.0
-text = "nothing to see here for now..."
+offset_left = -6.0
+offset_right = 3854.0
+offset_bottom = 2167.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_x11pd")
+
+[node name="intro" type="VBoxContainer" parent="." unique_id=409506234]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 8.0
+offset_bottom = 10.0
+
+[node name="1" type="Label" parent="intro" unique_id=1304763389]
+layout_mode = 2
+text = "
+Two years after leaving the Vanguard, you
+once again find yourself entering the Citadel."
+horizontal_alignment = 1
+
+[node name="2" type="Label" parent="intro" unique_id=672365601]
+layout_mode = 2
+text = "
+For over a year now, you've been aiding
+an Old Man run his tea shop. You've found a
+certain joy and peace in it."
+horizontal_alignment = 1
+
+[node name="3" type="Label" parent="intro" unique_id=14290202]
+layout_mode = 2
+text = "
+That is, until familiar signs of unrest
+and conspiracy begin to show themselves..."
+horizontal_alignment = 1

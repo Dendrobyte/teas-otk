@@ -1,7 +1,7 @@
 extends Node
 
 #### General enums as consts ####
-enum GameMode { MENU, ANIMATIC, OVERWORLD, BREWING, NARRATION }
+enum GameMode { MENU, ANIMATIC, OVERWORLD, BREWING, NARRATIVE }
 var CURRENT_GAMEMODE = GlobalState.GameMode.MENU
 
 func set_gamemode(new_gamemode):
@@ -29,5 +29,8 @@ const BASE_TILE_SIZE = 128
 var game_state = {
 	current_scene = null,
 }
+
+# Will be either 0 or 1 depending on who you serve the green tea to
+var ending
 
 # TODO: Some on ready or whatever to load saves, blah blah
