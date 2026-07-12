@@ -27,32 +27,34 @@ offset_right = 3854.0
 offset_bottom = 2167.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_x11pd")
 
-[node name="intro" type="VBoxContainer" parent="." unique_id=409506234]
+[node name="TextList" type="VBoxContainer" parent="." unique_id=409506234]
+custom_minimum_size = Vector2(720, 1280)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 8.0
 offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="1" type="Label" parent="intro" unique_id=1304763389]
+[node name="One" type="Label" parent="TextList" unique_id=1304763389]
 layout_mode = 2
-text = "
-Two years after leaving the Vanguard, you
-once again find yourself entering the Citadel."
 horizontal_alignment = 1
+autowrap_mode = 2
 
-[node name="2" type="Label" parent="intro" unique_id=672365601]
+[node name="Two" type="Label" parent="TextList" unique_id=672365601]
 layout_mode = 2
-text = "
-For over a year now, you've been aiding
-an Old Man run his tea shop. You've found a
-certain joy and peace in it."
 horizontal_alignment = 1
+autowrap_mode = 2
 
-[node name="3" type="Label" parent="intro" unique_id=14290202]
+[node name="Three" type="Label" parent="TextList" unique_id=14290202]
 layout_mode = 2
-text = "
-That is, until familiar signs of unrest
-and conspiracy begin to show themselves..."
 horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Cont" type="Label" parent="TextList" unique_id=374118145]
+layout_mode = 2
+theme_override_font_sizes/font_size = 104
+text = "Continue..."
+horizontal_alignment = 2
