@@ -35,11 +35,15 @@ var curr_text = 0
 @onready var text_node_3 = $TextList/Three
 @onready var cont = $TextList/Cont
 
+var game_scene: GameScene
+
 func _ready():
 	# TODO: I guess I have to pass in whatever one we're on manually, instead of using _ready()
 	text_node_1.text = all_texts[curr_text_arr_idx][0]
 	curr_text += 1
 	cont.hide()
+
+	game_scene = get_parent()
 
 func _input(event):
 	if event is InputEventMouseButton and event.is_pressed():
@@ -57,8 +61,13 @@ func show_next_text_in_array(text_arr):
 		cont.show()
 	if curr_text == 4:
 		curr_text = -1
-		curr_text_arr_idx += 1
 		queue_free()
-		# PICKUP: Delete self, transition to next scene
+
+		if curr_text_arr_idx == 0:
+			game_scene.transition_to_scene("res://overworld/overworld_ch1.tscn")
+		# elif 1 do brewing
+		# elif 2 do end	
+
+		curr_text_arr_idx += 1
 	curr_text += 1
 	

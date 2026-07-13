@@ -3,8 +3,8 @@ extends Node3D
 @export var narrative_controller: NarrativeController
 
 # NOTE: This will change when we modify how we load current_scene
-@export_enum("Overworld", "Brewing") var current_scene_type: String
-@export_enum("overworld/overworld_ch1", "brewing/brewing_base_scene", "seal_poc") var scene_tscn_name: String
+@export_enum("Narration", "Overworld", "Brewing") var current_scene_type: String
+@export_enum("narration/narration_base", "overworld/overworld_ch1", "brewing/brewing_base_scene", "seal_poc") var scene_tscn_name: String
 
 var game_scene: GameScene
 

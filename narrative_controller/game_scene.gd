@@ -27,8 +27,16 @@ func unload_scene():
 # TODO: I think we should await all signals complete in the child scene when it loads
 # before we show anything. To be figured out 'next'
 func load_scene(scene_path):
+	print("Loading scene", scene_path)
 	var scene = load(scene_path)
 	var instance = scene.instantiate()
 	add_child(instance)
 
-	
+# This also exists in the narrative controller
+# I'm adding it here so I can access it easily in narration_base
+# It's all spaghetti
+# Ignoring type as well
+func transition_to_scene(transition_to_scene_name):
+	unload_scene()
+	load_scene(transition_to_scene_name)
+
