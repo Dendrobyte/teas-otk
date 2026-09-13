@@ -17,7 +17,6 @@ var target_velocity = Vector3.ZERO
 var bottom_center = 0 # y value representing bottom of the image
 
 func _ready():
-	print("Character readying")
 	sprite.frame = 1
 
 	# Get the "game scene" and narrative controller nodes and quit if it fails while testing

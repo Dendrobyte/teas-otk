@@ -52,7 +52,8 @@ func interact(player_node):
 
 	if player_node.held_item == null:
 		if is_filled and has_teabag and not seal_drawn:
-			brewing_base.show_seal_ui("PLANT", _show_aura)
+			# brewing_base.show_seal_ui("PLANT", _show_aura)
+			_show_aura()
 		else: # if seal_drawn == false
 			player_node.set_held_item(self) # fourth instance! maybe pickup_item? takes the new parent, but its always player so reparent(player_node)
 			if tray_ref != null:
