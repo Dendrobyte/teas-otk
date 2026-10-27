@@ -10,7 +10,7 @@ var current_scene = null
 var is_going = true
 
 func _ready():
-	GlobalState.set_gamemode(GlobalState.GameMode.NARRATIVE)
+	GlobalState.set_gamemode(GlobalState.GameMode.NARRATION)
 	current_scene = -1
 	next_scene()
 
