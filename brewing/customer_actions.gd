@@ -23,8 +23,7 @@ func _ready():
 	# TODO: Load the order of customers, this will be self sustaining and we'll run dialogue of the current name, etc.
 	hide()
 
-# var customers = ["OldMan", "Generic", "Driver", "Athlete"]
-var customers = ["OldMan", "Mercenary", "OldMan", "OldMan"]
+var customers = ["OldMan", "Mercenary", "Forg", "General", "SoldierHurt", "SolderFine"]
 
 var tween
 func trigger_next_customer():

@@ -14,8 +14,11 @@ script = ExtResource("2_xxcha")
 start_interactable = true
 
 [node name="NPCArea3D" type="Area3D" parent="." index="0" unique_id=1535549466]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 6.0747175, -6.765496, 0, 6.0747175, 6.765496, 0, -4.918165, 4.918165)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NPCArea3D" index="0" unique_id=1491579194]
 transform = Transform3D(1, 0, 0, 0, 1.0000006, 0, 0, 0, 1.0000006, 0.011657715, 0.14780506, -1.0126781)
 shape = SubResource("BoxShape3D_xxcha")
+
+[node name="EnvironmentArea3D" parent="." index="1" unique_id=806725636]
+transform = Transform3D(6.63, 0, 0, 0, 6.63, 0, 0, 0, 6.63, 0, -2.706652, 0)

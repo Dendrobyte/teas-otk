@@ -106,11 +106,15 @@ var brewing_player_controller: BrewingPlayer
 func _ready():
 	brewing_player_controller = get_node("Character")
 
-	seal_poc = seal_poc_scene.instantiate() as SealDrawingUI
-	add_child(seal_poc)
-	seal_poc.seal_complete.connect(_seal_drawing_complete)
-	seal_poc.seal_drawing_exit.connect(brewing_player_controller.overlay_hidden)
+	# Load up whatever chapter we should be loading up
+	
 	change_debug_text("Boil the kettle to begin serving")
+
+	# All seal drawing is whatever
+	# seal_poc = seal_poc_scene.instantiate() as SealDrawingUI
+	# add_child(seal_poc)
+	# seal_poc.seal_complete.connect(_seal_drawing_complete)
+	# seal_poc.seal_drawing_exit.connect(brewing_player_controller.overlay_hidden)
 
 func change_debug_text(new_text):
 	get_node("Character").debug_text_label.text = new_text

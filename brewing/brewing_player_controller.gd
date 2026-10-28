@@ -2,9 +2,9 @@ extends Node3D
 class_name BrewingPlayer
 
 @export var sensitivity: float = 0.002
-@export var yaw_limit: float = 60.0   # degrees left/right
-@export var pitch_min: float = -30.0  # degrees down
-@export var pitch_max: float = 25.0   # degrees up
+@export var yaw_limit: float = 60.0 # degrees left/right
+@export var pitch_min: float = -30.0 # degrees down
+@export var pitch_max: float = 25.0 # degrees up
 @export var ray_length = 40
 @export_enum("Play", "Debug") var mouse_mode # for debug and testing
 @onready var control = $Control
@@ -21,10 +21,7 @@ var has_overlay = false
 
 # Some text as a temporary visual indicator of where I am and what's updating where
 func _ready():
-	if mouse_mode == 0:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	else:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	original_camera_transform = $Camera3D.transform
 
 func _input(event):
@@ -57,11 +54,14 @@ func _input(event):
 				else:
 					debug_text_label.text = result_text
 
-# Seal UI escapes first, then we'll do this
-# But also this is just for debugging
-# func _unhandled_input(event):
-# 	if event.is_action_pressed("escape") and has_overlay == false:
-# 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+# For debugging, but
+# TODO: Open a menu
+func _unhandled_input(event):
+	if event.is_action_pressed("escape"):
+		if has_overlay == false:
+			overlay_shown()
+		else:
+			overlay_hidden()
 
 func overlay_shown():
 	has_overlay = true
