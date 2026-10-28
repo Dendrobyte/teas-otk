@@ -19,21 +19,24 @@ var curr_char_served = false
 
 signal char_dialogue_action
 
+var customers
 func _ready():
 	# TODO: Load the order of customers, this will be self sustaining and we'll run dialogue of the current name, etc.
+	var curr_brewing_chapter = GlobalState.BREWING_CHAPTER
+	customers = GlobalState.BREWING_CHAPTER_CUSTOMER_ORDER[curr_brewing_chapter]
 	hide()
 
-var customers = ["OldMan", "Mercenary", "Forg", "General", "SoldierHurt", "SolderFine"]
 
 var tween
 func trigger_next_customer():
 	curr_char_idx += 1
-	if curr_char_idx > len(customers)-1:
+	if curr_char_idx > len(customers) - 1:
 		print("All customers served!")
+		# PICKUP: Trigger scene switch in brewing base and that shows narration from
+		# respective chapter elsewhere, triggers chapter increase, we start next day
 		return
 	curr_char_being_served = true
 	# Spawn in and move
-	# TODO: Set up according to list and some cursor. Opp to get on those constants!
 	var img_resource = load("res://assets/drawings/" + curr_char_name + ".png")
 	sprite.texture = img_resource if img_resource != null else load("res://assets/drawings/NPC_NoTexture.png")
 	sprite.position = start_pos
@@ -48,7 +51,7 @@ func trigger_next_customer():
 	char_dialogue_action.emit(curr_char_name, false)
 
 #### https://trello.com/c/dfLlErzl ####
-#### TODO-IMPORTANT: I don't like these here. I think it implies that we'll calculate something here.
+#### TODO-IMPORTANT: I don't like these animations here. I think it implies that we'll calculate something here.
 #### We need to either pass in the tea information when they are served, and then trigger the dialogue
 #### and that's based on their preferences.
 #### DO NOT LET THIS GROW! After this current camera stuff at least...
@@ -84,11 +87,9 @@ func dialogue_finished():
 		
 		# This does nothing since "trigger next" is called immediately, but this is where it would go
 		# Just, technically before trigger_next_customer
-		curr_char_being_served = false 
+		curr_char_being_served = false
 
 func get_chair_position():
 	var random_chair = $ChairPositions.get_children().pick_random()
 	random_chair.queue_free()
 	return random_chair.global_position
-
-	

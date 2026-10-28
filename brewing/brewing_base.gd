@@ -22,6 +22,7 @@ func _enter_tree():
 	narrative_controller.dialogue_controller.dialogue_controller_dialogue_finished.connect(brewing_dialogue_finished)
 
 	# Wire up dialogue signals that eventually hit narrative (and thus dialogue) controller
+	# We load the current chapter within this for the dialogues
 	active_customer_controller = get_node("ActiveCustomer")
 	active_customer_controller.char_dialogue_action.connect(trigger_character_dialogue)
 
@@ -61,7 +62,7 @@ func _enter_tree():
 			for i in range(0, 4):
 				var new_cup = cup_ref.duplicate()
 				new_cup.name = cup_ref.name + str(i)
-				new_cup.position = Vector3(cup_ref.position.x+cup_x_offset*i, cup_ref.position.y, cup_ref.position.z)
+				new_cup.position = Vector3(cup_ref.position.x + cup_x_offset * i, cup_ref.position.y, cup_ref.position.z)
 				new_cup.set_script(item_script)
 				add_child(new_cup)
 
@@ -75,14 +76,14 @@ func _enter_tree():
 
 
 			var cont_z_offset = 0.6
-			var cont_y_offset = -0.9 
+			var cont_y_offset = -0.9
 			# second shelf is bottom shelf, primary model is middle shelf
 			var shelf = 0
 			var cont_on_shelf = 0
 			for i in range(1, 7):
 				var new_cont = cont_ref.duplicate()
 				new_cont.name = cont_ref.name + str(i)
-				new_cont.position = Vector3(cont_ref.position.x, cont_ref.position.y+cont_y_offset*shelf, cont_ref.position.z+cont_z_offset*cont_on_shelf)
+				new_cont.position = Vector3(cont_ref.position.x, cont_ref.position.y + cont_y_offset * shelf, cont_ref.position.z + cont_z_offset * cont_on_shelf)
 				new_cont.set_script(item_script)
 				add_child(new_cont)
 				cont_on_shelf += 1
@@ -101,13 +102,12 @@ func _enter_tree():
 
 	print("Finished loading brewing base")
 
-# Using ready to make sure all children have loaded
+# In theory, brewing base shouldn't have to change based on chapters
+# That loading is done elsewhere
 var brewing_player_controller: BrewingPlayer
 func _ready():
 	brewing_player_controller = get_node("Character")
 
-	# Load up whatever chapter we should be loading up
-	
 	change_debug_text("Boil the kettle to begin serving")
 
 	# All seal drawing is whatever
@@ -153,9 +153,9 @@ func trigger_character_dialogue(character_name, is_served):
 	# and we can check it here in the brewing_base depending on how we load the character info
 	# Revisit
 	# Also, there could be incorrect tea but we still need to know the type?
-	print(narrative_controller.dialogue_controller.dialogue_runner.variable_storage.get_value("$is_served"))
+	var curr_chapter_str = "Chapter" + str(GlobalState.BREWING_CHAPTER)
 	narrative_controller.dialogue_controller.dialogue_runner.variable_storage.set_value("$is_served", is_served)
-	narrative_controller.dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + character_name)
+	narrative_controller.dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + curr_chapter_str + "_" + character_name)
 
 	# Ensure we can't move around / click on the items around in order to focus on dialogue
 	brewing_player_controller.overlay_shown()

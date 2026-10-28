@@ -1,7 +1,7 @@
 extends Node
 
 #### General enums as consts ####
-enum GameMode { MENU, ANIMATIC, OVERWORLD, BREWING, NARRATION }
+enum GameMode {MENU, ANIMATIC, OVERWORLD, BREWING, NARRATION}
 var CURRENT_GAMEMODE = GlobalState.GameMode.MENU
 
 func set_gamemode(new_gamemode):
@@ -24,8 +24,18 @@ var ROTATION_ANGLE = {
 
 const BASE_TILE_SIZE = 128
 
+var OVERWORLD_DAY = 1 # i dont think this changes in the prototype
+var BREWING_CHAPTER = 1 # this changes on the last "event" of brewing scene
+
+# maybe store prefs here? {"OldMan", "GreenTea"}?
+var BREWING_CHAPTER_CUSTOMER_ORDER = {
+	1: ["OldMan", "Mercenary", "Forg", "General", "SoldierHurt", "SolderFine"],
+	2: [], # and so on for day 2
+}
+
 # "Now whenever we run any scene in the project, this script will always be loaded."
 # But does that mean it also maintains its state...?
+# TODO: Just use this instead? Or just keep using big vars like above?
 var game_state = {
 	current_scene = null,
 }

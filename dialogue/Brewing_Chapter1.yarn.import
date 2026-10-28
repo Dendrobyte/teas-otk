@@ -1,0 +1,14 @@
+[remap]
+
+importer="yarn_spinner.yarn_file"
+type="Resource"
+uid="uid://q4gb28j6g62x"
+path="res://.godot/imported/Brewing_Chapter1.yarn-4e561d01e0904d1d43a9197713ed1024.res"
+
+[deps]
+
+source_file="res://dialogue/Brewing_Chapter1.yarn"
+dest_files=["res://.godot/imported/Brewing_Chapter1.yarn-4e561d01e0904d1d43a9197713ed1024.res"]
+
+[params]
+
