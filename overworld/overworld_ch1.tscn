@@ -44,12 +44,12 @@ environment = SubResource("Environment_13bsa")
 camera_attributes = SubResource("CameraAttributesPhysical_5ou8s")
 
 [node name="Character" parent="." unique_id=862054798 instance=ExtResource("2_wxdv6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.544586, 8.238874, -0.14304471)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.115524, 8.238874, 51.58097)
 speed = 20
 run_speed = 40
 
 [node name="Camera" type="Camera3D" parent="." unique_id=415505662 node_paths=PackedStringArray("character")]
-transform = Transform3D(1, 0, 0, 0, 0.9737182, 0.22775604, 0, -0.22775604, 0.9737182, -60.323402, 11.576708, 4.7610407)
+transform = Transform3D(1, 0, 0, 0, 0.90163845, 0.4324907, 0, -0.4324907, 0.90163845, 76.33671, 18.88744, 65.28859)
 current = true
 fov = 68.2
 script = ExtResource("3_13bsa")

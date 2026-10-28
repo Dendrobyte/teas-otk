@@ -189,7 +189,6 @@ func start_animation(animation_name, character_ref):
 			scene_transition = event.scene
 			scene_transition_name = event.scene_name
 
-
 	# Clean up the edge case of final tweens being parallel
 	# NOTE: We could always add a "stop" instruction that's just "false" that is at the
 	# end of every sequence...? But that would just be this exact if statement

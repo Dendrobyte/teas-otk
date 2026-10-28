@@ -62,7 +62,7 @@ func _physics_process(_delta):
 	# TODO: Support both movements to go diagonally
 	if Input.is_action_pressed("move_up"):
 		direction.z -= 1
-		ray_offset.z = offset_const*-1
+		ray_offset.z = offset_const * -1
 		sprite.frame = 0
 	if Input.is_action_pressed("move_down"):
 		direction.z += 1
@@ -74,7 +74,7 @@ func _physics_process(_delta):
 		sprite.frame = 3
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
-		ray_offset.x = offset_const*-1
+		ray_offset.x = offset_const * -1
 		sprite.frame = 2
 
 	# If you ever need to debug without the floor
@@ -86,8 +86,8 @@ func _physics_process(_delta):
 
 	# Snap y level to ground mesh
 	var space_state = get_world_3d().direct_space_state
-	var ray_start = Vector3(global_position.x+ray_offset.x, global_position.y+5, global_position.z+ray_offset.z) # Start above the player?
-	var ray_end = Vector3(global_position.x+ray_offset.x, global_position.y-10, global_position.z+ray_offset.z) # I don't think we need to go too far down?
+	var ray_start = Vector3(global_position.x + ray_offset.x, global_position.y + 5, global_position.z + ray_offset.z) # Start above the player?
+	var ray_end = Vector3(global_position.x + ray_offset.x, global_position.y - 10, global_position.z + ray_offset.z) # I don't think we need to go too far down?
 	var query = PhysicsRayQueryParameters3D.create(ray_start, ray_end)
 	query.exclude = [self]
 	var result = space_state.intersect_ray(query)
@@ -108,3 +108,11 @@ func _physics_process(_delta):
 			target_velocity.z = direction.z * speed
 		velocity = target_velocity
 		move_and_slide()
+
+		# Let's check to see if we're hitting something
+		# Declaring here because imported envs from Blender are scenes we don't wanna change
+		var last_col = get_last_slide_collision()
+		if last_col:
+			var last_col_name = last_col.get_collider().name
+			if last_col_name == "TeaShopEnter":
+				narrative_controller.transition_scenes("res://brewing/brewing_base_scene.tscn", "Brewing")
