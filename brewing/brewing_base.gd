@@ -58,8 +58,8 @@ func _enter_tree():
 			cup_node.queue_free()
 
 			# Create all the cups
-			var cup_x_offset = 1.0
-			for i in range(0, 4):
+			var cup_x_offset = 0.8
+			for i in range(0, 8):
 				var new_cup = cup_ref.duplicate()
 				new_cup.name = cup_ref.name + str(i)
 				new_cup.position = Vector3(cup_ref.position.x + cup_x_offset * i, cup_ref.position.y, cup_ref.position.z)

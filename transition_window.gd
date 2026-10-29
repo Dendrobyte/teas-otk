@@ -8,6 +8,7 @@ var window_bounds
 
 func _ready():
 	window_bounds = Rect2(Vector2.ZERO, size)
+	# hide() -- this node is responsible for the black box in the top left
 
 func _draw():
 	draw_rect(window_bounds, Color(0, 0, 0))

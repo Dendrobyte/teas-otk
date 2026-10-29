@@ -36,6 +36,8 @@ func trigger_next_customer():
 		# respective chapter elsewhere, triggers chapter increase, we start next day
 		return
 	curr_char_being_served = true
+	curr_char_served = false
+	print("Now serving: ", curr_char_name, ", being served: ", curr_char_being_served, " and is_served: ", curr_char_served)
 	# Spawn in and move
 	var img_resource = load("res://assets/drawings/" + curr_char_name + ".png")
 	sprite.texture = img_resource if img_resource != null else load("res://assets/drawings/NPC_NoTexture.png")
@@ -66,10 +68,11 @@ func trigger_current_customer_served():
 		char_dialogue_action.emit(curr_char_name, true)
 
 # We want to make sure we're only serving someone after they show up, until they leave
+# This happens twice, on arrival and when served
+# TODO: Don't forg-et to handle prefs here and looping. Lots to redo here.
 func dialogue_finished():
 	if curr_char_served:
 		# TODO: See note above about calculation. We're just going with default served dialogue for current ask
-		curr_char_served = false
 		tween = create_tween()
 		end_pos = get_chair_position()
 		tween.tween_property(sprite, "position", end_pos, 1.5)
@@ -84,10 +87,6 @@ func dialogue_finished():
 		# So this script, for example, would load all the NPCs and
 		# the link to YarnSpinner just as all their dialogue
 		trigger_next_customer()
-		
-		# This does nothing since "trigger next" is called immediately, but this is where it would go
-		# Just, technically before trigger_next_customer
-		curr_char_being_served = false
 
 func get_chair_position():
 	var random_chair = $ChairPositions.get_children().pick_random()
