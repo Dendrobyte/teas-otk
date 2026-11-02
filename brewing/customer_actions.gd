@@ -32,8 +32,6 @@ func trigger_next_customer():
 	curr_char_idx += 1
 	if curr_char_idx > len(customers) - 1:
 		print("All customers served!")
-		# PICKUP: Trigger scene switch in brewing base and that shows narration from
-		# respective chapter elsewhere, triggers chapter increase, we start next day
 		return
 	curr_char_being_served = true
 	curr_char_served = false

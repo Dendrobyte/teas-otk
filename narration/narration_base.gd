@@ -8,7 +8,4 @@ var game_stage = "intro"
 var stages = ["intro", "transition", "ending"]
 
 func _ready():
-    # PICKUP: Queue up the intro text to show
-    # Once the user clicks through, set "game_stage" to "transition"
-    # Then for that we can switch to ending or whatever
     print("Curr stage: ", game_stage)
