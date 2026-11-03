@@ -1,14 +1,14 @@
 // NOTE: When I return to this, it's worth breaking up a yarn project for each "chapter" of the game.
 // We can use this namespacing convention epending on the phases of that chapter, since it may not be consistent across chapters
 
-title: Brewing_Chapter1
+title: Brewing_Chapter2
 ---
 <<declare $is_served = false>>
 <<declare $is_pref = true>>
 ===
 
 // TODO: Loop this based on the dialogue
-title: Brewing_Chapter1_OldMan
+title: Brewing_Chapter2_OldMan
 ---
 <<if $is_served == false>>
     Old Man: Welcome into my tea shop, {$name}! I'm glad the world brought us together
@@ -20,7 +20,7 @@ title: Brewing_Chapter1_OldMan
 ===
 
 // I was planning on just a generic character here, but she could work
-title: Brewing_Chapter1_Mercenary
+title: Brewing_Chapter2_Mercenary
 ---
 <<if $is_served == false>>
     Miranda: May as well get something while I'm here...
@@ -34,7 +34,7 @@ title: Brewing_Chapter1_Mercenary
 <<endif>>
 ===
 
-title: Brewing_Chapter1_Forg
+title: Brewing_Chapter2_Forg
 ---
 <<if $is_served == false>>
     Forg: I just lost my race! {$name}, can I get some of that tea I had last time? That gave me extra energy?
@@ -45,7 +45,7 @@ title: Brewing_Chapter1_Forg
 <<endif>>
 ===
 
-title: Brewing_Chapter1_General
+title: Brewing_Chapter2_General
 ---
 <<if $is_served == false>>
     General: Good day, Tea Seller! I am passing through with my troops, and we humbly request your FINEST teas! You must aid your fief and provide us health and strength!
@@ -58,7 +58,11 @@ title: Brewing_Chapter1_General
 <<endif>>
 ===
 
-title: Brewing_Chapter1_SoldierHurt
+// TODO: ADding SoldierFine1, SoldierHurt2, etc. and naming those NPCs
+// properly? Or perhaps just not taking numbers to show proper sprite
+// while still giving new dialogue. Checks out!
+
+title: Brewing_Chapter2_SoldierHurt
 ---
 <<if $is_served == false>>
     Hurt Soldier: Ugh... I feel nauseous...
@@ -69,7 +73,7 @@ title: Brewing_Chapter1_SoldierHurt
 <<endif>>
 ===
 
-title: Brewing_Chapter1_SoldierFine
+title: Brewing_Chapter2_SoldierFine
 ---
 <<if $is_served == false>>
     Soldier: Give me something to strengthen me for the battles ahead- like a nice breakfast that sets me up for the day!

@@ -22,20 +22,21 @@ signal char_dialogue_action
 var customers
 func _ready():
 	# TODO: Load the order of customers, this will be self sustaining and we'll run dialogue of the current name, etc.
-	var curr_brewing_chapter = GlobalState.BREWING_CHAPTER
+	var curr_brewing_chapter = GlobalState.CURRENT_CHAPTER
 	customers = GlobalState.BREWING_CHAPTER_CUSTOMER_ORDER[curr_brewing_chapter]
 	hide()
-
 
 var tween
 func trigger_next_customer():
 	curr_char_idx += 1
 	if curr_char_idx > len(customers) - 1:
-		print("All customers served!")
+		GlobalState.incr_current_chapter()
+		# Trigger next narrative screen
+		# Not the best but hopefully it works
+		brewing_base.transition_to_narration_scene()
 		return
 	curr_char_being_served = true
 	curr_char_served = false
-	print("Now serving: ", curr_char_name, ", being served: ", curr_char_being_served, " and is_served: ", curr_char_served)
 	# Spawn in and move
 	var img_resource = load("res://assets/drawings/" + curr_char_name + ".png")
 	sprite.texture = img_resource if img_resource != null else load("res://assets/drawings/NPC_NoTexture.png")

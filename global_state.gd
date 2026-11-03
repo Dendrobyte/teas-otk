@@ -16,7 +16,9 @@ func set_current_scene(scene_name):
 	CURRENT_SCENE = scene_name
 
 #### High level variables for use across scenes ####
-var CURRENT_CHAPTER = null
+var CURRENT_CHAPTER = 1
+func incr_current_chapter():
+	CURRENT_CHAPTER = CURRENT_CHAPTER + 1
 var ROTATION_ANGLE = {
 	GlobalState.GameMode.OVERWORLD: 0,
 	GlobalState.GameMode.BREWING: 0,
@@ -24,13 +26,15 @@ var ROTATION_ANGLE = {
 
 const BASE_TILE_SIZE = 128
 
+# THESE ARE UNUSED
+# Could just increment on what's last and whatever, so for now just using CURRENT_CHAPTER
 var OVERWORLD_DAY = 1 # i dont think this changes in the prototype
 var BREWING_CHAPTER = 1 # this changes on the last "event" of brewing scene
 
 # maybe store prefs here? {"OldMan", "GreenTea"}?
 var BREWING_CHAPTER_CUSTOMER_ORDER = {
 	1: ["OldMan", "Mercenary", "Forg", "General", "SoldierHurt", "SolderFine"],
-	2: [], # and so on for day 2
+	2: ["General"], # and so on for day 2
 }
 
 # "Now whenever we run any scene in the project, this script will always be loaded."

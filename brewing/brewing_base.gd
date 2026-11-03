@@ -131,6 +131,17 @@ func show_seal_ui(seal_match_name, callback_func):
 	seal_match = seal_match_name
 	seal_callback_func = callback_func
 
+# It takes care of its own increments
+# This func is also duped from game scene
+# NOTE: Chapter incr and text incr are totally independent...
+#		Should be combined on game state
+func transition_to_narration_scene():
+	var scene_path = "res://narration/narration_base.tscn"
+	var scene = load(scene_path)
+	var instance = scene.instantiate()
+	get_parent().add_child(instance) # gamescene.add_child(...)
+	queue_free()
+
 # TODO: I think we should eventually move seal recognition into the UI, and have that handle
 # any sort of animation, etc. and just deal with the success externally
 # Probably easier to retry any sort of "failed" seals instead of opening over and over
@@ -153,7 +164,7 @@ func trigger_character_dialogue(character_name, is_served):
 	# and we can check it here in the brewing_base depending on how we load the character info
 	# Revisit
 	# Also, there could be incorrect tea but we still need to know the type?
-	var curr_chapter_str = "Chapter" + str(GlobalState.BREWING_CHAPTER)
+	var curr_chapter_str = "Chapter" + str(GlobalState.CURRENT_CHAPTER)
 	narrative_controller.dialogue_controller.dialogue_runner.variable_storage.set_value("$is_served", is_served)
 	narrative_controller.dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + curr_chapter_str + "_" + character_name)
 

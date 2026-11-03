@@ -7,13 +7,19 @@ extends Control
 # Depending on where we are, we can manually set where we need to be
 # The nodes have the same name, and text is labeled numerically
 # (We can use this to figure out the centering issue)
+
+# Start of the game
 var intro_texts = [
 	"\nTwo years after leaving the Vanguard, you once again find yourself entering the Citadel.",
 	"\nFor over a year now, you've been aiding an Old Man run his tea shop. You've found a certain joy and peace in it.",
 	"\nThat is, until familiar signs of unrest and conspiracy begin to show themselves...",
 ]
-var mid_texts = [
 
+# Shows after you serve all the characters on day one
+var end_of_day_one_serving_texts = [
+	"\nYou have found a flow in serving tea to the various townsfolk, and word of your teas' utility spreads.",
+	"\nThe country is thrown into turmoil as the demons gain ground, and your town is at the edge of a frontier battle.",
+	"\nYou must continue as a resident of the village, yet a person of your nation too.",
 ]
 
 # Will need to have another one of these
@@ -22,8 +28,8 @@ var ending_texts = [
 ]
 
 # Effectively an iterator?
-var all_texts = [intro_texts, mid_texts, ending_texts]
-var curr_text_arr_idx = 0
+var all_texts = [intro_texts, end_of_day_one_serving_texts, ending_texts]
+@onready var curr_text_arr_idx = GlobalState.CURRENT_CHAPTER - 1
 
 # Tracks index of the texts array we're in
 var curr_text = 0
@@ -33,7 +39,7 @@ var curr_text = 0
 @onready var text_node_1 = $TextList/One
 @onready var text_node_2 = $TextList/Two
 @onready var text_node_3 = $TextList/Three
-@onready var cont = $TextList/Cont
+@onready var cont = $TextList/Cont # TODO: Change to chapter num
 
 var game_scene: GameScene
 
@@ -65,9 +71,10 @@ func show_next_text_in_array(text_arr):
 
 		if curr_text_arr_idx == 0:
 			game_scene.transition_to_scene("res://overworld/overworld_ch1.tscn")
+		elif curr_text_arr_idx == 1:
+			game_scene.transition_to_scene("res://brewing/brewing_base_scene.tscn")
 		# elif 1 do brewing
 		# elif 2 do end	
 
 		curr_text_arr_idx += 1
 	curr_text += 1
-	
