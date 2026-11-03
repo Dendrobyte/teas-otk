@@ -25,12 +25,19 @@ Bystander: Good luck getting in then!
 // She's got a slight attitude, and the other guy is scrambling to get her payment
 title: Overworld_Mercenary
 ---
-Miranda: Hey, if it ain't Tea Guy. You end up running into those grunts at the river, too?
--> Nope, must have missed them!
--> Yea, I ended up skirting around them.
-Miranda: Well, really a pain in my ass. But hey, that's why they hire me...
-Miranda: Anyway, I'll come in a bit for my minty regular. Just waiting on my coin.
-Sketchy Farmer: Uh, yes, uhh, it's in here somewhere...
+Miranda: Hey, if it ain't Tea Guy.
+Player: You on a job?
+Miranda: Yea, this farmer here needed to be escorted. Easy job, but long travel.
+Player: Well I'm on my way to opening up, stop by the tea shop in a bit! // Make that colored text?
+Miranda: Might be ice to just relax with the right cup of tea // Highlight relax; think Duck Detuctive
+===
+
+title: Overworld_Forg
+---
+Forg: {$name}!! I missed you!
+Forg: I've got a race tomorrow... Who do ya think is gonna win?
+Player: You, of course! // Make a choice, inconsequential
+Forg: ONE WAY TO FIND OUT!! // Forg runs to village
 ===
 
 // This is a sketchy farmer that's been escorted here by the mercenary
@@ -64,16 +71,6 @@ title: Overworld_CitadelGuard
 <<endif>>
 ===
 
-title: Overworld_OldMan
----
-Old Man: Ah, $name, I'm so lucky to have you!
-  -> I didn't get much today...
-  -> I was a little carried away on my own task...
-Old Man: Bah, that's alright. It's a quiet night and I'm sure we've got plenty to get by with
-Old Man: I just need to tie these together, then I'll meet you up at the gate!
-<<set $talked_to_old_man to true>>
-===
-
 title: Overworld_SadGuard
 ---
 // TODO: I think I should set a flag that's more like "cheered_up_sad_guard"
@@ -98,6 +95,13 @@ title: Overworld_SadGuard
   <<trigger_animation "old_man_approaches_at_gate">>
 <<endif>>
 
+===
+
+title: Overworld_OldMan
+---
+Old Man: Ah, {$name}! Good to see you back, let's head on in, you can help me serve some tea. I could use some energy for the day ahead.
+// Trigger old man walking to the tea shop, just toward it until off screen then you can just queue free or something
+// <<trigger_animation "old_man_approaches_at_gate">>
 ===
 
 // Every node will need the "scene" prefix pretty much

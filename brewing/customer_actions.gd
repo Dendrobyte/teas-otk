@@ -19,22 +19,24 @@ var curr_char_served = false
 
 signal char_dialogue_action
 
+var customers
 func _ready():
 	# TODO: Load the order of customers, this will be self sustaining and we'll run dialogue of the current name, etc.
+	var curr_brewing_chapter = GlobalState.BREWING_CHAPTER
+	customers = GlobalState.BREWING_CHAPTER_CUSTOMER_ORDER[curr_brewing_chapter]
 	hide()
 
-# var customers = ["OldMan", "Generic", "Driver", "Athlete"]
-var customers = ["OldMan", "Mercenary", "OldMan", "OldMan"]
 
 var tween
 func trigger_next_customer():
 	curr_char_idx += 1
-	if curr_char_idx > len(customers)-1:
+	if curr_char_idx > len(customers) - 1:
 		print("All customers served!")
 		return
 	curr_char_being_served = true
+	curr_char_served = false
+	print("Now serving: ", curr_char_name, ", being served: ", curr_char_being_served, " and is_served: ", curr_char_served)
 	# Spawn in and move
-	# TODO: Set up according to list and some cursor. Opp to get on those constants!
 	var img_resource = load("res://assets/drawings/" + curr_char_name + ".png")
 	sprite.texture = img_resource if img_resource != null else load("res://assets/drawings/NPC_NoTexture.png")
 	sprite.position = start_pos
@@ -49,7 +51,7 @@ func trigger_next_customer():
 	char_dialogue_action.emit(curr_char_name, false)
 
 #### https://trello.com/c/dfLlErzl ####
-#### TODO-IMPORTANT: I don't like these here. I think it implies that we'll calculate something here.
+#### TODO-IMPORTANT: I don't like these animations here. I think it implies that we'll calculate something here.
 #### We need to either pass in the tea information when they are served, and then trigger the dialogue
 #### and that's based on their preferences.
 #### DO NOT LET THIS GROW! After this current camera stuff at least...
@@ -64,10 +66,11 @@ func trigger_current_customer_served():
 		char_dialogue_action.emit(curr_char_name, true)
 
 # We want to make sure we're only serving someone after they show up, until they leave
+# This happens twice, on arrival and when served
+# TODO: Don't forg-et to handle prefs here and looping. Lots to redo here.
 func dialogue_finished():
 	if curr_char_served:
 		# TODO: See note above about calculation. We're just going with default served dialogue for current ask
-		curr_char_served = false
 		tween = create_tween()
 		end_pos = get_chair_position()
 		tween.tween_property(sprite, "position", end_pos, 1.5)
@@ -82,14 +85,8 @@ func dialogue_finished():
 		# So this script, for example, would load all the NPCs and
 		# the link to YarnSpinner just as all their dialogue
 		trigger_next_customer()
-		
-		# This does nothing since "trigger next" is called immediately, but this is where it would go
-		# Just, technically before trigger_next_customer
-		curr_char_being_served = false 
 
 func get_chair_position():
 	var random_chair = $ChairPositions.get_children().pick_random()
 	random_chair.queue_free()
 	return random_chair.global_position
-
-	

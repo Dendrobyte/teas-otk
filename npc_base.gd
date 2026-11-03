@@ -39,10 +39,11 @@ func _ready():
 		disable()
 
 	# TODO: Figure out how to 'inherit' the asset sprite base on npc base, especially if we add more to the asset plane base
-	var x_rotation = deg_to_rad(-1*GlobalState.ROTATION_ANGLE[GlobalState.GameMode.OVERWORLD])
+	var x_rotation = deg_to_rad(-1 * GlobalState.ROTATION_ANGLE[GlobalState.GameMode.OVERWORLD])
 	global_rotate(Vector3(1.0, 0.0, 0.0), x_rotation)
 
 	# Get the "game scene" node and quit if it fails while testing
+	# Without this, I can't test within a local scene :\
 	var game_scene: GameScene = null
 	var game_scene_group = get_tree().get_nodes_in_group("game_scene")
 	if game_scene_group.is_empty():

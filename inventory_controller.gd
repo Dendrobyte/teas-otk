@@ -10,15 +10,15 @@ func initialize(narrative_controller_ref: NarrativeController):
 
 # If the strings really won't change that often, why tf do we use this??
 # Why am I so wanting to use constants lol
-enum TEA_TYPES { NONE = -1, BULLET_GREEN, MINT, CHAMOMILE, WHITE_TEA, CINNAMON, LAVENDAR_MINT }
+enum TEA_TYPES {NONE = -1, BULLET_GREEN, LAVENDAR_MINT, OOLONG, WHITE, LEMON_GINGER, ENGLISH_BREAKFAST}
 var _tea_types_strs = {
 	TEA_TYPES.NONE: "NULL",
 	TEA_TYPES.BULLET_GREEN: "Bullet Green",
-	TEA_TYPES.MINT: "Mint",
-	TEA_TYPES.CHAMOMILE: "Chamomile",
-	TEA_TYPES.WHITE_TEA: "White Tea",
-	TEA_TYPES.CINNAMON: "Cinnamon",
 	TEA_TYPES.LAVENDAR_MINT: "Lavendar Mint",
+	TEA_TYPES.OOLONG: "Oolong Tea",
+	TEA_TYPES.WHITE: "White Tea",
+	TEA_TYPES.LEMON_GINGER: "Cinnamon",
+	TEA_TYPES.ENGLISH_BREAKFAST: "English Breakfast",
 }
 func get_type_str(tea_type: TEA_TYPES):
 	return _tea_types_strs[tea_type]
@@ -36,17 +36,17 @@ func new_teabag(tea_type):
 	teabag_entity.type = tea_type
 	teabag_entity.type_str = get_type_str(tea_type)
 
-	return teabag_entity 
+	return teabag_entity
 
 # Container nums are just indices atm so...
 # TODO: Use enums
 var num_to_info = [
-	{ "type": TEA_TYPES.BULLET_GREEN, "quantity": 2 },
-	{ "type": TEA_TYPES.MINT, "quantity": 3 },
-	{ "type": TEA_TYPES.CHAMOMILE, "quantity": 3 },
-	{ "type": TEA_TYPES.WHITE_TEA, "quantity": 0 },
-	{ "type": TEA_TYPES.CINNAMON, "quantity": 0 },
-	{ "type": TEA_TYPES.LAVENDAR_MINT, "quantity": 0 },
+	{"type": TEA_TYPES.BULLET_GREEN, "quantity": 8},
+	{"type": TEA_TYPES.LAVENDAR_MINT, "quantity": 2},
+	{"type": TEA_TYPES.OOLONG, "quantity": 2},
+	{"type": TEA_TYPES.WHITE, "quantity": 2},
+	{"type": TEA_TYPES.LEMON_GINGER, "quantity": 2},
+	{"type": TEA_TYPES.ENGLISH_BREAKFAST, "quantity": 2},
 ]
 
 func setup_tea_container(container_num):
