@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://51eld5yjbtv8" path="res://dialogue_projection.gd" id="3_c6i3y"]
 [ext_resource type="Script" uid="uid://bifr1gy83mulr" path="res://transition_window.gd" id="3_j4qnp"]
 [ext_resource type="Script" uid="uid://flra500ihbix" path="res://addons/yarn_spinner/dialogue_runner.gd" id="3_trn2v"]
-[ext_resource type="Resource" uid="uid://dww6p7spgh185" path="res://teas.yarnproject" id="4_03owx"]
 [ext_resource type="Script" uid="uid://cged8u182768u" path="res://addons/yarn_spinner/ui/line_presenter.gd" id="5_wkp8b"]
 [ext_resource type="Script" uid="uid://cogqy630mjgv7" path="res://addons/yarn_spinner/ui/options_presenter.gd" id="6_20pc6"]
 [ext_resource type="Script" uid="uid://blscysur1lidj" path="res://narrative_controller/event_controller.gd" id="7_5vvyt"]
@@ -77,7 +76,6 @@ script = ExtResource("2_lgr22")
 
 [node name="YarnDialogueRunner" type="Node" parent="NarrativeController/DialogueController" unique_id=1163534322]
 script = ExtResource("3_trn2v")
-yarn_project = ExtResource("4_03owx")
 start_node = "Chapter1_Overworld"
 metadata/_custom_type_script = "uid://flra500ihbix"
 
