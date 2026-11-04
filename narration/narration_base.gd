@@ -71,8 +71,10 @@ func show_next_text_in_array(text_arr):
 
 		if curr_text_arr_idx == 0:
 			game_scene.transition_to_scene("res://overworld/overworld_ch1.tscn")
+			GlobalState.set_current_scene("Overworld")
 		elif curr_text_arr_idx == 1:
 			game_scene.transition_to_scene("res://brewing/brewing_base_scene.tscn")
+			GlobalState.set_current_scene("Brewing")
 		# elif 1 do brewing
 		# elif 2 do end	
 

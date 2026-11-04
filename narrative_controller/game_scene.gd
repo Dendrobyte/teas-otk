@@ -39,4 +39,3 @@ func load_scene(scene_path):
 func transition_to_scene(transition_to_scene_name):
 	unload_scene()
 	load_scene(transition_to_scene_name)
-

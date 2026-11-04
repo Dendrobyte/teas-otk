@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://bw4ywnt705a6l" path="res://brewing/brewing_ui.gd" id="3_0qvjg"]
 [ext_resource type="PackedScene" uid="uid://bcbs4m76eq7fj" path="res://assets/models/brewing/brewing_env.glb" id="4_th32l"]
 [ext_resource type="Script" uid="uid://b3ekjp8rt3fwx" path="res://brewing/customer_actions.gd" id="5_ns4kx"]
-[ext_resource type="Texture2D" uid="uid://dxo35oiy2wejv" path="res://assets/drawings/OldMan.png" id="6_0qvjg"]
 
 [sub_resource type="Environment" id="Environment_vodtt"]
 

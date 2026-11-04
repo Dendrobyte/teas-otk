@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bhco4vugkp486" path="res://assets/models/overworld/ch1_overworld.glb" id="4_errbn"]
 [ext_resource type="PackedScene" uid="uid://rnhvdrm6nr7" path="res://npc.tscn" id="9_ipeki"]
 [ext_resource type="Texture2D" uid="uid://cnt725o3haq2" path="res://assets/drawings/Bystander.png" id="10_13bsa"]
-[ext_resource type="Texture2D" uid="uid://dxo35oiy2wejv" path="res://assets/drawings/OldMan.png" id="10_ps3ke"]
+[ext_resource type="Texture2D" uid="uid://drthm53m2pvud" path="res://assets/drawings/OldMan.png" id="10_ps3ke"]
 [ext_resource type="Texture2D" uid="uid://b3kf1e6lfldqs" path="res://assets/drawings/SketchyFarmer.png" id="11_13bsa"]
 [ext_resource type="Texture2D" uid="uid://vk82jo0cuctv" path="res://assets/drawings/Mercenary.png" id="11_bp8rp"]
 [ext_resource type="Texture2D" uid="uid://c1hjrdn3u56a" path="res://assets/drawings/Forg.png" id="11_ps3ke"]
@@ -88,11 +88,11 @@ transform = Transform3D(-0.29999977, 0, -0.0003927206, 0, 0.3, 0, 0.0003927206, 
 texture = ExtResource("10_ps3ke")
 
 [node name="Forg" parent="NPCs" unique_id=977840974 instance=ExtResource("9_ipeki")]
-transform = Transform3D(0.29940873, -0.0019083851, -0.018728932, 0.0018545948, 0.29999286, -0.00091943593, 0.018734334, 0.0008018419, 0.29941338, 17.896832, 1.08109, -25.182316)
+transform = Transform3D(0.29940873, -0.001908385, -0.018728932, 0.0018545944, 0.29999286, -0.00091943605, 0.018734334, 0.000801842, 0.29941338, 17.896832, 1.08109, -25.182316)
 texture = ExtResource("11_ps3ke")
 
 [node name="SadGuard" parent="NPCs" unique_id=853644851 instance=ExtResource("9_ipeki")]
-transform = Transform3D(0.26700443, -0.0010316299, -0.13677567, 0.0010381994, 0.29999813, -0.00023603028, 0.13677563, -0.0002632643, 0.2670063, -19.571377, 0.98270416, -6.364895)
+transform = Transform3D(0.26700443, -0.0010316297, -0.13677567, 0.0010381993, 0.29999813, -0.00023603025, 0.13677563, -0.0002632643, 0.2670063, -19.571377, 0.98270416, -6.364895)
 visible = false
 texture = ExtResource("12_f2kuj")
 start_interactable = false

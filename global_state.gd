@@ -7,6 +7,8 @@ var CURRENT_GAMEMODE = GlobalState.GameMode.MENU
 func set_gamemode(new_gamemode):
 	CURRENT_GAMEMODE = new_gamemode
 
+enum TEA_TYPES {NONE = -1, BULLET_GREEN, LAVENDER_MINT, OOLONG, WHITE, LEMON_GINGER, ENGLISH_BREAKFAST}
+
 # We hold on to this largely for yarn nodes. This should eventually become chapter or based on how I organize the yarn files.
 # Dialogues are prefixed with the scene type, but we should move to using node names
 # So Overworld_Ch1 is the name of the level we load, and thus that's the current scene
@@ -33,8 +35,17 @@ var BREWING_CHAPTER = 1 # this changes on the last "event" of brewing scene
 
 # maybe store prefs here? {"OldMan", "GreenTea"}?
 var BREWING_CHAPTER_CUSTOMER_ORDER = {
-	1: ["OldMan", "Mercenary", "Forg", "General", "SoldierHurt", "SolderFine"],
-	2: ["General"], # and so on for day 2
+	1: [
+		{"name": "OldMan", "pref": TEA_TYPES.BULLET_GREEN},
+		{"name": "Mercenary", "pref": TEA_TYPES.LAVENDER_MINT},
+		{"name": "Forg", "pref": TEA_TYPES.BULLET_GREEN},
+		{"name": "General", "pref": TEA_TYPES.OOLONG},
+		{"name": "SoldierHurt", "pref": TEA_TYPES.LEMON_GINGER},
+		{"name": "SolderFine", "pref": TEA_TYPES.ENGLISH_BREAKFAST}
+		],
+	2: [
+		{"name": "General", "pref": TEA_TYPES.OOLONG}
+		], # and so on for day 2
 }
 
 # "Now whenever we run any scene in the project, this script will always be loaded."

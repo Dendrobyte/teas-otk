@@ -11,6 +11,7 @@ class_name CustomerActions # CustomerController ...
 
 @onready var sprite: Sprite3D = $CustomerSprite
 var curr_char_idx = -1
+var curr_char_obj = {} # {"name": "NAME", "pref": TEA_TYPES.PREF}
 var curr_char_name: String = "":
 	get():
 		return customers[curr_char_idx]

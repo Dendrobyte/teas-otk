@@ -7,20 +7,19 @@ var narrative_controller: NarrativeController
 func initialize(narrative_controller_ref: NarrativeController):
 	narrative_controller = narrative_controller_ref
 	add_to_group("inventory_controller")
-
 # If the strings really won't change that often, why tf do we use this??
 # Why am I so wanting to use constants lol
-enum TEA_TYPES {NONE = -1, BULLET_GREEN, LAVENDAR_MINT, OOLONG, WHITE, LEMON_GINGER, ENGLISH_BREAKFAST}
+var TEA_TYPES = GlobalState.TEA_TYPES
 var _tea_types_strs = {
 	TEA_TYPES.NONE: "NULL",
 	TEA_TYPES.BULLET_GREEN: "Bullet Green",
-	TEA_TYPES.LAVENDAR_MINT: "Lavendar Mint",
+	TEA_TYPES.LAVENDER_MINT: "Lavendar Mint",
 	TEA_TYPES.OOLONG: "Oolong Tea",
 	TEA_TYPES.WHITE: "White Tea",
-	TEA_TYPES.LEMON_GINGER: "Cinnamon",
+	TEA_TYPES.LEMON_GINGER: "Lemon Ginger",
 	TEA_TYPES.ENGLISH_BREAKFAST: "English Breakfast",
 }
-func get_type_str(tea_type: TEA_TYPES):
+func get_type_str(tea_type: GlobalState.TEA_TYPES):
 	return _tea_types_strs[tea_type]
 
 # Asset link to preload the teabag
@@ -42,7 +41,7 @@ func new_teabag(tea_type):
 # TODO: Use enums
 var num_to_info = [
 	{"type": TEA_TYPES.BULLET_GREEN, "quantity": 8},
-	{"type": TEA_TYPES.LAVENDAR_MINT, "quantity": 2},
+	{"type": TEA_TYPES.LAVENDER_MINT, "quantity": 2},
 	{"type": TEA_TYPES.OOLONG, "quantity": 2},
 	{"type": TEA_TYPES.WHITE, "quantity": 2},
 	{"type": TEA_TYPES.LEMON_GINGER, "quantity": 2},

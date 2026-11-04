@@ -1,7 +1,7 @@
 extends Node3D
 class_name Teabag
 
-var type: InventoryController.TEA_TYPES
+var type: GlobalState.TEA_TYPES
 var type_str: String
 
 # Hello future me
