@@ -159,12 +159,12 @@ func _seal_drawing_complete(seal_name):
 
 # To be triggered from NPC serving, etc.
 # We toggle the served variable which will change what dialogue we get from yarnspinner
-func trigger_character_dialogue(character_name, is_served):
-	# TODO: (Way later) Pass along if it's the correct tea or something too. Perhaps just the type here
-	# and we can check it here in the brewing_base depending on how we load the character info
-	# Revisit
-	# Also, there could be incorrect tea but we still need to know the type?
+func trigger_character_dialogue(character_name, is_served, cup_tea_type, pref_tea_type):
+	# Pass along is_served. When that's false, it's the basic dialogue and effectively serving is irrelevant.
+	# Tea type is irrelevant if is_served is false
+	# A customer cannot go "unserved"
 	var curr_chapter_str = "Chapter" + str(GlobalState.CURRENT_CHAPTER)
+	narrative_controller.dialogue_controller.dialogue_runner.variable_storage.set_value("$is_pref", cup_tea_type == pref_tea_type)
 	narrative_controller.dialogue_controller.dialogue_runner.variable_storage.set_value("$is_served", is_served)
 	narrative_controller.dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + curr_chapter_str + "_" + character_name)
 

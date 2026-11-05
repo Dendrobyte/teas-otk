@@ -14,7 +14,10 @@ var curr_char_idx = -1
 var curr_char_obj = {} # {"name": "NAME", "pref": TEA_TYPES.PREF}
 var curr_char_name: String = "":
 	get():
-		return customers[curr_char_idx]
+		return customers[curr_char_idx]["name"]
+var curr_char_pref: GlobalState.TEA_TYPES:
+	get():
+		return customers[curr_char_idx]["pref"]
 var curr_char_being_served = false
 var curr_char_served = false
 
@@ -50,7 +53,8 @@ func trigger_next_customer():
 	tween.kill()
 
 	# Trigger this dialogue such that "served" is false
-	char_dialogue_action.emit(curr_char_name, false)
+	# Tea type irrelevant here, just show their basic dialogue
+	char_dialogue_action.emit(curr_char_name, false, null, null)
 
 #### https://trello.com/c/dfLlErzl ####
 #### TODO-IMPORTANT: I don't like these animations here. I think it implies that we'll calculate something here.
@@ -62,10 +66,11 @@ func trigger_next_customer():
 #### proceed down the sequence.
 #### That makes sense. I think the problem I'm seeing is the amount of back-and-forth between
 #### this and the brewing scene and the tea serve tray and blah blah blah
-func trigger_current_customer_served():
+func trigger_current_customer_served(cup_tea_type: GlobalState.TEA_TYPES):
 	if curr_char_being_served:
 		curr_char_served = true
-		char_dialogue_action.emit(curr_char_name, true)
+		print("Serving ", curr_char_name, " tea ", cup_tea_type, " and they pref ", cup_tea_type)
+		char_dialogue_action.emit(curr_char_name, true, cup_tea_type, curr_char_pref)
 
 # We want to make sure we're only serving someone after they show up, until they leave
 # This happens twice, on arrival and when served

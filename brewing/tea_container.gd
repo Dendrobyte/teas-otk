@@ -26,7 +26,7 @@ func _ready():
 	# Shitty way to get container number, should work fine for now
 	# TODO: For post-prototype scope, but worth creating a system for this that represents how we load data
 	#		Would want to consider, for example, a player being able to organize the shelf
-	cont_num = int(name.substr(len(name)-1))-1
+	cont_num = int(name.substr(len(name) - 1)) - 1
 	tea_info = inventory_controller.setup_tea_container(cont_num)
 
 	# Set up a small display for counter
@@ -43,7 +43,7 @@ func interact(player_node):
 		_refresh_text()
 		
 		var teabag: Teabag = inventory_controller.new_teabag(tea_info.type)
-		teabag.scale = Vector3(teabag.scale.x*.5, teabag.scale.y*.5, teabag.scale.z*.5)
+		teabag.scale = Vector3(teabag.scale.x * .5, teabag.scale.y * .5, teabag.scale.z * .5)
 		player_node.set_held_item(teabag)
 		return "Teabag picked up"
 
@@ -51,11 +51,11 @@ func _create_text_label():
 	container_label = Label3D.new()
 	# Properties taken from modifying in engine
 	container_label.position = Vector3(-1.595, .8, -.147)
-	container_label.rotation_degrees = Vector3(-42.8, -92.7,  2.3)
+	container_label.rotation_degrees = Vector3(-42.8, -92.7, 2.3)
 	container_label.font = label_font
 	container_label.font_size = 64
 	add_child(container_label)
 
 func _refresh_text():
-	var tea_type_str = inventory_controller.get_type_str(tea_info.type)
+	var tea_type_str = GlobalState.get_tea_type_str(tea_info.type)
 	container_label.text = tea_type_str + "\n" + "Amount: " + str(tea_info.quantity)

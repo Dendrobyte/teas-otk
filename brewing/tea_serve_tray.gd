@@ -25,8 +25,8 @@ func interact(player_node):
 			placed_cup_node.tray_ref = self
 			placed_cup_node.reparent(self)
 			player_node.set_held_item(null)
-			tea_served_on_tray.emit() # TODO: Teabag information. Store in the teacup class.
-			return "Placed cup on serving tray!"
+			tea_served_on_tray.emit(placed_cup_node.tea_type) # TODO: Teabag information. Store in the teacup class.
+			return "Placed cup on serving tray! Tea Type: " + GlobalState.get_tea_type_str(placed_cup_node.tea_type)
 		else:
 			return "Cup cannot be served!"
 
@@ -37,4 +37,3 @@ func clear_tray():
 	if placed_cup_node:
 		placed_cup_node.queue_free()
 		placed_cup_node = null
-	

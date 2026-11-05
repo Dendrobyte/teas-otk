@@ -10,17 +10,7 @@ func initialize(narrative_controller_ref: NarrativeController):
 # If the strings really won't change that often, why tf do we use this??
 # Why am I so wanting to use constants lol
 var TEA_TYPES = GlobalState.TEA_TYPES
-var _tea_types_strs = {
-	TEA_TYPES.NONE: "NULL",
-	TEA_TYPES.BULLET_GREEN: "Bullet Green",
-	TEA_TYPES.LAVENDER_MINT: "Lavendar Mint",
-	TEA_TYPES.OOLONG: "Oolong Tea",
-	TEA_TYPES.WHITE: "White Tea",
-	TEA_TYPES.LEMON_GINGER: "Lemon Ginger",
-	TEA_TYPES.ENGLISH_BREAKFAST: "English Breakfast",
-}
-func get_type_str(tea_type: GlobalState.TEA_TYPES):
-	return _tea_types_strs[tea_type]
+
 
 # Asset link to preload the teabag
 # NOTE: Not sure if this is the best place for this, but the inventory does hold all the tea type stuff?
@@ -33,7 +23,7 @@ func new_teabag(tea_type):
 	teabag_node.set_script(teabag_script)
 	var teabag_entity = teabag_node as Teabag
 	teabag_entity.type = tea_type
-	teabag_entity.type_str = get_type_str(tea_type)
+	teabag_entity.type_str = GlobalState.get_tea_type_str(tea_type)
 
 	return teabag_entity
 

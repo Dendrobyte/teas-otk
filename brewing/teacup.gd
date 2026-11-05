@@ -11,10 +11,9 @@ class_name TeaCup
 		has_teabag = value
 		if is_node_ready(): toggle_teabag(value)
 
-# This is pretty much always set with has_teabag
-# Which I like keeping as a separate flag
-# NOTE: The tea may have other qualities in the future, but won't match "tea_info" 
-var tea_type = ""
+# Will be an enumerable of the tea type
+# Convert to string w/ inventorycontroller.get_type_str
+var tea_type: GlobalState.TEA_TYPES
 
 @export var seal_drawn: bool = false
 @onready var brewing_base = get_parent()
@@ -62,7 +61,7 @@ func interact(player_node):
 			if tea_prep_ref != null:
 				tea_prep_ref.free_snap_point(name)
 				tea_prep_ref = null
-			return "Picked up " + name + " of type: " + tea_type
+			return "Picked up " + name + " of type: " + GlobalState.get_tea_type_str(tea_type)
 	elif player_node.get_held_item_name() == "teabag":
 		if not has_teabag:
 			if tea_prep_ref != null:
@@ -71,7 +70,7 @@ func interact(player_node):
 
 			# Pull the type off of tea, we already know the held item is "teabag"
 			var held_teabag = player_node.held_item as Teabag
-			tea_type = held_teabag.type_str
+			tea_type = held_teabag.type
 
 			# Clear up the item
 			player_node.held_item.queue_free()

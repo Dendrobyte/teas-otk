@@ -6,9 +6,12 @@ var type_str: String
 
 # Hello future me
 # Yes, we fucked up
-# If you check a teacup's type, it is the converted string we had on the teaabg
+# If you check a teacup's type, it is the converted string we had on the teabag
 # Rendering the whole enum type thing useless
 # Since the conversion is needed in the teacup if we want to show it there
 # Even when its fetched, it would be needed
 # So we may as well have just done strings everywhere
 # I'm sorry
+
+# It's okay past me
+# Let's just pass around the type when we are checking for pref and such

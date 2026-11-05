@@ -8,6 +8,19 @@ func set_gamemode(new_gamemode):
 	CURRENT_GAMEMODE = new_gamemode
 
 enum TEA_TYPES {NONE = -1, BULLET_GREEN, LAVENDER_MINT, OOLONG, WHITE, LEMON_GINGER, ENGLISH_BREAKFAST}
+var _tea_types_strs = {
+	TEA_TYPES.NONE: "NULL",
+	TEA_TYPES.BULLET_GREEN: "Bullet Green",
+	TEA_TYPES.LAVENDER_MINT: "Lavendar Mint",
+	TEA_TYPES.OOLONG: "Oolong Tea",
+	TEA_TYPES.WHITE: "White Tea",
+	TEA_TYPES.LEMON_GINGER: "Lemon Ginger",
+	TEA_TYPES.ENGLISH_BREAKFAST: "English Breakfast",
+}
+
+# Always pass around the type, convert to string if and when need-be
+func get_tea_type_str(tea_type: TEA_TYPES):
+	return _tea_types_strs[tea_type]
 
 # We hold on to this largely for yarn nodes. This should eventually become chapter or based on how I organize the yarn files.
 # Dialogues are prefixed with the scene type, but we should move to using node names
