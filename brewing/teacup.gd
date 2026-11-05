@@ -77,6 +77,7 @@ func interact(player_node):
 			player_node.set_held_item(self) # third instance I'm seeing these two lines I think
 			reparent(player_node)
 			has_teabag = true
+			_maybe_show_cup_aura()
 			return "Cup picked up, teabag placed inside"
 		else:
 			return "Cup already has teabag"
@@ -85,7 +86,7 @@ func interact(player_node):
 		is_filled = true
 		kettle.show_pour_animation()
 		# TODO: Call a decrease_level function from kettle since we have it
-		#       imo signal unnecessary (we'd need to wire it up to every cup)
+		_maybe_show_cup_aura()
 		return "Filled cup!"
 	
 	# Trigger seal drawing when we fulfill the two requirements
@@ -106,3 +107,7 @@ func can_be_served():
 func place(surface_position):
 	global_rotation = Vector3(0, 0, 0)
 	global_position = Vector3(surface_position.x, surface_position.y + .3, surface_position.z)
+
+func _maybe_show_cup_aura():
+	if is_filled and has_teabag:
+		_show_aura()
