@@ -54,7 +54,7 @@ var BREWING_CHAPTER_CUSTOMER_ORDER = {
 		{"name": "Forg", "pref": TEA_TYPES.BULLET_GREEN},
 		{"name": "General", "pref": TEA_TYPES.OOLONG},
 		{"name": "SoldierHurt", "pref": TEA_TYPES.LEMON_GINGER},
-		{"name": "SolderFine", "pref": TEA_TYPES.ENGLISH_BREAKFAST}
+		{"name": "SoldierFine", "pref": TEA_TYPES.ENGLISH_BREAKFAST}
 		],
 	2: [
 		{"name": "General", "pref": TEA_TYPES.OOLONG}

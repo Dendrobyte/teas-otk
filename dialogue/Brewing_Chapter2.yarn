@@ -8,54 +8,19 @@
 // // <<declare $is_pref = true>>
 // ===
 
-// TODO: Loop this based on the dialogue
-title: Brewing_Chapter2_OldMan
----
-<<if $is_served == false>>
-    Old Man: Welcome into my tea shop, {$name}! I'm glad the world brought us together
-<<elseif $is_served == true and $is_pref == true>>
-    Old Man: Just the kick I wanted, thank you!
-<<else>>
-    Old Man: Not quite, green tea please! // doesn't loop yet
-<<endif>>
-===
-
-// I was planning on just a generic character here, but she could work
-title: Brewing_Chapter2_Mercenary
----
-<<if $is_served == false>>
-    Miranda: May as well get something while I'm here...
-<<elseif $is_served == true and $is_pref == true>>
-    Miranda: Just what I needed after a tedious job.
-    // TODO: Pass along is pref and have another option when it isn't the pref 
-    // TODO: If I keep Miranda, we can use "is pref" depending on what's served. Just two for now, but neither is "bad"?
-    // I guess we'll want the freedom for more in the future, but that is not in the prototype scope
-<<else>>
-    Miranda: Not quite... hopefully I'm not up all night.
-<<endif>>
-===
-
 title: Brewing_Chapter2_Forg
 ---
 <<if $is_served == false>>
-    Forg: I just lost my race! {$name}, can I get some of that tea I had last time? That gave me extra energy?
 <<elseif $is_served == true and $is_pref == true>>
-    Forg: Haha!! I can feel it already... Sambo's goin' down!
 <<else>>
-    Forg: Tastes... different... but does it work? ONE WAY TO FIND OUT!
 <<endif>>
 ===
 
 title: Brewing_Chapter2_General
 ---
 <<if $is_served == false>>
-    General: Good day, Tea Seller! I am passing through with my troops, and we humbly request your FINEST teas! You must aid your fief and provide us health and strength!
-    General: Please, Tea Seller, aid us with something that will provide stamina for the journey ahead!
 <<elseif $is_served == true and $is_pref == true>>
-    General: Brilliant, thank you Tea Seller! Continue to aid my soldiers.
 <<else>>
-    Character: My teas are too strong for you, General...
-    General: Not quite what I had in mind... but alas. Please, aid my soldiers!
 <<endif>>
 ===
 
