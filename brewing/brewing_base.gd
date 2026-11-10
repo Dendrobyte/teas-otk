@@ -202,6 +202,12 @@ func _input(event):
 	if event.is_action_pressed("brewing_skip"):
 		print("Triggering skip")
 		active_customer_controller.trigger_next_customer()
+	if event.is_action_pressed("brewing_chapter_skip"):
+		# Set chapter to 3
+		GlobalState.incr_current_chapter()
+
+		# Reload the entire scene to reset things? Or just reset things?
+		narrative_controller.transition_scenes("res://brewing/brewing_base_scene.tscn", "Brewing")
 	# Just some generic thing, hopefully can be reused idk
 	elif event.is_action_pressed("instant_run"):
 		if get_node("TeaCup3") == null:
