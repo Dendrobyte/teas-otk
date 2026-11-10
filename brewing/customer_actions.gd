@@ -30,8 +30,14 @@ func _ready():
 	customers = GlobalState.BREWING_CHAPTER_CUSTOMER_ORDER[curr_brewing_chapter]
 	hide()
 
+# This is a one-off anyway
+var old_man_served_correct_thing = false
+
 var tween
 func trigger_next_customer():
+	# Tutorial loop algorithm /s
+	if GlobalState.BREWING_CHAPTER == 1 and curr_char_name == "OldMan" and old_man_served_correct_thing == false:
+		return
 	curr_char_idx += 1
 	if curr_char_idx > len(customers) - 1:
 		GlobalState.incr_current_chapter()
@@ -69,15 +75,25 @@ func trigger_next_customer():
 func trigger_current_customer_served(cup_tea_type: GlobalState.TEA_TYPES):
 	if curr_char_being_served:
 		curr_char_served = true
-		print("Serving ", curr_char_name, " tea ", cup_tea_type, " and they pref ", cup_tea_type)
+		# Loop the old man
+		if GlobalState.BREWING_CHAPTER == 1 and curr_char_name == "OldMan":
+			if cup_tea_type == curr_char_pref:
+				old_man_served_correct_thing = true
+
+		# TODO: If the chapter is 2 and the pref for soldiers match, change outcome
+		# If the pref for forg matches, change outcome
 		char_dialogue_action.emit(curr_char_name, true, cup_tea_type, curr_char_pref)
 
 # We want to make sure we're only serving someone after they show up, until they leave
 # This happens twice, on arrival and when served
 # TODO: Don't forg-et to handle prefs here and looping. Lots to redo here.
 func dialogue_finished():
+	# Tutorial loop algorithm /s
+	if GlobalState.BREWING_CHAPTER == 1 and curr_char_name == "OldMan" and old_man_served_correct_thing == false:
+		return
 	if curr_char_served:
 		# TODO: See note above about calculation. We're just going with default served dialogue for current ask
+			# Tutorial loop algorithm /s
 		tween = create_tween()
 		end_pos = get_chair_position()
 		tween.tween_property(sprite, "position", end_pos, 1.5)
