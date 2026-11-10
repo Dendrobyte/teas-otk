@@ -164,6 +164,7 @@ func trigger_character_dialogue(character_name, is_served, cup_tea_type, pref_te
 	# Tea type is irrelevant if is_served is false
 	# A customer cannot go "unserved"
 	var curr_chapter_str = "Chapter" + str(GlobalState.CURRENT_CHAPTER)
+
 	narrative_controller.dialogue_controller.dialogue_runner.variable_storage.set_value("$is_pref", cup_tea_type == pref_tea_type)
 	narrative_controller.dialogue_controller.dialogue_runner.variable_storage.set_value("$is_served", is_served)
 	narrative_controller.dialogue_controller.start_dialogue(GlobalState.CURRENT_SCENE + "_" + curr_chapter_str + "_" + character_name)

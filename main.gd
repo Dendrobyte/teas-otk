@@ -5,6 +5,7 @@ extends Node3D
 # NOTE: This will change when we modify how we load current_scene
 @export_enum("Narration", "Overworld", "Brewing") var current_scene_type: String
 @export_enum("narration/narration_base", "overworld/overworld_ch1", "brewing/brewing_base_scene", "seal_poc") var scene_tscn_name: String
+@export var CURRENT_CHAPTER = 1
 
 var game_scene: GameScene
 
@@ -12,6 +13,8 @@ var game_scene: GameScene
 func _ready():
 	var scene_to_load = load("res://" + scene_tscn_name + ".tscn").instantiate()
 	GlobalState.set_current_scene(current_scene_type) # TODO: See global state. We should use node name
+	GlobalState.CURRENT_CHAPTER = CURRENT_CHAPTER
+	GlobalState.BREWING_CHAPTER = CURRENT_CHAPTER
 	# TODO: Understand why we need to do call_deferred here
 	# TODO: Register the chapter's flags with the narrative controller
 

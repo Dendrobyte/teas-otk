@@ -57,7 +57,8 @@ var BREWING_CHAPTER_CUSTOMER_ORDER = {
 		{"name": "SoldierFine", "pref": TEA_TYPES.ENGLISH_BREAKFAST}
 		],
 	2: [
-		{"name": "General", "pref": TEA_TYPES.OOLONG}
+		{"name": "General", "pref": TEA_TYPES.OOLONG},
+		{"name": "OldMan", "pref": TEA_TYPES.LAVENDER_MINT}
 		], # and so on for day 2
 }
 

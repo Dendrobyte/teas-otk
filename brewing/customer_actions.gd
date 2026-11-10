@@ -36,7 +36,7 @@ var old_man_served_correct_thing = false
 var tween
 func trigger_next_customer():
 	# Tutorial loop algorithm /s
-	if GlobalState.BREWING_CHAPTER == 1 and curr_char_name == "OldMan" and old_man_served_correct_thing == false:
+	if GlobalState.CURRENT_CHAPTER == 1 and curr_char_name == "OldMan" and old_man_served_correct_thing == false:
 		return
 	curr_char_idx += 1
 	if curr_char_idx > len(customers) - 1:
