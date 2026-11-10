@@ -1,0 +1,10 @@
+title: Brewing_Chapter3_OldMan
+---
+<<if $is_served == false>>
+    Old Man: This is just a test to see if the number 3 works.
+<<elseif $is_served == true and $is_pref == true>>
+    Old Man: That's my pref!
+<<else>>
+    Old Man: That's not my pref!
+<<endif>>
+===

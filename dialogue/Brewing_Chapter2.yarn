@@ -19,9 +19,11 @@ title: Brewing_Chapter2_Forg
 title: Brewing_Chapter2_General
 ---
 <<if $is_served == false>>
-    It's been years, Tea Seller... I hope you take it upon yourself to do the right thing and aid the soldiers that come through here.
+    General: It's been years, Tea Seller... I hope you take it upon yourself to do the right thing and aid the soldiers that come through here.
 <<elseif $is_served == true and $is_pref == true>>
+    General: Thank you, once again!
 <<else>>
+    General: It would be wise of you to prioritize those fighting for your fief...
 <<endif>>
 ===
 

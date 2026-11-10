@@ -60,6 +60,9 @@ var BREWING_CHAPTER_CUSTOMER_ORDER = {
 		{"name": "General", "pref": TEA_TYPES.OOLONG},
 		{"name": "OldMan", "pref": TEA_TYPES.LAVENDER_MINT}
 		], # and so on for day 2
+	3: [
+		{"name": "OldMan", "pref": TEA_TYPES.ENGLISH_BREAKFAST}
+		],
 }
 
 # "Now whenever we run any scene in the project, this script will always be loaded."

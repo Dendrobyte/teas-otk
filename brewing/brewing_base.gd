@@ -107,7 +107,6 @@ func _enter_tree():
 var brewing_player_controller: BrewingPlayer
 func _ready():
 	brewing_player_controller = get_node("Character")
-
 	change_debug_text("Boil the kettle to begin serving")
 
 	# All seal drawing is whatever

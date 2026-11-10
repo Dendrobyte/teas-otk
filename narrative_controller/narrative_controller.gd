@@ -64,7 +64,7 @@ func _ready():
 	event_controller.cutscene_ended.connect(cleanup_cutscene_finish)
 
 	# The interact button lives here, so we'll keep it here
-	Util.add_interact_button_to_scene(self )
+	Util.add_interact_button_to_scene(self)
 
 func _input(event):
 	# TODO: Freeze all other actions -> look into the unhandled_input flow chart again, I think that may be our answer

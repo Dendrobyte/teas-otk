@@ -49,6 +49,7 @@ scene_tscn_name = "brewing/brewing_base_scene"
 CURRENT_CHAPTER = 2
 metadata/_edit_horizontal_guides_ = [-94.0]
 metadata/_edit_vertical_guides_ = [960.0, 1651.0]
+metadata/_edit_group_ = true
 
 [node name="NarrativeController" type="Control" parent="." unique_id=1229687535 node_paths=PackedStringArray("dialogue_controller", "event_controller", "entity_controller", "inventory_controller", "dialogue_projection", "debug_menu", "game_scene")]
 layout_mode = 3
