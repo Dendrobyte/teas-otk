@@ -75,9 +75,12 @@ var game_state = {
 	current_scene = null,
 }
 
-# Will be either 0 or 1 depending on who you serve the green tea to
 var FORG_ENDING = false
 var ARMY_ENDING = false
+
+# We'll make a yarn variable and change dialogue based on this
+# For everything else, just make an alternate chapter 3 character order or something
+# That would need to change if the game picked up but... well...
 func WHICH_ENDING():
 	if FORG_ENDING:
 		return "Forg"
