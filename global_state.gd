@@ -34,6 +34,9 @@ func set_current_scene(scene_name):
 var CURRENT_CHAPTER = 1
 func incr_current_chapter():
 	CURRENT_CHAPTER = CURRENT_CHAPTER + 1
+	if CURRENT_CHAPTER == 4:
+		print("No such thing as chapter 4, forced exit... via crash")
+		get_tree().root.quit() # yes this just crashes the game lol
 var ROTATION_ANGLE = {
 	GlobalState.GameMode.OVERWORLD: 0,
 	GlobalState.GameMode.BREWING: 0,
@@ -73,6 +76,12 @@ var game_state = {
 }
 
 # Will be either 0 or 1 depending on who you serve the green tea to
-var ending
+var FORG_ENDING = false
+var ARMY_ENDING = false
+func WHICH_ENDING():
+	if FORG_ENDING:
+		return "Forg"
+	if ARMY_ENDING:
+		return "Army"
 
 # TODO: Some on ready or whatever to load saves, blah blah

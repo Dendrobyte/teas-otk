@@ -202,9 +202,17 @@ func _input(event):
 	if event.is_action_pressed("brewing_skip"):
 		print("Triggering skip")
 		active_customer_controller.trigger_next_customer()
-	if event.is_action_pressed("brewing_chapter_skip"):
+	if event.is_action_pressed("brewing_chapter_skip_forg_outcome"): # pg up
 		# Set chapter to 3
 		GlobalState.incr_current_chapter()
+		GlobalState.FORG_ENDING = true
+
+		# Reload the entire scene to reset things? Or just reset things?
+		narrative_controller.transition_scenes("res://brewing/brewing_base_scene.tscn", "Brewing")
+	if event.is_action_pressed("brewing_chapter_skip_army_outcome"): # pg down
+		# Set chapter to 3
+		GlobalState.incr_current_chapter()
+		GlobalState.ARMY_ENDING = true
 
 		# Reload the entire scene to reset things? Or just reset things?
 		narrative_controller.transition_scenes("res://brewing/brewing_base_scene.tscn", "Brewing")
