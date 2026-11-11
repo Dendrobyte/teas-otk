@@ -7,7 +7,9 @@ title: Brewing_Chapter1
 <<declare $is_pref = true>>
 ===
 
-// TODO: Loop this based on the dialogue
+// TODO: Failed dialogues should hint at correct option
+// Except forg, he's different when he needs to be healed in chapter 2
+
 title: Brewing_Chapter1_OldMan
 ---
 <<if $is_served == false>>

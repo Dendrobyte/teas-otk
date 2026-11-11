@@ -27,19 +27,31 @@ func new_teabag(tea_type):
 
 	return teabag_entity
 
-# Container nums are just indices atm so...
-# TODO: Use enums
-var num_to_info = [
-	{"type": TEA_TYPES.BULLET_GREEN, "quantity": 8},
-	{"type": TEA_TYPES.LAVENDER_MINT, "quantity": 2},
-	{"type": TEA_TYPES.OOLONG, "quantity": 2},
-	{"type": TEA_TYPES.WHITE, "quantity": 2},
-	{"type": TEA_TYPES.LEMON_GINGER, "quantity": 2},
-	{"type": TEA_TYPES.ENGLISH_BREAKFAST, "quantity": 2},
-]
+# Chapter -> list of teas with their quantities
+var num_to_info = {
+	1: [
+		{"type": TEA_TYPES.BULLET_GREEN, "quantity": 8},
+		{"type": TEA_TYPES.LAVENDER_MINT, "quantity": 2},
+		{"type": TEA_TYPES.OOLONG, "quantity": 2},
+		{"type": TEA_TYPES.WHITE, "quantity": 2},
+		{"type": TEA_TYPES.LEMON_GINGER, "quantity": 2},
+		{"type": TEA_TYPES.ENGLISH_BREAKFAST, "quantity": 2},
+		],
+	2: [
+		{"type": TEA_TYPES.BULLET_GREEN, "quantity": 2},
+		{"type": TEA_TYPES.LAVENDER_MINT, "quantity": 27},
+		{"type": TEA_TYPES.OOLONG, "quantity": 2},
+		{"type": TEA_TYPES.WHITE, "quantity": 3}, # one must be saved for forg for the choice
+		{"type": TEA_TYPES.LEMON_GINGER, "quantity": 1},
+		{"type": TEA_TYPES.ENGLISH_BREAKFAST, "quantity": 1},
+		],
+	3: [
+		{}
+		],
+}
 
 func setup_tea_container(container_num):
-	return num_to_info[container_num]
+	return num_to_info[GlobalState.BREWING_CHAPTER][container_num]
 
 func get_teabag(container_num):
 	var curr_info = num_to_info[container_num]

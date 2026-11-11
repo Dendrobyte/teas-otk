@@ -8,11 +8,17 @@
 // // <<declare $is_pref = true>>
 // ===
 
-title: Brewing_Chapter2_Forg
+title: Brewing_Chapter2_OldMan
 ---
 <<if $is_served == false>>
+    Old Man: It's been difficult out there... You've been holding up great, but I fear the lack of supplies will force important decisions upon our selves.
+    Old Man: I hope you're holding up, I've definitely been holding on to the stress myself
 <<elseif $is_served == true and $is_pref == true>>
+    Old Man: This will help me relax, thank you! Save the good stuff for others.
+    Old Man: Should more injured come by, don't forget that White Tea heals wounds and ailments most effectively!
 <<else>>
+    Old Man: Really make sure to listen to the needs of your customers, above all else.
+    Old Man: And make choices that align with who... you... are...
 <<endif>>
 ===
 
@@ -22,31 +28,90 @@ title: Brewing_Chapter2_General
     General: It's been years, Tea Seller... I hope you take it upon yourself to do the right thing and aid the soldiers that come through here.
 <<elseif $is_served == true and $is_pref == true>>
     General: Thank you, once again!
+    General: Should you prove to be an important aid to our soldiers, the military will surely reward you after our decisive victory, Tea Seller.
 <<else>>
     General: It would be wise of you to prioritize those fighting for your fief...
+    General: The military recognizes those who sacrifice for the greate good of the people.
 <<endif>>
 ===
 
-title: Brewing_Chapter2_SoldierHurt
+title: Brewing_Chapter2_SoldierFine1
 ---
 <<if $is_served == false>>
-    Hurt Soldier: Ugh... I feel nauseous...
+    Soldier: I missed breakfast this morning, please give me something that'll energize me!
 <<elseif $is_served == true and $is_pref == true>>
-    Hurt Soldier: Whoa! What an instant effect!
+    Soldier: This is amazing, almost better than the potions we packed!
 <<else>>
-    Hurt Soldier: Hmm... that helps a bit... I think I need the bathroom...
+    Soldier: Gah, I wish we packed more potions...
 <<endif>>
 ===
 
-title: Brewing_Chapter2_SoldierFine
+title: Brewing_Chapter2_SoldierHurt1
 ---
 <<if $is_served == false>>
-    Soldier: Give me something to strengthen me for the battles ahead- like a nice breakfast that sets me up for the day!
+    Hurt Soldier: My arm... I need something to help me heal it...
 <<elseif $is_served == true and $is_pref == true>>
-    Soldier: I...
-    Soldier: AM A WARRIOR!!!!
+    Hurt Soldier: Wow, I feel an energetic buzz! The pain is ebbing!
 <<else>>
-    Soldier: I'm sure this will kick in eventually...
+    Hurt Soldier: Well, I suppose this will distract me
+<<endif>>
+===
+
+title: Brewing_Chapter2_SoldierHurt2
+---
+<<if $is_served == false>>
+    Hurt Soldier: My leg... I need something to help me heal it...
+<<elseif $is_served == true and $is_pref == true>>
+    Hurt Soldier: Wow, I feel an energetic buzz! The pain is ebbing!
+<<else>>
+    Hurt Soldier: Well, I suppose this will distract me
+<<endif>>
+===
+
+title: Brewing_Chapter2_SoldierFine2
+---
+<<if $is_served == false>>
+    Soldier: I've been on a roll today but feel rather tired, give me something to last a longer time on the battlefield!
+<<elseif $is_served == true and $is_pref == true>>
+    Soldier: This is the stuff! The General knows his tea
+<<else>>
+    Soldier: This... isn't what I smelled the General having... but I'll try it anyway
+<<endif>>
+===
+
+title: Brewing_Chapter2_SoldierHurt3
+---
+<<if $is_served == false>>
+    Hurt Soldier: My neck... I need something to help me heal it...
+<<elseif $is_served == true and $is_pref == true>>
+    Hurt Soldier: Wow, I feel an energetic buzz! The pain is ebbing!
+<<else>>
+    Hurt Soldier: Well, I suppose this will distract me
+<<endif>>
+===
+
+title: Brewing_Chapter2_Forg
+---
+<<if $is_served == false>>
+    Forg: Merk, HELP!!!! I've been tasked with delivering a crucial message to the frontier lines, but I've injured my leg.
+    Forg: I know I can rely on you for brewing something to help me accomplish it!
+<<elseif $is_served == true and $is_pref == true>>
+    Forg: Once again, the effect is immediate! I always know you have my back.
+<<else>>
+    Forg: Hmm, I know this isn't it. I guess I'll have to look elsewhere, or push myself on this injury...
+<<endif>>
+===
+
+title: Brewing_Chapter2_SketchyFarmer
+---
+<<if $is_served == false>>
+    Sketchy Farmer: It's interesting what one choice, made with knowledge or without, can change like a butterfly flapping its wings.
+    Sketchy Farmer: Personally, I like Lemon Ginger.
+<<elseif $is_served == true and $is_pref == true>>
+    Sketchy Farmer: Bold of you to assume the truth, or was this simply all that was left anyway?
+<<else>>
+    Sketchy Farmer: No one is ever truly up front, but did you think I was lying? Was this malicious?
+    Sketchy Farmer: Or did you just incidentally serve the only tea bag you had of Lemon Ginger?
 <<endif>>
 ===
 

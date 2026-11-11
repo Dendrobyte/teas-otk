@@ -2,6 +2,7 @@ extends Node3D
 
 @onready var seal_poc_scene = preload("res://seal_poc.tscn")
 var seal_poc
+@export var debug_mode: bool
 
 var narrative_controller: NarrativeController
 var active_customer_controller: CustomerActions
@@ -59,7 +60,7 @@ func _enter_tree():
 
 			# Create all the cups
 			var cup_x_offset = 0.8
-			for i in range(0, 8):
+			for i in range(0, 9):
 				var new_cup = cup_ref.duplicate()
 				new_cup.name = cup_ref.name + str(i)
 				new_cup.position = Vector3(cup_ref.position.x + cup_x_offset * i, cup_ref.position.y, cup_ref.position.z)

@@ -18,13 +18,15 @@ var intro_texts = [
 # Shows after you serve all the characters on day one
 var end_of_day_one_serving_texts = [
 	"\nYou have found a flow in serving tea to the various townsfolk, and word of your teas' utility spreads.",
-	"\nThe country is thrown into turmoil as the demons gain ground, and your town is at the edge of a frontier battle.",
+	"\nAs the demons gain ground, the plants necessary for important tea are sparse and your town is at the edge of a frontier battle.",
 	"\nYou must continue as a resident of the village, yet a person of your nation too.",
 ]
 
-# Will need to have another one of these
+# Will need to have another one of these, showing alternate endings
 var ending_texts = [
-
+	"\n1",
+	"\n2",
+	"\nFinal pref was: "
 ]
 
 # Effectively an iterator?
@@ -42,12 +44,20 @@ var curr_text = 0
 @onready var cont = $TextList/Cont # TODO: Change to chapter num
 
 var game_scene: GameScene
+var final_pref
 
 func _ready():
 	# TODO: I guess I have to pass in whatever one we're on manually, instead of using _ready()
 	text_node_1.text = all_texts[curr_text_arr_idx][0]
 	curr_text += 1
 	cont.hide()
+
+	if GlobalState.FORG_ENDING:
+		final_pref = "Forg"
+	elif GlobalState.ARMY_ENDING:
+		final_pref = "Army"
+	else:
+		final_pref = "Ambivalent (no wins)"
 
 	game_scene = get_parent()
 
@@ -70,10 +80,10 @@ func show_next_text_in_array(text_arr):
 		queue_free()
 
 		if curr_text_arr_idx == 0:
-			game_scene.transition_to_scene("res://overworld/overworld_ch1.tscn")
+			game_scene.transition_to_scene("res: / / overworld / overworld_ch1.tscn")
 			GlobalState.set_current_scene("Overworld")
 		elif curr_text_arr_idx == 1:
-			game_scene.transition_to_scene("res://brewing/brewing_base_scene.tscn")
+			game_scene.transition_to_scene("res: / / brewing / brewing_base_scene.tscn")
 			GlobalState.set_current_scene("Brewing")
 		# elif 1 do brewing
 		# elif 2 do end	

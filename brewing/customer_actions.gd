@@ -32,6 +32,7 @@ func _ready():
 
 # This is a one-off anyway
 var old_man_served_correct_thing = false
+var served_all_hurt_soldiers = true # assume true until not
 
 var tween
 func trigger_next_customer():
@@ -43,6 +44,8 @@ func trigger_next_customer():
 		GlobalState.incr_current_chapter()
 		# Trigger next narrative screen
 		# Not the best but hopefully it works
+		if served_all_hurt_soldiers == true:
+			GlobalState.ARMY_ENDING = true
 		brewing_base.transition_to_narration_scene()
 		return
 	curr_char_being_served = true
@@ -76,10 +79,18 @@ func trigger_current_customer_served(cup_tea_type: GlobalState.TEA_TYPES):
 	if curr_char_being_served:
 		curr_char_served = true
 		# Loop the old man
-		if GlobalState.BREWING_CHAPTER == 1 and curr_char_name == "OldMan":
-			if cup_tea_type == curr_char_pref:
-				old_man_served_correct_thing = true
+		if GlobalState.BREWING_CHAPTER == 1 && curr_char_name == "OldMan" && cup_tea_type == curr_char_pref:
+			old_man_served_correct_thing = true
 
+		# If forg gets the healing (white) tea in chapter 2, we haven't served the whole army
+		# A better system built around choices in general, but as this prototype has gone
+		# This works :)
+		if GlobalState.BREWING_CHAPTER == 2 && curr_char_name == "Forg" && cup_tea_type == curr_char_pref:
+			GlobalState.FORG_ENDING = true
+
+		# If any hurt soldier does not get their healing tea, then we solidify ending as false	
+		if GlobalState.BREWING_CHAPTER == 2 && curr_char_name == "HurtSoldier" && cup_tea_type != curr_char_pref:
+			served_all_hurt_soldiers = false
 		# TODO: If the chapter is 2 and the pref for soldiers match, change outcome
 		# If the pref for forg matches, change outcome
 		char_dialogue_action.emit(curr_char_name, true, cup_tea_type, curr_char_pref)

@@ -19,6 +19,7 @@ default_font_size = 30
 [node name="BrewingBase" type="Node3D" unique_id=2002152738]
 transform = Transform3D(1.2706147, 0, 0, 0, 1.2706147, 0, 0, 0, 1.2706147, 0, 0, 0)
 script = ExtResource("1_c48yr")
+debug_mode = true
 
 [node name="Character" type="Node3D" parent="." unique_id=1850063740]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.431, 2.681, 4.2326684)

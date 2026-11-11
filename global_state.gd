@@ -49,20 +49,29 @@ const BASE_TILE_SIZE = 128
 var OVERWORLD_DAY = 1 # i dont think this changes in the prototype
 var BREWING_CHAPTER = 1 # this changes on the last "event" of brewing scene
 
-# maybe store prefs here? {"OldMan", "GreenTea"}?
+# The "metadata" is appended if present for different dialogues for the same char images
 var BREWING_CHAPTER_CUSTOMER_ORDER = {
 	1: [
 		{"name": "OldMan", "pref": TEA_TYPES.BULLET_GREEN},
 		{"name": "Mercenary", "pref": TEA_TYPES.LAVENDER_MINT},
 		{"name": "Forg", "pref": TEA_TYPES.BULLET_GREEN},
 		{"name": "General", "pref": TEA_TYPES.OOLONG},
-		{"name": "SoldierHurt", "pref": TEA_TYPES.LEMON_GINGER},
+		{"name": "SoldierHurt", "pref": TEA_TYPES.WHITE},
 		{"name": "SoldierFine", "pref": TEA_TYPES.ENGLISH_BREAKFAST}
 		],
 	2: [
-		{"name": "General", "pref": TEA_TYPES.OOLONG},
-		{"name": "OldMan", "pref": TEA_TYPES.LAVENDER_MINT}
+		{"name": "OldMan", "pref": TEA_TYPES.LAVENDER_MINT}, # have him explain that white tea is the best for healing
+		{"name": "General", "pref": TEA_TYPES.OOLONG}, # explicit context
+		{"name": "SoldierFine", "pref": TEA_TYPES.ENGLISH_BREAKFAST, "metadata": 1},
+		{"name": "SoldierHurt", "pref": TEA_TYPES.WHITE, "metadata": 1},
+		{"name": "SoldierHurt", "pref": TEA_TYPES.WHITE, "metadata": 2},
+		{"name": "SoldierFine", "pref": TEA_TYPES.OOLONG, "metadata": 2},
+		{"name": "SoldierHurt", "pref": TEA_TYPES.WHITE, "metadata": 3},
+		{"name": "Forg", "pref": TEA_TYPES.WHITE},
+		{"name": "SketchyFarmer", "pref": TEA_TYPES.ENGLISH_BREAKFAST},
+		# have the sketchy farmer come by, say something about choices mattering
 		], # and so on for day 2
+	# TODO: Need to have alternate paths, could do a dictionary for 3 and clause the third
 	3: [
 		{"name": "OldMan", "pref": TEA_TYPES.ENGLISH_BREAKFAST}
 		],
