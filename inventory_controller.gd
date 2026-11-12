@@ -50,15 +50,15 @@ var num_to_info = {
 		],
 }
 
-func setup_tea_container(container_num):
+func get_info_for_num(container_num):
 	return num_to_info[GlobalState.BREWING_CHAPTER][container_num]
 
 func get_teabag(container_num):
-	var curr_info = num_to_info[container_num]
+	var curr_info = get_info_for_num(container_num)
 	if curr_info.quantity == 0:
 		return null
 	else:
 		# This is not a distributed system
 		curr_info.quantity -= 1
-		num_to_info[container_num] = curr_info
+		num_to_info[GlobalState.BREWING_CHAPTER][container_num] = curr_info
 		return curr_info

@@ -18,6 +18,12 @@ var curr_char_name: String = "":
 var curr_char_pref: GlobalState.TEA_TYPES:
 	get():
 		return customers[curr_char_idx]["pref"]
+var curr_char_metadata: int = 0:
+	get():
+		if customers[curr_char_idx].has("metadata"):
+			return customers[curr_char_idx]["metadata"]
+		else:
+			return 0
 var curr_char_being_served = false
 var curr_char_served = false
 
@@ -63,7 +69,7 @@ func trigger_next_customer():
 
 	# Trigger this dialogue such that "served" is false
 	# Tea type irrelevant here, just show their basic dialogue
-	char_dialogue_action.emit(curr_char_name, false, null, null)
+	char_dialogue_action.emit(curr_char_name, false, null, null, curr_char_metadata)
 
 #### https://trello.com/c/dfLlErzl ####
 #### TODO-IMPORTANT: I don't like these animations here. I think it implies that we'll calculate something here.
@@ -93,7 +99,7 @@ func trigger_current_customer_served(cup_tea_type: GlobalState.TEA_TYPES):
 			served_all_hurt_soldiers = false
 		# TODO: If the chapter is 2 and the pref for soldiers match, change outcome
 		# If the pref for forg matches, change outcome
-		char_dialogue_action.emit(curr_char_name, true, cup_tea_type, curr_char_pref)
+		char_dialogue_action.emit(curr_char_name, true, cup_tea_type, curr_char_pref, curr_char_metadata)
 
 # We want to make sure we're only serving someone after they show up, until they leave
 # This happens twice, on arrival and when served

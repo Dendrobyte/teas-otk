@@ -26,7 +26,7 @@ var end_of_day_one_serving_texts = [
 var ending_texts = [
 	"\n1",
 	"\n2",
-	"\nFinal pref was: "
+	"\nFinal pref was: " + GlobalState.WHICH_ENDING()
 ]
 
 # Effectively an iterator?

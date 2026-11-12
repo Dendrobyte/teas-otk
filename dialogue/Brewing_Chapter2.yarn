@@ -111,7 +111,7 @@ title: Brewing_Chapter2_SketchyFarmer
     Sketchy Farmer: Bold of you to assume the truth, or was this simply all that was left anyway?
 <<else>>
     Sketchy Farmer: No one is ever truly up front, but did you think I was lying? Was this malicious?
-    Sketchy Farmer: Or did you just incidentally serve the only tea bag you had of Lemon Ginger?
+    Sketchy Farmer: Or did you just incidentally serve the only tea bag you had of Lemon Ginger to someone else?
 <<endif>>
 ===
 

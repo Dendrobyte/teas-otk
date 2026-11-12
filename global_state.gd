@@ -62,7 +62,7 @@ var BREWING_CHAPTER_CUSTOMER_ORDER = {
 	2: [
 		{"name": "OldMan", "pref": TEA_TYPES.LAVENDER_MINT}, # have him explain that white tea is the best for healing
 		{"name": "General", "pref": TEA_TYPES.OOLONG}, # explicit context
-		{"name": "SoldierFine", "pref": TEA_TYPES.ENGLISH_BREAKFAST, "metadata": 1},
+		{"name": "SoldierFine", "pref": TEA_TYPES.BULLET_GREEN, "metadata": 1},
 		{"name": "SoldierHurt", "pref": TEA_TYPES.WHITE, "metadata": 1},
 		{"name": "SoldierHurt", "pref": TEA_TYPES.WHITE, "metadata": 2},
 		{"name": "SoldierFine", "pref": TEA_TYPES.OOLONG, "metadata": 2},

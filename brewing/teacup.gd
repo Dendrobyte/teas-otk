@@ -25,9 +25,11 @@ var particles: GPUParticles3D = null
 var teacup_particle_scene = preload("res://brewing/particles_teacup.tscn")
 
 func _ready():
-	if !brewing_base.debug_mode:
-		$Water.hide()
+	$Water.hide()
 	$Teabag.hide()
+	if brewing_base.debug_mode:
+		$Water.show()
+		is_filled = true
 	particles = teacup_particle_scene.instantiate()
 	particles.emitting = false
 	add_child(particles)

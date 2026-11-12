@@ -27,7 +27,7 @@ func _ready():
 	# TODO: For post-prototype scope, but worth creating a system for this that represents how we load data
 	#		Would want to consider, for example, a player being able to organize the shelf
 	cont_num = int(name.substr(len(name) - 1)) - 1
-	tea_info = inventory_controller.setup_tea_container(cont_num)
+	tea_info = inventory_controller.get_info_for_num(cont_num)
 
 	# Set up a small display for counter
 	_create_text_label()
